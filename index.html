@@ -1399,7 +1399,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 4:30 PM - 11/03/2026</div>
+<div class="build-timestamp">Actualizado: 4:53 PM - 11/03/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1439,7 +1439,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 4:30 PM - 11/03/2026
+      Actualizado: 4:53 PM - 11/03/2026
     </div>
   </div>
 </div>
@@ -1749,8 +1749,8 @@
 
       <!-- Match Columns Container -->
       <div id="matchContainer" style="display: none;">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem; margin-bottom: 0.35rem;">
-          <span style="font-size: 0.85rem; color: #94a3b8;">Tap left, then tap its match on the right:</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
+          <span style="font-size: 0.84rem; color: #94a3b8;">Tap left, then tap its match on the right <strong style="color:#cbd5e1;">(2 chances per line; 3rd wrong try = -0.25 pt)</strong>:</span>
           <span id="matchStatusBanner" style="font-size: 0.84rem; font-weight: 700; color: #f87171; display: none;">🔄 Mismatch! Columns reshuffled & reworded!</span>
         </div>
         <div class="match-columns-grid">
@@ -2952,6 +2952,9 @@ let matchVariantIndices = [];
 let prevLeftOrderIds = [];
 let prevRightOrderIds = [];
 let isMatchBusy = false;
+let matchWrongTriesByPair = [];
+let matchPenaltyPts = 0;
+let lastMismatchBannerText = '';
 
 function shuffleDifferentOrder(items, prevIds) {
   if (!prevIds || prevIds.length !== items.length || items.length <= 1) {
@@ -3018,13 +3021,21 @@ function getMaxPossibleQuizPoints() {
   return activeQuestions.reduce((sum, q) => sum + (isQuestionNoSpelling(q) ? (q.basePts || 20.0) : 5.0), 0);
 }
 
+function formatPts(val) {
+  const rounded = Math.round((Number(val) || 0) * 100) / 100;
+  return (Math.round(rounded * 10) === rounded * 10) ? rounded.toFixed(1) : rounded.toFixed(2);
+}
+
 function getCurrentTaskPts() {
   const q = activeQuestions[currentQIndex];
   const noSpell = isQuestionNoSpelling(q);
   let pts = noSpell ? (q?.basePts || 20.0) : 4.0;
   if (hintUsedOnCurrent) pts -= 1.0;
   if (rereadUsedOnCurrent) pts -= 1.0;
-  return Math.max(1.0, pts);
+  if (q && q.type === 'match' && typeof matchPenaltyPts === 'number' && matchPenaltyPts > 0) {
+    pts -= matchPenaltyPts;
+  }
+  return Math.max(0.25, Math.round(pts * 100) / 100);
 }
 
 function updatePointsDisplay() {
@@ -3032,13 +3043,22 @@ function updatePointsDisplay() {
   const noSpell = isQuestionNoSpelling(q);
   const taskPts = getCurrentTaskPts();
   const acceptBtn = document.getElementById('acceptBtn');
+  const rubricTask = document.getElementById('rubricTaskText');
   if (noSpell) {
-    document.getElementById('ptsValueDisplay').textContent = `Total Worth: ${taskPts.toFixed(1)} pts`;
-    if (acceptBtn) acceptBtn.textContent = `✅ Submit Answer (+${taskPts.toFixed(0)} pts)`;
+    document.getElementById('ptsValueDisplay').textContent = `Total Worth: ${formatPts(taskPts)} pts`;
+    if (acceptBtn) acceptBtn.textContent = `✅ Submit Answer (+${formatPts(taskPts)} pts)`;
   } else {
-    const totalPts = taskPts + 1.0;
-    document.getElementById('ptsValueDisplay').textContent = `Total Worth: ${totalPts.toFixed(1)} pts (${taskPts.toFixed(1)} Task + 1.0 Spelling)`;
-    if (acceptBtn) acceptBtn.textContent = `✅ Submit Answer (+5 pts)`;
+    const totalPts = Math.round((taskPts + 1.0) * 100) / 100;
+    document.getElementById('ptsValueDisplay').textContent = `Total Worth: ${formatPts(totalPts)} pts (${formatPts(taskPts)} Task + 1.0 Spelling)`;
+    if (acceptBtn) {
+      const btnPtsStr = (totalPts === 5) ? '5' : formatPts(totalPts);
+      acceptBtn.textContent = `✅ Submit Answer (+${btnPtsStr} pts)`;
+    }
+    if (rubricTask && q && q.type === 'match') {
+      rubricTask.textContent = matchPenaltyPts > 0
+        ? `Match Columns = ${formatPts(taskPts)} pts (-${formatPts(matchPenaltyPts)} pt)`
+        : "Match Columns = 4.0 pts";
+    }
   }
 }
 
@@ -3166,6 +3186,9 @@ function saveCurrentQuizProgress() {
       matchDistractorVariantIdx: typeof matchDistractorVariantIdx === 'number' ? matchDistractorVariantIdx : 0,
       prevLeftOrderIds: Array.isArray(prevLeftOrderIds) ? [...prevLeftOrderIds] : [],
       prevRightOrderIds: Array.isArray(prevRightOrderIds) ? [...prevRightOrderIds] : [],
+      matchWrongTriesByPair: Array.isArray(matchWrongTriesByPair) ? [...matchWrongTriesByPair] : [],
+      matchPenaltyPts: typeof matchPenaltyPts === 'number' ? matchPenaltyPts : 0,
+      lastMismatchBannerText: typeof lastMismatchBannerText === 'string' ? lastMismatchBannerText : '',
       currentTargetWord,
       currentSlots: Array.isArray(currentSlots) ? [...currentSlots] : [],
       currentBank: Array.isArray(currentBank) ? [...currentBank] : [],
@@ -3255,6 +3278,12 @@ function restoreQuizFromSavedState(saved) {
       solvedPairs = Array.isArray(saved.solvedPairs) ? [...saved.solvedPairs] : [];
       selectedLeftPair = saved.selectedLeftPair !== undefined ? saved.selectedLeftPair : null;
       selectedRightPair = saved.selectedRightPair !== undefined ? saved.selectedRightPair : null;
+      matchWrongTriesByPair = Array.isArray(saved.matchWrongTriesByPair) && saved.matchWrongTriesByPair.length === q.pairs.length
+        ? [...saved.matchWrongTriesByPair]
+        : q.pairs.map(() => 0);
+      matchPenaltyPts = typeof saved.matchPenaltyPts === 'number' ? saved.matchPenaltyPts : 0;
+      lastMismatchBannerText = typeof saved.lastMismatchBannerText === 'string' ? saved.lastMismatchBannerText : '';
+      updatePointsDisplay();
       if (Array.isArray(saved.matchVariantIndices) && saved.matchVariantIndices.length === q.pairs.length) {
         matchVariantIndices = [...saved.matchVariantIndices];
       }
@@ -3374,7 +3403,7 @@ function restoreQuizFromSavedState(saved) {
     }
 
     const maxPts = getMaxPossibleQuizPoints();
-    document.getElementById('scoreDisplay').textContent = `Score: ${userScore.toFixed(1)}/${maxPts}`;
+    document.getElementById('scoreDisplay').textContent = `Score: ${formatPts(userScore)}/${maxPts}`;
     isRestoringQuizProgress = false;
     return true;
   } catch (e) {
@@ -3445,10 +3474,13 @@ function renderQuestion() {
   solvedPairs = [];
   selectedLeftPair = null;
   selectedRightPair = null;
+  matchWrongTriesByPair = (q && q.type === 'match' && Array.isArray(q.pairs)) ? q.pairs.map(() => 0) : [];
+  matchPenaltyPts = 0;
+  lastMismatchBannerText = '';
 
   const maxPts = getMaxPossibleQuizPoints();
   document.getElementById('qProgress').textContent = `Q ${currentQIndex + 1}/${activeQuestions.length}`;
-  document.getElementById('scoreDisplay').textContent = `Score: ${userScore.toFixed(1)}/${maxPts}`;
+  document.getElementById('scoreDisplay').textContent = `Score: ${formatPts(userScore)}/${maxPts}`;
   document.getElementById('qText').textContent = `${currentQIndex + 1}. ${q.q}`;
 
   const rubricWorthPrefix = document.getElementById('rubricWorthPrefix');
@@ -3665,7 +3697,7 @@ function renderMatchColumns(q, isReshuffle = false) {
     }
 
     if (banner) {
-      banner.textContent = "🔄 Mismatch! Unsolved options reshuffled & reworded!";
+      banner.textContent = lastMismatchBannerText || "🔄 Mismatch! Unsolved options reshuffled & reworded!";
       banner.style.display = 'inline';
     }
   }
@@ -3776,9 +3808,28 @@ function handleMatchClick(side, id) {
       updateSubmitButtonState();
       saveCurrentQuizProgress();
     } else {
-      // Mismatch! Flash red + shake, keep already-solved pairs intact, reorganize & reword only unsolved options
+      // Mismatch! Each line gets 2 chances before taking out 0.25 pts at the 3rd wrong try
       isMatchBusy = true;
       playWrongSound();
+      const leftIdx = selectedLeftPair;
+      if (!Array.isArray(matchWrongTriesByPair) || matchWrongTriesByPair.length !== (qCurr?.pairs?.length || 4)) {
+        matchWrongTriesByPair = (qCurr?.pairs || [0, 1, 2, 3]).map(() => 0);
+      }
+      if (typeof leftIdx === 'number' && leftIdx >= 0) {
+        matchWrongTriesByPair[leftIdx] = (matchWrongTriesByPair[leftIdx] || 0) + 1;
+        const wrongTryNum = matchWrongTriesByPair[leftIdx];
+        const lineLabel = qCurr?.pairs?.[leftIdx]?.left || `Line ${leftIdx + 1}`;
+        if (wrongTryNum >= 3) {
+          matchPenaltyPts = Math.round((matchPenaltyPts + 0.25) * 100) / 100;
+          lastMismatchBannerText = `⚠️ Wrong try #${wrongTryNum} on "${lineLabel}" (-0.25 pt deducted)! Unsolved options reshuffled!`;
+        } else {
+          const chancesLeft = 2 - wrongTryNum;
+          lastMismatchBannerText = chancesLeft === 1
+            ? `🔄 Mismatch on "${lineLabel}" (${wrongTryNum}/2 chances used — 1 chance left before -0.25 pt)`
+            : `🔄 Mismatch on "${lineLabel}" (${wrongTryNum}/2 chances used — next wrong try takes -0.25 pt!)`;
+        }
+        updatePointsDisplay();
+      }
       if (lBtn) {
         lBtn.classList.remove('selected-side');
         lBtn.classList.add('wrong-highlight', 'shake-anim');
@@ -4133,7 +4184,7 @@ function confirmAnswer() {
 
   updateMistakeBadge();
   const maxPts = getMaxPossibleQuizPoints();
-  document.getElementById('scoreDisplay').textContent = `Score: ${userScore.toFixed(1)}/${maxPts}`;
+  document.getElementById('scoreDisplay').textContent = `Score: ${formatPts(userScore)}/${maxPts}`;
   updateBartAvatar((userScore / maxPts) * 100, isFullyCorrect);
   const nextBtnEl = document.getElementById('nextBtn');
   if (nextBtnEl) {
@@ -4809,7 +4860,7 @@ function showResults(skipSongOnRestore = false) {
 
   const maxPossible = getMaxPossibleQuizPoints();
   const pct = Math.min(100, Math.round((userScore / maxPossible) * 100));
-  document.getElementById('finalScore').textContent = `${pct}% (${userScore.toFixed(1)} / ${maxPossible} pts)`;
+  document.getElementById('finalScore').textContent = `${pct}% (${formatPts(userScore)} / ${maxPossible} pts)`;
 
   let grade = 'D';
   let badgeColor = '#c084fc';
