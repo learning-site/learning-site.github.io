@@ -1,6 +1,6 @@
 {
   "activeQuizId": "trapped_videogame_ch7_8_9",
-  "updatedAt": "2026-11-03T21:21:40.522Z",
+  "updatedAt": "2026-11-03T21:30:00.011Z",
   "quizzes": [
     {
       "id": "d_history_trivia_mc",
@@ -204,7 +204,7 @@
       "questions": [
         {
           "type": "mc",
-          "q": "At the start of Chapter 7, after Jesse blasts the locked door and chunks a grenade at it without making a dent, what does he do while yelling 'This is all your fault!' and complaining about missing next week's field trip to the science center?",
+          "q": "After Jesse blasts the locked door and chunks a grenade at it without making a dent, what does he do while yelling 'This is all your fault!' and complaining about missing next week's field trip to the science center?",
           "options": [
             "He blasts Eric to video game death over and over again as Eric keeps disappearing and reappearing on the island.",
             "He throws his arm blaster into the ocean and swims back to Pearl Harbor.",
@@ -250,7 +250,7 @@
         },
         {
           "type": "match",
-          "q": "Match each person, place, or thing from Chapter 7 with its role in the story:",
+          "q": "Match each person, place, or thing with its role:",
           "pairs": [
             {
               "left": "Science Center",
@@ -264,12 +264,12 @@
             },
             {
               "left": "REPLAY Portal",
-              "right": "Gateway the boys walk through to reappear on top of the waterfall at the start of the level",
+              "right": "Gateway the boys walk through to reappear on top of the waterfall",
               "rightVariants": [
-                "Gateway the boys walk through to reappear on top of the waterfall at the start of the level",
+                "Gateway the boys walk through to reappear on top of the waterfall",
                 "Portal Jesse and Eric use to restart the Hawaii level and search for a way out",
                 "Doorway that sends the boys back to the top of the waterfall to grab jet packs",
-                "Portal on Sand Monster Island that returns players to the beginning of the level"
+                "Portal on Sand Monster Island that returns players to the top of the waterfall"
               ]
             },
             {
@@ -337,7 +337,7 @@
         },
         {
           "type": "mc",
-          "q": "At the end of Chapter 7, what is written over the lock on the gray HOME portal, and what does Eric realize it means?",
+          "q": "When Jesse and Eric defeat the sand monster a second time and run to the gray HOME portal, what is written over the lock, and what does Eric realize it means?",
           "options": [
             "\"LEVEL 20\" is written over the lock, which means there are 20 levels in the game and the door unlocks when they beat the game.",
             "\"ERROR 2302\" is written over the lock, which means the portal is broken forever.",
@@ -353,7 +353,7 @@
         },
         {
           "type": "mc",
-          "q": "At the beginning of Chapter 8 ('Lady Liberty'), what does Eric explain is the plot of Level 3 on Liberty Island?",
+          "q": "When Jesse and Eric land on Liberty Island and look up at the Statue of Liberty, what does Eric explain is the plot of Level 3?",
           "options": [
             "The Resistance has turned the Statue of Liberty into a rocket ship, so they must lure all the New York City aliens inside, climb to the top, and escape by jet pack right before Lady Liberty blasts the aliens to the moon.",
             "They have to defend the Statue of Liberty's torch from giant bats using water cannons on a ferry boat.",
@@ -383,7 +383,7 @@
         },
         {
           "type": "match",
-          "q": "Match each part of Eric and Jesse's arrival and plan on Liberty Island in Chapter 8 with what happens:",
+          "q": "Match each part of Eric and Jesse's arrival and plan on Liberty Island with what happens:",
           "pairs": [
             {
               "left": "Arm Blasters",
@@ -464,7 +464,7 @@
             "Eric lowers a long rope ladder down from the Statue of Liberty's crown."
           ],
           "correct": 0,
-          "hint": "Jesse recalls something he yelled 'WHAT ARE YOU TALKING ABOUT?!' at during his tutorial training in Chapter 4.",
+          "hint": "Jesse recalls something Sergeant Sandpants told him during his tutorial training that made Jesse yell 'WHAT ARE YOU TALKING ABOUT?!'",
           "pageTitle": "Chapter 8 — Pages 58–59 (Blaster Boost Jump)",
           "pageExcerpt": "\"I took a deep breath and remembered something I learned during my training. 'OK, maggot,' Sergeant Sandpants had said. 'When you come across a large pit, shoot your blaster at the ground in the middle of the jump to give yourself an extra boost.' ... Now I knew. I took a deep breath, jumped as far as I could, then shot a blast down into the pit the second I started falling. It worked! The blast gave me just enough lift to make it to the other side.\"",
           "word": "PLATFORMS",
@@ -486,7 +486,7 @@
         },
         {
           "type": "match",
-          "q": "Match each detail from Jesse's climb up the Statue of Liberty in Chapter 8 with its description in the book:",
+          "q": "Match each detail from Jesse's climb up the Statue of Liberty with its description:",
           "pairs": [
             {
               "left": "Flame Sculpture",
@@ -524,7 +524,7 @@
               "rightVariants": [
                 "How Jesse describes the right arm of the gas-mask figure waiting in the crown room",
                 "Creepy appearance of the right arm on the figure wearing a jet pack and gas mask",
-                "Three words describing the alien arm of the impostor Eric at the end of Chapter 8",
+                "Three words describing the alien arm of the impostor Eric",
                 "Shocking detail Jesse notices about the right arm of the person pointing a blaster at him"
               ]
             }
@@ -543,7 +543,7 @@
         },
         {
           "type": "mc",
-          "q": "At the end of Chapter 8 and start of Chapter 9, what is the figure in the middle of the crown room doing when Jesse rounds the corner?",
+          "q": "When Jesse rounds the corner into the Statue of Liberty's crown room, what is the figure in the middle of the room doing?",
           "options": [
             "Wearing a jet pack and a gas mask, it waves bye-bye with five spindly fingers on its slimy gray right hand while aiming a blaster directly between Jesse's eyes.",
             "Hiding inside a cardboard box while eating a slice of melty pizza.",
@@ -559,7 +559,7 @@
         },
         {
           "type": "match",
-          "q": "Match each detail from the showdown with Mr. Gas Mask in Chapter 9 ('Bye-Bye') with what happens:",
+          "q": "Match each detail from the showdown with Mr. Gas Mask with what happens:",
           "pairs": [
             {
               "left": "Shiny Metallic Wall",
@@ -646,7 +646,7 @@
         },
         {
           "type": "match",
-          "q": "Match each event from the end of Chapter 9 with its description in the story:",
+          "q": "Match each event from Jesse and Eric's escape from the Statue of Liberty with its description:",
           "pairs": [
             {
               "left": "Hiding in a Box",
@@ -685,7 +685,7 @@
                 "Faint sound Jesse hears while falling through the blackness as a third person enters the LEVEL 4 portal",
                 "Eerie noise behind Jesse after Eric and Jesse walk through the LEVEL 4 portal",
                 "Sound that makes Jesse swear a third person just followed them into the portal",
-                "Final 'WHOOSH!' in the blackness at the very end of Chapter 9"
+                "Third 'WHOOSH!' sound heard in the blackness as someone else enters the LEVEL 4 portal"
               ]
             }
           ],
@@ -703,7 +703,7 @@
         },
         {
           "type": "mc",
-          "q": "At the very end of Chapter 9, after Eric and Jesse swim to the shore of Liberty Island and walk through the LEVEL 4 portal ('WHOOSH! ... WHOOSH!'), what creepy detail does Jesse notice as he falls through the blackness?",
+          "q": "After Eric and Jesse swim to the shore of Liberty Island and walk through the LEVEL 4 portal ('WHOOSH! ... WHOOSH!'), what creepy detail does Jesse notice as he falls through the blackness?",
           "options": [
             "He could have sworn he heard the faint sound of a third person entering the portal ('WHOOSH!').",
             "He sees the sand monster swimming across New York Harbor behind them.",
@@ -711,7 +711,7 @@
             "A voice on a loudspeaker announces that the Hindenburg Protocol has been canceled."
           ],
           "correct": 0,
-          "hint": "Count how many 'WHOOSH!' sounds happen when Eric and Jesse walk into the LEVEL 4 portal at the end of the chapter.",
+          "hint": "Count how many 'WHOOSH!' sounds happen when Eric and Jesse walk into the LEVEL 4 portal.",
           "pageTitle": "Chapter 9 — Page 65 (A Third Person in the Portal)",
           "pageExcerpt": "\"Eric walked through the LEVEL 4 portal first. WHOOSH! Then I walked through. WHOOSH! Then, as I was falling through the blackness, I could have sworn I heard the faint sound of a third person entering the portal. WHOOSH!\"",
           "word": "BLACKNESS",
@@ -728,7 +728,7 @@
       "questions": [
         {
           "type": "mc",
-          "q": "At the beginning of Chapter 5, where does Eric lead Jesse right outside the portal to strap into a spinning jet pack?",
+          "q": "Where does Eric lead Jesse right outside the portal to strap into a spinning jet pack?",
           "options": [
             "At the top of a waterfall that is at least 200 feet down",
             "Inside a secret submarine docked at Pearl Harbor",
@@ -774,7 +774,7 @@
         },
         {
           "type": "match",
-          "q": "Match each event from Jesse's first jet pack flight in Chapter 5 with what happens in the story:",
+          "q": "Match each event from Jesse's first jet pack flight with what happens:",
           "pairs": [
             {
               "left": "Right-Hand Button",
@@ -877,7 +877,7 @@
         },
         {
           "type": "match",
-          "q": "Match each location or item in Chapter 5 with what happens there:",
+          "q": "Match each location or item with what happens there:",
           "pairs": [
             {
               "left": "Pearl Harbor",
@@ -934,7 +934,7 @@
         },
         {
           "type": "mc",
-          "q": "At the end of Chapter 5, what happens thirty seconds into Eric and Jesse's flight toward the distant island?",
+          "q": "What happens thirty seconds into Eric and Jesse's flight over the ocean toward the distant island?",
           "options": [
             "Giant bats the size of small airplanes swoop down with a 'SCREEEEEEEECH!' and grab both boys in their claws.",
             "Their jet packs run out of fuel and they have to swim the last two miles to shore.",
@@ -950,7 +950,7 @@
         },
         {
           "type": "mc",
-          "q": "At the start of Chapter 6 ('Boss Battle'), how does Jesse describe the tiny island where the giant bats dump them?",
+          "q": "How does Jesse describe the tiny island where the giant bats dump him and Eric?",
           "options": [
             "Just a beach the size of a small backyard with a single palm tree in the middle",
             "A massive volcanic crater surrounded by fifty stone statues",
@@ -996,7 +996,7 @@
         },
         {
           "type": "match",
-          "q": "Match each detail of the Sand Monster boss battle in Chapter 6 with its description in the book:",
+          "q": "Match each detail of the Sand Monster boss battle with its description:",
           "pairs": [
             {
               "left": "Old House with a Big Attic",
@@ -1069,7 +1069,7 @@
         },
         {
           "type": "mc",
-          "q": "During their argument across the level in Chapter 6, what does Jesse yell would actually be 'fun' instead of being tricked and pushed off waterfalls?",
+          "q": "During their argument across the level, what does Jesse yell would actually be 'fun' instead of being tricked and pushed off waterfalls?",
           "options": [
             "\"Having a real friend who explains things and lets me choose for myself!\"",
             "\"Staying in Hawaii forever and flying jet packs over the volcano!\"",
@@ -1099,7 +1099,7 @@
         },
         {
           "type": "match",
-          "q": "Match each quote from the argument and glitch scene in Chapter 6 with who says it or what causes it:",
+          "q": "Match each quote from the argument and glitch scene with who says it or what causes it:",
           "pairs": [
             {
               "left": "\"I don't know; real friends trust each other!\"",
@@ -1182,11 +1182,11 @@
           "pageTitle": "Chapter 6 — Page 46 (Eric's White Face)",
           "pageExcerpt": "\"'OK,' I said to Eric. 'What’s the Hindenburg Protocol?' His face was kind of white. 'I don’t know.' 'What do you mean you don’t know?' 'I mean it’s never done anything like this before.'\"",
           "word": "PORTALS",
-          "clue": "The three glowing doorways that push up through the ground at the end of Chapter 6"
+          "clue": "The three glowing doorways that push up through the ground after defeating a boss"
         },
         {
           "type": "match",
-          "q": "Match each event at the end of Chapter 6 with what happens after Eric activates the Hindenburg Protocol:",
+          "q": "Match each event after Eric activates the Hindenburg Protocol with what happens:",
           "pairs": [
             {
               "left": "Eric's Face",
@@ -1239,7 +1239,7 @@
           "pageTitle": "Chapter 6 — Pages 46–47 (The Locked HOME Portal)",
           "pageExcerpt": "\"He touched 'YES,' and the room faded away. The island and ocean came back, but no more monster... Three portals started pushing through the ground in front of us... We walked toward the middle portal—the HOME one—but stopped short once it began revealing itself. Something was wrong. The two other portals glowed bright blue and purple like before, but not the middle one. The middle one was dull gray. And it was locked.\"",
           "word": "LOCKED",
-          "clue": "Shut tight with a padlock—the state of the dull gray middle HOME portal at the end of Chapter 6"
+          "clue": "Shut tight with a padlock—the state of the dull gray middle HOME portal"
         }
       ],
       "readerHtml": "<h2>CHAPTER 5: Jet Pack Joyride</h2>\n<p><strong>[Page 33]</strong> I probably don’t need to tell you this, but jet packs are amazing. This is something I learned firsthand when Eric led me to a spinning jet pack at the top of a waterfall right outside the portal. “Go ahead! Strap in!”</p>\n<p>I strapped on the jet pack, trying hard not to act like this was the coolest moment of my life. “OK, now what?”</p>\n<p>“Jump off.”</p>\n<p>“Excuse me?”</p>\n<p>“Jump off the waterfall.”</p>\n<p>I looked over the edge. The bottom of the waterfall was at least 200 feet down.</p>\n<p>“Nope. Nopity nopity nope. Can’t I just launch from here?”</p>\n<p>“You can, but it’s more fun if you’re falling first. Just press the button in your right hand to blast off and remember to land when it starts blinking.”</p>\n<p><strong>[Page 34]</strong> “Wait, when what starts blinking?”</p>\n<p>“Exactly! Now go!” With that, Eric pushed me off the edge of the waterfall.</p>\n<p>I’ve only tried the big diving board at the rec center pool once. Last year, Eric finally got me to climb to the top. At the top, I told him I changed my mind about jumping, so he “helped” by pushing me off. I landed on my stomach and got a red mark that lasted the whole day. The lifeguard kicked Eric out of the pool, and I punched him in the stomach as hard as I could to show him what my landing felt like, but neither of those things stopped him from cackling about it for the rest of the week.</p>\n<p>Now here we were again, me falling to a watery grave and Eric laughing above. If I ever survived, I would do a lot more than punch him in the stomach. As the river rushed toward me, I tried to remember what Eric had said. <em>Do I push this button? No, maybe this . . .</em></p>\n<p>WHOOOOOOOSH!</p>\n<p>The jet pack roared to life. I stopped falling, and for half a second I found myself suspended in midair. I noticed the impossibly green rain forest around me and <strong>[Page 35]</strong> the roaring river below and the ocean in the distance and thought that nothing could be more beautiful. Then I screamed into the air like an out-of-control bottle rocket.</p>\n<p>“AHHHHHHH!”</p>\n<p>I blew past Eric giving me a thumbs-up at the top of the waterfall. “You got it!”</p>\n<p>I certainly didn’t have it. I was spinning wildly and super close to upchucking again. But after 30 seconds of doing a perfect impression of an untied balloon losing all its air, I finally started getting the hang of it. What followed was the best minute of my life as I flew around Hawaii by jet pack. <em>I flew around Hawaii by jet pack.</em> If there’s a cooler sentence in the world, I can’t think of it right now.</p>\n<p>I was having so much fun <em>flying around Hawaii by jet pack</em> (sorry, just wanted to say it again) that I forgot about Eric’s blinking warning. Then, 500 feet above a volcano, my jet pack started sputtering. I looked back. The fuel wasn’t just running out; the jet pack itself was disappearing and reappearing on my back! I panicked and looked for a place to land, but it was too late—the jet pack disappeared for good.</p>\n<p><strong>[Page 36]</strong> “Oh no! Nooooooo!” I screamed as I fell toward the mouth of the volcano. I was so mad at Eric. Falling off of the 15-foot diving board is one thing. Falling into a pit of boiling lava is quite another. But just before I hit the lava, everything went white, and I found myself standing next to Eric on top of the waterfall again.</p>\n<p>“Pretty cool, huh?”</p>\n<p>“Would it kill you to tell me what happens when the jet pack starts blinking?!”</p>\n<p>Eric laughed and strapped on the jet pack. “Come on!”</p>\n<p>“Don’t I get one?”</p>\n<p>“Yeah, it’ll reappear in five, four, three, two . . .”</p>\n<p>Another jet pack magically reappeared in its place. I strapped it on, and we started flying. In the air, Eric explained the plot of this particular level. Something really stupid about the aliens using Pearl Harbor to launch their attacks and blah, blah, blah. I couldn’t pay too much attention because <em>I was flying around Hawaii by jet pack.</em></p>\n<p>We landed on a secluded beach, found more jet packs, and took off again. When we got into the air, we were <strong>[Page 37]</strong> joined by two eagle-size wasps. I nervously glanced over. One of them made eye contact and glared at me.</p>\n<p>“What are those?” I yelled to Eric.</p>\n<p>“Oh, those are dumb. Do this,” he said as he looped high into the air, circled behind one of the wasps, and blasted it.</p>\n<p>“I don’t think I can do that.”</p>\n<p>“It’s not hard,” Eric said. “All you have to do is . . .”</p>\n<p>While Eric talked, the remaining wasp’s eyes started glowing red.</p>\n<p>“Eric, what is that?”</p>\n<p>“Quick! Pull up!”</p>\n<p>I tried, but it was too late. The wasp zapped me with a laser.</p>\n<p>“OUCH!”</p>\n<p>Eric blasted the wasp and grabbed me. “Come on.”</p>\n<p>We landed on a black sand beach. At least I think the sand was black. It was hard to tell because everything was glowing red and pulsing. “Here you go. Try this,” Eric said as he led me to a suitcase with a Red Cross symbol on it.</p>\n<p><strong>[Page 38]</strong> I reached out to grab it. The instant I touched it, it disappeared in a flash of white, and my vision cleared up. A warm tingle went through my body.</p>\n<p>“Ooh, what was that?”</p>\n<p>“Medical kit. Any time you get hurt, just find one, OK?”</p>\n<p>“K.”</p>\n<p>“You ready to keep going?”</p>\n<p>I smiled. “Let’s do this.”</p>\n<p>Eric and I spent the day blasting our way through Hawaii. We cleared out the enemy patrols on the beaches, collected new laser upgrades for our blasters, and sunk all the spaceships at Pearl Harbor. At sunset, we landed on a cliff overlooking the ocean.</p>\n<p>“See that island out there?” Eric asked.</p>\n<p>I squinted. “Yeah, I think so.”</p>\n<p>“There’s something really cool on it. You want to check it out?”</p>\n<p>“What is it?”</p>\n<p>But Eric had already strapped on a jet pack and jumped off the cliff. “You’ll see!”</p>\n<p><strong>[Page 39]</strong> I sighed, waited five seconds, and strapped on my own jet pack. “Wait up!”</p>\n<p>I pushed to catch up with him, but Eric was about 50 feet ahead of me. Thirty seconds into our flight, the island still seemed a couple of miles away. “I don’t think we’re gonna make it!” I yelled ahead.</p>\n<p>Just then, a huge shadow fell over the ocean. Then—“SCREEEEEEEECH!” I looked up to see a bat the size of a small airplane swoop over Eric and grab him with two massive claws.</p>\n<p>“Eriiiiiiiiic!”</p>\n<p>At that moment, I felt claws dig into my own back.</p>\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 18px 0;\" />\n<h2>CHAPTER 6: Boss Battle</h2>\n<p><strong>[Page 41]</strong> With Eric and me in their talons, the bats flew toward the tiny island. As we got closer, the speck of land came into focus—just a beach the size of a small backyard with a single palm tree in the middle. When we reached the island, the bats dive-bombed, then—<em>WHUMP!</em>—dumped us onto the beach and soared off.</p>\n<p>I brushed the sand out of my clothes. “Was that supposed to happen?”</p>\n<p>“Of course!”</p>\n<p>I walked toward Eric. “We have to talk.” I put my finger on his chest. “You can’t keep surprising me with . . .”</p>\n<p>My voice trailed off, because as I talked, a shadow fell over Eric. I slowly turned to see what it could be this time.</p>\n<p>A sand monster. Of course. Why not.</p>\n<p><strong>[Page 42]</strong> Behind me, a monster made of sand rose from the ground. It kept growing and growing—first the size of a one-story home, then two stories, then as tall as one of those old houses with a big attic on top. Its face formed into angry eyes and massive fangs.</p>\n<p>I jabbed my thumb toward the furious monster behind me. “Wanna tell me what this is?”</p>\n<p><strong>[Page 43]</strong> “The boss!”</p>\n<p>“I don’t know what that means.”</p>\n<p>“This is a video game. Every few levels end with a big boss battle.”</p>\n<p>“You’re speaking gibberish.”</p>\n<p>Eric rolled his eyes. “If you blast him enough times in a glowing spot on his back or belly, he’ll disappear, and the portals will pop up.”</p>\n<p>“Fine. I’ll be happy to go home where people aren’t constantly tricking me and pushing me off waterfalls!”</p>\n<p>“Fine!”</p>\n<p>“FINE!”</p>\n<p>I marched in front of the sand monster, and it roared like a dinosaur.</p>\n<p>“Ooh. Ooooooooh. I’m real scared,” I said as I blasted it in the mouth. “What are you going to do, eat me?” I charged up to full blast and shot it in the belly. It fell over shrieking, then grew bigger and angrier.</p>\n<p>“Go ahead! Eat me! It won’t even hurt. I’ll just come right back here, and we’ll do the whole thing again because this is a video game and video games are STUPID!”</p>\n<p><strong>[Page 44]</strong> “Oh, shut up!” Eric yelled from across the level.</p>\n<p>“What was that?!”</p>\n<p>“Just save it. You know you’re having fun.”</p>\n<p>“Oh, really?! You know what would be fun?” I dodged a spiky sand ball that the monster threw at me. (It’s sand, you might be saying. Sand is soft. How could a sand ball be spiky? I know, right? Video games are so dumb.) “What would be fun is having a real friend who explains things and lets me choose for myself!”</p>\n<p>Eric blasted the monster in the back, and it fell over again. “What? So I’m not a real friend now!”</p>\n<p>The monster grew so big that I couldn’t see Eric anymore, so I just started yelling at the monster’s belly, hoping Eric could hear me on the other side.</p>\n<p>“I don’t know; real friends trust each other!”</p>\n<p>I could hear Eric charging up his blaster. I charged mine, too.</p>\n<p>“Real friends know each other,” Eric said. “And this friend knows that you never want to have fun or make decisions for yourself. So sometimes he has to push you a little bit.”</p>\n<p><strong>[Page 45]</strong> “Well, maybe you don’t know me as well as you think you do!”</p>\n<p>I blasted the monster’s belly. Unknown to me, Eric blasted its back at the same time. In slow motion, the monster looked at me, then turned around to look at Eric. Then a funny thing happened. Its head started twitching unnaturally. As the monster’s head snapped from me to Eric and back again, it started to roar. Or at least, it started trying to roar.</p>\n<p>“RO-RO-RO-RO-RO.”</p>\n<p>It sounded like a lawn mower trying to start.</p>\n<p>“RO-RO-RO-RO-RO.”</p>\n<p>Suddenly, the sand monster and island disappeared. Everything faded away, and we were left in a bright-blue room. On the wall, words started to appear as if they were being typed.</p>\n<p><strong>ERROR 2302. ACTIVATE HINDENBURG PROTOCOL?</strong><br/><strong>- YES</strong><br/><strong>- NO</strong></p>\n<p><strong>[Page 46]</strong> “OK,” I said to Eric. “What’s the Hindenburg Protocol?”</p>\n<p>His face was kind of white.</p>\n<p>“I don’t know.”</p>\n<p>“What do you mean you don’t know?”</p>\n<p>“I mean it’s never done anything like this before.”</p>\n<p>“So should we pick ‘no’?”</p>\n<p>“Yeah, probably.”</p>\n<p>I walked to the wall and touched “NO.”</p>\n<p>The message disappeared. Eric and I looked at each other and waited for something to happen. Then the message started typing out again.</p>\n<p><strong>ERROR 2302. ACTIVATE HINDENBURG PROTOCOL?</strong><br/><strong>- YES</strong><br/><strong>- NO</strong></p>\n<p>“I guess we don’t have a choice,” Eric said.</p>\n<p>He touched “YES,” and the room faded away. The island and ocean came back, but no more monster.</p>\n<p><strong>[Page 47]</strong> “That was weird,” I said.</p>\n<p>“Yeah. Super weird.”</p>\n<p>Three portals started pushing through the ground in front of us.</p>\n<p>“Why don’t we both get out of here?” Eric asked.</p>\n<p>We walked toward the middle portal—the HOME one—but stopped short once it began revealing itself. Something was wrong. The two other portals glowed bright blue and purple like before, but not the middle one.</p>\n<p>The middle one was dull gray. And it was locked. <em>[Illustration: LOCKED padlock symbol on the middle portal]</em></p>"
@@ -1251,7 +1251,7 @@
       "questions": [
         {
           "type": "mc",
-          "q": "At the start of Chapter 3, what finally reminds Jesse Rigsby that he has a weapon while a man-eating praying mantis is charging at him?",
+          "q": "What finally reminds Jesse Rigsby that he has a weapon while a man-eating praying mantis is charging at him?",
           "options": [
             "He tries curling into a tiny ball while screaming, and the blaster strapped to his arm gets in the way.",
             "Eric shouts instructions to him from the top of the snow-covered boulders.",
@@ -1281,7 +1281,7 @@
         },
         {
           "type": "match",
-          "q": "Match each person, place, or detail from Chapter 3 with its accurate description:",
+          "q": "Match each person, place, or detail with its accurate description:",
           "pairs": [
             {
               "left": "Jesse Rigsby",
@@ -1370,7 +1370,7 @@
         },
         {
           "type": "tf",
-          "q": "True or False: At the end of Chapter 3, the creature that sneaks up behind Eric and shoots him is a regular green praying mantis.",
+          "q": "True or False:, the creature that sneaks up behind Eric and shoots him is a regular green praying mantis.",
           "options": [
             "True",
             "False"
@@ -1384,7 +1384,7 @@
         },
         {
           "type": "match",
-          "q": "Match each detail from Jesse's memories of his friendship with Eric in Chapter 4 with what happened:",
+          "q": "Match each detail from Jesse's memories of his friendship with Eric with what happened:",
           "pairs": [
             {
               "left": "First Grade",
@@ -1441,7 +1441,7 @@
         },
         {
           "type": "mc",
-          "q": "According to Eric in Chapter 4, how did he unlock 'Reality Mode' and get sucked into the video game?",
+          "q": "According to Eric, how did he unlock 'Reality Mode' and get sucked into the video game?",
           "options": [
             "He finally beat the game earlier that afternoon, and a screen at the end of the credits asked if he wanted to try 'Reality Mode'.",
             "He entered a secret cheat code he found printed inside the game manual.",
@@ -1449,7 +1449,7 @@
             "He downloaded an experimental update from the alien base portal."
           ],
           "correct": 0,
-          "hint": "Eric explains what popped up on the screen at the end of the game's credits after he beat it.",
+          "hint": "Eric explains what popped up on the screen after he finished the game's credits.",
           "pageTitle": "Chapter 4 — Page 26 (Unlocking Reality Mode)",
           "pageExcerpt": "\"Eric shrugged. 'I think so. Earlier this afternoon, I finally beat the game. At the end of the credits, a screen came up that said I’d unlocked something called \"Reality Mode\" and asked if I wanted to try it. When I said yes, I got sucked in like you did.'\"",
           "word": "CREDITS",
@@ -1457,7 +1457,7 @@
         },
         {
           "type": "mc",
-          "q": "How does Eric earn the mechanical grenade-launcher attachment in Chapter 4?",
+          "q": "How does Eric earn the mechanical grenade-launcher attachment?",
           "options": [
             "He lures 50+ aliens to a tiny cave opening they can't fit through and vaporizes the whole group in one charged shot.",
             "He finds it inside a locked supply crate next to the HOME portal.",
@@ -1479,15 +1479,15 @@
             "False"
           ],
           "correct": 1,
-          "hint": "Think about what Eric says appears at the end of each level that lets players return to real life.",
+          "hint": "Think about what Eric says pops up after completing a level to let players return to real life.",
           "pageTitle": "Chapter 4 — Page 27 (Portals at the End of Each Level)",
           "pageExcerpt": "\"'Oh, we’re not stuck,' Eric said as he started walking... 'At the end of each level, there’s a portal that takes you back to real life. I finished two levels, then decided to go back and tell you about it.'\"",
           "word": "PORTAL",
-          "clue": "Glowing doorway at the end of a level that can send players back to real life"
+          "clue": "Glowing doorway that can teleport players between levels or back to real life"
         },
         {
           "type": "match",
-          "q": "Match each game element from Chapter 4 with how Eric explains or uses it:",
+          "q": "Match each game element with how Eric explains or uses it:",
           "pairs": [
             {
               "left": "Reality Mode",
@@ -1568,7 +1568,7 @@
             "A glitch caused by the invisible brick wall in the Rocky Mountains."
           ],
           "correct": 0,
-          "hint": "Eric interrupts Jesse and explains the purpose of the programmed drill sergeant at the start of a game.",
+          "hint": "Eric interrupts Jesse and explains the purpose of the programmed drill sergeant who teaches players the controls.",
           "pageTitle": "Chapter 4 — Page 28 (The Tutorial Sergeant)",
           "pageExcerpt": "\"'...And then this army guy starts yelling at me and making me do all this weird stuff...' 'That was the tutorial,' Eric interrupted... 'The tutorial. It’s there to teach you how to play the game. That sergeant’s not real—he’s like a robot that’s only programmed to do one thing.'\"",
           "word": "SERGEANT",
@@ -1590,7 +1590,7 @@
         },
         {
           "type": "mc",
-          "q": "Alongside 'REAL ALIENS ARE TRYING TO EAT ME!', what real-world responsibility does Jesse shout about in Chapter 4?",
+          "q": "Alongside 'REAL ALIENS ARE TRYING TO EAT ME!', what real-world responsibility does Jesse shout about?",
           "options": [
             "\"AND I HAVE MATH HOMEWORK THAT'S DUE ON MONDAY!\"",
             "\"AND I HAVE TO IMPROVE MY GYM CLASS MILE TIME!\"",
@@ -1606,7 +1606,7 @@
         },
         {
           "type": "match",
-          "q": "Match each sound effect from Chapters 3 and 4 with what causes it in the story:",
+          "q": "Match each sound effect with what causes it:",
           "pairs": [
             {
               "left": "CLUNK",
@@ -1679,7 +1679,7 @@
         },
         {
           "type": "tf",
-          "q": "True or False: At the end of Chapter 4, Jesse steps through the HOME portal alone while Eric continues into LEVEL 2 by himself.",
+          "q": "True or False:, Jesse steps through the HOME portal alone while Eric continues into LEVEL 2 by himself.",
           "options": [
             "True",
             "False"
@@ -1709,7 +1709,7 @@
         },
         {
           "type": "match",
-          "q": "Match each alien or location from Chapters 3 & 4 with its exact description in the book:",
+          "q": "Match each alien or location with its exact description:",
           "pairs": [
             {
               "left": "Praying Mantis Aliens",
@@ -1726,7 +1726,7 @@
               "right": "Alien with five legs and one long blaster arm that sneaks up behind Eric",
               "rightVariants": [
                 "Alien with five legs and one long blaster arm that sneaks up behind Eric",
-                "Dark five-legged enemy on the cliff that vaporizes Eric at the end of Chapter 3",
+                "Dark five-legged enemy on the cliff that vaporizes Eric",
                 "Armed black alien that Eric later takes out with two grenades",
                 "Stealthy five-legged shooter that ambushes Eric from behind on the ridge"
               ]
@@ -1738,7 +1738,7 @@
                 "Final stronghold Eric and Jesse defeat to reach the room with three portals",
                 "End-of-level fortress containing the REPLAY, HOME, and LEVEL 2 doorways",
                 "Enemy headquarters cleared by Eric's blaster and Jesse's willy-nilly grenades",
-                "Target at the end of Level 1 where the glowing exit portals are housed"
+                "Target building in Level 1 where the glowing exit portals are housed"
               ]
             },
             {
@@ -1758,7 +1758,7 @@
             "Eight-winged dragon boss that breathes fire over Middlefield, Ohio",
             "Desert spaceport where Lhari starships land in blinding rainbow colors"
           ],
-          "hint": "Think about the two types of alien enemies in Chapter 3 and the two end-of-chapter destinations in Chapter 4.",
+          "hint": "Think about the two types of insect alien enemies and the two destinations in Level 1.",
           "pageTitle": "Chapters 3 & 4 — Pages 18, 21, 30 & 31",
           "pageExcerpt": "\"creatures with six nimble insect legs... a jet-black creature that looked a little more alien than praying mantis with five legs and one long blaster arm... 'We’ve got an alien base to defeat'... Inside, we found a room with three glowing portals. One said 'REPLAY,' another said 'HOME,' and the last said 'LEVEL 2.' ... 'The next one is in Hawaii... They have jet packs.'\"",
           "word": "JETPACKS",

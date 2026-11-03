@@ -24,11 +24,11 @@
    - Si el usuario agota sus 3 oportunidades en `Spelling` y aún no acierta, se muestra automáticamente la **ortografía correcta (`Right Spelling`)** tanto en las casillas de letras como en el mensaje de estado.
    - Tanto la parte de comprensión como el `Spelling` cuentan para marcar la pregunta como correcta; si falla cualquiera de las dos, la pregunta pasa a `Review Missed`.
 
-4. **Reglas de `Review Missed`, `Hint` y `Reread chapter to find answer`:**
+4. **Reglas de `Review Missed`, `Hint`, `Reread chapter` y Sin Referencias de Ubicación:**
    - `Review Missed` está bloqueado hasta que el usuario termine el quiz completo (`isQuizCompleted === true`).
-   - El botón `Hint` permanece disponible durante todo el tiempo de cada pregunta.
-   - En los quizzes de `R`, los `Hints` dan pistas reales sobre la historia/comprensión y **nunca** dicen `"read page #"`, `"check page #"` ni `"look on page #"`.
-   - Debajo de `Hint (-1.0 pt)` siempre debe existir el botón `📖 Reread chapter to find answer (-1.0 pt)` que muestra el texto específico de la página del capítulo donde está la respuesta y descuenta `1.0 pt`.
+   - Los botones `Hint` y `Reread chapter` permanecen disponibles mientras se responde la pregunta, pero **se deshabilitan inmediatamente después de enviar la respuesta (`Submit Answer` / `isQuizAnswered === true`)** o al completar todas las parejas de una pregunta `Matching Columns`.
+   - **Prohibido dar referencias de ubicación**: Ni las preguntas (`q`), ni los `Hints` (`hint`), ni las pistas de deletreo (`clue`) deben mencionar en qué parte o capítulo del libro está la respuesta (ej. **nunca** decir `"At the start of Chapter 7"`, `"in Chapter 8"`, `"at the end of the chapter"`, `"read page #"`, `"check page #"` ni `"look on page #"`). Deben enfocarse únicamente en los eventos y personajes de la historia.
+   - Debajo de `Submit Answer` (con espacio de separación) siempre existen los botones `Hint (-1.0 pt)` y `📖 Reread chapter to find answer (-1.0 pt)`.
 
 5. **Audio Feedback y Canciones Finales:**
    - Al presionar `Submit Answer`, suena uno de los 3 audios TTS para respuesta correcta o 3 para incorrecta.
