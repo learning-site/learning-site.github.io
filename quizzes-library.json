@@ -1,6 +1,6 @@
 {
-  "activeQuizId": "trapped_videogame_ch5_6",
-  "updatedAt": "2026-10-29T22:03:11.491Z",
+  "activeQuizId": "trapped_videogame_ch7_8_9",
+  "updatedAt": "2026-11-03T21:21:40.522Z",
   "quizzes": [
     {
       "id": "d_history_trivia_mc",
@@ -195,6 +195,530 @@
         }
       ],
       "readerHtml": "<h2>D's Study Sheet — 5 Core Questions & Answers</h2>\n<p>Review all 5 questions carefully before taking <strong>Section 1 (Multiple Choice)</strong> and <strong>Section 2 (Fill in the Blank)</strong>:</p>\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 10px 0;\" />\n<p><strong>1. What is the oldest University in the United States?</strong><br/>\n✅ Answer: <strong>Harvard</strong></p>\n<p><strong>2. Which US athlete has won the most Olympic gold medals ever?</strong><br/>\n✅ Answer: <strong>Michael Phelps</strong></p>\n<p><strong>3. Which US president issued the Emancipation Proclamation?</strong><br/>\n✅ Answer: <strong>Abraham Lincoln</strong></p>\n<p><strong>4. The Tet Offensive was a turning point in which war?</strong><br/>\n✅ Answer: <strong>The Vietnam War.</strong></p>\n<p><strong>5. What happened on October 28, 1929, also known as Black Monday?</strong><br/>\n✅ Answer: <strong>Start of the Great Depression.</strong></p>"
+    },
+    {
+      "id": "trapped_videogame_ch7_8_9",
+      "instance": "R",
+      "title": "Trapped in a Video Game: Chapters 7, 8 & 9",
+      "createdAt": "Nov 3, 2026",
+      "questions": [
+        {
+          "type": "mc",
+          "q": "At the start of Chapter 7, after Jesse blasts the locked door and chunks a grenade at it without making a dent, what does he do while yelling 'This is all your fault!' and complaining about missing next week's field trip to the science center?",
+          "options": [
+            "He blasts Eric to video game death over and over again as Eric keeps disappearing and reappearing on the island.",
+            "He throws his arm blaster into the ocean and swims back to Pearl Harbor.",
+            "He climbs to the top of the palm tree and refuses to come down until nightfall.",
+            "He uses a shovel to dig a tunnel underneath the locked gray portal."
+          ],
+          "correct": 0,
+          "hint": "Jesse marches toward Eric and punctuates almost every word of his angry speech with another BLAST.",
+          "pageTitle": "Chapter 7 — Pages 49–50 (Mark Day)",
+          "pageExcerpt": "\"Then I blasted Eric. He reappeared on the other side of the island. I started marching toward him. 'This is all your fault!' I blasted him again. He disappeared and reappeared again... 'We’re supposed to go on a field trip to the science center next week, and I really wanted to go to the science center!' BLAST. 'This . . .' BLAST '. . . is . . .' BLAST '. . . all . . .' BLAST '. . . your . . .' BLAST '. . . fault!' BLAST BLAST. By the end of my little speech, Eric was just hanging his head while I blasted him to video game death over and over again.\"",
+          "word": "SCIENCE",
+          "clue": "The type of center where Jesse's class is supposed to go on a field trip next week"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: When Eric apologizes on the beach and tries to draw a sad face in the sand, he is so bad at drawing that the face looks like a melty pizza.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Think about what Jesse says Eric's sand drawing looks like when Eric keeps his head down on the beach.",
+          "pageTitle": "Chapter 7 — Page 50 (Apology on the Sand)",
+          "pageExcerpt": "\"'It is all my fault. I shouldn’t have made you come without asking.' He plopped onto the sand. I sat down next to him. 'No, you shouldn’t have. But I did have a choice, and I decided to keep going. So I guess we’re in this together.' Eric didn’t say anything. He just kept his head down and started drawing a sad face in the sand. Except Eric is really bad at drawing, so the face looked like a melty pizza.\"",
+          "word": "PIZZA",
+          "clue": "Cheesy food that Eric's badly drawn sad face in the sand looks like when it's melty"
+        },
+        {
+          "type": "mc",
+          "q": "Why does Eric tell Jesse that trying to jet-pack high enough into the sky to escape the video game won't work?",
+          "options": [
+            "Programmers put invisible walls and ceilings in the levels to keep players from leaving, so they would bonk their heads on the ceiling first.",
+            "The jet packs automatically shut off whenever they fly higher than fifty feet above sea level.",
+            "Giant bats patrol the upper clouds and knock down anyone who flies too high.",
+            "The air at the top of the sky is too thin and freezing for video game characters to breathe."
+          ],
+          "correct": 0,
+          "hint": "Remember the invisible fence Jesse ran into in the Rockies and why game programmers add boundaries to levels.",
+          "pageTitle": "Chapter 7 — Pages 50–51 (Invisible Walls and Ceilings)",
+          "pageExcerpt": "\"'When we got into the video game, it felt like we were falling, right? So maybe we just need to jet pack high enough to escape.' Eric shook his head. 'Won’t work. We’ll bonk our heads on the ceiling first.' I looked up at the clear blue sky above me. 'OK, Mr. Positive. What ceiling?' 'The whole world is way too big to put into a video game. So programmers make it look like their levels stretch on forever, but they put in these invisible walls and ceilings to keep you from leaving.'\"",
+          "word": "CEILING",
+          "clue": "Invisible overhead barrier programmers put in a game level so players bonk their heads if they fly too high"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or thing from Chapter 7 with its role in the story:",
+          "pairs": [
+            {
+              "left": "Science Center",
+              "right": "Place where Jesse's class is supposed to go on a field trip next week",
+              "rightVariants": [
+                "Place where Jesse's class is supposed to go on a field trip next week",
+                "Field trip destination Jesse complains about missing while blasting Eric",
+                "Museum trip scheduled for next week that Jesse really wanted to attend",
+                "School field trip spot Jesse mentions during his angry speech on the island"
+              ]
+            },
+            {
+              "left": "REPLAY Portal",
+              "right": "Gateway the boys walk through to reappear on top of the waterfall at the start of the level",
+              "rightVariants": [
+                "Gateway the boys walk through to reappear on top of the waterfall at the start of the level",
+                "Portal Jesse and Eric use to restart the Hawaii level and search for a way out",
+                "Doorway that sends the boys back to the top of the waterfall to grab jet packs",
+                "Portal on Sand Monster Island that returns players to the beginning of the level"
+              ]
+            },
+            {
+              "left": "Mark Whitman",
+              "right": "Classmate who disappeared last month trying to swim across the Mahoning River after a storm",
+              "rightVariants": [
+                "Classmate who disappeared last month trying to swim across the Mahoning River after a storm",
+                "Kid from Jesse and Eric's class whose big blue eyes stared from a gigantic stage picture",
+                "Missing student who had a school memorial service after search boats couldn't find him",
+                "Boy in their class whom 'Mark Day' is named after when Eric worries they're missing"
+              ]
+            },
+            {
+              "left": "Memorial Service",
+              "right": "School assembly held after two weeks of searching where students got to go home early",
+              "rightVariants": [
+                "School assembly held after two weeks of searching where students got to go home early",
+                "Event at school with a gigantic picture of Mark on stage where people said nice things",
+                "Tribute assembly that gave students an extra day off, making Jesse feel both sad and guilty",
+                "School gathering Eric calls a 'Mark Day' while worrying nobody knows where they are"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Secret submarine code that unlocks an alien spaceship at Pearl Harbor",
+            "Golden trophy awarded to Eric for drawing the best picture in art class",
+            "Radio transmitter Jesse builds out of coconuts to call his parents",
+            "Underground bunker in the volcano where the boys find extra grenades"
+          ],
+          "hint": "Think about the field trip Jesse wants to go on, how they return to the waterfall, who disappeared in the Mahoning River, and what happened at school two weeks later.",
+          "pageTitle": "Chapter 7 — Pages 49–52 (Searching the Island & Mark Day)",
+          "pageExcerpt": "\"'We’re supposed to go on a field trip to the science center next week...' We walked through the REPLAY portal and reappeared back on top of the waterfall at the beginning of the level... Mark Whitman was a kid in our class who had disappeared last month... When they couldn’t find his body after two weeks, they finally decided to hold a memorial service at school.\"",
+          "word": "MEMORIAL",
+          "clue": "A special service held at school to remember Mark Whitman after he disappeared"
+        },
+        {
+          "type": "mc",
+          "q": "What happened to Mark Whitman last month, and why did Jesse get mad at himself during the school memorial service?",
+          "options": [
+            "Mark disappeared trying to swim across the Mahoning River after a storm; Jesse was sad at the service, but also felt a little excited that they got an extra day off.",
+            "Mark moved away to New York City without telling anyone; Jesse forgot to sign his goodbye card.",
+            "Mark got lost on a field trip to the science center; Jesse laughed when the principal made an announcement.",
+            "Mark broke his arm falling off the rec center diving board; Jesse took his spot on the baseball team."
+          ],
+          "correct": 0,
+          "hint": "Special boats looked up and down the river for two weeks, and after people said nice things on stage at school, students were sent home early.",
+          "pageTitle": "Chapter 7 — Page 52 (Mark Whitman's Story)",
+          "pageExcerpt": "\"Mark Whitman was a kid in our class who had disappeared last month. Word around town was that he had drowned trying to swim across the Mahoning River after a storm. Everyone pitched in to find him—they even brought in these special boats to look up and down the river. When they couldn’t find his body after two weeks, they finally decided to hold a memorial service at school... Then we got to go home early. I remember being sad but also a little excited that we got an extra day off. I got mad at myself for feeling like that.\"",
+          "word": "RIVER",
+          "clue": "Flowing body of water (the Mahoning) that Mark Whitman tried to swim across after a storm"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: When Jesse and Eric return to Sand Monster Island and defeat the sand monster a second time, it starts glitching again and only two portals appear.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Check whether the sand monster glitches the second time they beat him and how many portals pop up in his place.",
+          "pageTitle": "Chapter 7 — Page 53 (Return to Sand Monster Island)",
+          "pageExcerpt": "\"Sure enough, the sand monster was back. We teamed up and defeated him in no time. This time, he didn’t start glitching when we beat him. He just shrieked and disappeared into the island. In his place, the portals reappeared. But now instead of three, there were four... Eric shook his head. 'No, that one just sends you back to previous levels.'\"",
+          "word": "PREVIOUS",
+          "clue": "Coming before—where Eric says the fourth portal sends players back to"
+        },
+        {
+          "type": "mc",
+          "q": "At the end of Chapter 7, what is written over the lock on the gray HOME portal, and what does Eric realize it means?",
+          "options": [
+            "\"LEVEL 20\" is written over the lock, which means there are 20 levels in the game and the door unlocks when they beat the game.",
+            "\"ERROR 2302\" is written over the lock, which means the portal is broken forever.",
+            "\"GAME OVER\" is written over the lock, which means they have run out of lives.",
+            "\"INSERT COIN\" is written over the lock, which means they need to find gold coins in Hawaii."
+          ],
+          "correct": 0,
+          "hint": "Eric takes a closer look at the locked gray HOME portal, smiles, and tells Jesse how they can unlock the door.",
+          "pageTitle": "Chapter 7 — Page 53 (The Locked HOME Portal)",
+          "pageExcerpt": "\"We ran to the HOME portal. It was still gray and locked, but over the lock was now written 'LEVEL 20.' 'What does that mean?' I asked. Eric turned and smiled. 'There are 20 levels in the game!' 'OK.' 'Jesse, this door unlocks when we beat the game!'\"",
+          "word": "TWENTY",
+          "clue": "The total number of levels in the video game written over the lock on the HOME portal"
+        },
+        {
+          "type": "mc",
+          "q": "At the beginning of Chapter 8 ('Lady Liberty'), what does Eric explain is the plot of Level 3 on Liberty Island?",
+          "options": [
+            "The Resistance has turned the Statue of Liberty into a rocket ship, so they must lure all the New York City aliens inside, climb to the top, and escape by jet pack right before Lady Liberty blasts the aliens to the moon.",
+            "They have to defend the Statue of Liberty's torch from giant bats using water cannons on a ferry boat.",
+            "They must swim underwater from Liberty Island to Manhattan to shut down an alien submarine.",
+            "They need to paint the Statue of Liberty bright purple so the alien spaceships cannot see it."
+          ],
+          "correct": 0,
+          "hint": "The aliens in New York City think they have the players trapped on Liberty Island, not knowing what the Resistance did to the statue.",
+          "pageTitle": "Chapter 8 — Pages 55–56 (Lady Liberty — Level 3 Plot)",
+          "pageExcerpt": "\"'This is a good one!' Eric exclaimed. 'See, all the aliens in New York City think they have you trapped on Liberty Island. Little do they know that the Resistance has turned the Statue of Liberty into a rocket ship! So you have to lure all the aliens into the Statue of Liberty, climb to the top, and escape by jet pack the second before Lady Liberty blasts the aliens to the moon!'\"",
+          "word": "LIBERTY",
+          "clue": "Famous New York statue and island where Level 3 takes place"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: After hearing that the Statue of Liberty is a rocket ship, Jesse tells Eric he never wants to hear Eric make fun of him for collecting baseball cards again because that's the most ridiculous thing he has ever heard.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Jesse stares at Eric with his mouth hanging open and compares the rocket-ship statue plot to his own hobby.",
+          "pageTitle": "Chapter 8 — Page 56 (Baseball Cards & Rocket Ship)",
+          "pageExcerpt": "\"I stared at Eric with my mouth hanging open. Finally, I said, 'OK, I never want to hear you make fun of me for collecting baseball cards again because that’s the most ridiculous thing I’ve ever heard.' He kept grinning. 'But it’s cool, right?' 'It’s cool that the Statue of Liberty is a rocket ship? No. That’s dumb.'\"",
+          "word": "BASEBALL",
+          "clue": "Sport featured on the trading cards Jesse collects in real life"
+        },
+        {
+          "type": "match",
+          "q": "Match each part of Eric and Jesse's arrival and plan on Liberty Island in Chapter 8 with what happens:",
+          "pairs": [
+            {
+              "left": "Arm Blasters",
+              "right": "Weapons that clunk together when Jesse gives Eric an awkward bear hug",
+              "rightVariants": [
+                "Weapons that clunk together when Jesse gives Eric an awkward bear hug",
+                "Metal gear on their arms that clunks during Jesse's biggest bear hug of his life",
+                "Attached weapons that make hugging awkward before entering the LEVEL 3 portal",
+                "Blasters on their arms that clunk together right after they learn how to unlock the HOME door"
+              ]
+            },
+            {
+              "left": "One Jet Pack",
+              "right": "What is waiting at the top of the statue—with no time for a second one to come back",
+              "rightVariants": [
+                "What is waiting at the top of the statue—with no time for a second one to come back",
+                "Single flying pack at the top of Lady Liberty that Eric plans to share to fly off into the sunset",
+                "Equipment at the top of the statue that won't respawn fast enough before liftoff",
+                "Sole escape pack at the crown of the Statue of Liberty"
+              ]
+            },
+            {
+              "left": "Five Minutes",
+              "right": "How long Jesse waits and counts while Eric runs ahead to unlock all the doors",
+              "rightVariants": [
+                "How long Jesse waits and counts while Eric runs ahead to unlock all the doors",
+                "Head start Eric needs inside the statue before Jesse hits the alarm",
+                "Amount of time Jesse counts outside before pressing the big red button",
+                "Wait time Eric gives Jesse so all the doors to the top will be unlocked"
+              ]
+            },
+            {
+              "left": "Big Red ALARM Button",
+              "right": "Switch Jesse presses that makes the statue's eyes glow red and attracts the aliens",
+              "rightVariants": [
+                "Switch Jesse presses that makes the statue's eyes glow red and attracts the aliens",
+                "Helpfully labeled button that sounds a loud BRRRAAAAAAANG to lure the aliens",
+                "Control outside the statue that triggers red glowing eyes and brings aliens from the water",
+                "Button Jesse hits after counting for five minutes to draw all the aliens onto the island"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Subway token Jesse inserts into a turnstile to open the gift shop",
+            "Megaphone Jesse uses to sing the national anthem from the statue's torch",
+            "Helicopter pad on the roof where Sergeant Sandpants lands to rescue them",
+            "Rowboat hidden behind the gift shop with two wooden oars inside"
+          ],
+          "hint": "Think about why their bear hug was awkward, why Eric has to run ahead, how long Jesse counts, and what happens when he presses the button.",
+          "pageTitle": "Chapter 8 — Pages 55–57 (The Liberty Island Plan)",
+          "pageExcerpt": "\"It was an awkward hug because we clunked arm blasters... 'The problem is that there’s only one jet pack at the top, and we won’t have enough time to wait for a second one to come back before the Statue of Liberty blasts off.' ... 'So I’ll run ahead of you and unlock all the doors. You wait five minutes, hit that alarm over there to attract the aliens...' After five minutes of counting, I pressed the big red button next to me helpfully labeled 'ALARM.'\"",
+          "word": "ALARM",
+          "clue": "Word written on the big red button Jesse presses to make a loud BRRRAAAAAAANG sound"
+        },
+        {
+          "type": "mc",
+          "q": "When Jesse presses the big red button labeled 'ALARM' and the Statue of Liberty's eyes begin glowing red, what kinds of aliens emerge from the water?",
+          "options": [
+            "Old enemies like the praying mantises and wasps, along with new ones including Transformer rip-offs and stretchy Slinky guys.",
+            "Giant sand monsters and robotic sharks wearing laser helmets.",
+            "Hundreds of tiny green frogs and flying jellyfish that shoot ice beams.",
+            "Only eagle-size wasps carrying spiky sand balls in their claws."
+          ],
+          "correct": 0,
+          "hint": "Jesse recognizes two types of insect aliens from earlier levels, plus two brand-new mechanical/stretchy kinds.",
+          "pageTitle": "Chapter 8 — Page 57 (Aliens Emerge from the Water)",
+          "pageExcerpt": "\"A loud alarm sounded, and the Statue of Liberty’s eyes began glowing red in time with the noise. I didn’t have to wait long for the aliens to show up. They started pouring onto the island from every direction. All kinds of aliens emerged from the water—some old friends like the praying mantises and wasps, along with some new ones, including these Transformer rip-offs and stretchy Slinky guys.\"",
+          "word": "STATUE",
+          "clue": "Towering monument on Liberty Island that the Resistance turned into a rocket ship"
+        },
+        {
+          "type": "mc",
+          "q": "Inside the Statue of Liberty, how does Jesse make it across the large pit filled with squirming, shrieking aliens when his next platform is all the way on the other side?",
+          "options": [
+            "He remembers Sergeant Sandpants's training tip, jumps as far as he can, and shoots his blaster down into the pit mid-jump to give himself an extra boost of lift.",
+            "He swings across the lobby on a giant chandelier hanging from the ceiling.",
+            "He straps on a spare jet pack he found next to the flame sculpture.",
+            "Eric lowers a long rope ladder down from the Statue of Liberty's crown."
+          ],
+          "correct": 0,
+          "hint": "Jesse recalls something he yelled 'WHAT ARE YOU TALKING ABOUT?!' at during his tutorial training in Chapter 4.",
+          "pageTitle": "Chapter 8 — Pages 58–59 (Blaster Boost Jump)",
+          "pageExcerpt": "\"I took a deep breath and remembered something I learned during my training. 'OK, maggot,' Sergeant Sandpants had said. 'When you come across a large pit, shoot your blaster at the ground in the middle of the jump to give yourself an extra boost.' ... Now I knew. I took a deep breath, jumped as far as I could, then shot a blast down into the pit the second I started falling. It worked! The blast gave me just enough lift to make it to the other side.\"",
+          "word": "PLATFORMS",
+          "clue": "Elevated ledges inside the Statue of Liberty lobby that replace the real-life winding staircase"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: Jesse has always been the star of his gym class at pull-ups, so he climbs the ledges inside the Statue of Liberty without needing help from his mechanical blaster arm.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Read how Jesse jokes about hanging from the pull-up bar in gym class like a noodle and what actually helps him climb every ledge.",
+          "pageTitle": "Chapter 8 — Page 59 (Climbing the Ledges)",
+          "pageExcerpt": "\"In gym class, I’d never been the best at pull-ups (and by 'never the best' I mean 'unable to do anything but hang from the bar like a noodle'), but I was able to climb every ledge with no problem thanks to my new, strong mechanical blaster arm.\"",
+          "word": "NOODLE",
+          "clue": "Limp pasta shape Jesse compares himself to when hanging from the pull-up bar in gym class"
+        },
+        {
+          "type": "match",
+          "q": "Match each detail from Jesse's climb up the Statue of Liberty in Chapter 8 with its description in the book:",
+          "pairs": [
+            {
+              "left": "Flame Sculpture",
+              "right": "Object in the middle of the lobby that Jesse jumps onto from the first platform",
+              "rightVariants": [
+                "Object in the middle of the lobby that Jesse jumps onto from the first platform",
+                "Center lobby structure Jesse leaps across on his way to the third platform",
+                "Sculpture inside the Statue of Liberty lobby between the first and third platforms",
+                "Torch-like centerpiece in the lobby that Jesse uses as a stepping stone"
+              ]
+            },
+            {
+              "left": "Sergeant Sandpants",
+              "right": "Nickname Jesse gives the trainer who taught him to shoot the ground mid-jump for a boost",
+              "rightVariants": [
+                "Nickname Jesse gives the trainer who taught him to shoot the ground mid-jump for a boost",
+                "Tutorial instructor whose blaster-jump advice saves Jesse over the pit of aliens",
+                "Trainer who said, 'OK, maggot, when you come across a large pit, shoot your blaster at the ground'",
+                "Drill sergeant whose lesson gives Jesse enough lift to reach the far platform"
+              ]
+            },
+            {
+              "left": "\"Blow this Popsicle stand!\"",
+              "right": "Cool video-game-hero phrase Jesse yells as he runs up the last staircase to the crown",
+              "rightVariants": [
+                "Cool video-game-hero phrase Jesse yells as he runs up the last staircase to the crown",
+                "Expression Jesse has never said in real life but shouts when he reaches the top",
+                "Line Jesse calls out to Eric as he opens the door to the Statue of Liberty's crown",
+                "Heroic saying Jesse blurts out right before rounding the corner at the top of the statue"
+              ]
+            },
+            {
+              "left": "Long, Slimy, and Gray",
+              "right": "How Jesse describes the right arm of the gas-mask figure waiting in the crown room",
+              "rightVariants": [
+                "How Jesse describes the right arm of the gas-mask figure waiting in the crown room",
+                "Creepy appearance of the right arm on the figure wearing a jet pack and gas mask",
+                "Three words describing the alien arm of the impostor Eric at the end of Chapter 8",
+                "Shocking detail Jesse notices about the right arm of the person pointing a blaster at him"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Glass elevator that carries tourists straight from the lobby to the statue's torch",
+            "Secret password written in chalk on the back of the Statue of Liberty's tablet",
+            "Parachute pack hanging on a hook beside the crown's gift shop counter",
+            "Gold medal Sergeant Sandpants awards Jesse for finishing gym class pull-ups"
+          ],
+          "hint": "Recall what Jesse jumps onto in the lobby, who taught him the blaster-jump trick, what funny phrase he shouts on the last staircase, and what the figure's right arm looks like.",
+          "pageTitle": "Chapter 8 — Pages 58–60 (Lobby Climb to the Crown)",
+          "pageExcerpt": "\"From there, I jumped onto the flame sculpture in the middle of the lobby and then onto a third platform... 'OK, maggot,' Sergeant Sandpants had said... I opened a door and ran up the last staircase to the Statue of Liberty’s crown. 'All right, Eric, let’s blow this Popsicle stand!' ... Oh, and one more thing. His right arm was long, slimy, and gray.\"",
+          "word": "CROWN",
+          "clue": "Top room of the Statue of Liberty's head where Jesse finds the figure in a gas mask"
+        },
+        {
+          "type": "mc",
+          "q": "At the end of Chapter 8 and start of Chapter 9, what is the figure in the middle of the crown room doing when Jesse rounds the corner?",
+          "options": [
+            "Wearing a jet pack and a gas mask, it waves bye-bye with five spindly fingers on its slimy gray right hand while aiming a blaster directly between Jesse's eyes.",
+            "Hiding inside a cardboard box while eating a slice of melty pizza.",
+            "Trying to repair a broken radio transmitter next to the shattered window.",
+            "Unlocking the door to the Statue of Liberty's torch so Jesse can climb higher."
+          ],
+          "correct": 0,
+          "hint": "At first Jesse thinks it is Eric wearing a jet pack and gas mask, until he notices its right arm and five spindly fingers.",
+          "pageTitle": "Chapters 8 & 9 — Pages 60–61 (Bye-Bye)",
+          "pageExcerpt": "\"In the middle of the room was Eric, wearing a jet pack, pointing a blaster at me. Also, for some reason, he was wearing a gas mask. Oh, and one more thing. His right arm was long, slimy, and gray. Eric—or whatever that thing was in front of me—raised its right hand with five spindly fingers and started waving bye-bye. I was so confused that I barely noticed him aiming his blaster directly between my eyes.\"",
+          "word": "SPINDLY",
+          "clue": "Long, thin, and skinny—describing the five fingers on the alien's slimy gray hand"
+        },
+        {
+          "type": "match",
+          "q": "Match each detail from the showdown with Mr. Gas Mask in Chapter 9 ('Bye-Bye') with what happens:",
+          "pairs": [
+            {
+              "left": "Shiny Metallic Wall",
+              "right": "Surface where Mr. Gas Mask sees the reflection of a hand sticking out of a box, waving wildly",
+              "rightVariants": [
+                "Surface where Mr. Gas Mask sees the reflection of a hand sticking out of a box, waving wildly",
+                "Mirror-like wall that distracts Mr. Gas Mask right before he pulls the trigger on Jesse",
+                "Metal wall showing the reflection that Mr. Gas Mask shoots at instead of hitting Eric",
+                "Shiny surface next to Jesse that reflects the real Eric waving from inside a box"
+              ]
+            },
+            {
+              "left": "Red Laser (\"ZZZZZIIIIING\")",
+              "right": "Beam Mr. Gas Mask fires at the reflection on the wall instead of hitting the real Eric",
+              "rightVariants": [
+                "Beam Mr. Gas Mask fires at the reflection on the wall instead of hitting the real Eric",
+                "Laser shot that misses Jesse and Eric when Mr. Gas Mask aims at the shiny wall",
+                "Weapon blast Mr. Gas Mask shoots twice as the real Eric jumps out of the box",
+                "Glowing red shot fired by the gas-mask alien in the crown room"
+              ]
+            },
+            {
+              "left": "Real Eric's Tackle",
+              "right": "Hits Jesse in the ribs with a 'WHOOOOMPF!' and knocks him behind a box",
+              "rightVariants": [
+                "Hits Jesse in the ribs with a 'WHOOOOMPF!' and knocks him behind a box",
+                "Move the real Eric makes after jumping out of the box to get Jesse out of the laser's path",
+                "Body slam into Jesse's ribs that pushes both boys behind a box before Eric blasts the window",
+                "Action that makes Jesse wheeze 'WHOOOOMPF!' right before the rocket starts rumbling"
+              ]
+            },
+            {
+              "left": "Speck Wearing a Jet Pack",
+              "right": "What Jesse sees flying from the Statue of Liberty's crown right before the flash of light",
+              "rightVariants": [
+                "What Jesse sees flying from the Statue of Liberty's crown right before the flash of light",
+                "Tiny figure in the sky escaping the rocketing statue while Jesse plummets toward his death",
+                "Sight Jesse catches from the statue's crown as a thousand aliens scream on their way to the moon",
+                "Jet-pack flyer escaping Lady Liberty's crown just before the level ends in a flash of light"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Freeze ray Eric uses to turn Mr. Gas Mask into a solid block of ice",
+            "Helicopter net that catches Jesse and Eric halfway down the Statue of Liberty",
+            "Invisible shield that bounces the red laser back into Mr. Gas Mask's blaster",
+            "Emergency escape pod that launches Jesse and Eric onto a cruise ship"
+          ],
+          "hint": "Follow the action in the crown room: what distracts Mr. Gas Mask on the wall, what he shoots, how the real Eric saves Jesse, and what flies out of the crown as the statue rockets away.",
+          "pageTitle": "Chapter 9 — Pages 61–63 (Escape from the Crown)",
+          "pageExcerpt": "\"Next to me, in the shiny, metallic surface of the wall, I could make out the reflection of a hand sticking out of a box, waving wildly. Mr. Gas Mask adjusted his aim from me to the reflection and shot a red laser. ZZZZZIIIIING... 'WHOOOOMPF!' I wheezed as the real Eric hit me in the ribs and tackled me behind a box... Then, just before everything disappeared in a flash of light, I saw a speck wearing a jet pack fly from the Statue of Liberty’s crown.\"",
+          "word": "REFLECTION",
+          "clue": "Mirror image seen in the shiny metallic wall that distracts Mr. Gas Mask"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: After tackling Jesse behind a box, Eric blasts the window next to them, and they jump out of the shattered window as the Statue of Liberty rocket begins rumbling and taking off.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Think about how Eric creates an exit when they feel the first rumblings of a rocket taking off from the ground.",
+          "pageTitle": "Chapter 9 — Pages 62–63 (Jumping Out the Shattered Window)",
+          "pageExcerpt": "\"Eric blasted the window next to us. From the ground, I could feel the first rumblings of a rocket taking off. I looked out the shattered window to see that we were moving. 'Come on!' Eric grunted as he jumped out of the window. Before I could argue that this would be a lot better with jet packs, the alien rolled left to get a clean shot at me. I took a deep breath, ran, and jumped.\"",
+          "word": "SHATTERED",
+          "clue": "Broken into pieces—like the crown window after Eric blasts it open"
+        },
+        {
+          "type": "mc",
+          "q": "When Jesse and Eric reappear treading water off of Liberty Island, how does Eric explain why he was hiding in a box at the top of the statue?",
+          "options": [
+            "He heard something behind him, thought it was Jesse not following instructions, and hid in a box to scare him—only to discover a weird alien in a gas mask who took the jet pack.",
+            "He was looking for a medical kit inside the storage boxes because a wasp had zapped his arm.",
+            "He got locked inside the box by Sergeant Sandpants as part of a secret training test.",
+            "He was trying to take a nap while waiting five minutes for Jesse to press the alarm button."
+          ],
+          "correct": 0,
+          "hint": "Eric has never seen that creepy gas-mask alien in the game before, and he claims waving wildly from the box was an 'obvious' hand signal to jump out the window.",
+          "pageTitle": "Chapter 9 — Pages 63–64 (Eric's Explanation in the Water)",
+          "pageExcerpt": "\"Eric shook his head as he was treading water. 'I don’t know what that was. When I got to the top of the statue, I heard something behind me. I thought it was you not following instructions, so I hid in a box to scare you. Instead, it was some weird alien wearing a gas mask.' ... 'Then when it couldn’t find me, it strapped on the jet pack and waited for you. I figured our plan would work just as well without jet packs, so I decided to stay hidden and warn you to jump out the window when you showed up.'\"",
+          "word": "PLUMMETING",
+          "clue": "Falling straight down at high speed after jumping out of the Statue of Liberty's window"
+        },
+        {
+          "type": "match",
+          "q": "Match each event from the end of Chapter 9 with its description in the story:",
+          "pairs": [
+            {
+              "left": "Hiding in a Box",
+              "right": "What Eric did at the top of the statue to scare Jesse before the creepy alien showed up",
+              "rightVariants": [
+                "What Eric did at the top of the statue to scare Jesse before the creepy alien showed up",
+                "Where Eric stayed hidden while the gas-mask alien poked around the room looking for him",
+                "Spot from which Eric waved his hand wildly to warn Jesse",
+                "Eric's hiding place in the crown room when he heard footsteps behind him"
+              ]
+            },
+            {
+              "left": "Waving Wildly",
+              "right": "Eric's supposed 'obvious' hand signal meant to tell Jesse to jump out the window",
+              "rightVariants": [
+                "Eric's supposed 'obvious' hand signal meant to tell Jesse to jump out the window",
+                "Gesture from the box that Jesse sarcastically says he didn't know meant 'jump out of the Statue of Liberty'",
+                "Hand motion reflected in the shiny wall that distracted Mr. Gas Mask",
+                "Signal Eric insists was an obvious warning to leap out of the window"
+              ]
+            },
+            {
+              "left": "Pathetic Swim",
+              "right": "Slow, splashy trip back to Liberty Island shore with blasters strapped to their arms",
+              "rightVariants": [
+                "Slow, splashy trip back to Liberty Island shore with blasters strapped to their arms",
+                "What Jesse calls their swim because they aren't the world's best athletes and have arm blasters",
+                "Slowest, splashiest swim the world had ever seen back to the glowing portals on shore",
+                "Awkward dog-paddle to Liberty Island shore after reappearing in the water"
+              ]
+            },
+            {
+              "left": "Third \"WHOOSH!\"",
+              "right": "Faint sound Jesse hears while falling through the blackness as a third person enters the LEVEL 4 portal",
+              "rightVariants": [
+                "Faint sound Jesse hears while falling through the blackness as a third person enters the LEVEL 4 portal",
+                "Eerie noise behind Jesse after Eric and Jesse walk through the LEVEL 4 portal",
+                "Sound that makes Jesse swear a third person just followed them into the portal",
+                "Final 'WHOOSH!' in the blackness at the very end of Chapter 9"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Coast Guard speedboat that throws life jackets to the boys in New York Harbor",
+            "Victory fireworks that spell out 'CONGRATULATIONS' above the Manhattan skyline",
+            "Subway train that carries the boys under the river to Level 4",
+            "Golden key that drops from the sky to unlock the HOME portal early"
+          ],
+          "hint": "Think about why Eric was in the box, what he thought his hand wave meant, how they swam to shore with blasters on their arms, and what Jesse heard in the LEVEL 4 portal.",
+          "pageTitle": "Chapter 9 — Pages 63–65 (Swimming to Shore & Level 4 Portal)",
+          "pageExcerpt": "\"'...so I hid in a box to scare you.' ... 'Wait, waving wildly from a box was supposed to be your way of telling me to jump out the window?' ... Because we are not the world’s best athletes to begin with and because we had blasters strapped to our arms, it was possibly the slowest, splashiest, most pathetic swim the world had ever seen... Then, as I was falling through the blackness, I could have sworn I heard the faint sound of a third person entering the portal. WHOOSH!\"",
+          "word": "ATHLETES",
+          "clue": "People who are skilled at sports and swimming—which Jesse says he and Eric are not"
+        },
+        {
+          "type": "mc",
+          "q": "At the very end of Chapter 9, after Eric and Jesse swim to the shore of Liberty Island and walk through the LEVEL 4 portal ('WHOOSH! ... WHOOSH!'), what creepy detail does Jesse notice as he falls through the blackness?",
+          "options": [
+            "He could have sworn he heard the faint sound of a third person entering the portal ('WHOOSH!').",
+            "He sees the sand monster swimming across New York Harbor behind them.",
+            "His mechanical blaster arm suddenly turns back into a normal human arm.",
+            "A voice on a loudspeaker announces that the Hindenburg Protocol has been canceled."
+          ],
+          "correct": 0,
+          "hint": "Count how many 'WHOOSH!' sounds happen when Eric and Jesse walk into the LEVEL 4 portal at the end of the chapter.",
+          "pageTitle": "Chapter 9 — Page 65 (A Third Person in the Portal)",
+          "pageExcerpt": "\"Eric walked through the LEVEL 4 portal first. WHOOSH! Then I walked through. WHOOSH! Then, as I was falling through the blackness, I could have sworn I heard the faint sound of a third person entering the portal. WHOOSH!\"",
+          "word": "BLACKNESS",
+          "clue": "Pitch-dark emptiness Jesse falls through after stepping into the LEVEL 4 portal"
+        }
+      ],
+      "readerHtml": "<h2>Trapped in a Video Game — Chapters 7, 8 &amp; 9 (Pages 49–65)</h2>\n<p><em>Complete verbatim book pages for Chapter 7: Mark Day, Chapter 8: Lady Liberty, and Chapter 9: Bye-Bye.</em></p>\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 12px 0;\" />\n\n<h3>CHAPTER 7: Mark Day (Page 49)</h3>\n<p>“What now?”</p>\n<p>Eric backed up. “I . . . I don’t know.”</p>\n<p>“We’re trapped?”</p>\n<p>“I mean, I’m sure there’s a way out.”</p>\n<p>“Oh really?!” I blasted the locked door. Nothing. I chunked a grenade at it. Didn’t even make a dent. Then I blasted Eric. He reappeared on the other side of the island. I started marching toward him. “This is all your fault!” I blasted him again. He disappeared and reappeared again. “Now what are we going to do?” Another blast. “Nobody knows we’re in here!” <em>BLAST.</em> “And even if they did, what would they do, reprogram the game and erase us?” <em>BLAST.</em> “We’re supposed to go on a field trip to the science center next week, and I really wanted to go to the science center!” <em>BLAST.</em> “This . . .” <em>BLAST</em> “. . . is . . .” <em>BLAST</em> “. . . all . . .” <em>BLAST</em> “. . . your . . .” <em>BLAST</em> “. . . fault!” <em>BLAST BLAST.</em></p>\n\n<h3>Page 50</h3>\n<p>By the end of my little speech, Eric was just hanging his head while I blasted him to video game death over and over again.</p>\n<p>“I’m sorry,” he finally said.</p>\n<p>I glared and blasted him again.</p>\n<p>“It is all my fault. I shouldn’t have made you come without asking.” He plopped onto the sand.</p>\n<p>I sat down next to him. “No, you shouldn’t have. But I did have a choice, and I decided to keep going. So I guess we’re in this together.”</p>\n<p>Eric didn’t say anything. He just kept his head down and started drawing a sad face in the sand. Except Eric is really bad at drawing, so the face looked like a melty pizza.</p>\n<p>“Come on,” I picked him up. “Let’s find a way out of here.”</p>\n<p>We walked through the REPLAY portal and reappeared back on top of the waterfall at the beginning of the level.</p>\n<p>“OK,” I said. “When we got into the video game, it felt like we were falling, right? So maybe we just need to jet pack high enough to escape.”</p>\n\n<h3>Page 51</h3>\n<p>Eric shook his head. “Won’t work. We’ll bonk our heads on the ceiling first.”</p>\n<p>I looked up at the clear blue sky above me. “OK, Mr. Positive. What ceiling?”</p>\n<p>“The whole world is way too big to put into a video game. So programmers make it look like their levels stretch on forever, but they put in these invisible walls and ceilings to keep you from leaving.”</p>\n<p>I remembered the invisible fence in the Rockies. “OK, but maybe there’s a portal hidden somewhere.”</p>\n<p>Eric shrugged. “Well, grab a jet pack and let’s see!”</p>\n<p>We scoured every inch of our fake Hawaiian island. Eric was right—it was a lot smaller than I first thought. In a single afternoon, we had jet-packed over every acre of rain forest, trekked across every beach, and even hiked up the volcano. No hidden portals.</p>\n<p>At Pearl Harbor, while we were looking for an unlocked spaceship we could use to escape, Eric spoke up. “Do you think they’ll have a Mark Day for us at school?”</p>\n\n<h3>Page 52</h3>\n<p>Mark Whitman was a kid in our class who had disappeared last month. Word around town was that he had drowned trying to swim across the Mahoning River after a storm. Everyone pitched in to find him—they even brought in these special boats to look up and down the river. When they couldn’t find his body after two weeks, they finally decided to hold a memorial service at school. They set up a gigantic picture of Mark on stage, and his big blue eyes stared at us while a bunch of people got up to say nice things about him. Then we got to go home early. I remember being sad but also a little excited that we got an extra day off. I got mad at myself for feeling like that.</p>\n<p>“Stop it,” I told Eric. “That’s not going to happen.”</p>\n<p>“I mean, you didn’t tell your parents where you were going, did you?”</p>\n<p>I was silent.</p>\n<p>“And my parents were only going to be gone for an hour or two. They have no idea. How long have we been in here? Half a day? A whole day? They’re probably already looking for us.”</p>\n<p>I knew he was right. My mom would probably think I’d gotten kidnapped, and my dad would say Eric and I were hiding in the woods. I glanced back at Eric. He</p>\n\n<h3>Page 53</h3>\n<p>looked like he was going to start crying. “Come on,” I said. “Let’s go back to Sand Monster Island.”</p>\n<p>We jumped off the cliff from before, jet-packed over the ocean, and let the big bats take us to the island. Sure enough, the sand monster was back. We teamed up and defeated him in no time. This time, he didn’t start glitching when we beat him. He just shrieked and disappeared into the island. In his place, the portals reappeared. But now instead of three, there were four.</p>\n<p>“That’s it!” I said, pointing to the fourth portal. “That’s our way out!”</p>\n<p>Eric shook his head. “No, that one just sends you back to previous levels.” He took a closer look at the locked HOME portal. “Wait. Wait a second! Look at this!”</p>\n<p>We ran to the HOME portal. It was still gray and locked, but over the lock was now written “LEVEL 20.”</p>\n<p>“What does that mean?” I asked.</p>\n<p>Eric turned and smiled. “There are 20 levels in the game!”</p>\n<p>“OK.”</p>\n<p>“Jesse, this door unlocks when we beat the game!”</p>\n\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 14px 0;\" />\n\n<h3>CHAPTER 8: Lady Liberty (Page 55)</h3>\n<p>I am not at all a huggy person, but I gave Eric the biggest bear hug of my life right there.</p>\n<p>“Wooo-hooooo!”</p>\n<p>It was an awkward hug because we clunked arm blasters, but neither of us cared. We ran through the LEVEL 3 portal and did the pitch-black skydiving thing again. I must have been getting used to it because I barely felt like puking this time. When we finally stopped falling, I looked up to see the Statue of Liberty towering over me.</p>\n<p>“OK, tell me about this level.”</p>\n<p>“This is a good one!” Eric exclaimed. “See, all the aliens in New York City think they have you trapped on Liberty Island. Little do they know that the Resistance has turned the Statue of Liberty into a rocket ship! So you have to lure all the aliens into the Statue of Liberty,</p>\n\n<h3>Page 56</h3>\n<p>climb to the top, and escape by jet pack the second before Lady Liberty blasts the aliens to the moon!”</p>\n<p>I stared at Eric with my mouth hanging open. Finally, I said, “OK, I never want to hear you make fun of me for collecting baseball cards again because that’s the most ridiculous thing I’ve ever heard.”</p>\n<p>He kept grinning. “But it’s cool, right?”</p>\n<p>“It’s cool that the Statue of Liberty is a rocket ship? No. That’s dumb.”</p>\n<p>Eric shrugged. “To each his own.”</p>\n<p>“So how are we going to do this?”</p>\n<p>“The problem is that there’s only one jet pack at the top, and we won’t have enough time to wait for a second one to come back before the Statue of Liberty blasts off.”</p>\n<p>“Wait,” I interrupted. “Doesn’t that sentence sound stupid? ‘Before the Statue of Liberty blasts off’? I just feel like we need to stop for a second so you can admit how dumb all of this is.”</p>\n<p>Eric rolled his eyes. “So I’ll run ahead of you and unlock all the doors. You wait five minutes, hit that alarm over there to attract the aliens, and run like crazy</p>\n\n<h3>Page 57</h3>\n<p>up to the top with them chasing you. I’ll be waiting there with the jet pack, and we’ll fly off into the sunset together. Sound like a plan?”</p>\n<p>“Yeah. I’ve always wanted to watch the Statue of Liberty fly to the moon with a bunch of aliens inside.”</p>\n<p>Eric grinned. “I know, right? Me too!”</p>\n<p>With that, he ran into the statue and disappeared inside. After five minutes of counting, I pressed the big red button next to me helpfully labeled “ALARM.”</p>\n<p><em>BRRRAAAAAAANG.</em></p>\n<p><em>BRAAAAAAAAANG.</em></p>\n<p><em>BRAAAAAAAAANG.</em></p>\n<p>A loud alarm sounded, and the Statue of Liberty’s eyes began glowing red in time with the noise. I didn’t have to wait long for the aliens to show up. They started pouring onto the island from every direction. All kinds of aliens emerged from the water—some old friends like the praying mantises and wasps, along with some new ones, including these Transformer rip-offs and stretchy Slinky guys. I blasted as many as I could, then made a break for the Statue of Liberty when the number of aliens started to get overwhelming.</p>\n\n<h3>Page 58</h3>\n<p>I had visited the Statue of Liberty a few years ago on a family vacation to New York, so I thought I knew what the inside would look like. As soon as I entered the lobby, though, I realized that the game developers had taken some, uh, “creative liberties.” No more simple lobby and long, winding staircase. Instead, I found an elaborate series of platforms and ropes.</p>\n<p>“Seriously?!” I shouted before climbing onto the first platform. From there, I jumped onto the flame sculpture in the middle of the lobby and then onto a third platform. I climbed a rope to the fourth ledge, then discovered a problem—my next platform was all the way on the other side of the statue. I considered climbing back down and looking for another way, but the aliens had already filled up the lobby below. In fact, they continued to pour through the door, steadily climbing on top of one another toward me. From above, the whole thing looked like rising water coming to swallow me. If I didn’t move soon, I’d be alien meat. I reminded myself that I’d just reappear back at the beginning of the level if I fell into the pit of squirming, shrieking aliens, but it still felt super scary.</p>\n<p>I took a deep breath and remembered something I learned during my training. “OK, maggot,” Sergeant</p>\n\n<h3>Page 59</h3>\n<p>Sandpants had said. “When you come across a large pit, shoot your blaster at the ground in the middle of the jump to give yourself an extra boost.”</p>\n<p>“WHAT ARE YOU TALKING ABOUT?!” I’d yelled at the time.</p>\n<p>Now I knew. I took a deep breath, jumped as far as I could, then shot a blast down into the pit the second I started falling. It worked! The blast gave me just enough lift to make it to the other side. I continued climbing and jumping and blasting my way up the Statue of Liberty as the tide of aliens rose closer and closer to me. In gym class, I’d never been the best at pull-ups (and by “never the best” I mean “unable to do anything but hang from the bar like a noodle”), but I was able to climb every ledge with no problem thanks to my new, strong mechanical blaster arm.</p>\n<p>By the time I reached the top, I was actually starting to have fun. I opened a door and ran up the last staircase to the Statue of Liberty’s crown. “All right, Eric, let’s blow this Popsicle stand!” (I don’t know where that came from. “Blow this Popsicle stand” is something I have never said once in real life, but it seemed like something a cool video game hero might say.)</p>\n\n<h3>Page 60</h3>\n<p>I stopped in my tracks when I rounded the corner. In the middle of the room was Eric, wearing a jet pack, pointing a blaster at me. Also, for some reason, he was wearing a gas mask.</p>\n<p>Oh, and one more thing. His right arm was long, slimy, and gray.</p>\n\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 14px 0;\" />\n\n<h3>CHAPTER 9: Bye-Bye (Page 61)</h3>\n<p>Eric—or whatever that thing was in front of me—raised its right hand with five spindly fingers and started waving bye-bye. I was so confused that I barely noticed him aiming his blaster directly between my eyes. Then, just before he pulled the trigger, he got distracted. I followed his gaze. Next to me, in the shiny, metallic surface of the wall, I could make out the reflection of a hand sticking out of a box, waving wildly. Mr. Gas Mask adjusted his aim from me to the reflection and shot a red laser.</p>\n<p><em>ZZZZZIIIIING.</em></p>\n<p>As soon as he shot, Eric jumped out of the box and ran at me. Gas Mask shot at Eric. Or, at least, he tried to shoot at Eric. Instead, he shot Eric’s reflection.</p>\n<p><em>ZZZZZIIIIING.</em></p>\n<p>“WHOOOOMPF!” I wheezed as the real Eric hit me in the ribs and tackled me behind a box.</p>\n\n<h3>Page 62</h3>\n<p>The thing pointed its blaster at us.</p>\n<p><em>ZZZZZIIIIING.</em></p>\n<p>Eric blasted the window next to us. From the ground, I could feel the first rumblings of a rocket taking off. I looked out the shattered window to see that we were moving.</p>\n\n<h3>Page 63</h3>\n<p>“Come on!” Eric grunted as he jumped out of the window.</p>\n<p>Before I could argue that this would be a lot better with jet packs, the alien rolled left to get a clean shot at me. I took a deep breath, ran, and jumped.</p>\n<p><em>ZZZZZIIIIING.</em></p>\n<p>The good news was that the alien missed. The bad news was that I found myself plummeting to my death. Again. The Statue of Liberty rocketed past me, and I heard the screams of a thousand aliens discovering that they were getting a free ride to the moon. Then, just before everything disappeared in a flash of light, I saw a speck wearing a jet pack fly from the Statue of Liberty’s crown.</p>\n<p>“Was that another one of your schemes where you don’t tell me half the plan?” I yelled after we reappeared in the water off of Liberty Island.</p>\n<p>Eric shook his head as he was treading water. “I don’t know what that was. When I got to the top of the statue, I heard something behind me. I thought it was you not following instructions, so I hid in a box to scare you. Instead, it was some weird alien wearing a gas mask.”</p>\n\n<h3>Page 64</h3>\n<p>“Wait, you’ve never seen that alien in this game before?”</p>\n<p>“Never.”</p>\n<p>“That’s creepy.”</p>\n<p>“Yeah. Super creepy. Anyways, it started poking around the room like it was looking for me, so I stayed hidden. Then when it couldn’t find me, it strapped on the jet pack and waited for you. I figured our plan would work just as well without jet packs, so I decided to stay hidden and warn you to jump out the window when you showed up.”</p>\n<p>“Wait, waving wildly from a box was supposed to be your way of telling me to jump out the window?”</p>\n<p>“Of course. Wasn’t it obvious?”</p>\n<p>I squinted at him. “I’m sorry I don’t know the hand signal for ‘jump out of the Statue of Liberty.’”</p>\n<p>“Well, everything worked out just fine, didn’t it?”</p>\n<p>“Whatever, can we just get through this before any more creepy surprise aliens pop up?”</p>\n<p>“Definitely.”</p>\n\n<h3>Page 65</h3>\n<p>We swam toward the shore of Liberty Island as fast as possible. Because we are not the world’s best athletes to begin with and because we had blasters strapped to our arms, it was possibly the slowest, splashiest, most pathetic swim the world had ever seen. When we finally reached the shore, we shook ourselves off and walked toward the glowing portals that had appeared in place of the Statue of Liberty.</p>\n<p>Eric walked through the LEVEL 4 portal first.</p>\n<p><em>WHOOSH!</em></p>\n<p>Then I walked through.</p>\n<p><em>WHOOSH!</em></p>\n<p>Then, as I was falling through the blackness, I could have sworn I heard the faint sound of a third person entering the portal.</p>\n<p><em>WHOOSH!</em></p>"
     },
     {
       "id": "trapped_videogame_ch5_6",
@@ -1245,6 +1769,6 @@
       "instance": "R"
     }
   ],
-  "activeQuizIdR": "trapped_videogame_ch5_6",
+  "activeQuizIdR": "trapped_videogame_ch7_8_9",
   "activeQuizIdD": "d_history_trivia_mc"
 }
