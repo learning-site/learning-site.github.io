@@ -1422,7 +1422,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 6:13 PM - 11/04/2026</div>
+<div class="build-timestamp">Actualizado: 06:17 PM - 11/04/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1462,7 +1462,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 6:13 PM - 11/04/2026
+      Actualizado: 06:17 PM - 11/04/2026
     </div>
   </div>
 </div>
@@ -2498,42 +2498,161 @@ function getFeedbackVoiceAudio() {
   return feedbackVoiceAudio;
 }
 
-function playFeedbackVoice(isCorrect) {
+const PENDING_VOICE_STORAGE_KEY = 'rs_apps_pending_voice_feedback_v1';
+let pendingReloadAfterVoice = false;
+
+function clearPendingVoiceFeedbackStorage() {
+  try {
+    sessionStorage.removeItem(PENDING_VOICE_STORAGE_KEY);
+    localStorage.removeItem(PENDING_VOICE_STORAGE_KEY);
+  } catch (e) {}
+}
+
+function savePendingVoiceFeedbackState(isCorrect, idx, currentTime) {
+  try {
+    const payload = JSON.stringify({
+      isCorrect: Boolean(isCorrect),
+      idx: Number(idx) || 0,
+      currentTime: Number(currentTime) || 0,
+      savedAt: Date.now()
+    });
+    sessionStorage.setItem(PENDING_VOICE_STORAGE_KEY, payload);
+    localStorage.setItem(PENDING_VOICE_STORAGE_KEY, payload);
+  } catch (e) {}
+}
+
+function startFeedbackVoiceClip(isCorrect, idx, startOffsetSec = 0) {
   try {
     const audioEl = getFeedbackVoiceAudio();
     const rawPool = isCorrect ? TTS_FEEDBACK_AUDIO.correct : TTS_FEEDBACK_AUDIO.wrong;
     if (!rawPool || rawPool.length === 0) return;
-    const pool = (isCorrect && currentInstance === 'D' && rawPool.length > 2) ? rawPool.slice(0, 2) : rawPool;
-    let idx = Math.floor(Math.random() * pool.length);
-    if (isCorrect && pool.length > 1 && idx === lastCorrectVoiceIdx) {
-      idx = (idx + 1) % pool.length;
-    } else if (!isCorrect && pool.length > 1 && idx === lastWrongVoiceIdx) {
-      idx = (idx + 1) % pool.length;
-    }
-    if (isCorrect) lastCorrectVoiceIdx = idx;
-    else lastWrongVoiceIdx = idx;
+    const safeIdx = ((idx % rawPool.length) + rawPool.length) % rawPool.length;
 
     if (voiceFeedbackTimer) clearTimeout(voiceFeedbackTimer);
     isVoiceFeedbackActive = true;
-    const clearActive = () => {
+    audioEl._voiceMeta = { isCorrect: Boolean(isCorrect), idx: safeIdx };
+    savePendingVoiceFeedbackState(isCorrect, safeIdx, startOffsetSec);
+
+    const finishVoice = () => {
       isVoiceFeedbackActive = false;
+      audioEl._voiceMeta = null;
+      clearPendingVoiceFeedbackStorage();
       if (voiceFeedbackTimer) {
         clearTimeout(voiceFeedbackTimer);
         voiceFeedbackTimer = null;
       }
+      if (pendingReloadAfterVoice) {
+        pendingReloadAfterVoice = false;
+        window.location.reload();
+      }
     };
-    audioEl.onended = clearActive;
-    audioEl.onerror = clearActive;
-    voiceFeedbackTimer = setTimeout(clearActive, 3500);
 
-    audioEl.src = pool[idx];
-    audioEl.currentTime = 0;
+    audioEl.ontimeupdate = () => {
+      if (isVoiceFeedbackActive && !audioEl.ended && audioEl._voiceMeta) {
+        savePendingVoiceFeedbackState(audioEl._voiceMeta.isCorrect, audioEl._voiceMeta.idx, audioEl.currentTime || 0);
+      }
+    };
+    audioEl.onended = finishVoice;
+    audioEl.onerror = finishVoice;
+    voiceFeedbackTimer = setTimeout(finishVoice, 4200);
+
+    audioEl.src = rawPool[safeIdx];
     audioEl.volume = 1.0;
-    audioEl.play().catch(clearActive);
+
+    const applyOffsetAndPlay = () => {
+      if (startOffsetSec > 0 && audioEl.duration && startOffsetSec < audioEl.duration - 0.15) {
+        try { audioEl.currentTime = Math.max(0, startOffsetSec - 0.12); } catch (e) {}
+      } else {
+        try { audioEl.currentTime = 0; } catch (e) {}
+      }
+      const playPromise = audioEl.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // If browser autoplay policy after refresh requires a tap/key, resume on first interaction
+          const resumeOnGesture = () => {
+            ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(ev =>
+              window.removeEventListener(ev, resumeOnGesture, true)
+            );
+            if (isVoiceFeedbackActive && audioEl.paused) {
+              if (startOffsetSec > 0 && audioEl.duration && startOffsetSec < audioEl.duration - 0.15) {
+                try { audioEl.currentTime = Math.max(0, startOffsetSec - 0.12); } catch (e) {}
+              }
+              audioEl.play().catch(finishVoice);
+            }
+          };
+          ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(ev =>
+            window.addEventListener(ev, resumeOnGesture, { once: true, capture: true, passive: true })
+          );
+        });
+      }
+    };
+
+    if (startOffsetSec > 0) {
+      audioEl.addEventListener('loadedmetadata', applyOffsetAndPlay, { once: true });
+      audioEl.load();
+    } else {
+      applyOffsetAndPlay();
+    }
   } catch (e) {
     isVoiceFeedbackActive = false;
   }
 }
+
+function playFeedbackVoice(isCorrect) {
+  try {
+    const rawPool = isCorrect ? TTS_FEEDBACK_AUDIO.correct : TTS_FEEDBACK_AUDIO.wrong;
+    if (!rawPool || rawPool.length === 0) return;
+    const poolLen = (isCorrect && currentInstance === 'D' && rawPool.length > 2) ? 2 : rawPool.length;
+    let idx = Math.floor(Math.random() * poolLen);
+    if (isCorrect && poolLen > 1 && idx === lastCorrectVoiceIdx) {
+      idx = (idx + 1) % poolLen;
+    } else if (!isCorrect && poolLen > 1 && idx === lastWrongVoiceIdx) {
+      idx = (idx + 1) % poolLen;
+    }
+    if (isCorrect) lastCorrectVoiceIdx = idx;
+    else lastWrongVoiceIdx = idx;
+
+    startFeedbackVoiceClip(isCorrect, idx, 0);
+  } catch (e) {
+    isVoiceFeedbackActive = false;
+  }
+}
+
+function resumePendingFeedbackVoiceAfterRefresh() {
+  try {
+    const raw = sessionStorage.getItem(PENDING_VOICE_STORAGE_KEY) || localStorage.getItem(PENDING_VOICE_STORAGE_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if (!saved || typeof saved.savedAt !== 'number' || (Date.now() - saved.savedAt) > 15000) {
+      clearPendingVoiceFeedbackStorage();
+      return;
+    }
+    startFeedbackVoiceClip(Boolean(saved.isCorrect), Number(saved.idx) || 0, Number(saved.currentTime) || 0);
+  } catch (e) {
+    clearPendingVoiceFeedbackStorage();
+  }
+}
+
+// If user presses F5 or Cmd+R / Ctrl+R while feedback voice is actively speaking, let the voice finish first and then reload
+window.addEventListener('keydown', (e) => {
+  const isRefreshShortcut = e.key === 'F5' || ((e.metaKey || e.ctrlKey) && !e.altKey && e.key && e.key.toLowerCase() === 'r');
+  if (isRefreshShortcut && isVoiceFeedbackActive && feedbackVoiceAudio && !feedbackVoiceAudio.paused && !feedbackVoiceAudio.ended) {
+    e.preventDefault();
+    pendingReloadAfterVoice = true;
+    saveCurrentQuizProgress();
+  }
+}, { capture: true });
+
+// Save exact playback position right before browser unloads on toolbar refresh
+window.addEventListener('beforeunload', () => {
+  if (isVoiceFeedbackActive && feedbackVoiceAudio && !feedbackVoiceAudio.ended && feedbackVoiceAudio._voiceMeta) {
+    savePendingVoiceFeedbackState(
+      feedbackVoiceAudio._voiceMeta.isCorrect,
+      feedbackVoiceAudio._voiceMeta.idx,
+      feedbackVoiceAudio.currentTime || 0
+    );
+  }
+});
 
 
 ['click', 'touchstart', 'pointerdown'].forEach(e => {
@@ -8926,6 +9045,7 @@ window.onload = function() {
   loadLocalQuizzes();
   checkStoredAuth();
   switchAppInstance(currentInstance);
+  resumePendingFeedbackVoiceAfterRefresh();
   fetchCloudQuizzesLibrary();
 };
 </script>
