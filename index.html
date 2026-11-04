@@ -1399,7 +1399,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 4:53 PM - 11/03/2026</div>
+<div class="build-timestamp">Actualizado: 5:52 PM - 11/04/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1439,7 +1439,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 4:53 PM - 11/03/2026
+      Actualizado: 5:52 PM - 11/04/2026
     </div>
   </div>
 </div>
@@ -2012,7 +2012,7 @@ function switchAppInstance(newInst) {
   updateInstanceUI();
   const quizzes = getAllQuizzes();
   const savedKey = currentInstance === 'D' ? 'rs_apps_active_quiz_id_D' : 'rs_apps_active_quiz_id_v3';
-  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch7_8_9');
+  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch10_11_12');
   const found = quizzes.find(q => q.id === preferredId) || quizzes[0];
   if (found) {
     activateQuizById(found.id, false);
@@ -5009,7 +5009,7 @@ let unlockedAdminPassword = null;
 let studioAttachments = []; // { id, kind: 'image'|'pdf'|'text', name, mimeType, base64Data, textContent, previewUrl, sizeStr }
 let defaultChapter1ReaderHtml = '';
 let customQuizzes = [];
-let activeQuizId = 'trapped_videogame_ch7_8_9';
+let activeQuizId = 'trapped_videogame_ch10_11_12';
 let currentActiveQuiz = null;
 
 function checkUrlHashSetup() {
@@ -5084,6 +5084,531 @@ function updateCloudSyncBadge() {
     badge.style.color = '#fbbf24';
   }
 }
+
+const BUILT_IN_CH10_11_12_QUIZ = {
+  "id": "trapped_videogame_ch10_11_12",
+  "instance": "R",
+  "title": "Trapped in a Video Game: Chapters 10, 11 & 12",
+  "createdAt": "Nov 4, 2026",
+  "questions": [
+    {
+      "type": "mc",
+      "q": "When Jesse and Eric land in the thick, smelly swamp with six inches of muck, why doesn't Eric get wet socks like Jesse?",
+      "options": [
+        "Eric does not get teleported into the swamp muck; instead, he lands on a future-y looking Hover Tank ten feet away and yells, 'I'M DRIVING! I CALLED IT!'",
+        "Eric is wearing waterproof rubber fishing boots that he found inside the Statue of Liberty.",
+        "Eric uses a jet pack to hover three feet above the muddy water the entire time.",
+        "A giant bat catches Eric in midair and drops him onto a dry palm tree."
+      ],
+      "correct": 0,
+      "hint": "Jesse complains that he can handle snow, volcanoes, and house-sized sand monsters, but cannot handle wet socks—while Eric lands on a vehicle ten feet away.",
+      "pageTitle": "Chapter 10 — Page 67 (Captain Eric)",
+      "pageExcerpt": "\"Oh. Great. A swamp. A thick, smelly swamp. I picked up my right foot. THHHHHHWUUUUUCK. The worst. I was standing in six inches of muck, which meant I’d be walking in wet socks all day. I can handle snow, I can handle volcanoes, I can even handle house-sized sand monsters. I cannot handle wet socks. 'I’M DRIVING! I CALLED IT!' Eric did not have wet socks because he did not get teleported into the swamp. Instead, he ended up on a future-y looking tank 10 feet away, and he was calling it at the top of his lungs.\"",
+      "word": "SWAMP",
+      "clue": "Thick, smelly wetland filled with six inches of muck where Jesse lands in wet socks"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: The Hover Tank gets stuck in the swamp mud immediately because it has heavy rubber tires instead of rockets.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what happens five seconds after Eric disappears into the machine and what is on the bottom of the tank.",
+      "pageTitle": "Chapter 10 — Page 68 (The Hover Tank)",
+      "pageExcerpt": "\"'No way! That thing’s going to get stuck in two seconds!' 'Not this tank!' Eric yelled. He disappeared into the machine, and five seconds later it roared to life. VVVVVRAWWWWWWWW! The tank lifted a foot off the ground thanks to four small rockets on the bottom.\"",
+      "word": "HOVER",
+      "clue": "To float a foot above the ground—the type of rocket-powered tank Eric and Jesse ride"
+    },
+    {
+      "type": "mc",
+      "q": "What finally convinces Jesse to slosh over and climb onto the Hover Tank, and what happens right after Eric calls him 'First Mate Jesse'?",
+      "options": [
+        "Eric blasts a 20-foot crocodile alien jumping out of the swamp right behind Jesse; when Eric calls himself 'Captain Eric' and Jesse 'First Mate Jesse,' Jesse turns the cannon around and blasts Eric.",
+        "Eric promises to let Jesse drive first if he climbs aboard; Jesse salutes Eric and hands him a pair of dry socks.",
+        "A swarm of eagle-size wasps chases Jesse onto the tank; Jesse accidentally fires the cannon into a tree.",
+        "Eric offers Jesse a slice of pizza inside the cabin; Jesse thanks him and takes the steering wheel."
+      ],
+      "correct": 0,
+      "hint": "Eric's eyes get huge when he sees something jumping out of the water right behind Jesse, and afterward Eric salutes and demands to be called 'Captain Eric.'",
+      "pageTitle": "Chapter 10 — Page 69 (Captain Eric & First Mate Jesse)",
+      "pageExcerpt": "\"Just then, Eric’s eyes got huge. He grabbed the cannon, swiveled it around, and blasted something right behind me. I turned around just in time to see a 20-foot crocodile alien that had been jumping out of the swamp disappear in a flash of light... 'Now that you’ve boarded my vessel, I expect you to refer to me only as Captain Eric.' ... 'That’s no way to talk to your superior, First Mate Jesse.' I turned the cannon around and blasted Eric. He vaporized and reappeared in the driver’s seat.\"",
+      "word": "CROCODILE",
+      "clue": "Twenty-foot swamp reptile alien that jumps out of the water behind Jesse"
+    },
+    {
+      "type": "match",
+      "q": "Match each event from Eric and Jesse's ride on the Hover Tank with what happens:",
+      "pairs": [
+        {
+          "left": "Four Small Rockets",
+          "right": "Thrusters on the bottom of the Hover Tank that lift it a foot off the ground",
+          "rightVariants": [
+            "Thrusters on the bottom of the Hover Tank that lift it a foot off the ground",
+            "Bottom rockets that keep the tank from getting stuck in the swamp muck",
+            "Equipment underneath the tank that makes it roar to life and hover a foot high",
+            "Four small engines under the vehicle that lift it above the muddy swamp"
+          ]
+        },
+        {
+          "left": "Zero to 100 MPH",
+          "right": "How fast the tank accelerates in a quarter of a second, throwing Jesse backward into the muck with a SPLAT",
+          "rightVariants": [
+            "How fast the tank accelerates in a quarter of a second, throwing Jesse backward into the muck with a SPLAT",
+            "Sudden speed burst that nearly rips Jesse's right arm from its socket and leaves him in wet underwear",
+            "Quarter-second acceleration that flings Jesse off the cannon and into the mud",
+            "Extreme takeoff speed when Eric flicks the switches and grabs the steering wheel"
+          ]
+        },
+        {
+          "left": "Hitting Trees (\"CRUNCH!\")",
+          "right": "What Eric keeps doing because he says he can either drive straight or avoid trees, not both",
+          "rightVariants": [
+            "What Eric keeps doing because he says he can either drive straight or avoid trees, not both",
+            "Repeated crashes while Eric swerves back and forth through the swamp",
+            "Reason Jesse yells at Eric before a crocodile eats them for the fourth time",
+            "Collisions Eric blames on not being able to steer straight and dodge obstacles at the same time"
+          ]
+        },
+        {
+          "left": "Swapping Spots",
+          "right": "Lets Jesse drive over fallen log ramps while Eric shoots aliens so they clear the level fast",
+          "rightVariants": [
+            "Lets Jesse drive over fallen log ramps while Eric shoots aliens so they clear the level fast",
+            "Switch after their fourth death where Jesse becomes 'Captain Jesse' at the wheel and Eric mans the cannon",
+            "Teamwork change that works great because Eric is much better at shooting than Jesse",
+            "Trade of positions where Eric cheers each zap and Jesse whoops on every fallen-log ramp"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Submarine periscope that lets Jesse see underwater caves beneath the swamp",
+        "Autopilot button that drives the tank while both boys take a nap",
+        "Giant magnet on the front bumper that collects gold coins from the mud",
+        "Windshield wipers that spray hot chocolate onto the crocodile aliens"
+      ],
+      "hint": "Think about what lifts the tank off the mud, what happens when Eric first floors it, why Eric keeps crashing, and what happens when Jesse takes the wheel.",
+      "pageTitle": "Chapter 10 — Pages 68–71 (Driving the Hover Tank)",
+      "pageExcerpt": "\"The tank lifted a foot off the ground thanks to four small rockets on the bottom... What it did was accelerate from zero to 100 miles per hour in a quarter of a second... I flew backward into the muck with a giant SPLAT... 'I can either drive straight or avoid trees, but I can’t do both!' ... Eric huffed and swapped spots with me... because he was so much better than me at shooting, we made it through the level in no time.\"",
+      "word": "CANNON",
+      "clue": "Heavy weapon mounted on the Hover Tank that swivels around to blast crocodile aliens"
+    },
+    {
+      "type": "mc",
+      "q": "After Jesse flies backward into the muck with a giant SPLAT and climbs back onto the tank, what does Eric do as soon as he finds a clearing big enough?",
+      "options": [
+        "He accelerates slower at first, but cannot resist doing a doughnut in the clearing before swerving back and forth through the level.",
+        "He parks the tank and builds a campfire to dry Jesse's wet socks and wet underwear.",
+        "He launches the tank over a volcano and lands on a battleship.",
+        "He immediately hands the steering wheel over to Jesse without any argument."
+      ],
+      "correct": 0,
+      "hint": "Jesse realizes why they don't let 12-year-olds drive cars and why they CERTAINLY don't let 11-year-olds drive tanks.",
+      "pageTitle": "Chapter 10 — Page 70 (Doing a Doughnut)",
+      "pageExcerpt": "\"I climbed back on and pointed the cannon at Eric. 'Watch it, Captain.' He accelerated slower this time but couldn’t resist doing a doughnut once he found a clearing that was big enough. Then we took off through the level. After five frustrating minutes of trying to aim at aliens while Eric swerved back and forth, I realized why they don’t let 12-year-olds drive cars and why they CERTAINLY don’t let 11-year-olds drive tanks.\"",
+      "word": "DOUGHNUT",
+      "clue": "Spinning a vehicle in a tight circle—what Eric can't resist doing in a swamp clearing"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When Jesse demands to drive and tells Eric to call him 'Captain Jesse,' Eric immediately blasts Jesse with the cannon before they set off.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "hint": "Remember how Eric gets payback for when Jesse blasted him earlier after the 'Captain Eric' speech.",
+      "pageTitle": "Chapter 10 — Page 71 (Captain Jesse)",
+      "pageExcerpt": "\"Eric huffed and swapped spots with me. I smiled. 'Now that I’m driving, I expect you to refer to me as Captain Jesse.' He blasted me. After I had reappeared, we set off. I was actually not much better at driving than Eric, but because he was so much better than me at shooting, we made it through the level in no time.\"",
+      "word": "HIGHWAY",
+      "clue": "Main road where Jesse thinks adults driving cars should be way happier than they seem"
+    },
+    {
+      "type": "mc",
+      "q": "When the glowing crocodile boss fails to show up in the pitch-black enclosed swamp and Jesse slowly drives back through the dark swampland, what makes Jesse's stomach do a somersault?",
+      "options": [
+        "Multiple hissing voices in the dark swamp start saying their names: 'Yessee,' 'EEEEErrrrrrreeeeeeeeek,' and 'Caaaaaapan EEEEEEErreeeeeeeek.'",
+        "The Hover Tank runs out of fuel and sinks into twenty feet of quicksand.",
+        "A giant screen in the trees flashes a message saying their parents have unplugged the television.",
+        "The crocodile boss lands on top of the tank and bites the cannon in half."
+      ],
+      "correct": 0,
+      "hint": "Listen closely to what the hissing sounds ('yyyyyessSSSSSsssseeeeeeee' and 'Caaaaaapan EEEEEEErreeeeeeeek') are actually repeating.",
+      "pageTitle": "Chapter 10 — Pages 72–74 (Hissing Voices in the Dark)",
+      "pageExcerpt": "\"I turned the tank around and slowly started driving back through the dark swampland. That’s when we heard it. A hissing noise up ahead... 'Shh, listen.' It sounded almost like a hissing voice. Or actually, multiple hissing voices. yyyyyessSSSSSsssseeeeeeee. 'Yessee?' I turned to Eric. 'Is that what they’re saying?' EEEEErrrrrrreeeeeeeeek. Caaaaaapan EEEEEEErreeeeeeeek. My stomach did a somersault. Captain Eric. Jesse. They were saying our names.\"",
+      "word": "HISSING",
+      "clue": "Snake-like 'sssss' sound the creepy voices make while whispering Jesse and Eric's names"
+    },
+    {
+      "type": "match",
+      "q": "Match each quote or moment in the dark swamp with what happens:",
+      "pairs": [
+        {
+          "left": "Glowing-Eyed Crocodile",
+          "right": "Swamp boss that Eric says always shows up right away, but never appears when they wait",
+          "rightVariants": [
+            "Swamp boss that Eric says always shows up right away, but never appears when they wait",
+            "Boss creature whose glowing eyes are supposed to light up everything when it emerges",
+            "Missing swamp boss that fails to show up during a full minute of silence",
+            "Giant crocodile boss Eric expects in the pitch-black enclosed swamp"
+          ]
+        },
+        {
+          "left": "\"Maybe we needed a key?\"",
+          "right": "Jesse's guess that makes Eric look at him with scorn because a key for a swamp crocodile makes no sense",
+          "rightVariants": [
+            "Jesse's guess that makes Eric look at him with scorn because a key for a swamp crocodile makes no sense",
+            "Suggestion Jesse makes when the boss doesn't appear, prompting a sarcastic reply about the Statue of Liberty rocket",
+            "Idea Eric mocks by asking what a key could possibly do to help find a crocodile in a swamp",
+            "Question Jesse asks after waiting a full minute in silence for the boss"
+          ]
+        },
+        {
+          "left": "\"Caaaaaapan EEEEEEErreeeeeeeek\"",
+          "right": "Creepy hissing voices in the dark swampland repeating the boys' names",
+          "rightVariants": [
+            "Creepy hissing voices in the dark swampland repeating the boys' names",
+            "Chilling swamp chant alongside 'yyyyyessSSSSSsssseeeeeeee' that makes Jesse's stomach do a somersault",
+            "Hissing alien voices calling out 'Captain Eric' and 'Jesse' in the dark",
+            "Sound in the dark swamp that only gets louder when Eric panics and blasts wildly"
+          ]
+        },
+        {
+          "left": "Bigger Hand on Jesse's Shoulder",
+          "right": "Belongs to an adult stranger leaning in close to make a 'shh' motion—not Eric",
+          "rightVariants": [
+            "Belongs to an adult stranger leaning in close to make a 'shh' motion—not Eric",
+            "Clue in the dark that someone else is on the tank while Eric's voice sounds a few feet farther away",
+            "Adult hand Jesse notices right before a face leans in close with a finger to his mouth",
+            "Surprise touch in the dark that makes Jesse scream 'AHHHHHHHHHHH!' instead of shh-ing"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Friendly robot referee who blows a whistle and hands Jesse a map of Ohio",
+        "Glowing treasure chest filled with baseball cards at the bottom of the swamp",
+        "Lantern Eric hangs on the front of the tank to scare away the crocodiles",
+        "Walkie-talkie message from Sergeant Sandpants ordering them to surrender"
+      ],
+      "hint": "Recall who the swamp boss is supposed to be, how Eric reacts to Jesse's 'key' idea, what the hissing voices say, and whose hand is actually on Jesse's shoulder.",
+      "pageTitle": "Chapters 10 & 11 — Pages 72–76 (The Dark Swamp & The Stranger)",
+      "pageExcerpt": "\"'It’s a crocodile with glowing eyes that light up everything when he emerges from the swamp.' ... 'A key? What could a key possibly do to help us find a crocodile in the middle of a swamp?' ... Caaaaaapan EEEEEEErreeeeeeeek. My stomach did a somersault... I looked down at the hand on my shoulder... A face leaned in real close to me. An adult face. Making a 'shh' motion with his finger to his mouth.\"",
+      "word": "SOMERSAULT",
+      "clue": "A flip—what Jesse says his stomach did when he realized the aliens were saying their names"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When the adult face leans in close to Jesse in the dark swamp and makes a 'shh' motion with his finger to his mouth, Jesse stays completely quiet.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Jesse says, 'I did not shh. I did quite the opposite of shh-ing.'",
+      "pageTitle": "Chapter 11 — Pages 76–77 (The Opposite of Shh-ing)",
+      "pageExcerpt": "\"A face leaned in real close to me. An adult face. Making a 'shh' motion with his finger to his mouth. I did not shh. I did quite the opposite of shh-ing. 'AHHHHHHHHHHH!' Suddenly, the voices stopped. Then two eyes from the swamp lit up.\"",
+      "word": "REVERSE",
+      "clue": "Backward gear Jesse puts the Hover Tank into while slowly backing up in the dark swamp"
+    },
+    {
+      "type": "mc",
+      "q": "When two glowing eyes from the swamp light up after Jesse screams, what do they illuminate blocking the path out of the swamp?",
+      "options": [
+        "An angry man tearing Jesse away from the steering wheel, an army of aliens blocking their path, and the aliens' leader—Mr. Gas Mask.",
+        "Fifty giant bats perched in the trees above a locked gray portal.",
+        "A row of school buses waiting to take Jesse's class to the science center.",
+        "A wall of solid ice built by Sergeant Sandpants."
+      ],
+      "correct": 0,
+      "hint": "The glowing eyes illuminate Jesse and Eric screaming like a chorus of small children, the man taking the wheel, an alien army, and a familiar creepy leader.",
+      "pageTitle": "Chapter 11 — Page 77 (Illuminated in the Swamp)",
+      "pageExcerpt": "\"Suddenly, the voices stopped. Then two eyes from the swamp lit up. They illuminated our tank. They illuminated me and now Eric screaming like a chorus of small children. They illuminated an angry man tearing me away from the steering wheel. They illuminated an army of aliens blocking our path out of the swamp. And they illuminated their leader—Mr. Gas Mask.\"",
+      "word": "SHOULDER",
+      "clue": "Part of Jesse's body where he feels a hand that turns out to be bigger than Eric's"
+    },
+    {
+      "type": "mc",
+      "q": "How does the adult tank driver avoid being swallowed whole by the glowing crocodile and escape the alien army grabbing onto the tank?",
+      "options": [
+        "He presses a series of buttons to make the tank do a barrel roll away from the crocodile's mouth, then uses a log as a ramp, hits the thrusters in midair like a flying missile, and does another barrel roll.",
+        "He dives the Hover Tank deep underwater and swims out to the ocean.",
+        "He fires a freeze ray from the cannon that turns the crocodile and the army into statues.",
+        "He hands Jesse and Eric two jet packs so they can fly over the trees."
+      ],
+      "correct": 0,
+      "hint": "Neither Jesse nor Eric knew the tank could do this spinning trick when the driver presses a series of buttons.",
+      "pageTitle": "Chapter 11 — Pages 77–78 (Barrel Rolls & Flying Missile)",
+      "pageExcerpt": "\"A nanosecond before the crocodile could chomp down on us, the man pressed a series of buttons, and our entire tank did a barrel roll away from the mouth... Before any of them could get too far, our driver found a log, used it as a ramp, and hit the thrusters in midair to turn our tank into a flying missile. As we soared over the heads of our attackers, the driver did another barrel roll to shake the remaining aliens off our tank.\"",
+      "word": "BARREL",
+      "clue": "Type of midair spinning roll the driver makes the Hover Tank do by pressing a series of buttons"
+    },
+    {
+      "type": "match",
+      "q": "Match each place or obstacle during the high-speed tank escape with what happens there:",
+      "pairs": [
+        {
+          "left": "Dead-End Swamp Rock",
+          "right": "Obstacle the driver speeds straight through, taking the tank into complete blackness underneath the level",
+          "rightVariants": [
+            "Obstacle the driver speeds straight through, taking the tank into complete blackness underneath the level",
+            "Rock at the end of a small path that the tank drives right through instead of crashing",
+            "Secret glitch entrance that lets the man drive underneath the bottom of the swamp",
+            "Bouldery dead end where Eric and Jesse brace for impact before passing straight through into blackness"
+          ]
+        },
+        {
+          "left": "Waterfall in Hawaii",
+          "right": "First place the tank pops back up out of the blackness before driving straight into the ocean",
+          "rightVariants": [
+            "First place the tank pops back up out of the blackness before driving straight into the ocean",
+            "Hawaiian landmark the tank emerges through after driving underneath the swamp level",
+            "Spot where they briefly surface from swampland before diving into the ocean",
+            "Waterfall exit the driver zooms out of on the way to Chicago"
+          ]
+        },
+        {
+          "left": "Wrigley Field in Chicago",
+          "right": "Baseball stadium where the tank pops out of the ivy-covered outfield wall",
+          "rightVariants": [
+            "Baseball stadium where the tank pops out of the ivy-covered outfield wall",
+            "Chicago ballpark whose ivy-covered wall the driver bursts through via secret passages",
+            "Level location with an ivy-covered outfield wall that they drive out of before the Golden Gate Bridge",
+            "Famous Chicago field the Hover Tank pops into during their cross-level speed run"
+          ]
+        },
+        {
+          "left": "Bottom of the Grand Canyon",
+          "right": "Silent canyon floor where the driver finally parks—until Mr. Gas Mask jumps up and grabs his neck",
+          "rightVariants": [
+            "Silent canyon floor where the driver finally parks—until Mr. Gas Mask jumps up and grabs his neck",
+            "Stopping point after the Atlantic City boardwalk where Mr. Gas Mask ambushes the driver",
+            "Canyon location where Jesse shoots at Mr. Gas Mask and time slows down",
+            "Quiet spot where the tank slows to a stop right before Mr. Gas Mask attacks"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Eiffel Tower in Paris where the boys stop to eat French fries",
+        "Mahoning River bridge in Middlefield where a police boat is waiting",
+        "Space station on the moon where the thousand aliens from Lady Liberty landed",
+        "Rec center swimming pool where the lifeguard blows a whistle at the tank"
+      ],
+      "hint": "Trace the driver's route: driving through the rock into blackness, emerging in Hawaii, bursting through an ivy-covered wall in Chicago, and stopping in the Grand Canyon.",
+      "pageTitle": "Chapter 11 — Pages 79–80 (Underneath the Levels)",
+      "pageExcerpt": "\"But we never hit the rock. Instead, we drove straight through it... The man had driven us underneath the level. After a few minutes, we popped back up. But we were no longer in swampland. We emerged through a waterfall in Hawaii... and popped out of the ivy-covered outfield wall at Wrigley Field in Chicago... Finally, at the bottom of the Grand Canyon, we slowed to a stop.\"",
+      "word": "THRUSTERS",
+      "clue": "Rocket engines the driver hits in midair off a log ramp to turn the tank into a flying missile"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When the driver speeds the tank directly into a rock in the dead-end swamp, the tank explodes into a giant fireball.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what Jesse sees above them when he opens his eyes after bracing for impact.",
+      "pageTitle": "Chapter 11 — Page 79 (Through the Rock)",
+      "pageExcerpt": "\"'AHHHHHHHHHH!' Eric and I screamed as we closed our eyes and held each other, bracing for impact. But we never hit the rock. Instead, we drove straight through it. When we didn’t explode into a giant fireball, I opened my eyes. We continued driving through blackness—complete blackness... The man had driven us underneath the level.\"",
+      "word": "WRIGLEY",
+      "clue": "Famous Chicago baseball field where the tank pops out of the ivy-covered outfield wall"
+    },
+    {
+      "type": "mc",
+      "q": "At the bottom of the Grand Canyon, what happens when Mr. Gas Mask grabs the driver's neck and Jesse shoots his blaster despite the driver yelling 'DON'T SHOO...'?",
+      "options": [
+        "Time slows down, Mr. Gas Mask leans backward almost in half to dodge, lifts up one finger that gets consumed by the blast, and then gives a four-finger wave bye-bye before beaming into the sky.",
+        "The blast destroys Mr. Gas Mask completely and unlocks the HOME portal right in front of them.",
+        "The blast bounces off Mr. Gas Mask's armor and hits the Hover Tank's steering wheel.",
+        "Mr. Gas Mask drops his gas mask, revealing that he is actually Sergeant Sandpants."
+      ],
+      "correct": 0,
+      "hint": "Watch what Mr. Gas Mask intentionally lifts into the path of the slow-motion blaster shot and why the driver shakes his head afterward saying, 'You have no idea what you just did.'",
+      "pageTitle": "Chapter 11 — Pages 80–81 (Four-Finger Wave Bye-Bye)",
+      "pageExcerpt": "\"I raised my blaster. Our driver’s eyes got huge. 'DON’T SHOO...' I shot. Time literally slowed down. The alien dodged the blast by leaning backward almost in half. Then, just as the blast was going over his body, the alien lifted up one finger of one hand. The blast consumed his finger. Before we could understand what had just happened, time went back to normal, and the alien stood up again. He looked at his hand, gave us a four-finger wave bye-bye, and beamed himself into the sky. Our driver, who’d fallen to the ground, stood back up and shook his head. 'You have no idea what you just did.'\"",
+      "word": "CANYON",
+      "clue": "Deep gorge (the Grand ___) where the driver parks before Mr. Gas Mask grabs his neck"
+    },
+    {
+      "type": "mc",
+      "q": "When the adult tank driver parks inside a cave and says he went to school with Jesse and Eric as their classmate, how does Jesse recognize who he really is?",
+      "options": [
+        "By his super-duper blue eyes—he is Mark Whitman, aged up 20 years with lots of muscle and a blaster arm because he has been trapped inside Full Blast for 20 video-game years.",
+        "By a nametag pinned to his shirt that says 'Middlefield Elementary Science Club.'",
+        "By the red mark on his stomach from jumping off the rec center diving board.",
+        "By the coonskin cap he is wearing on top of his head."
+      ],
+      "correct": 0,
+      "hint": "Jesse had only met one person in his whole life with eyes that blue, and he compares the man to an aged-up missing-person poster.",
+      "pageTitle": "Chapter 12 — Pages 83–84 (Source Code — Mark Whitman)",
+      "pageExcerpt": "\"'I wasn’t a teacher. I was your classmate.' That’s when I noticed the man’s super-duper blue eyes. In my whole life, I’d only met one person with eyes that blue. 'Mark? Mark Whitman?' He smiled a sad smile. 'That’s me.' ... You know those missing-person posters that they age up 20 years to give you an idea of what the person might look like now? That’s what Mark looked like, except the poster artist had also added lots of muscle and a blaster arm.\"",
+      "word": "CLASSMATE",
+      "clue": "Someone in the same class at school—what the adult Mark Whitman used to be to Jesse and Eric"
+    },
+    {
+      "type": "match",
+      "q": "Match each revelation from Mark Whitman's conversation with Jesse and Eric in the cave with what it means:",
+      "pairs": [
+        {
+          "left": "Super-Duper Blue Eyes",
+          "right": "Feature that helps Jesse recognize the muscular adult driver as their missing classmate Mark Whitman",
+          "rightVariants": [
+            "Feature that helps Jesse recognize the muscular adult driver as their missing classmate Mark Whitman",
+            "Unmistakable eye color Jesse remembers from the gigantic picture of Mark on stage at school",
+            "Detail that reveals the adult tank thief is actually Mark Whitman",
+            "Trait Jesse notices right after the man says, 'I wasn’t a teacher. I was your classmate'"
+          ]
+        },
+        {
+          "left": "20 Years vs. 1 Month",
+          "right": "How long Mark has been inside the video game compared to how long he has been missing in real life",
+          "rightVariants": [
+            "How long Mark has been inside the video game compared to how long he has been missing in real life",
+            "Proof that real time moves way slower than video game time",
+            "Time difference that explains why Mark is an adult while Jesse and Eric are still young",
+            "Why Mark is thrilled he can still see his parents before they turn into grandparents"
+          ]
+        },
+        {
+          "left": "Speed Runners",
+          "right": "Gamers who compete to find accidental glitches and shortcuts through unfinished walls to beat games in record time",
+          "rightVariants": [
+            "Gamers who compete to find accidental glitches and shortcuts through unfinished walls to beat games in record time",
+            "Players Mark describes who use hidden wall glitches to finish video games as fast as possible",
+            "Term for gamers who hunt for accidental shortcuts through unfinished scenery",
+            "Competitors who use the same kind of wall glitches Mark used to live underneath the game world"
+          ]
+        },
+        {
+          "left": "Source Code Warehouse",
+          "right": "Massive black building in the Nevada desert holding filing cabinets, tube TV screens, and all the files that make the game work",
+          "rightVariants": [
+            "Massive black building in the Nevada desert holding filing cabinets, tube TV screens, and all the files that make the game work",
+            "Miles-long black building beyond an invisible hole in the Nevada desert force field",
+            "Place where Mark searched for years trying to CTRL-ALT-DELETE his way out of the game",
+            "Building filled with filing cabinets and abandoned metal parts representing the game's code"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Underwater submarine base in Pearl Harbor where Mark built the Hover Tank",
+        "Secret pizza parlor hidden inside the Statue of Liberty's torch",
+        "Time machine Mark invented out of coconuts and swamp logs",
+        "Hospital room on Black Sand Beach where Mark works as a doctor"
+      ],
+      "hint": "Connect how Jesse recognizes Mark, why Mark is 20 years older after only a month, what gamers who use wall glitches are called, and what is inside the massive black building in the desert.",
+      "pageTitle": "Chapter 12 — Pages 83–86 (Mark's Story & The Source Code)",
+      "pageExcerpt": "\"That’s when I noticed the man’s super-duper blue eyes... 'Because I’ve been in here for 20 years.' Eric nearly fell off the tank. 'What?! You’ve only been missing for a month!' ... There are even gamers called 'speed runners' who compete to find these glitches and beat video games in record time... 'The source code,' Mark said as he led us forward. 'All the files that make this game work are right here.'\"",
+      "word": "SHORTCUTS",
+      "clue": "Accidental paths through unfinished walls and scenery that Mark and speed runners use"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When Mark learns he has only been missing for one month in the real world despite spending 20 years inside the game, he says that's great news because real time moves way slower than video game time.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "hint": "Think about what Mark says about seeing his parents before they turn into grandparents.",
+      "pageTitle": "Chapter 12 — Page 85 (Real Time vs. Video Game Time)",
+      "pageExcerpt": "\"'And you’re sure I’ve been gone only a month?' We both nodded. 'That’s great news! That means real time moves way slower than video game time. And if we’re able to somehow find a way out of here, I can see my parents before they turn into grandparents!'\"",
+      "word": "GRANDPARENTS",
+      "clue": "What Mark jokes he hopes to see his parents before they turn into"
+    },
+    {
+      "type": "mc",
+      "q": "How do Mark, Jesse, and Eric reach the massive black building that holds the game's source code?",
+      "options": [
+        "In the Nevada desert, they drive along the force field boundary, snap left through an invisible hole in the invisible wall, and drive through never-ending desert for 15 more minutes.",
+        "They take an elevator down from the bottom of the Grand Canyon into a subterranean subway.",
+        "They fly a rocket ship from Liberty Island to the dark side of the moon.",
+        "They swim underneath the waterfall in Hawaii and unlock a golden submarine door."
+      ],
+      "correct": 0,
+      "hint": "Mark hugs the force field boundary at the edge of the desert level before snapping the steering wheel left.",
+      "pageTitle": "Chapter 12 — Page 86 (The Massive Black Building in the Desert)",
+      "pageExcerpt": "\"We eventually found ourselves back in the Nevada desert. We drove along the beginning of the level, hugging the force field boundary. Suddenly, Mark snapped the wheel left, and we went through an invisible hole in the invisible wall. After driving through never-ending desert for 15 more minutes, we came upon a massive black building. It looked kind of like a warehouse, except it stretched for miles.\"",
+      "word": "WAREHOUSE",
+      "clue": "Massive storage-style black building stretching for miles in the desert that holds the source code"
+    },
+    {
+      "type": "match",
+      "q": "Match each item inside the massive black source-code building with its description:",
+      "pairs": [
+        {
+          "left": "Row of Filing Cabinets & Tube TVs",
+          "right": "Objects illuminated by flickering lights that hold all the files making the game work",
+          "rightVariants": [
+            "Objects illuminated by flickering lights that hold all the files making the game work",
+            "Contents of the massive black building alongside abandoned metal parts",
+            "Physical representation of the video game's source code inside the warehouse",
+            "Rows of cabinets and big tube screens that light up as Mark opens the sliding door"
+          ]
+        },
+        {
+          "left": "CTRL-ALT-DELETE",
+          "right": "What Mark searched for years to find a way to do, before concluding the only exit is through Level 20",
+          "rightVariants": [
+            "What Mark searched for years to find a way to do, before concluding the only exit is through Level 20",
+            "Computer shortcut Mark hoped to use to escape the source code, which turned out not to work",
+            "Escape method Mark gave up on after years of digging and experimenting in the warehouse",
+            "Keyboard command Mark mentions when explaining why the only way out is Level 20"
+          ]
+        },
+        {
+          "left": "Red Yarn & Taped Files",
+          "right": "Items attached haphazardly to the torn-apart wall at the end of a dead-end row like in police movies",
+          "rightVariants": [
+            "Items attached haphazardly to the torn-apart wall at the end of a dead-end row like in police movies",
+            "Web of clues on the wall left by someone desperate to find something in the warehouse",
+            "Files, pictures, and red string connecting everything together under flickering lights",
+            "Police-movie-style investigation board at the dead-end row of the source code warehouse"
+          ]
+        },
+        {
+          "left": "Familiar Gas Mask",
+          "right": "Object hanging on the wall directly underneath the spray-painted words 'HINDENBURG PROTOCOL'",
+          "rightVariants": [
+            "Object hanging on the wall directly underneath the spray-painted words 'HINDENBURG PROTOCOL'",
+            "Creepy item hung below the two spray-painted words at the top of the warehouse wall",
+            "Mask identical to the alien leader's, hanging under 'HINDENBURG PROTOCOL'",
+            "Final chilling object Mark points to as 'the problem' at the dead-end wall"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Vending machine dispensing free slices of melty pepperoni pizza",
+        "Giant portrait of Sergeant Sandpants painted on a surfboard",
+        "Golden trophy case celebrating the Middlefield Science Center",
+        "Control lever labeled 'TURN STATUE OF LIBERTY BACK INTO COPPER'"
+      ],
+      "hint": "Look at what fills the warehouse rows, what computer command Mark tried to find, how the dead-end wall is decorated, and what hangs beneath the spray-painted words.",
+      "pageTitle": "Chapter 12 — Pages 86–87 (Inside the Source Code Warehouse)",
+      "pageExcerpt": "\"They illuminated row after row of filing cabinets and TV screens (the big tube kind) and abandoned metal parts... 'I searched for a long time to find something I could use to CTRL-ALT-DELETE my way out of here, but that’s not the way it works...' Files and pictures were taped haphazardly to the wall. There was even red yarn attaching everything together like in those police movies... 'HINDENBURG PROTOCOL.' Underneath those words hung a familiar gas mask.\"",
+      "word": "CABINETS",
+      "clue": "Pieces of office furniture for storing files—found in long rows inside the source code building"
+    },
+    {
+      "type": "mc",
+      "q": "When Eric says beating Level 20 isn't too bad and asks what the problem is, what does Mark point to at the torn-apart dead-end row of the warehouse?",
+      "options": [
+        "Files, pictures, and red yarn taped to the wall, with the words 'HINDENBURG PROTOCOL' scrawled in spray paint at the top and a familiar gas mask hanging underneath.",
+        "A broken computer screen that says the game only has 19 levels instead of 20.",
+        "A cage holding fifty eagle-size wasps and a giant sand monster.",
+        "A locked refrigerator where all the game's jet packs are stored."
+      ],
+      "correct": 0,
+      "hint": "Look at the two words scrawled in spray paint above the red yarn and pictures—the exact same two words Eric activated after the sand monster boss battle.",
+      "pageTitle": "Chapter 12 — Page 87 (Hindenburg Protocol & The Gas Mask)",
+      "pageExcerpt": "\"Mark pointed at the wall. 'This is the problem.' At the top of the wall—above the files and pictures and red yarn—were two words scrawled in spray paint. Two words we had seen before. 'HINDENBURG PROTOCOL.' Underneath those words hung a familiar gas mask.\"",
+      "word": "PROTOCOL",
+      "clue": "Second word scrawled in spray paint after 'HINDENBURG' above the hanging gas mask"
+    }
+  ],
+  "readerHtml": "<h2>Trapped in a Video Game — Chapters 10, 11 &amp; 12 (Pages 67–87)</h2>\n<p><em>Complete verbatim book pages for Chapter 10: Captain Eric, Chapter 11: Speed Run, and Chapter 12: Source Code.</em></p>\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 12px 0;\" />\n\n<h3>CHAPTER 10: Captain Eric (Page 67)</h3>\n<p>“I’m driving!”</p>\n<p>“Driving what?” I asked as I looked around to figure out where we’d landed this time.</p>\n<p>Oh. Great. A swamp. A thick, smelly swamp. I picked up my right foot. <em>THHHHHHWUUUUUCK.</em> The worst. I was standing in six inches of muck, which meant I’d be walking in wet socks all day. I can handle snow, I can handle volcanoes, I can even handle house-sized sand monsters. I cannot handle wet socks.</p>\n<p>“I’M DRIVING! I CALLED IT!” Eric did not have wet socks because he did not get teleported into the swamp. Instead, he ended up on a future-y looking tank 10 feet away, and he was calling it at the top of his lungs.</p>\n<p>“No way! That thing’s going to get stuck in two seconds!”</p>\n\n<h3>Page 68</h3>\n<p>“Not this tank!” Eric yelled. He disappeared into the machine, and five seconds later it roared to life.</p>\n<p><em>VVVVVRAWWWWWWWW!</em></p>\n<p>The tank lifted a foot off the ground thanks to four small rockets on the bottom.</p>\n<p>Eric popped his head back up. “Is this cool or what?!”</p>\n<p>“Hey, I want to drive that!”</p>\n<p><em>[FULL BLAST — Hover Tank — Vehicle | CONTROLS: MOVE, HOLD A BOOST, TAP B FIRE, TAP L / TAP R DODGE]</em></p>\n\n<h3>Page 69</h3>\n<p>“Maybe you should have thought about that before I called it. You can shoot the cannon, though! That’s pretty cool.”</p>\n<p>I folded my arms across my chest. “Oh really.”</p>\n<p>Just then, Eric’s eyes got huge. He grabbed the cannon, swiveled it around, and blasted something right behind me. I turned around just in time to see a 20-foot crocodile alien that had been jumping out of the swamp disappear in a flash of light. I had to admit—it was pretty cool.</p>\n<p>“You gonna jump on, or are you gonna get eaten?”</p>\n<p>I rolled my eyes, sloshed over to the tank, and climbed up.</p>\n<p>“That’s the spirit!” Eric said with a salute. “Now that you’ve boarded my vessel, I expect you to refer to me only as Captain Eric.”</p>\n<p>“Your vessel? I’d rather take my chances with the crocodiles.”</p>\n<p>“That’s no way to talk to your superior, First Mate Jesse.”</p>\n<p>I turned the cannon around and blasted Eric. He vaporized and reappeared in the driver’s seat.</p>\n\n<h3>Page 70</h3>\n<p>Eric nodded. “Point taken.” He then flicked a couple of switches and grabbed the steering wheel. “Let’s see what this thing can do!”</p>\n<p>What it did was accelerate from zero to 100 miles per hour in a quarter of a second.</p>\n<p>“AHHHHHH!” I said as my right arm, which had been operating the cannon, nearly got ripped from its socket. I flew backward into the muck with a giant <em>SPLAT.</em> Now in addition to wet socks, I’d also be spending the day in wet underwear.</p>\n<p>I climbed back on and pointed the cannon at Eric. “Watch it, Captain.”</p>\n<p>He accelerated slower this time but couldn’t resist doing a doughnut once he found a clearing that was big enough. Then we took off through the level. After five frustrating minutes of trying to aim at aliens while Eric swerved back and forth, I realized why they don’t let 12-year-olds drive cars and why they CERTAINLY don’t let 11-year-olds drive tanks.</p>\n<p>“Would you drive straight for one second!”</p>\n<p>“I’m working on it!”</p>\n<p><em>CRUNCH!</em></p>\n\n<h3>Page 71</h3>\n<p>“And stop hitting trees!”</p>\n<p>“I can either drive straight or avoid trees, but I can’t do both!”</p>\n<p>I sighed as yet another crocodile jumped out of the swamp and ate us whole. We reappeared at the beginning of the level for the fourth time.</p>\n<p>“Get out,” I said.</p>\n<p>“No, wait, I can . . .”</p>\n<p>“Get out.”</p>\n<p>Eric huffed and swapped spots with me. I smiled. “Now that I’m driving, I expect you to refer to me as Captain Jesse.”</p>\n<p>He blasted me. After I had reappeared, we set off. I was actually not much better at driving than Eric, but because he was so much better than me at shooting, we made it through the level in no time. Eric cheered every time he zapped an alien, and I whooped every time I got to use a fallen log as a ramp. I was having a blast. A Full Blast. If driving a car is even a little bit like driving a tank, adults should be way happier on the highway than they seem.</p>\n\n<h3>Page 72</h3>\n<p>The trees overhead got thicker and thicker until we ended up in an enclosed swamp that was almost pitch-black.</p>\n<p>“What now?” I asked.</p>\n<p>“This is the boss,” Eric said.</p>\n<p>“Are we supposed to be able to see him?”</p>\n<p>“It’s a crocodile with glowing eyes that light up everything when he emerges from the swamp.”</p>\n<p>“Terrific.”</p>\n<p>We waited in silence for a full minute. Nothing.</p>\n<p>“Hey, Eric.”</p>\n<p>“What?”</p>\n<p>“Cool boss.”</p>\n<p>“He should have been here by now. He always shows up right away.”</p>\n<p>“Well, maybe we needed to get like a key or something?”</p>\n<p>Eric looked at me with scorn. “A <em>key</em>? What could a key possibly do to help us find a crocodile in the middle of a swamp? That doesn’t even make sense.”</p>\n\n<h3>Page 73</h3>\n<p>“Oh, I’m sorry. I didn’t know a game that turns the Statue of Liberty into a rocket ship is supposed to make sense.”</p>\n<p>“Whatever. I guess we can see if there’s something we missed.”</p>\n<p>I turned the tank around and slowly started driving back through the dark swampland. That’s when we heard it. A hissing noise up ahead.</p>\n<p><em>sssssSSSSSSssssssss.</em></p>\n<p>“Is that something?” I asked.</p>\n<p>“I don’t know what that is.”</p>\n<p><em>ssssssSSSSSSsssseeeeeeee.</em></p>\n<p>“Shh, listen.” It sounded almost like a hissing voice. Or actually, multiple hissing voices.</p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p>“Yessee?” I turned to Eric. “Is that what they’re saying?”</p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n<p><em>Caaaaaapan EEEEEEErreeeeeeeek.</em></p>\n\n<h3>Page 74</h3>\n<p>My stomach did a somersault. Captain Eric. Jesse. They were saying our names.</p>\n\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 14px 0;\" />\n\n<h3>CHAPTER 11: Speed Run (Page 75)</h3>\n<p>Here’s the complete list of things that are creepier than hearing aliens say your name in a dark swamp:</p>\n<p>1. Nothing.</p>\n<p>That’s it. Nothing can ever be creepier than that.</p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n<p>Eric panicked and started blasting wildly ahead. It did no good. If anything, the voices only got louder.</p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n\n<h3>Page 76</h3>\n<p>I put the tank in reverse, and we started slowly backing up. Both Eric and I remained silent as we drove back toward the boss area. Soon it was almost completely dark, and the voices sounded closer than ever.</p>\n<p><em>yyyyyessSSSSSsssseeeeeeee.</em></p>\n<p><em>EEEEErrrrrrreeeeeeeeek.</em></p>\n<p>I felt Eric’s hand on my shoulder. I tried to comfort him. “I know, buddy. We’re going to figure out a way out of here.”</p>\n<p>“But how?”</p>\n<p>Eric’s voice sounded far away. Not like he was lost in thought or something but actually a few feet farther than I remembered. I looked down at the hand on my shoulder. My eyes had started getting used to the dark, so I could just make out that this hand was bigger than expected.</p>\n<p>“Eric?”</p>\n<p>A face leaned in real close to me. An adult face. Making a “shh” motion with his finger to his mouth.</p>\n<p>I did not shh. I did quite the opposite of shh-ing.</p>\n\n<h3>Page 77</h3>\n<p>“AHHHHHHHHHHH!”</p>\n<p>Suddenly, the voices stopped. Then two eyes from the swamp lit up. They illuminated our tank. They illuminated me and now Eric screaming like a chorus of small children. They illuminated an angry man tearing me away from the steering wheel. They illuminated an army of aliens blocking our path out of the swamp. And they illuminated their leader—Mr. Gas Mask.</p>\n<p>Our tank thief slammed the vehicle into drive and took off toward the army. The glowing crocodile ahead opened its mouth to swallow us whole.</p>\n<p>“Hold on!” the man yelled back at Eric and me. A nanosecond before the crocodile could chomp down on us, the man pressed a series of buttons, and our entire tank did a barrel roll away from the mouth.</p>\n<p>“You never told me we could do that!” I yelled to Eric.</p>\n<p>“I never knew we could!”</p>\n<p>Now that we had narrowly avoided the glowing crocodile, we found ourselves plowing through the army behind him.</p>\n<p>“Don’t shoot anything!” the man yelled back to us.</p>\n\n<h3>Page 78</h3>\n<p>That seemed hard to do since aliens were now grabbing onto the tank and trying to climb up. Before any of them could get too far, our driver found a log, used it as a ramp, and hit the thrusters in midair to turn our tank into a flying missile. As we soared over the heads of our attackers, the driver did another barrel roll to shake the remaining aliens off our tank. We landed with a splash behind the alien army and tore back toward the beginning of the level with the aliens behind us.</p>\n\n<h3>Page 79</h3>\n<p>While Eric and I had driven with all the grace of a dizzy cow, this man handled the swamp like he was born there. Every time a new crocodile jumped out of the water, he was ready with a zig or a zag or a flying barrel roll. Unfortunately, in addition to the new aliens jumping out of the water in front of us, the army behind us had regrouped and was gaining ground.</p>\n<p>Just as the aliens started grabbing for the tank again, our driver jerked the steering wheel hard right, and we zipped down a small path that I hadn’t noticed on our first run through the level. The path led us into a small dead-end swamp. We were trapped—our only hope would be to turn around and try jumping over the army again. But our driver was not interested in slowing. If anything, he sped up. Directly into a rock.</p>\n<p>“AHHHHHHHHHH!” Eric and I screamed as we closed our eyes and held each other, bracing for impact.</p>\n<p>But we never hit the rock. Instead, we drove straight through it.</p>\n<p>When we didn’t explode into a giant fireball, I opened my eyes. We continued driving through blackness—complete blackness. I couldn’t even see any kind of ground underneath us. The only thing I could make out was what looked like the bottom of a swamp <em>above</em> us. The man had driven us underneath the level.</p>\n\n<h3>Page 80</h3>\n<p>After a few minutes, we popped back up. But we were no longer in swampland. We emerged through a waterfall in Hawaii. Our driver didn’t slow down. He drove straight into the ocean, went underneath the level again, and popped out of the ivy-covered outfield wall at Wrigley Field in Chicago. We drove like crazy through secret passages in and out of more levels—the Golden Gate Bridge, the Nevada desert, and the Atlantic City boardwalk.</p>\n<p>Finally, at the bottom of the Grand Canyon, we slowed to a stop. For the first time since the aliens started talking, everything was totally silent. Our driver parked the tank and turned to say something to Eric and me. But before he could get a word out, Mr. Gas Mask jumped up behind him and grabbed his neck.</p>\n<p>I raised my blaster. Our driver’s eyes got huge. “DON’T SHOO...”</p>\n<p>I shot.</p>\n<p>Time literally slowed down. The alien dodged the blast by leaning backward almost in half. Then, just as the blast was going over his body, the alien lifted up one finger of one hand. The blast consumed his finger. Before we could understand what had just happened, time went back to normal, and the alien stood up again.</p>\n\n<h3>Page 81</h3>\n<p>He looked at his hand, gave us a four-finger wave bye-bye, and beamed himself into the sky.</p>\n<p>Our driver, who’d fallen to the ground, stood back up and shook his head.</p>\n<p>“You have no idea what you just did.”</p>\n\n<hr style=\"border-color: rgba(56,189,248,0.25); margin: 14px 0;\" />\n\n<h3>CHAPTER 12: Source Code (Page 83)</h3>\n<p>The driver took us into a cave and parked the tank again.</p>\n<p>“OK, Jesse and Eric, what are you doing here?”</p>\n<p>Eric threw up his hands. “How does everyone here know our names?!”</p>\n<p>The man looked at him quizzically. “Well, <em>I</em> know your names because I went to school with you.”</p>\n<p>“You don’t look like any of our teachers.”</p>\n<p>“I wasn’t a teacher. I was your classmate.”</p>\n<p>That’s when I noticed the man’s super-duper blue eyes. In my whole life, I’d only met one person with eyes that blue.</p>\n<p>“Mark? Mark Whitman?”</p>\n<p>He smiled a sad smile. “That’s me.”</p>\n\n<h3>Page 84</h3>\n<p>Mark Whitman. I could kind of see it. You know those missing-person posters that they age up 20 years to give you an idea of what the person might look like now? That’s what Mark looked like, except the poster artist had also added lots of muscle and a blaster arm.</p>\n<p>Eric was having a hard time keeping up. “But, but, but, but why aren’t you drowned?”</p>\n<p>Mark cocked his head. “Drowned?”</p>\n<p>“Everyone thought you drowned in the river.”</p>\n<p>“Really? Who goes swimming after a storm?”</p>\n<p>“Exactly!”</p>\n<p>“No, I was playing <em>Full Blast</em> and got sucked in.”</p>\n<p>“Us, too!”</p>\n<p>“Yeah, but why are you guys still young?”</p>\n<p>We didn’t know what to say. Finally, Eric spoke up. “Why are you old?”</p>\n<p>“Because I’ve been in here for 20 years.”</p>\n<p>Eric nearly fell off the tank. “What?! You’ve only been missing for a month!”</p>\n<p>“What are you talking about?”</p>\n\n<h3>Page 85</h3>\n<p>Eric and I filled Mark in on everything that had happened since he disappeared—the river search, the big photo of him in school, the Mark Day.</p>\n<p>“So I got you guys a half day off of school?”</p>\n<p>“Well, yeah, but it wasn’t a good half day because everyone was sad.”</p>\n<p>“And you’re sure I’ve been gone only a month?”</p>\n<p>We both nodded.</p>\n<p>“That’s great news! That means real time moves way slower than video game time. And if we’re able to somehow find a way out of here, I can see my parents before they turn into grandparents!”</p>\n<p>It was my turn to speak now. “What do you mean ‘somehow find a way out of here’?”</p>\n<p>Mark turned the tank back on. “I have something to show you.”</p>\n<p>We drove through a wall in the back of the cave. As we zigged and zagged through more levels, Mark explained that every video game has accidental shortcuts through unfinished walls and scenery. There are even gamers called “speed runners” who compete to find these glitches and beat video games in record time.</p>\n\n<h3>Page 86</h3>\n<p>Over the years, Mark had found all of <em>Full Blast</em>’s accidental shortcuts and made a home underneath the video game world where aliens couldn’t reach him.</p>\n<p>We eventually found ourselves back in the Nevada desert. We drove along the beginning of the level, hugging the force field boundary. Suddenly, Mark snapped the wheel left, and we went through an invisible hole in the invisible wall. After driving through never-ending desert for 15 more minutes, we came upon a massive black building. It looked kind of like a warehouse, except it stretched for miles.</p>\n<p>Mark hopped off the tank. “Come on.”</p>\n<p>He grabbed the handle of a huge sliding door and creeeeaaaaaked it open. When we stepped through the door, lights automatically flickered a path in front of us. They illuminated row after row of filing cabinets and TV screens (the big tube kind) and abandoned metal parts.</p>\n<p>“What’s this?” I asked.</p>\n<p>“The source code,” Mark said as he led us forward. “All the files that make this game work are right here.”</p>\n<p>“Great!” Eric said. “Then we should be able to find one that we can use to get out of here, right?”</p>\n\n<h3>Page 87</h3>\n<p>Mark shook his head. “I searched for a long time to find something I could use to CTRL-ALT-DELETE my way out of here, but that’s not the way it works. After years of digging and experimenting, I came to the conclusion that the only way out is through Level 20.”</p>\n<p>“So what’s the problem?” Eric asked. “I beat Level 20. It’s not too bad.”</p>\n<p>Mark stopped at the end of a dead-end row. This particular section of the warehouse looked like it had been torn apart by someone desperate to find something. The lights here flickered ominously. Files and pictures were taped haphazardly to the wall. There was even red yarn attaching everything together like in those police movies.</p>\n<p>Mark pointed at the wall. “This is the problem.”</p>\n<p>At the top of the wall—above the files and pictures and red yarn—were two words scrawled in spray paint. Two words we had seen before.</p>\n<p>“HINDENBURG PROTOCOL.”</p>\n<p>Underneath those words hung a familiar gas mask.</p>"
+};
 
 const BUILT_IN_CH7_8_9_QUIZ = {
   "id": "trapped_videogame_ch7_8_9",
@@ -6879,8 +7404,8 @@ function getAllQuizzes() {
     questions: chapterOneQuestions,
     readerHtml: defaultChapter1ReaderHtml
   };
-  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
-  return [BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
+  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch10_11_12' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
+  return [BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
 }
 
 function loadLocalQuizzes() {
@@ -6967,7 +7492,7 @@ async function fetchCloudQuizzesLibrary() {
       const lastSeenCloudUpdate = localStorage.getItem('rs_apps_cloud_updated_at') || '';
       const cloudActiveForInst = currentInstance === 'D'
         ? (data.activeQuizIdD || 'd_history_trivia_mc')
-        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch7_8_9');
+        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch10_11_12');
       if (data.updatedAt && data.updatedAt !== lastSeenCloudUpdate) {
         localStorage.setItem('rs_apps_cloud_updated_at', data.updatedAt);
         if (cloudActiveForInst) {
