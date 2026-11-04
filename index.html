@@ -1061,6 +1061,40 @@
   .duel-move-alien-spin .alien-body { animation: specialAlienPlasmaSpin 0.85s cubic-bezier(0.22, 1, 0.36, 1) !important; }
   .duel-move-alien-spin .bart-body { animation: specialBoyRecoilBlock 0.85s ease-out !important; }
 
+  /* End-Screen Victory Finale Pose (Grade A or B — Above C) */
+  @keyframes heroVictoryPoseBob {
+    0%, 100% { transform: translate(12px, 0px) scale(1.06); }
+    50% { transform: translate(12px, -6px) scale(1.1); }
+  }
+  @keyframes heroVictorySwordRaise {
+    0%, 100% { transform: rotate(-48deg); }
+    50% { transform: rotate(-58deg); }
+  }
+  @keyframes dizzyStarsOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .duel-victory-finale .bart-body {
+    animation: heroVictoryPoseBob 0.9s infinite ease-in-out !important;
+  }
+  .duel-victory-finale .boy-sword-arm {
+    animation: heroVictorySwordRaise 0.9s infinite ease-in-out !important;
+  }
+  .duel-victory-finale .leg-l,
+  .duel-victory-finale .leg-r,
+  .duel-victory-finale .alien-body,
+  .duel-victory-finale .alien-leg-l,
+  .duel-victory-finale .alien-leg-r,
+  .duel-victory-finale .alien-sword-arm {
+    animation: none !important;
+  }
+  .duel-victory-finale #laserClashSparks,
+  .duel-victory-finale #heroSlashArc,
+  .duel-victory-finale #alienSlashArc {
+    display: none !important;
+  }
+
   #duelStageGroup, #boyPostureGroup, #alienPostureGroup, #heroPowerFill, #alienPowerFill, #clashMeterSpark {
     transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -1577,7 +1611,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:39 PM - 11/04/2026</div>
+<div class="build-timestamp">Actualizado: 06:44 PM - 11/04/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1617,7 +1651,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:39 PM - 11/04/2026
+      Actualizado: 06:44 PM - 11/04/2026
     </div>
   </div>
 </div>
@@ -1950,6 +1984,12 @@
                 <line id="alienLaserGlow" x1="131" y1="60" x2="95" y2="26" stroke="#ef4444" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowRed)" />
                 <line id="alienLaserCore" x1="131" y1="60" x2="95" y2="26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
               </g>
+              <!-- Defeated Knockout Stars (shown when Boy wins quiz > C grade) -->
+              <g id="alienDefeatedStars" style="display: none;">
+                <text x="142" y="12" fill="#fde047" font-size="9" font-weight="900">★</text>
+                <text x="156" y="7" fill="#38bdf8" font-size="8" font-weight="900">✦</text>
+                <text x="169" y="13" fill="#fde047" font-size="9" font-weight="900">★</text>
+              </g>
             </g>
           </g>
 
@@ -2122,7 +2162,70 @@
 
   <!-- Results Screen -->
   <div id="resultsContainer" class="card" style="display: none; flex: 1; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow-y: auto;">
-    <h2 style="color:#f8fafc; font-size: 1.45rem; margin-top:0.4rem;">Quiz Complete! 🌌</h2>
+    <h2 style="color:#f8fafc; font-size: 1.45rem; margin-top:0.3rem;">Quiz Complete! 🌌</h2>
+
+    <!-- End-Screen Victory Scene (Shown when finished with > C grade) -->
+    <div id="resultsVictoryScene" style="display: none; width: min(94%, 25rem); height: 9.8rem; margin: 0.35rem auto 0.25rem auto; background: radial-gradient(circle at 45% 50%, #0f2942 15%, #020617 100%); border: 2.5px solid #10b981; border-radius: 1rem; box-shadow: 0 0 26px rgba(16, 185, 129, 0.38), inset 0 0 22px rgba(15, 23, 42, 0.9); padding: 4px;">
+      <svg width="100%" height="100%" viewBox="0 0 280 120" preserveAspectRatio="xMidYMid meet">
+        <ellipse cx="140" cy="108" rx="122" ry="7" fill="#000000" opacity="0.6" />
+        <ellipse cx="92" cy="65" rx="68" ry="44" fill="#10b981" opacity="0.18" />
+        <text x="140" y="15" text-anchor="middle" fill="#fde047" font-size="10.5" font-weight="900" font-family="sans-serif" style="letter-spacing:0.8px;">🏆 VICTORY! ALIEN DEFEATED! 🏆</text>
+
+        <!-- Victorious Boy Hero (Left-Center, Raising Laser Sword High) -->
+        <g style="animation: heroVictoryPoseBob 0.9s infinite ease-in-out;">
+          <!-- Legs in Wide Hero Stance -->
+          <path d="M 70 78 L 78 78 L 72 104 L 63 104 Z" fill="#334155" />
+          <path d="M 60 104 L 74 104 L 76 110 L 59 110 Z" fill="#0284c7" />
+          <path d="M 84 78 L 92 78 L 99 104 L 90 104 Z" fill="#475569" />
+          <path d="M 88 104 L 103 104 L 105 110 L 87 110 Z" fill="#0369a1" />
+          <!-- Flowing Hero Cape -->
+          <path d="M 67 50 L 44 92 L 66 86 Z" fill="#0284c7" opacity="0.9" />
+          <!-- Armored Jacket & Emblem -->
+          <path d="M 66 49 L 95 49 L 98 79 L 63 79 Z" fill="url(#cloakGrad)" stroke="#38bdf8" stroke-width="1" />
+          <polygon points="81,55 87,63 81,71 75,63" fill="#fde047" />
+          <!-- Left Arm Raised in Victory Fist -->
+          <path d="M 68 53 L 52 36 L 58 31 L 73 49 Z" fill="#0284c7" />
+          <circle cx="53" cy="32" r="4.5" fill="#ffdbac" />
+          <!-- Right Arm Raising Glowing Blue Laser Sword to the Sky -->
+          <path d="M 91 53 L 108 35 L 114 40 L 96 58 Z" fill="#0284c7" />
+          <circle cx="111" cy="36" r="4.5" fill="#ffdbac" />
+          <rect x="108" y="25" width="6" height="14" rx="2" transform="rotate(14 111 32)" fill="#cbd5e1" stroke="#0f172a" stroke-width="1" />
+          <line x1="113" y1="26" x2="126" y2="3" stroke="#38bdf8" stroke-width="8.5" stroke-linecap="round" opacity="0.75" filter="url(#laserGlowBlue)" />
+          <line x1="113" y1="26" x2="126" y2="3" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" />
+          <!-- Head, Spiky Hair, Cool Visor & Big Triumphant Grin -->
+          <rect x="77" y="42" width="8" height="8" fill="#ffdbac" />
+          <circle cx="81" cy="32" r="15.5" fill="#ffdbac" />
+          <path d="M 65 31 Q 68 13 83 14 Q 94 14 98 26 L 92 22 L 86 19 L 77 20 L 69 24 Z" fill="#b91c1c" />
+          <rect x="71" y="26" width="10" height="6.5" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
+          <rect x="83" y="26" width="10" height="6.5" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
+          <line x1="81" y1="29" x2="83" y2="29" stroke="#38bdf8" stroke-width="1" />
+          <path d="M 75 37 Q 81 45 88 37" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" />
+        </g>
+
+        <!-- Defeated Alien Lying Flat on the Ground (Right Side) -->
+        <g transform="translate(198, 98) rotate(88)">
+          <!-- Legs -->
+          <path d="M -8 5 L -1 5 L -4 28 L -11 28 Z" fill="#3b0764" />
+          <path d="M 3 5 L 10 5 L 13 28 L 5 28 Z" fill="#4c1d95" />
+          <!-- Torso -->
+          <path d="M -12 -22 L 14 -22 L 16 6 L -14 6 Z" fill="url(#alienArmorGrad)" stroke="#a855f7" stroke-width="1" />
+          <circle cx="1" cy="-8" r="4.5" fill="#64748b" />
+          <!-- Green Head with Dizzy X Eyes -->
+          <ellipse cx="1" cy="-36" rx="14.5" ry="14" fill="#22c55e" stroke="#15803d" stroke-width="1" />
+          <line x1="-6" y1="-40" x2="-1" y2="-35" stroke="#052e16" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="-1" y1="-40" x2="-6" y2="-35" stroke="#052e16" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="3" y1="-40" x2="8" y2="-35" stroke="#052e16" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="8" y1="-40" x2="3" y2="-35" stroke="#052e16" stroke-width="2.2" stroke-linecap="round" />
+          <path d="M -5 -28 Q 1 -33 7 -28" fill="none" stroke="#052e16" stroke-width="2" stroke-linecap="round" />
+        </g>
+        <!-- Dropped Unlit Alien Sword Hilt on the Floor & Knockout Stars -->
+        <rect x="152" y="103" width="15" height="5.5" rx="2" fill="#475569" stroke="#ef4444" stroke-width="1" />
+        <text x="216" y="76" fill="#fde047" font-size="12" font-weight="900">★</text>
+        <text x="234" y="69" fill="#38bdf8" font-size="11" font-weight="900">✦</text>
+        <text x="250" y="78" fill="#fde047" font-size="12" font-weight="900">★</text>
+      </svg>
+    </div>
+
     <div id="gradeBadgeCircle" class="grade-badge-circle">A</div>
     <p style="font-size: 1.75rem; font-weight: 900; margin: 0.4rem 0 0.25rem 0; color: #38bdf8;" id="finalScore">100% (75 / 75 pts)</p>
     <p style="color: #94a3b8; margin-bottom: 1rem; font-size: 0.98rem; font-weight:600;" id="finalFeedback">Outstanding work!</p>
@@ -4767,8 +4870,15 @@ function renderDuelVisualState(momentum, justAnsweredCorrect) {
   const spark = document.getElementById('clashMeterSpark');
   const boyGlow = document.getElementById('boyLaserGlow');
   const alienGlow = document.getElementById('alienLaserGlow');
+  const alienCore = document.getElementById('alienLaserCore');
+  const defeatedStars = document.getElementById('alienDefeatedStars');
   const calloutEl = document.getElementById('duelMoveCallout');
   const shockRing = document.getElementById('combatShockwaveRing');
+
+  if (container) container.classList.remove('duel-victory-finale');
+  if (alienGlow) alienGlow.style.display = '';
+  if (alienCore) alienCore.style.display = '';
+  if (defeatedStars) defeatedStars.style.display = 'none';
 
   const m = Number(momentum) || 0;
   // Each right answer shifts the fight +3.2px toward the alien's side; each wrong answer shifts -3.2px toward the boy's side
@@ -5529,6 +5639,53 @@ function showResults(skipSongOnRestore = false) {
     badgeEl.style.borderColor = badgeColor;
     badgeEl.style.boxShadow = `0 0 24px ${badgeColor}66`;
     badgeEl.style.background = `radial-gradient(circle, ${badgeColor}33 0%, #0f172a 100%)`;
+  }
+
+  // If finished with more than C grade (Grade A or B), show the Alien defeated on the ground and the Boy in a victorious pose
+  const isVictoryAboveC = (grade === 'A' || grade === 'B');
+  const resultsVictoryEl = document.getElementById('resultsVictoryScene');
+  if (resultsVictoryEl) {
+    resultsVictoryEl.style.display = isVictoryAboveC ? 'block' : 'none';
+  }
+
+  const avatarContainer = document.getElementById('bartAvatarContainer');
+  const stageGroup = document.getElementById('duelStageGroup');
+  const boyGroup = document.getElementById('boyPostureGroup');
+  const alienGroup = document.getElementById('alienPostureGroup');
+  const alienGlow = document.getElementById('alienLaserGlow');
+  const alienCore = document.getElementById('alienLaserCore');
+  const defeatedStars = document.getElementById('alienDefeatedStars');
+  const heroBar = document.getElementById('heroPowerFill');
+  const alienBar = document.getElementById('alienPowerFill');
+  const spark = document.getElementById('clashMeterSpark');
+  const calloutEl = document.getElementById('duelMoveCallout');
+  const statusTitle = document.getElementById('bartStatusTitle');
+  const statusDesc = document.getElementById('bartStatusDesc');
+
+  if (isVictoryAboveC) {
+    if (avatarContainer) {
+      avatarContainer.classList.add('duel-victory-finale');
+      avatarContainer.style.borderColor = '#10b981';
+    }
+    if (stageGroup) stageGroup.setAttribute('transform', 'translate(0, 0)');
+    if (boyGroup) boyGroup.setAttribute('transform', 'translate(16, 0) rotate(0 61 104)');
+    if (alienGroup) alienGroup.setAttribute('transform', 'translate(-12, 3) rotate(86 158 104)');
+    if (alienGlow) alienGlow.style.display = 'none';
+    if (alienCore) alienCore.style.display = 'none';
+    if (defeatedStars) defeatedStars.style.display = 'block';
+    if (heroBar) heroBar.setAttribute('width', '152');
+    if (alienBar) {
+      alienBar.setAttribute('x', '181');
+      alienBar.setAttribute('width', '0');
+    }
+    if (spark) spark.setAttribute('cx', '181');
+    if (calloutEl) {
+      calloutEl.textContent = '🏆 VICTORY! ALIEN DEFEATED!';
+      calloutEl.setAttribute('fill', '#fde047');
+      calloutEl.setAttribute('opacity', '1');
+    }
+    if (statusTitle) statusTitle.textContent = '🏆 Victory! Alien Defeated! 🌟';
+    if (statusDesc) statusDesc.textContent = 'The boy triumphed in the laser sword duel and knocked the alien to the ground!';
   }
 
   saveCurrentQuizProgress();
