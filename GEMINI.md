@@ -16,7 +16,7 @@
 
 2. **Reglas de Matching Columns (`match`):**
    - La columna izquierda tiene **4 opciones** y la columna derecha tiene **5 opciones** (las 4 respuestas verdaderas + **1 opción extra distractora** `distractorVariants` que no coincide con ninguna opción de la columna izquierda).
-   - Cada línea de la columna izquierda da **2 oportunidades libres** para emparejarse correctamente; al **tercer intento fallido (`3rd wrong try`)** en esa línea, se descuentan **`0.25` puntos** (`-0.25 pt`).
+   - Cada línea de la columna izquierda da **1 sola oportunidad libre** para equivocarse; a partir del **segundo intento fallido (`2nd wrong try`) en adelante** en esa línea, se descuentan **`0.25` puntos** (`-0.25 pt`) por cada error adicional.
    - Cuando el usuario comete un error al emparejar las columnas, las parejas ya respondidas correctamente **NO se reinician, NO se reorganizan de posición y NO cambian su redacción** (`solvedPairs` se mantiene intacto); únicamente se reorganizan y cambian de redacción (`rightVariants` / `distractorVariants`) las opciones que aún no han sido respondidas correctamente.
 
 3. **Reglas de Deletreo (`Spelling`) y `Submit Answer`:**
