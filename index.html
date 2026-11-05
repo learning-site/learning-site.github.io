@@ -1611,7 +1611,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:44 PM - 11/04/2026</div>
+<div class="build-timestamp">Actualizado: 09:10 AM - 11/05/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1651,7 +1651,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:44 PM - 11/04/2026
+      Actualizado: 09:10 AM - 11/05/2026
     </div>
   </div>
 </div>
@@ -8234,10 +8234,17 @@ function saveLocalQuizzes() {
   } catch (e) {}
 }
 
+function getGitHubRepoApiBase() {
+  if (typeof window !== 'undefined' && window.location && window.location.hostname === 'learning-site.github.io') {
+    return 'https://api.github.com/repos/learning-site/learning-site.github.io/contents/quizzes-library.json';
+  }
+  return 'https://api.github.com/repos/raydelw-a11y/rs-apps/contents/quizzes-library.json';
+}
+
 async function fetchRemoteLibraryDataFromGitHub() {
   // 1. Try real-time GitHub Contents API on branch main (0-second cache delay, works on any device publicly)
   try {
-    const apiUrl = `https://api.github.com/repos/raydelw-a11y/rs-apps/contents/quizzes-library.json?ref=main&t=${Date.now()}`;
+    const apiUrl = `${getGitHubRepoApiBase()}?ref=main&t=${Date.now()}`;
     const ghToken = (localStorage.getItem('rs_apps_studio_gh_token') || '').trim();
     const headers = { 'Accept': 'application/vnd.github.v3+json' };
     if (ghToken) headers['Authorization'] = `token ${ghToken}`;
@@ -8311,7 +8318,7 @@ async function syncQuizzesLibraryToCloud(deletedQuizId = null) {
   const ghToken = (document.getElementById('studioCustomGhToken')?.value || localStorage.getItem('rs_apps_studio_gh_token') || '').trim();
   if (!ghToken) return { synced: false, reason: 'no_token' };
 
-  const apiUrl = 'https://api.github.com/repos/raydelw-a11y/rs-apps/contents/quizzes-library.json';
+  const apiUrl = getGitHubRepoApiBase();
   const headers = {
     'Authorization': `token ${ghToken}`,
     'Accept': 'application/vnd.github.v3+json',
