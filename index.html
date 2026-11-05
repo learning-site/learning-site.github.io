@@ -56,6 +56,7 @@
   }
 
   .auth-card {
+    position: relative;
     width: 100%;
     max-width: 360px;
     background: #0f172a;
@@ -67,6 +68,31 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  .auth-close-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .auth-close-x:hover {
+    background: #334155;
+    color: #ffffff;
   }
 
   .auth-icon {
@@ -1611,11 +1637,12 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 10:40 AM - 11/05/2026</div>
+<div class="build-timestamp">Actualizado: 10:44 AM - 11/05/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
-<div id="authOverlay" class="auth-overlay">
+<div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
   <div class="auth-card">
+    <button type="button" id="authCloseXBtn" class="auth-close-x" onclick="closeSwitchUserPrompt()" title="Cerrar">✕</button>
     <div class="auth-icon">🔐</div>
     <h1 class="auth-title">Acceso Privado</h1>
     <p class="auth-subtitle">Learning Site</p>
@@ -1648,10 +1675,13 @@
         onkeydown="handleAuthKeyDown(event)"
       />
       <div id="authErrorMsg" class="auth-error">Usuario o contraseña incorrectos. Intenta de nuevo.</div>
-      <button type="submit" class="auth-submit-btn">Entrar</button>
+      <div style="display: flex; gap: 8px;">
+        <button type="button" id="authCancelBtn" class="secondary" style="flex: 1; padding: 10px 14px; display: none;" onclick="closeSwitchUserPrompt()">Cancelar</button>
+        <button type="submit" class="auth-submit-btn" style="flex: 1;">Entrar</button>
+      </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 10:40 AM - 11/05/2026
+      Actualizado: 10:44 AM - 11/05/2026
     </div>
   </div>
 </div>
@@ -2283,12 +2313,30 @@
 // Autenticación Acceso Privado: R (Baerga), D (Lesish) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D'
 let currentUserRole = 'R'; // 'R', 'D', or 'ADMIN'
+let isUserAuthenticated = false;
+let isSwitchingUserModalOpen = false;
+
+function setAuthSwitchControlsVisible(visible) {
+  const closeX = document.getElementById('authCloseXBtn');
+  const cancelBtn = document.getElementById('authCancelBtn');
+  const overlay = document.getElementById('authOverlay');
+  if (closeX) closeX.style.display = visible ? 'flex' : 'none';
+  if (cancelBtn) cancelBtn.style.display = visible ? 'inline-block' : 'none';
+  if (overlay) {
+    overlay.style.background = visible
+      ? 'rgba(5, 11, 20, 0.88)'
+      : 'radial-gradient(circle at top, #0f172a 0%, #050b14 75%)';
+  }
+}
 
 function checkStoredAuth() {
   const savedProfile = localStorage.getItem('rs_apps_user_profile_v1');
   if (savedProfile === 'R' || savedProfile === 'D') {
     currentUserRole = savedProfile;
     currentInstance = savedProfile;
+    isUserAuthenticated = true;
+    isSwitchingUserModalOpen = false;
+    setAuthSwitchControlsVisible(false);
     const overlay = document.getElementById('authOverlay');
     if (overlay) overlay.style.display = 'none';
     updateInstanceUI();
@@ -2296,11 +2344,17 @@ function checkStoredAuth() {
   } else if (savedProfile === 'ADMIN') {
     currentUserRole = 'ADMIN';
     currentInstance = localStorage.getItem('rs_apps_admin_target_instance') === 'D' ? 'D' : 'R';
+    isUserAuthenticated = true;
+    isSwitchingUserModalOpen = false;
+    setAuthSwitchControlsVisible(false);
     const overlay = document.getElementById('authOverlay');
     if (overlay) overlay.style.display = 'none';
     updateInstanceUI();
     return true;
   }
+  isUserAuthenticated = false;
+  isSwitchingUserModalOpen = false;
+  setAuthSwitchControlsVisible(false);
   const overlay = document.getElementById('authOverlay');
   if (overlay) overlay.style.display = 'flex';
   return false;
@@ -2329,6 +2383,9 @@ function verifyPasswordAndUnlock() {
 
   if (matchedRole) {
     currentUserRole = matchedRole;
+    isUserAuthenticated = true;
+    isSwitchingUserModalOpen = false;
+    setAuthSwitchControlsVisible(false);
     localStorage.setItem('rs_apps_user_profile_v1', matchedRole);
     const overlay = document.getElementById('authOverlay');
     if (overlay) overlay.style.display = 'none';
@@ -2347,7 +2404,9 @@ function switchUserPrompt() {
     autoJumpTimer = null;
   }
   stopGradeSong(false);
-  localStorage.removeItem('rs_apps_user_profile_v1');
+  const alreadyLoggedIn = isUserAuthenticated || Boolean(localStorage.getItem('rs_apps_user_profile_v1'));
+  isSwitchingUserModalOpen = alreadyLoggedIn;
+  setAuthSwitchControlsVisible(alreadyLoggedIn);
   const userInput = document.getElementById('authUserInput');
   const passInput = document.getElementById('authPasswordInput');
   const err = document.getElementById('authErrorMsg');
@@ -2358,6 +2417,21 @@ function switchUserPrompt() {
   if (overlay) {
     overlay.style.display = 'flex';
     setTimeout(() => { if (userInput) userInput.focus(); }, 50);
+  }
+}
+
+function closeSwitchUserPrompt() {
+  if (!isUserAuthenticated && !localStorage.getItem('rs_apps_user_profile_v1')) return;
+  isSwitchingUserModalOpen = false;
+  const err = document.getElementById('authErrorMsg');
+  if (err) err.style.display = 'none';
+  const overlay = document.getElementById('authOverlay');
+  if (overlay) overlay.style.display = 'none';
+}
+
+function handleAuthOverlayClick(e) {
+  if (e && e.target && e.target.id === 'authOverlay' && isSwitchingUserModalOpen) {
+    closeSwitchUserPrompt();
   }
 }
 
@@ -2439,6 +2513,9 @@ function handleAuthKeyDown(e) {
   if (e.key === 'Enter' || e.key === 'NumpadEnter' || e.keyCode === 13) {
     e.preventDefault();
     verifyPasswordAndUnlock();
+  } else if ((e.key === 'Escape' || e.keyCode === 27) && isSwitchingUserModalOpen) {
+    e.preventDefault();
+    closeSwitchUserPrompt();
   }
 }
 
