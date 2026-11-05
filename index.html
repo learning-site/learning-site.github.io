@@ -1611,7 +1611,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 09:28 AM - 11/05/2026</div>
+<div class="build-timestamp">Actualizado: 10:40 AM - 11/05/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay">
@@ -1651,7 +1651,7 @@
       <button type="submit" class="auth-submit-btn">Entrar</button>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 09:28 AM - 11/05/2026
+      Actualizado: 10:40 AM - 11/05/2026
     </div>
   </div>
 </div>
@@ -2401,10 +2401,15 @@ function updateInstanceUI() {
   }
   const statusTitle = document.getElementById('bartStatusTitle');
   const statusDesc = document.getElementById('bartStatusDesc');
+  const avatarContainer = document.getElementById('bartAvatarContainer');
+  const resultsVictoryEl = document.getElementById('resultsVictoryScene');
   if (currentInstance === 'D') {
+    if (avatarContainer) avatarContainer.style.display = 'none';
+    if (resultsVictoryEl) resultsVictoryEl.style.display = 'none';
     if (statusTitle) statusTitle.textContent = "🎓 Learning Site — 5-Question Quizzes";
     if (statusDesc) statusDesc.textContent = "Multiple Choice (5 Qs) jumps automatically to Fill in the Blank (5 Qs) when finished!";
   } else {
+    if (avatarContainer) avatarContainer.style.display = 'flex';
     if (statusTitle) statusTitle.textContent = "🚀 Learning Site — Reading Mission";
     if (statusDesc) statusDesc.textContent = "Solve story challenge (4 pts) & decrypt keyword (1 pt) for 5 pts each!";
   }
@@ -4859,6 +4864,10 @@ let duelSpecialMoveTimer = null;
 
 function renderDuelVisualState(momentum, justAnsweredCorrect) {
   const container = document.getElementById('bartAvatarContainer');
+  if (container) {
+    container.style.display = (currentInstance === 'D') ? 'none' : 'flex';
+  }
+  if (currentInstance === 'D') return;
   const aura = document.getElementById('spaceportAura');
   const mouth = document.getElementById('bartMouth');
   const alienMouth = document.getElementById('alienMouth');
@@ -5002,18 +5011,7 @@ function updateBartAvatar(score, justAnsweredCorrect) {
 
   renderDuelVisualState(duelMomentum, justAnsweredCorrect);
 
-  const pct = Math.min(100, Math.round(score));
   if (currentInstance === 'D') {
-    if (pct >= 70) {
-      title.textContent = "⚔️ Laser Duel — Hero Winning! 🌟";
-      desc.textContent = "Great strike! Keep answering right to defeat the alien!";
-    } else if (pct >= 40) {
-      title.textContent = "⚔️ Laser Duel — Clashing Blades! ⚡";
-      desc.textContent = "Answer right to push the alien back with your laser sword!";
-    } else {
-      title.textContent = "⚔️ Laser Duel — Hold Your Ground!";
-      desc.textContent = "Use Hint or Reread study sheet to strike back!";
-    }
     return;
   }
 
@@ -5641,8 +5639,8 @@ function showResults(skipSongOnRestore = false) {
     badgeEl.style.background = `radial-gradient(circle, ${badgeColor}33 0%, #0f172a 100%)`;
   }
 
-  // If finished with more than C grade (Grade A or B), show the Alien defeated on the ground and the Boy in a victorious pose
-  const isVictoryAboveC = (grade === 'A' || grade === 'B');
+  // If finished with more than C grade (Grade A or B) on R's instance, show the Alien defeated on the ground and the Boy in a victorious pose
+  const isVictoryAboveC = currentInstance === 'R' && (grade === 'A' || grade === 'B');
   const resultsVictoryEl = document.getElementById('resultsVictoryScene');
   if (resultsVictoryEl) {
     resultsVictoryEl.style.display = isVictoryAboveC ? 'block' : 'none';
