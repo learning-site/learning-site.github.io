@@ -1637,7 +1637,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 10:44 AM - 11/05/2026</div>
+<div class="build-timestamp">Actualizado: 10:52 AM - 11/05/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1681,7 +1681,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 10:44 AM - 11/05/2026
+      Actualizado: 10:52 AM - 11/05/2026
     </div>
   </div>
 </div>
@@ -1788,7 +1788,7 @@
               <label class="studio-label">Destino Usuario</label>
               <select id="studioTargetInstanceSelect" class="studio-select" onchange="handleStudioTargetInstanceChange(event)">
                 <option value="R">Usuario R (20 Qs)</option>
-                <option value="D">Usuario D (5 MC + 5 FIB)</option>
+                <option value="D">Usuario student (5 MC + 5 FIB)</option>
               </select>
             </div>
             <div>
@@ -2310,9 +2310,9 @@
 
 <script src="audio-data.js?v=10291803"></script>
 <script>
-// Autenticación Acceso Privado: R (Baerga), D (Lesish) y admin (Santana) con soporte para Enter
-let currentInstance = 'R'; // 'R' or 'D'
-let currentUserRole = 'R'; // 'R', 'D', or 'ADMIN'
+// Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
+let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
+let currentUserRole = 'R'; // 'R', 'D' (student), or 'ADMIN'
 let isUserAuthenticated = false;
 let isSwitchingUserModalOpen = false;
 
@@ -2331,9 +2331,10 @@ function setAuthSwitchControlsVisible(visible) {
 
 function checkStoredAuth() {
   const savedProfile = localStorage.getItem('rs_apps_user_profile_v1');
-  if (savedProfile === 'R' || savedProfile === 'D') {
-    currentUserRole = savedProfile;
-    currentInstance = savedProfile;
+  if (savedProfile === 'R' || savedProfile === 'D' || savedProfile === 'STUDENT') {
+    const normalizedRole = savedProfile === 'STUDENT' ? 'D' : savedProfile;
+    currentUserRole = normalizedRole;
+    currentInstance = normalizedRole;
     isUserAuthenticated = true;
     isSwitchingUserModalOpen = false;
     setAuthSwitchControlsVisible(false);
@@ -2373,7 +2374,7 @@ function verifyPasswordAndUnlock() {
   if (uVal === 'R' && (pVal === 'Baerga' || pVal.toLowerCase() === 'baerga')) {
     matchedRole = 'R';
     targetInst = 'R';
-  } else if (uVal === 'D' && (pVal === 'Lesish' || pVal.toLowerCase() === 'lesish')) {
+  } else if (uVal === 'STUDENT' && pVal.toLowerCase() === 'study') {
     matchedRole = 'D';
     targetInst = 'D';
   } else if (uRaw.toLowerCase() === 'admin' && (pVal === 'Santana' || pVal.toLowerCase() === 'santana')) {
@@ -2453,7 +2454,7 @@ function handleStudioTargetInstanceChange(e) {
 function updateInstanceUI() {
   const switchBtn = document.getElementById('headerUserSwitchBtn');
   if (switchBtn) {
-    const labelUser = currentUserRole === 'ADMIN' ? 'admin' : currentInstance;
+    const labelUser = currentUserRole === 'ADMIN' ? 'admin' : (currentInstance === 'D' ? 'student' : 'R');
     switchBtn.textContent = `👤 User: ${labelUser} (Switch)`;
   }
   const studioBtn = document.getElementById('headerStudioBtn');
@@ -2464,7 +2465,9 @@ function updateInstanceUI() {
   if (adminToggleBtn) {
     if (currentUserRole === 'ADMIN') {
       adminToggleBtn.style.display = 'inline-block';
-      adminToggleBtn.textContent = `🔀 Vista: ${currentInstance} (Cambiar a ${currentInstance === 'D' ? 'R' : 'D'})`;
+      const curLabel = currentInstance === 'D' ? 'student' : 'R';
+      const nextLabel = currentInstance === 'D' ? 'R' : 'student';
+      adminToggleBtn.textContent = `🔀 Vista: ${curLabel} (Cambiar a ${nextLabel})`;
     } else {
       adminToggleBtn.style.display = 'none';
     }
