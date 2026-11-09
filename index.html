@@ -1637,7 +1637,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 5:54 PM - 11/09/2026</div>
+<div class="build-timestamp">Actualizado: 5:55 PM - 11/09/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1681,7 +1681,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 5:54 PM - 11/09/2026
+      Actualizado: 5:55 PM - 11/09/2026
     </div>
   </div>
 </div>
@@ -6188,18 +6188,59 @@ const BUILT_IN_CH13_14_QUIZ = {
       "clue": "Flawless state that remains after the Hindenburg Protocol zaps every mistake into oblivion"
     },
     {
-      "type": "mc",
-      "q": "What weapons and equipment do Jesse, Eric, and Mark raid from the warehouse for their 'one shot' against Jesse and Eric's Hindenburg, and where do they carry everything?",
-      "options": [
-        "Heat-seeking grenades, holograms, and double-barreled bazookas—all fitting conveniently into handy-dandy tool belts Mark found for them.",
-        "Laser swords, invisible cloaks, and freeze rays—all stuffed inside giant hiking backpacks.",
-        "Water balloons, slingshots, and wooden shields—carried inside the trunk of the Hover Tank.",
-        "Lightning cannons, magnetic boots, and smoke bombs—strapped to the wings of three gliders."
+      "type": "match",
+      "q": "Match each item from the warehouse raid and ambush plan with its role:",
+      "pairs": [
+        {
+          "left": "Handy-Dandy Tool Belts",
+          "right": "Belts Mark found that conveniently hold all the heat-seeking grenades, holograms, and double-barreled bazookas",
+          "rightVariants": [
+            "Belts Mark found that conveniently hold all the heat-seeking grenades, holograms, and double-barreled bazookas",
+            "Gear belts where all the coolest gadgets from the one-hour warehouse raid conveniently fit",
+            "Convenient tool belts Mark gives the boys to carry their grenades, holograms, and bazookas",
+            "Special belts that store every weapon and gadget the boys raid from the warehouse"
+          ]
+        },
+        {
+          "left": "Jesse's Hologram",
+          "right": "Projected into the open to act as bait while the real Jesse hides in a safe place",
+          "rightVariants": [
+            "Projected into the open to act as bait while the real Jesse hides in a safe place",
+            "Light projection of Jesse used as a decoy in the street so he doesn't have to stand in the open",
+            "Bait projection that lures the Hindenburg into striking while Jesse stays hidden",
+            "Fake image of Jesse projected into the open to trick the Hindenburg into attacking"
+          ]
+        },
+        {
+          "left": "Giant Bomb from Jet Pack",
+          "right": "Explosive Mark plans to drop from the air right after Eric triggers the cage to trap the Hindenburg",
+          "rightVariants": [
+            "Explosive Mark plans to drop from the air right after Eric triggers the cage to trap the Hindenburg",
+            "Huge bomb Mark flies over with a jet pack to drop onto the caged Hindenburg",
+            "Aerial weapon Mark lines up and drops from his jet pack once the cage springs shut",
+            "Giant explosive dropped from above by Mark while flying with a jet pack"
+          ]
+        },
+        {
+          "left": "Double-Barreled Bazookas",
+          "right": "Heavy weapons the boys plan to swoop in and blast the cage with—because shooting them also sounds awesome",
+          "rightVariants": [
+            "Heavy weapons the boys plan to swoop in and blast the cage with—because shooting them also sounds awesome",
+            "Two-barreled launchers they plan to fire at the cage to make sure they get the Hindenburg",
+            "Powerful close-range weapons checked off twice during the warehouse raid to finish off the caged target",
+            "Awesome-sounding double-barreled launchers meant for the final blast on the cage"
+          ]
+        }
       ],
-      "correct": 0,
-      "hint": "Jesse lists three specific items with 'Check... Check... Double check' that fit into something Mark found for them.",
+      "distractorVariants": [
+        "Freeze-ray rifles that turn the Hindenburg into a solid statue of ice for twenty minutes",
+        "Invisible force-field umbrellas that bounce bombs back into the sky",
+        "Sonic boom speakers mounted on the Hover Tank that shatter gas masks from a mile away",
+        "Teleportation bracelets that send the Hindenburg straight to the moon"
+      ],
+      "hint": "Recall the gadgets the boys raid from the warehouse and how each part of their ambush plan is supposed to work.",
       "pageTitle": "Chapter 14 — Page 97 (Raiding the Warehouse)",
-      "pageExcerpt": "\"We spent the next hour raiding the warehouse for all the coolest gadgets we could find. Heat-seeking grenades? Check. Holograms? Check. Double-barreled bazookas? Double check. And everything conveniently fit into the handy-dandy tool belts Mark found for us.\"",
+      "pageExcerpt": "\"We spent the next hour raiding the warehouse for all the coolest gadgets we could find. Heat-seeking grenades? Check. Holograms? Check. Double-barreled bazookas? Double check. And everything conveniently fit into the handy-dandy tool belts Mark found for us. Eventually, a plan formed. I would be the bait. Well, not me, exactly, but a hologram of me... When the Hindenburg would strike, Eric would trigger a cage to trap him, and Mark would fly over with a jet pack to drop a giant bomb. Then we’d all swoop in and blast the cage with double-barreled bazookas...\"",
       "word": "WAREHOUSE",
       "clue": "Massive storage building where the boys spend an hour raiding for gadgets and weapons"
     },
