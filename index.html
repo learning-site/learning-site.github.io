@@ -1645,7 +1645,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 05:58 PM - 11/09/2026</div>
+<div class="build-timestamp">Actualizado: 06:08 PM - 11/09/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1689,7 +1689,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 05:58 PM - 11/09/2026
+      Actualizado: 06:08 PM - 11/09/2026
     </div>
   </div>
 </div>
@@ -8815,6 +8815,8 @@ function getAllQuizzes() {
   return [BUILT_IN_CH13_14_QUIZ, BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
 }
 
+const CURRENT_DEFAULT_R_QUIZ_ID = 'trapped_videogame_ch13_14';
+
 function loadLocalQuizzes() {
   try {
     const raw = localStorage.getItem('rs_apps_custom_quizzes_v1');
@@ -8824,8 +8826,15 @@ function loadLocalQuizzes() {
         customQuizzes = parsed.filter(q => !isCombinedDQuiz(q));
       }
     }
-    const savedActive = localStorage.getItem('rs_apps_active_quiz_id_v3');
-    if (savedActive && savedActive !== 'd_history_trivia_quiz1') activeQuizId = savedActive;
+    const lastDefaultVersion = localStorage.getItem('rs_apps_default_r_quiz_ver');
+    if (lastDefaultVersion !== CURRENT_DEFAULT_R_QUIZ_ID) {
+      localStorage.setItem('rs_apps_default_r_quiz_ver', CURRENT_DEFAULT_R_QUIZ_ID);
+      localStorage.setItem('rs_apps_active_quiz_id_v3', CURRENT_DEFAULT_R_QUIZ_ID);
+      activeQuizId = CURRENT_DEFAULT_R_QUIZ_ID;
+    } else {
+      const savedActive = localStorage.getItem('rs_apps_active_quiz_id_v3');
+      if (savedActive && savedActive !== 'd_history_trivia_quiz1') activeQuizId = savedActive;
+    }
     const savedActiveD = localStorage.getItem('rs_apps_active_quiz_id_D');
     if (savedActiveD === 'd_history_trivia_quiz1') {
       localStorage.setItem('rs_apps_active_quiz_id_D', 'd_history_trivia_mc');
