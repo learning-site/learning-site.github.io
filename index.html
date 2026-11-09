@@ -1637,7 +1637,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 10:52 AM - 11/05/2026</div>
+<div class="build-timestamp">Actualizado: 5:54 PM - 11/09/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1681,7 +1681,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 10:52 AM - 11/05/2026
+      Actualizado: 5:54 PM - 11/09/2026
     </div>
   </div>
 </div>
@@ -2308,7 +2308,7 @@
   </div>
 </main>
 
-<script src="audio-data.js?v=10291803"></script>
+<script src="audio-data.js?v=11091751"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -2500,7 +2500,7 @@ function switchAppInstance(newInst) {
   updateInstanceUI();
   const quizzes = getAllQuizzes();
   const savedKey = currentInstance === 'D' ? 'rs_apps_active_quiz_id_D' : 'rs_apps_active_quiz_id_v3';
-  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch10_11_12');
+  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch13_14');
   const found = quizzes.find(q => q.id === preferredId) || quizzes[0];
   if (found) {
     activateQuizById(found.id, false);
@@ -5883,7 +5883,7 @@ let unlockedAdminPassword = null;
 let studioAttachments = []; // { id, kind: 'image'|'pdf'|'text', name, mimeType, base64Data, textContent, previewUrl, sizeStr }
 let defaultChapter1ReaderHtml = '';
 let customQuizzes = [];
-let activeQuizId = 'trapped_videogame_ch10_11_12';
+let activeQuizId = 'trapped_videogame_ch13_14';
 let currentActiveQuiz = null;
 
 function checkUrlHashSetup() {
@@ -5958,6 +5958,490 @@ function updateCloudSyncBadge() {
     badge.style.color = '#fbbf24';
   }
 }
+
+const BUILT_IN_CH13_14_QUIZ = {
+  "id": "trapped_videogame_ch13_14",
+  "instance": "R",
+  "title": "Trapped in a Video Game: Chapters 13 & 14",
+  "createdAt": "Nov 9, 2026",
+  "questions": [
+    {
+      "type": "mc",
+      "q": "When Mark turns on one of the old TVs to show the Hawaii level, what amazing details does he point out to prove how impossible it would be for humans to code everything by hand?",
+      "options": [
+        "There are 67 different types of trees—each with thousands of leaves moving differently in the wind—plus actual crickets, flies, and mosquitoes zipping around.",
+        "Every single wave in the ocean has 500 different types of tropical fish swimming in real-time weather patterns.",
+        "There are 100 active volcanoes on the island that erupt on an exact mathematical schedule every ten minutes.",
+        "Every coconut on the island has a secret serial number printed on the shell by the game developers."
+      ],
+      "correct": 0,
+      "hint": "Think about the exact number of tree varieties Mark names and the tiny insects that aren't just sound effects.",
+      "pageTitle": "Chapter 13 — Page 89 (The Hindenburg Protocol)",
+      "pageExcerpt": "\"Mark turned on one of the old TVs. The Hawaii level popped onto the screen. 'When you were jet-packing around this level, did you notice the detail everywhere? Not just all the trees, but all the different types of trees. Sixty-seven to be exact. Sixty-seven different types of trees, each with thousands of leaves that all do something different in the wind. And did you notice the crickets? Not just the sound of crickets, but actual crickets and flies and mosquitoes zipping around.'\"",
+      "word": "CRICKETS",
+      "clue": "Chirping insects that actually zip around with flies and mosquitoes in the Hawaii environment"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: According to Mark, the Full Blast developers coded every tree and bug by hand without any errors, so they never needed a cleanup crew inside the game.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what Mark explains about why stuffing so much detail into a video game creates infinite headaches.",
+      "pageTitle": "Chapter 13 — Pages 90–91 (The Cleanup Crew)",
+      "pageExcerpt": "\"'It’s impossible because even if you had enough time to code all of those different trees and bugs, you’re creating infinite headaches for yourself. The more stuff you cram into a game, the more things can go wrong.' 'Like glitches and errors,' Eric said. 'Exactly... This is something that a human would usually have to fix, but not here. The Full Blast developers built their own cleanup crew. These guys. They’re special agents called Hindenburgs.'\"",
+      "word": "PROTOCOL",
+      "clue": "Official system of rules—the name of the Hindenburg program that fixes mistakes in Full Blast"
+    },
+    {
+      "type": "mc",
+      "q": "What is wrong with the mosquito that Mark zooms in on during the TV recording, and why did it happen?",
+      "options": [
+        "It is a glitch that started as a baby mosquito, and because the developers forgot to put a limit on how big it could get, it grows to the size of a cat, a human, and finally a tank.",
+        "It is a robotic spy drone built by Mark that accidentally swallowed a nuclear battery and turned invisible.",
+        "It is an alien boss disguised as a bug that multiplies into a thousand clones every time it bites a tree.",
+        "It is a glitch that flies backward through time and erases all 67 types of trees from the island."
+      ],
+      "correct": 0,
+      "hint": "After watching the bug in silence for a full minute, Jesse notices it growing faster and faster as the seconds tick by.",
+      "pageTitle": "Chapter 13 — Pages 91–92 (The Growing Mosquito Glitch)",
+      "pageExcerpt": "\"It took a while to notice, but the mosquito was growing right in front of our eyes. It started slow, but as the seconds ticked by, it began growing faster and faster. Soon, it was the size of a cat. After 10 more seconds, it reached human size... 'That mosquito is a glitch in the game. I’m sure it started as a baby, and the developers forgot to put a limit on how big it could get.' ... Now it was the size of a tank.\"",
+      "word": "MOSQUITO",
+      "clue": "Biting flying insect that glitches and grows to the size of a cat, a human, and a tank"
+    },
+    {
+      "type": "match",
+      "q": "Match each stage of the Hindenburg's encounter with the giant mosquito to what happens:",
+      "pairs": [
+        {
+          "left": "Blue Screen Flash",
+          "right": "Signal that happens right as the gas-mask Hindenburg appears in the corner and again when everything returns to normal",
+          "rightVariants": [
+            "Signal that happens right as the gas-mask Hindenburg appears in the corner and again when everything returns to normal",
+            "Colored flash across the screen when the Hindenburg arrives to fix a glitch and when it finishes",
+            "Visual flash that marks the arrival and departure of the gas-mask cleanup agent",
+            "Brief blue glow on the screen when the Hindenburg enters the area and after the glitch is gone"
+          ]
+        },
+        {
+          "left": "First Net Shot",
+          "right": "Regular rope net fired after scanning the mosquito with a laser, which the growing bug snaps",
+          "rightVariants": [
+            "Regular rope net fired after scanning the mosquito with a laser, which the growing bug snaps",
+            "Initial net shot from the Hindenburg's blaster that breaks when the mosquito grows too large",
+            "Rope trap fired after a laser scan that fails to hold the rapidly expanding insect",
+            "First capture attempt by Mr. Hindenburg Gas Mask before the mosquito snaps the rope"
+          ]
+        },
+        {
+          "left": "Tank-Sized Adaptation",
+          "right": "The Hindenburg grows as big as a tank and shoots a metal net that tangles the mosquito for good",
+          "rightVariants": [
+            "The Hindenburg grows as big as a tank and shoots a metal net that tangles the mosquito for good",
+            "How the Hindenburg adapts by matching the mosquito's tank size and firing an unbreakable metal net",
+            "Instant upgrade where the agent becomes tank-sized and traps the bug in a metal net",
+            "The Hindenburg's learned counter-move: growing to tank size and switching from rope to a metal net"
+          ]
+        },
+        {
+          "left": "Small Smooth Rock",
+          "right": "Stone at the base of the volcano that the Hindenburg presses to make the volcano sink and open the Black Box pit",
+          "rightVariants": [
+            "Stone at the base of the volcano that the Hindenburg presses to make the volcano sink and open the Black Box pit",
+            "Hidden switch at the bottom of the volcano that opens a giant metal-bottomed pit in the earth",
+            "Smooth stone pressed by the Hindenburg so the volcano sinks into the ground and reveals the Black Box",
+            "Rock trigger at the volcano's base that opens the deep pit where the mosquito is rolled in"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "A giant magnifying glass the Hindenburg uses to shrink the mosquito back into a baby bug",
+        "An ice cannon the Hindenburg fires to freeze the mosquito inside a block of solid glacier ice",
+        "A teleportation portal on top of a palm tree that sends the mosquito to the Nevada desert",
+        "A sonic whistle that puts the giant mosquito to sleep so a helicopter can carry it away"
+      ],
+      "hint": "Recall how the Hindenburg scans the bug, adapts when the rope snaps, and disposes of the tank-sized bug at the volcano.",
+      "pageTitle": "Chapter 13 — Pages 91–95 (Capturing the Glitch)",
+      "pageExcerpt": "\"Mr. Hindenburg Gas Mask scanned the mosquito with a laser thing and shot a net out of his blaster. The mosquito got tangled in the net, but it quickly grew too big and snapped the rope. Now it was the size of a tank. In a flash, the Hindenburg also got as big as a tank and shot a metal net at the mosquito. This time, it got tangled up for good... The Hindenburg towed the tank-sized mosquito to the base of the Hawaiian volcano and pressed a small, smooth rock. The earth rumbled, the volcano sank into the ground, and a giant pit appeared.\"",
+      "word": "OBLIVION",
+      "clue": "State of being completely destroyed and forgotten—where Mark says any mistake in the game gets zapped"
+    },
+    {
+      "type": "mc",
+      "q": "Why does the Hindenburg consider Jesse and Eric to be a 'glitch' that must be destroyed, and what did Mark do to get hunted by his own Hindenburg?",
+      "options": [
+        "Jesse and Eric teamed up together against a boss that only knows how to fight a single player; Mark figured out how to ride the praying mantis creatures like horses.",
+        "Jesse and Eric drove the Hover Tank underwater; Mark painted graffiti on the Statue of Liberty.",
+        "Jesse and Eric used a cheat code to get infinite lives; Mark unplugged all the TV screens in the warehouse.",
+        "Jesse and Eric stole a jet pack from the robot army; Mark built a house inside the volcano pit."
+      ],
+      "correct": 0,
+      "hint": "Think about what Jesse and Eric were doing when they fought the boss together, and what Mark smiled about riding like horses.",
+      "pageTitle": "Chapter 13 — Pages 92–93 (You're the Glitch)",
+      "pageExcerpt": "\"'You’re the glitch.' 'Excuse me?' 'Did you do something to break the game?' 'No, we were just fighting a boss.' 'Both of you teamed up against a boss that only knows how to fight a single player.' We shrugged. 'So you broke the game, and now a Hindenburg is trying to make sure it never happens again.' 'What did you do?' Eric asked. Mark smiled. 'I figured out how to ride those praying mantis things like horses. They don’t like that too much.'\"",
+      "word": "GLITCH",
+      "clue": "An unexpected error or malfunction in a video game that the Hindenburg is programmed to destroy"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: Mark was happy that Jesse shot at the Hindenburg with his blaster earlier, because regular blaster shots weaken the Hindenburg's armor.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what happens every time someone tries a weapon on a Hindenburg and why Mark got so upset with Jesse.",
+      "pageTitle": "Chapter 13 — Pages 93–94 (Learning & Armor)",
+      "pageExcerpt": "\"Mark sighed. 'I tried fighting him for years. But he’s too fast. Too strong. Too smart. Every time I tried a new weapon on him, he’d dodge it, then learn about it, then create armor to protect himself from it. That’s why I got so upset with you for shooting at your Hindenburg with the blaster, Jesse. Now we can never use a blaster on him again.'\"",
+      "word": "MANTIS",
+      "clue": "Long-legged insect creature that Mark figured out how to ride like a horse"
+    },
+    {
+      "type": "mc",
+      "q": "Why hasn't Mark escaped through Level 20 yet, and what did he discover when he searched the entire warehouse for 'Reality Mode'?",
+      "options": [
+        "Mark's Hindenburg figured out he is trying to leave through Level 20 and is waiting there with thousands of aliens armored against every weapon; also, there is not one mention of 'Reality Mode' in the files, meaning someone added it after the game was finished.",
+        "Level 20 is locked behind a secret password that only Eric knows; Mark found a folder saying 'Reality Mode' was invented fifty years ago.",
+        "Mark's Hover Tank ran out of fuel before reaching Level 20; the warehouse files show that 'Reality Mode' is a harmless training simulator.",
+        "The portal in Level 20 was destroyed by a volcano; Mark found blueprints showing that the praying mantises created 'Reality Mode'."
+      ],
+      "correct": 0,
+      "hint": "Mark apologizes to Jesse and explains both why Level 20 is blocked for him and why he doesn't think the game was ever supposed to suck in real people.",
+      "pageTitle": "Chapter 13 — Page 94 (Level 20 & Reality Mode)",
+      "pageExcerpt": "\"'Anyways, my Hindenburg eventually figured out that I’m trying to leave through Level 20, so he’s waiting for me there with thousands of aliens armored against every weapon in the game.' ... 'That’s the thing,' Mark replied. 'I’ve looked through this whole place, and there’s not one mention of \"Reality Mode.\" I don’t think this game is supposed to suck in people.' 'Then how are we here?' 'Someone must have added it after the game was finished.'\"",
+      "word": "BLASTER",
+      "clue": "Energy weapon on Jesse's arm that can never be used on the Hindenburg again because it built armor against it"
+    },
+    {
+      "type": "mc",
+      "q": "How does Mark answer Eric's question about what happens if the Hindenburg catches and blasts them?",
+      "options": [
+        "Mark unpauses the video to show the Hindenburg rolling the mosquito into a deep metal-bottomed pit beneath the volcano called the 'Black Box,' saying, 'Even light cannot escape the Black Box.'",
+        "Mark tells Eric that getting blasted by a Hindenburg teleports you straight back to your living room couch at home.",
+        "Mark explains that if a Hindenburg blasts you, you turn into one of the 67 types of trees in the tropics.",
+        "Mark says you simply lose ten points and respawn inside the Hover Tank with full armor."
+      ],
+      "correct": 0,
+      "hint": "Instead of answering with words right away, Mark unpauses the mosquito video so the boys can see where captured glitches are taken.",
+      "pageTitle": "Chapter 13 — Pages 94–95 (The Black Box)",
+      "pageExcerpt": "\"'One more question,' Eric said. 'What happens if the Hindenburg catches us? If he blasts us, we just go to the beginning of the level, right?' Mark unpaused the mosquito video. The Hindenburg towed the tank-sized mosquito to the base of the Hawaiian volcano and pressed a small, smooth rock. The earth rumbled, the volcano sank into the ground, and a giant pit appeared. The Hindenburg waited for all of the rumbling to stop, then rolled the mosquito over the edge into the pit. After 10 seconds or so, we heard the faraway thud of the mosquito hitting a metal bottom... 'That’s the Black Box,' Mark said. 'Even light cannot escape the Black Box.'\"",
+      "word": "VOLCANO",
+      "clue": "Hawaiian mountain that sinks into the ground when a small smooth rock is pressed, revealing the Black Box pit"
+    },
+    {
+      "type": "match",
+      "q": "Match each item or detail from the Hindenburg Protocol investigation with its description:",
+      "pairs": [
+        {
+          "left": "Sixty-Seven",
+          "right": "Exact number of different tree types in the Hawaii environment, each with thousands of moving leaves",
+          "rightVariants": [
+            "Exact number of different tree types in the Hawaii environment, each with thousands of moving leaves",
+            "How many distinct kinds of trees the Hindenburg Protocol generated on the island",
+            "Total varieties of trees that each have thousands of leaves moving differently in the wind",
+            "Specific count of tree species Mark points out on the old TV screen"
+          ]
+        },
+        {
+          "left": "HP Enabled Badge",
+          "right": "Emblem featuring a gas mask that reads 'THIS GAME IS HP ENABLED — GAMING PERFECTED'",
+          "rightVariants": [
+            "Emblem featuring a gas mask that reads 'THIS GAME IS HP ENABLED — GAMING PERFECTED'",
+            "Circular gas-mask logo declaring that the game has the Hindenburg Protocol enabled",
+            "Seal with 'HP' on both sides of a gas mask and the slogan 'GAMING PERFECTED'",
+            "Badge showing the gas-mask agent symbol and announcing perfected self-building gaming"
+          ]
+        },
+        {
+          "left": "The Black Box",
+          "right": "Deep metal-bottomed pit beneath the sunken volcano where glitches are dropped and even light cannot escape",
+          "rightVariants": [
+            "Deep metal-bottomed pit beneath the sunken volcano where glitches are dropped and even light cannot escape",
+            "Inescapable prison pit under the volcano where the Hindenburg rolls captured glitches",
+            "Dark pit with a metal bottom ten seconds deep from which not even light can escape",
+            "Underground chamber revealed when the volcano sinks into the earth to trap glitches forever"
+          ]
+        },
+        {
+          "left": "Reality Mode Mystery",
+          "right": "Feature not mentioned anywhere in the source-code warehouse because someone added it after the game was finished",
+          "rightVariants": [
+            "Feature not mentioned anywhere in the source-code warehouse because someone added it after the game was finished",
+            "Mode that sucks in real people, which Mark says was added by an unknown person after Full Blast was completed",
+            "Unlisted game mode absent from all the warehouse files that was secretly added later",
+            "Mystery addition that pulls players into the game even though no file in the warehouse mentions it"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "A golden trophy awarded to speed runners who beat the game in under ten minutes",
+        "A backup battery hidden inside the Hover Tank that powers the volcano's lava",
+        "A secret radio channel that lets players talk directly to their parents on Earth",
+        "A special shield that makes praying mantises immune to double-barreled bazookas"
+      ],
+      "hint": "Review the facts Mark shares while watching the TV recording of the gas-mask cleanup agent.",
+      "pageTitle": "Chapter 13 — Pages 89–95 (Secrets of the Hindenburg Protocol)",
+      "pageExcerpt": "\"Sixty-seven different types of trees, each with thousands of leaves... THIS GAME IS HP ENABLED — GAMING PERFECTED... 'I’ve looked through this whole place, and there’s not one mention of \"Reality Mode.\" Someone must have added it after the game was finished.' ... 'That’s the Black Box,' Mark said. 'Even light cannot escape the Black Box.'\"",
+      "word": "PERFECTION",
+      "clue": "Flawless state that remains after the Hindenburg Protocol zaps every mistake into oblivion"
+    },
+    {
+      "type": "mc",
+      "q": "What weapons and equipment do Jesse, Eric, and Mark raid from the warehouse for their 'one shot' against Jesse and Eric's Hindenburg, and where do they carry everything?",
+      "options": [
+        "Heat-seeking grenades, holograms, and double-barreled bazookas—all fitting conveniently into handy-dandy tool belts Mark found for them.",
+        "Laser swords, invisible cloaks, and freeze rays—all stuffed inside giant hiking backpacks.",
+        "Water balloons, slingshots, and wooden shields—carried inside the trunk of the Hover Tank.",
+        "Lightning cannons, magnetic boots, and smoke bombs—strapped to the wings of three gliders."
+      ],
+      "correct": 0,
+      "hint": "Jesse lists three specific items with 'Check... Check... Double check' that fit into something Mark found for them.",
+      "pageTitle": "Chapter 14 — Page 97 (Raiding the Warehouse)",
+      "pageExcerpt": "\"We spent the next hour raiding the warehouse for all the coolest gadgets we could find. Heat-seeking grenades? Check. Holograms? Check. Double-barreled bazookas? Double check. And everything conveniently fit into the handy-dandy tool belts Mark found for us.\"",
+      "word": "WAREHOUSE",
+      "clue": "Massive storage building where the boys spend an hour raiding for gadgets and weapons"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: In the boys' ambush plan, Jesse has to stand out in the middle of the street in person as bait while Eric projects a hologram of a giant cage.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Check whether Jesse himself stands out in the open or if he hides in front of a green screen while something else acts as bait.",
+      "pageTitle": "Chapter 14 — Pages 97–98 (The Ambush Plan)",
+      "pageExcerpt": "\"Eventually, a plan formed. I would be the bait. Well, not me, exactly, but a hologram of me. I’d be hiding in a safe place, while we’d project my hologram into the open to act as bait. When the Hindenburg would strike, Eric would trigger a cage to trap him, and Mark would fly over with a jet pack to drop a giant bomb. Then we’d all swoop in and blast the cage with double-barreled bazookas...\"",
+      "word": "GADGETS",
+      "clue": "Clever tools and devices—like heat-seeking grenades and holograms—that the boys raid from the warehouse"
+    },
+    {
+      "type": "mc",
+      "q": "When Jesse shares his hesitation and asks if the plan is really the best idea, how does Eric tease him, and what does Jesse ask Mark in response?",
+      "options": [
+        "Eric says 'Jesse just doesn't want to be the bait' and mocks him in an annoying baby voice calling him 'widdle worm'; Jesse turns to Mark and asks, 'Am I allowed to shoot him?'",
+        "Eric calls Jesse a scaredy-cat and throws a fake rubber spider at him; Jesse asks Mark if they can leave Eric inside the warehouse.",
+        "Eric laughs and says the Hindenburg is afraid of holograms; Jesse asks Mark if he can trade his blaster for two jet packs.",
+        "Eric tells Jesse to close his eyes and count to ten; Jesse asks Mark if they can take a nap before the battle."
+      ],
+      "correct": 0,
+      "hint": "Eric uses a fishing metaphor in a baby voice ('big fish' and 'widdle worm'), prompting Jesse to ask Mark for permission to do something to Eric.",
+      "pageTitle": "Chapter 14 — Page 98 (Widdle Worm)",
+      "pageExcerpt": "\"'Jesse just doesn’t want to be the bait,' Eric said. I glared at him. 'No, I just think...' 'It’s OK, widdle worm,' Eric said in an annoying baby voice. 'We’ll make sure the big fish doesn’t eat you, widdle worrrrrrrm.' I turned to Mark. 'Am I allowed to shoot him?' 'Definitely not. Are we ready to go?' Eric saluted. 'Aye aye, Captain!'\"",
+      "word": "BAZOOKA",
+      "clue": "Heavy shoulder-fired rocket launcher—the boys carry double-barreled ones in their tool belts"
+    },
+    {
+      "type": "match",
+      "q": "Match each team member or piece of equipment in the Hollywood Western ambush with their role:",
+      "pairs": [
+        {
+          "left": "Jesse (In Front of Green Screen)",
+          "right": "Hides inside the general store building filming his hologram, jabbing punches like a prizefighter as bait",
+          "rightVariants": [
+            "Hides inside the general store building filming his hologram, jabbing punches like a prizefighter as bait",
+            "Stands safely in front of a green screen projecting his hologram into the Western street to lure the Hindenburg",
+            "Controls the bait hologram by holding up one fist and one blaster arm and dancing like a prizefighter",
+            "Films his hologram from inside the building and yells 'NOW!' when the Hindenburg leaps to punch"
+          ]
+        },
+        {
+          "left": "Eric (Middle of the Road)",
+          "right": "Finishes setting the trap in the dirt road, hides, and triggers the metal cage when Jesse yells 'NOW!'",
+          "rightVariants": [
+            "Finishes setting the trap in the dirt road, hides, and triggers the metal cage when Jesse yells 'NOW!'",
+            "Sets up the hidden ground trap in front of the general store and springs the metal cage with a CLANK",
+            "Waits in hiding until the Hindenburg is 10 feet from the hologram and activates the metal cage trap",
+            "Builds the trap in the middle of the Western street and triggers the cage when the Hindenburg attacks"
+          ]
+        },
+        {
+          "left": "Mark (Top of the Saloon)",
+          "right": "Perches on the saloon roof and flies over with a jet pack to drop a giant bomb on the cage",
+          "rightVariants": [
+            "Perches on the saloon roof and flies over with a jet pack to drop a giant bomb on the cage",
+            "Waits on top of the Western saloon before jet-packing into the air to drop a giant bomb",
+            "Takes a high perch on the saloon and flies overhead with a jet pack to bomb the trapped Hindenburg",
+            "Lines up the target from the air using a jet pack after starting from his perch on top of the saloon"
+          ]
+        },
+        {
+          "left": "Miniature Ear Radios",
+          "right": "Tiny communication devices the three boys pop into their ears so they can talk from far away",
+          "rightVariants": [
+            "Tiny communication devices the three boys pop into their ears so they can talk from far away",
+            "Small earpieces the team uses to communicate while hiding in different spots around the ghost town",
+            "Miniature radios placed in their ears that Jesse uses to scream 'ABORT MISSION!' to Mark",
+            "Long-range ear communicators the boys put on before driving the tank to the Hollywood set"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "A remote-controlled Hover Tank parked inside the bank to ram the Hindenburg from behind",
+        "A flock of robotic vultures programmed to drop metal nets from the desert sky",
+        "A tunnel under the saloon filled with sticky swamp muck to slow the Hindenburg down",
+        "A giant mirror mounted on the general store roof to blind the Hindenburg with sunlight"
+      ],
+      "hint": "Check where each boy positions himself when they arrive at the Western ghost town set in Hollywood.",
+      "pageTitle": "Chapter 14 — Pages 97–100 (Setting the Trap in Hollywood)",
+      "pageExcerpt": "\"We popped miniature radios into our ears so we could communicate from far away and hopped back into the tank. Mark drove through his underground shortcuts again until we reached the level where Mark thought our plan would work best—Hollywood. We emerged onto the set for what looked like a Western, cleared out the enemies, and set our trap in front of the general store... I took my position in front of a green screen to film my hologram, Mark found a perch on top of the saloon, and Eric finished the trap in the middle of the road.\"",
+      "word": "HOLOGRAM",
+      "clue": "Three-dimensional light projection of Jesse filmed in front of a green screen to act as bait"
+    },
+    {
+      "type": "mc",
+      "q": "Where do Mark's underground shortcuts take the boys for their showdown, and when does the Hindenburg appear?",
+      "options": [
+        "To the Hollywood level—a Western ghost town set with a dirt road, general store, and saloon—where the Hindenburg appears on the opposite side of the street at high noon when the sun reaches its highest point.",
+        "To the Ancient Egypt pyramid level during a midnight sandstorm when the moon is completely full.",
+        "Back to the Statue of Liberty gift shop at dawn right as the alien ship begins firing lasers.",
+        "To the snowy mountain cave at sunset where fifty aliens are waiting outside the entrance."
+      ],
+      "correct": 0,
+      "hint": "Think about the movie-set ghost town with a general store and saloon, and the time of day when the sun is at its highest point in the sky.",
+      "pageTitle": "Chapter 14 — Page 99 (Showdown in Hollywood)",
+      "pageExcerpt": "\"Mark drove through his underground shortcuts again until we reached the level where Mark thought our plan would work best—Hollywood. We emerged onto the set for what looked like a Western, cleared out the enemies, and set our trap in front of the general store. I took a second to look at the ghost town, dirt road, and bright sun. It was the perfect place for a showdown... When the sun reached its highest point in the sky, the Hindenburg appeared on the opposite side of the street. Showdown at high noon.\"",
+      "word": "HOLLYWOOD",
+      "clue": "Movie-making city whose Western ghost-town set Mark chooses as the best place for their ambush"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When the metal cage springs out of the ground with a CLANK, the Hindenburg panics and shakes the bars trying to break free.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Look closely at how the Hindenburg reacts inside the cage and where it fixes its gaze.",
+      "pageTitle": "Chapter 14 — Page 100 (The Wave Bye-Bye)",
+      "pageExcerpt": "\"CLANK! A metal cage sprang out of the ground and trapped the Hindenburg. Instead of panicking, though, it calmly looked around for a few seconds before fixing its gaze on me. Not my hologram, but the actual building where I was filming. It slowly raised its four-fingered hand and waved bye-bye.\"",
+      "word": "FOOLPROOF",
+      "clue": "Incapable of going wrong or failing—what the boys' ambush plan seemed like at first"
+    },
+    {
+      "type": "mc",
+      "q": "What chilling detail makes Jesse scream 'ABORT MISSION! HE KNOWS!' over the radio right after the metal cage traps the Hindenburg?",
+      "options": [
+        "Instead of panicking in the cage, the Hindenburg calmly looks directly at the actual building where Jesse is filming (not his hologram), raises its four-fingered hand, and waves bye-bye.",
+        "The Hindenburg pulls a miniature radio out of its pocket and starts laughing at Jesse and Mark.",
+        "The Hindenburg grows to the size of a skyscraper and steps right over the top of the saloon.",
+        "Thousands of armored praying mantises burst out of the general store doors."
+      ],
+      "correct": 0,
+      "hint": "Notice where the Hindenburg fixes its gaze after the cage springs up and what gesture it makes with its four-fingered hand.",
+      "pageTitle": "Chapter 14 — Pages 100–101 (Abort Mission!)",
+      "pageExcerpt": "\"Instead of panicking, though, it calmly looked around for a few seconds before fixing its gaze on me. Not my hologram, but the actual building where I was filming. It slowly raised its four-fingered hand and waved bye-bye. 'Guys, I don’t like this,' I said... 'ABORT MISSION!' I screamed over the radio. He was expecting this. Mark kept flying. 'MARK! ABORT MISSION! HE KNOWS!'\"",
+      "word": "SALOON",
+      "clue": "Western town building where Mark perches on the roof before flying over with his jet pack"
+    },
+    {
+      "type": "mc",
+      "q": "How did the Hindenburg outsmart the boys' hologram ambush, and why wasn't it fooled?",
+      "options": [
+        "Because the first time they met the Hindenburg in the Statue of Liberty it got fooled by Eric's reflection in the metal wall—so it learned from that trick, figured out Jesse's hologram, and sent a hologram of itself into the cage while the real Hindenburg snuck up behind them.",
+        "Because the Hindenburg read Mark's mind using a psychic antenna inside its gas mask and turned the bomb into a dud.",
+        "Because Eric accidentally built the hologram projector backward so Jesse appeared upside down in the street.",
+        "Because the Hindenburg hid inside the Hover Tank and listened to the boys planning their ambush in the warehouse."
+      ],
+      "correct": 0,
+      "hint": "Remember what happened the very first time they escaped the Hindenburg in the Statue of Liberty and what disappears the second before Mark's bomb lands.",
+      "pageTitle": "Chapter 14 — Page 101 (The Reflection & The Hologram Trick)",
+      "pageExcerpt": "\"The reflection. We had forgotten about the reflection. The first time we met the Hindenburg in the Statue of Liberty, we were able to escape because he got fooled by Eric’s reflection in the metal wall... But you don’t fool the Hindenburg with the same trick twice. And though a hologram isn’t exactly the same as a mirror reflection, it’s close enough for something as smart as the Hindenburg to figure out. 'Mark, stop this now!' Mark dropped the bomb. The second before it landed, the Hindenburg disappeared. Or rather, the hologram of the Hindenburg disappeared.\"",
+      "word": "REFLECTION",
+      "clue": "Mirror-like image in the Statue of Liberty's metal wall that first fooled the Hindenburg and taught it not to fall for projections again"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When Mark's giant bomb hits the cage, it destroys the real Hindenburg and wins the showdown.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Check what disappears the second before Mark's bomb lands and who sneaks up behind Eric in the dusty street.",
+      "pageTitle": "Chapter 14 — Pages 101–102 (The Real Hindenburg Attacks)",
+      "pageExcerpt": "\"Mark dropped the bomb. The second before it landed, the Hindenburg disappeared. Or rather, the hologram of the Hindenburg disappeared. BOOOOOOOM! The ground shook. Even as the dust from the blast was rolling through the street, Eric ran out of his hiding spot with his double-barreled bazooka. 'NOOO!' I yelled. I ran out of hiding to protect my friend. I reached the street just in time to see the real Hindenburg sneak up behind Eric.\"",
+      "word": "SHOWDOWN",
+      "clue": "Dramatic final confrontation—what happens at high noon on the Western dirt road"
+    },
+    {
+      "type": "match",
+      "q": "Match each moment of the High Noon finale with what happens:",
+      "pairs": [
+        {
+          "left": "Four-Fingered Wave",
+          "right": "The Hindenburg hologram stares at Jesse's building from inside the cage and waves bye-bye",
+          "rightVariants": [
+            "The Hindenburg hologram stares at Jesse's building from inside the cage and waves bye-bye",
+            "Calm gesture the trapped Hindenburg makes toward the building where Jesse is filming",
+            "Creepy goodbye wave from the four-fingered Hindenburg right before Mark drops the bomb",
+            "Signal that proves the Hindenburg knows where Jesse is hiding and is expecting the trap"
+          ]
+        },
+        {
+          "left": "Disappearing Target",
+          "right": "The hologram of the Hindenburg vanishes the second before Mark's giant bomb lands with a BOOOOOOOM",
+          "rightVariants": [
+            "The hologram of the Hindenburg vanishes the second before Mark's giant bomb lands with a BOOOOOOOM",
+            "What happens inside the cage an instant before the bomb explodes and shakes the ground",
+            "The Hindenburg's own decoy hologram turns off right before Mark's bomb hits the street",
+            "Vanishing act that reveals the Hindenburg in the cage was only a hologram"
+          ]
+        },
+        {
+          "left": "Eric in the Dust",
+          "right": "Runs out of hiding with his double-barreled bazooka and gets vaporized when the real Hindenburg sneaks up behind him",
+          "rightVariants": [
+            "Runs out of hiding with his double-barreled bazooka and gets vaporized when the real Hindenburg sneaks up behind him",
+            "Charges into the dusty street with his bazooka and looks puzzled right before the Hindenburg blasts him",
+            "First team member vaporized after the real Hindenburg sneaks up behind him in the smoke",
+            "Rushes out to shoot the cage with his double-barreled bazooka and is vaporized from behind"
+          ]
+        },
+        {
+          "left": "Mark and Jesse",
+          "right": "In one smooth motion, the Hindenburg aims into the air to vaporize Mark and then fixes his aim on Jesse: BLAST!",
+          "rightVariants": [
+            "In one smooth motion, the Hindenburg aims into the air to vaporize Mark and then fixes his aim on Jesse: BLAST!",
+            "After blasting Eric, the Hindenburg shoots Mark out of the air and immediately blasts Jesse too",
+            "Vaporized one after the other right after Jesse runs into the street yelling 'NOOO!' to save Eric",
+            "The final two targets hit by the Hindenburg's blaster—first Mark in midair, then Jesse on the street"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Jesse jumps into the Hover Tank and drives Mark and Eric back to the warehouse just in time",
+        "The Hindenburg's blaster jams from the desert dust, allowing the boys to escape into a tunnel",
+        "A giant praying mantis leaps off the saloon roof and knocks the Hindenburg into the cage",
+        "Eric uses a mirror shield to bounce the Hindenburg's laser beam back at its gas mask"
+      ],
+      "hint": "Follow the final sequence from the moment the Hindenburg waves in the cage to the three 'BLAST!' shots in the dusty street.",
+      "pageTitle": "Chapter 14 — Pages 100–102 (BLAST!)",
+      "pageExcerpt": "\"Mark dropped the bomb. The second before it landed, the Hindenburg disappeared. Or rather, the hologram of the Hindenburg disappeared. BOOOOOOOM! ... Eric ran out of his hiding spot with his double-barreled bazooka. 'NOOO!' I yelled. I ran out of hiding to protect my friend. I reached the street just in time to see the real Hindenburg sneak up behind Eric. 'ERIC, WATCH OUT!' ... BLAST! The Hindenburg vaporized him. 'NOOO!' BLAST! In one smooth motion, the Hindenburg aimed into the air and vaporized Mark. Then he fixed his aim on me. BLAST!\"",
+      "word": "CAGE",
+      "clue": "Metal barred trap that springs out of the ground with a CLANK when Eric triggers it"
+    },
+    {
+      "type": "mc",
+      "q": "In what exact order does the real Hindenburg vaporize the three boys after its decoy hologram disappears?",
+      "options": [
+        "First it sneaks up behind Eric in the dusty street and vaporizes him, then in one smooth motion it aims into the air and vaporizes Mark, and finally it fixes its aim on Jesse and blasts him.",
+        "First it blasts Mark on top of the saloon, then it blasts Jesse inside the general store, and finally it blasts Eric in the tank.",
+        "First it blasts Jesse's green screen, then it blasts Mark's jet pack, and Eric escapes into an underground shortcut.",
+        "It fires one giant metal net that captures all three boys at the exact same second without firing a single blast."
+      ],
+      "correct": 0,
+      "hint": "Remember who runs out into the street first with his double-barreled bazooka, who is flying in the air, and who yelled 'ERIC, WATCH OUT!'",
+      "pageTitle": "Chapter 14 — Page 102 (Three Blasts)",
+      "pageExcerpt": "\"I reached the street just in time to see the real Hindenburg sneak up behind Eric. 'ERIC, WATCH OUT!' Eric looked at me with a puzzled look on his face. That was the last thing he did before... BLAST! The Hindenburg vaporized him. 'NOOO!' BLAST! In one smooth motion, the Hindenburg aimed into the air and vaporized Mark. Then he fixed his aim on me. BLAST!\"",
+      "word": "VAPORIZED",
+      "clue": "Turned into vapor and zapped away in a flash by the Hindenburg's blaster"
+    }
+  ],
+  "readerHtml": "<h2>CHAPTER 13: The Hindenburg Protocol</h2>\n<h3>Page 89</h3>\n<p>“What’s, uh, what’s the Hindenburg Protocol?” I asked while trying to follow the zigzagging string.</p>\n<p>Mark shook his head. “It’s the thing that’s going to make sure you never make it out of here alive.”</p>\n<p>Mark turned on one of the old TVs. The Hawaii level popped onto the screen. “When you were jet-packing around this level, did you notice the detail everywhere? Not just all the trees, but all the different types of trees. Sixty-seven to be exact. Sixty-seven different types of trees, each with thousands of leaves that all do something different in the wind. And did you notice the crickets? Not just the sound of crickets, but actual crickets and flies and mosquitoes zipping around. Do you know how hard it is to put that kind of detail into a video game?”</p>\n\n<h3>Page 90</h3>\n<p>“Uh, hard?” Eric offered.</p>\n<p>“Impossible,” Mark said. “It’s impossible to do that.”</p>\n<p>“Okayyy, so why...”</p>\n<p>“It’s impossible because even if you had enough time to code all of those different trees and bugs, you’re creating infinite headaches for yourself. The more stuff you cram into a game, the more things can go wrong.”</p>\n<p>“Like glitches and errors,” Eric said.</p>\n<p>“Exactly. Every video game developer in the world is trying to make games that trick you into thinking they’re more complicated than they are. Every developer except these guys. The <em>Full Blast</em> team has done the opposite because they built this.” Mark tapped the gas mask on the wall and clicked a button on the TV.</p>\n<p>The TV showed the beginning of the Hawaii level again, but this time, it zoomed in on a mosquito. The mosquito happily flew around, looking for someone to annoy. We watched the mosquito in silence for a full minute (which, in mosquito-watching time, is an eternity) before Mark spoke up.</p>\n<p>“Notice anything weird?”</p>\n\n<h3>Page 91</h3>\n<p>“Yeah,” Eric said. “We’re watching a mosquito on TV instead of trying to beat the game.”</p>\n<p>But then I saw something. “Oh, wait, is it...”</p>\n<p>It took a while to notice, but the mosquito was growing right in front of our eyes. It started slow, but as the seconds ticked by, it began growing faster and faster. Soon, it was the size of a cat. After 10 more seconds, it reached human size. That’s when the screen flashed blue and a figure appeared in the corner. Mark paused the video.</p>\n<p>“Look familiar?”</p>\n<p>It was our gas mask friend.</p>\n<p>“That mosquito is a glitch in the game. I’m sure it started as a baby, and the developers forgot to put a limit on how big it could get. This is something that a human would usually have to fix, but not here. The <em>Full Blast</em> developers built their own cleanup crew. These guys. They’re special agents called Hindenburgs.”</p>\n<p>Mark unpaused the video. Mr. Hindenburg Gas Mask scanned the mosquito with a laser thing and shot a net out of his blaster. The mosquito got tangled in the net, but it quickly grew too big and snapped the rope.</p>\n\n<h3>Page 92</h3>\n<p>Now it was the size of a tank. In a flash, the Hindenburg also got as big as a tank and shot a metal net at the mosquito. This time, it got tangled up for good.</p>\n<p>Mark paused the video again. “The genius of the Hindenburg is its ability to learn. If it sees a mosquito getting bigger, it gets bigger, too. When the mosquito snaps the net, it makes a metal net. It will do whatever it takes to destroy a glitch. With the Hindenburg Protocol, you can create the ultimate game, because you can build a world that builds itself. Any mistake gets zapped into oblivion, and only perfection remains.”</p>\n<p>“Great,” I said. “So why is it trying to zap us?”</p>\n<p>“You’re the glitch.”</p>\n<p>“Excuse me?”</p>\n<p>“Did you do something to break the game?”</p>\n<p>“No, we were just fighting a boss.”</p>\n<p>“Both of you teamed up against a boss that only knows how to fight a single player.”</p>\n<p>We shrugged.</p>\n<p>“So you broke the game, and now a Hindenburg is trying to make sure it never happens again.”</p>\n\n<h3>Page 93</h3>\n<p><em>[Badge: THIS GAME IS HP ENABLED — GAMING PERFECTED]</em></p>\n<p>“What did you do?” Eric asked.</p>\n<p>Mark smiled. “I figured out how to ride those praying mantis things like horses. They don’t like that too much.”</p>\n<p>“But you escaped your gas mask guy, right?”</p>\n<p>Mark sighed. “I tried fighting him for years. But he’s too fast. Too strong. Too smart. Every time I tried a new weapon on him, he’d dodge it, then learn about it, then create armor to protect himself from it. That’s why I got so upset with you for shooting at your Hindenburg with the blaster, Jesse. Now we can never use a blaster on him again.”</p>\n\n<h3>Page 94</h3>\n<p>I looked down at the ground. “Sorry.”</p>\n<p>“It’s OK; just know that you only have one shot with these guys. Anyways, my Hindenburg eventually figured out that I’m trying to leave through Level 20, so he’s waiting for me there with thousands of aliens armored against every weapon in the game.”</p>\n<p>“I just don’t get why they would put something like that in a game that sucks in real people,” I said.</p>\n<p>“That’s the thing,” Mark replied. “I’ve looked through this whole place, and there’s not one mention of ‘Reality Mode.’ I don’t think this game is supposed to suck in people.”</p>\n<p>“Then how are we here?”</p>\n<p>“Someone must have added it after the game was finished.”</p>\n<p>“Who?”</p>\n<p>Mark shrugged.</p>\n<p>“One more question,” Eric said. “What happens if the Hindenburg catches us? If he blasts us, we just go to the beginning of the level, right?”</p>\n\n<h3>Page 95</h3>\n<p>Mark unpaused the mosquito video. The Hindenburg towed the tank-sized mosquito to the base of the Hawaiian volcano and pressed a small, smooth rock. The earth rumbled, the volcano sank into the ground, and a giant pit appeared. The Hindenburg waited for all of the rumbling to stop, then rolled the mosquito over the edge into the pit. After 10 seconds or so, we heard the faraway thud of the mosquito hitting a metal bottom. Then the level flashed blue again, and everything went back to normal.</p>\n<p>“That’s the Black Box,” Mark said. “Even light cannot escape the Black Box.”</p>\n\n<hr style=\"border-color:#1e293b; margin:1.4rem 0;\" />\n\n<h2>CHAPTER 14: High Noon</h2>\n<h3>Page 97</h3>\n<p>One shot.</p>\n<p>According to Mark, that’s all we had. The best way to make it count, he believed, would be to sneak up on the Hindenburg and use the most powerful weapons in the game at close range.</p>\n<p>We spent the next hour raiding the warehouse for all the coolest gadgets we could find. Heat-seeking grenades? Check. Holograms? Check. Double-barreled bazookas? Double check. And everything conveniently fit into the handy-dandy tool belts Mark found for us.</p>\n<p>Eventually, a plan formed. I would be the bait. Well, not me, exactly, but a hologram of me. I’d be hiding in a safe place, while we’d project my hologram into the open to act as bait. When the Hindenburg would strike, Eric would trigger a cage to trap him, and Mark would fly over with a jet pack to drop a giant bomb. Then we’d all swoop in and blast the cage with double-barreled bazookas, just to make sure that we got him and also because shooting double-barreled bazookas sounds awesome.</p>\n\n<h3>Page 98</h3>\n<p>The plan seemed foolproof—none of us would get within 20 yards of the Hindenburg, and we’d blow him up before he’d have time to figure out what was happening. But something seemed off. As Mark ran through the plan one more time, I shared my hesitation.</p>\n<p>“Guys, do you think this is the best idea?”</p>\n<p>“I do,” Mark said. “I’ve given it a lot of thought over the years, and this is what I would do if I had to do it over again.”</p>\n<p>“I don’t know,” I said.</p>\n<p>“Jesse just doesn’t want to be the bait,” Eric said.</p>\n<p>I glared at him. “No, I just think...”</p>\n<p>“It’s OK, widdle worm,” Eric said in an annoying baby voice. “We’ll make sure the big fish doesn’t eat you, widdle worrrrrrrm.”</p>\n<p>I turned to Mark. “Am I allowed to shoot him?”</p>\n<p>“Definitely not. Are we ready to go?”</p>\n<p>Eric saluted. “Aye aye, Captain!”</p>\n\n<h3>Page 99</h3>\n<p>I sighed. “Let’s go.”</p>\n<p>We popped miniature radios into our ears so we could communicate from far away and hopped back into the tank. Mark drove through his underground shortcuts again until we reached the level where Mark thought our plan would work best—Hollywood. We emerged onto the set for what looked like a Western, cleared out the enemies, and set our trap in front of the general store. I took a second to look at the ghost town, dirt road, and bright sun. It was the perfect place for a showdown. I took my position in front of a green screen to film my hologram, Mark found a perch on top of the saloon, and Eric finished the trap in the middle of the road.</p>\n<p>When everything was set, Eric went into hiding, and I flipped the switch to turn on the hologram. I didn’t have to wait long for our friend to show up. When the sun reached its highest point in the sky, the Hindenburg appeared on the opposite side of the street. Showdown at high noon.</p>\n<p>I held up my fists (well, one fist and one blaster arm) and nodded at him. He lowered his blaster at me and started walking closer. It was working. I danced in place, jabbing punches like a prizefighter. He started walking faster, then running.</p>\n\n<h3>Page 100</h3>\n<p>When he was 10 feet away, he leaped into the air and pulled his fist back to do some sort of flying punch thing. Just as his punch was about to hit the hologram, I yelled.</p>\n<p>“NOW!”</p>\n<p>Eric sprung the trap.</p>\n<p><em>CLANK!</em></p>\n<p>A metal cage sprang out of the ground and trapped the Hindenburg. Instead of panicking, though, it calmly looked around for a few seconds before fixing its gaze on me. Not my hologram, but the actual building where I was filming. It slowly raised its four-fingered hand and waved bye-bye.</p>\n\n<h3>Page 101</h3>\n<p>“Guys, I don’t like this,” I said.</p>\n<p>Mark was already in the air. “We got him!” he said over the radio.</p>\n<p>The Hindenburg continued staring in my direction. It was almost as if he was expecting this. That’s when I figured it out.</p>\n<p>“ABORT MISSION!” I screamed over the radio.</p>\n<p>He <em>was</em> expecting this. Mark kept flying.</p>\n<p>“MARK! ABORT MISSION! HE KNOWS!”</p>\n<p>The reflection. We had forgotten about the reflection. The first time we met the Hindenburg in the Statue of Liberty, we were able to escape because he got fooled by Eric’s reflection in the metal wall.</p>\n<p>“I’ve got him lined up,” Mark said over the radio.</p>\n<p>But you don’t fool the Hindenburg with the same trick twice. And though a hologram isn’t exactly the same as a mirror reflection, it’s close enough for something as smart as the Hindenburg to figure out.</p>\n<p>“Mark, stop this now!”</p>\n<p>Mark dropped the bomb. The second before it landed, the Hindenburg disappeared. Or rather, the hologram of the Hindenburg disappeared.</p>\n\n<h3>Page 102</h3>\n<p><em>BOOOOOOOM!</em></p>\n<p>The ground shook. Even as the dust from the blast was rolling through the street, Eric ran out of his hiding spot with his double-barreled bazooka.</p>\n<p>“NOOO!” I yelled. I ran out of hiding to protect my friend. I reached the street just in time to see the real Hindenburg sneak up behind Eric.</p>\n<p>“ERIC, WATCH OUT!”</p>\n<p>Eric looked at me with a puzzled look on his face. That was the last thing he did before...</p>\n<p><em>BLAST!</em></p>\n<p>The Hindenburg vaporized him.</p>\n<p>“NOOO!”</p>\n<p><em>BLAST!</em></p>\n<p>In one smooth motion, the Hindenburg aimed into the air and vaporizes Mark. Then he fixed his aim on me.</p>\n<p><em>BLAST!</em></p>"
+};
 
 const BUILT_IN_CH10_11_12_QUIZ = {
   "id": "trapped_videogame_ch10_11_12",
@@ -8278,8 +8762,8 @@ function getAllQuizzes() {
     questions: chapterOneQuestions,
     readerHtml: defaultChapter1ReaderHtml
   };
-  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch10_11_12' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
-  return [BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
+  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch13_14' && q.id !== 'trapped_videogame_ch10_11_12' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
+  return [BUILT_IN_CH13_14_QUIZ, BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
 }
 
 function loadLocalQuizzes() {
@@ -8373,7 +8857,7 @@ async function fetchCloudQuizzesLibrary() {
       const lastSeenCloudUpdate = localStorage.getItem('rs_apps_cloud_updated_at') || '';
       const cloudActiveForInst = currentInstance === 'D'
         ? (data.activeQuizIdD || 'd_history_trivia_mc')
-        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch10_11_12');
+        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch13_14');
       if (data.updatedAt && data.updatedAt !== lastSeenCloudUpdate) {
         localStorage.setItem('rs_apps_cloud_updated_at', data.updatedAt);
         if (cloudActiveForInst) {
