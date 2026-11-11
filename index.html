@@ -888,6 +888,20 @@
     color: white; 
   }
 
+  .quiz-nav button.skip-end-btn {
+    background-color: #312e81;
+    border: 1.5px solid #818cf8;
+    color: #e0e7ff;
+    font-size: 0.88rem;
+    padding: 0.58rem 1rem;
+    min-width: auto;
+  }
+
+  .quiz-nav button.skip-end-btn:hover:not(:disabled) {
+    background-color: #4338ca;
+    border-color: #a5b4fc;
+  }
+
   .quiz-nav button:disabled {
     display: none;
     background-color: #1e293b;
@@ -1645,7 +1659,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 5:52 PM - 11/11/2026</div>
+<div class="build-timestamp">Actualizado: 06:17 PM - 11/11/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1689,7 +1703,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 5:52 PM - 11/11/2026
+      Actualizado: 06:17 PM - 11/11/2026
     </div>
   </div>
 </div>
@@ -2194,7 +2208,10 @@
     <!-- Navigation Footer -->
     <div class="quiz-nav">
       <div style="font-size:0.94rem; color:#94a3b8; font-weight:700;" id="ptsValueDisplay">Total Worth: 5.0 pts</div>
-      <button id="nextBtn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <button id="skipToEndBtn" class="skip-end-btn" onclick="skipQuestionToEnd()">⏭️ Skip to End</button>
+        <button id="nextBtn" onclick="nextQuestion()" disabled>Next Question ➔</button>
+      </div>
     </div>
   </div>
 
@@ -3896,6 +3913,126 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
+function updateSkipToEndButtonState() {
+  const skipBtn = document.getElementById('skipToEndBtn');
+  if (!skipBtn) return;
+  const canSkip = !isQuizAnswered && Array.isArray(activeQuestions) && currentQIndex < activeQuestions.length - 1;
+  skipBtn.disabled = !canSkip;
+  skipBtn.style.display = canSkip ? 'inline-block' : 'none';
+}
+
+function applySavedOrDeferredPartialState(q, saved) {
+  if (!q || !saved) return;
+  const noSpell = isQuestionNoSpelling(q);
+
+  if (saved.hintUsedOnCurrent) {
+    hintUsedOnCurrent = true;
+    const box = document.getElementById('hintBox');
+    const cleanHint = currentInstance === 'R' ? sanitizeHintNoPageRef(q.hint) : q.hint;
+    if (box) {
+      box.textContent = `Hint: ${cleanHint}`;
+      box.style.display = 'block';
+    }
+    const hBtn = document.getElementById('hintBtn');
+    if (hBtn) {
+      hBtn.disabled = true;
+      hBtn.textContent = "💡 Hint Active (-1.0 pt)";
+    }
+  }
+
+  if (saved.rereadUsedOnCurrent) {
+    rereadUsedOnCurrent = true;
+    const excerptBox = document.getElementById('excerptBox');
+    const pageTitleEl = document.getElementById('excerptPageTitle');
+    const pageTextEl = document.getElementById('excerptTextContent');
+    const cleanExcerpt = currentInstance === 'R' ? sanitizeExcerptNoPageRef(q.pageExcerpt) : (q.pageExcerpt || '');
+    if (pageTitleEl) pageTitleEl.textContent = currentInstance === 'R' ? '📄 Story Excerpt' : `📄 ${q.pageTitle || 'Study Excerpt'}`;
+    if (pageTextEl) pageTextEl.textContent = cleanExcerpt;
+    if (excerptBox) excerptBox.style.display = 'block';
+    const rBtn = document.getElementById('rereadBtn');
+    if (rBtn) {
+      rBtn.disabled = true;
+      rBtn.textContent = "📖 Reread Active (-1.0 pt)";
+    }
+  }
+
+  updatePointsDisplay();
+
+  if (q.type === 'match') {
+    solvedPairs = Array.isArray(saved.solvedPairs) ? [...saved.solvedPairs] : [];
+    selectedLeftPair = saved.selectedLeftPair !== undefined ? saved.selectedLeftPair : null;
+    selectedRightPair = saved.selectedRightPair !== undefined ? saved.selectedRightPair : null;
+    matchWrongTriesByPair = Array.isArray(saved.matchWrongTriesByPair) && saved.matchWrongTriesByPair.length === q.pairs.length
+      ? [...saved.matchWrongTriesByPair]
+      : q.pairs.map(() => 0);
+    matchPenaltyPts = typeof saved.matchPenaltyPts === 'number' ? saved.matchPenaltyPts : 0;
+    lastMismatchBannerText = typeof saved.lastMismatchBannerText === 'string' ? saved.lastMismatchBannerText : '';
+    updatePointsDisplay();
+    if (Array.isArray(saved.matchVariantIndices) && saved.matchVariantIndices.length === q.pairs.length) {
+      matchVariantIndices = [...saved.matchVariantIndices];
+    }
+    if (typeof saved.matchDistractorVariantIdx === 'number') {
+      matchDistractorVariantIdx = saved.matchDistractorVariantIdx;
+    }
+    if (Array.isArray(saved.prevLeftOrderIds) && saved.prevLeftOrderIds.length === q.pairs.length &&
+        Array.isArray(saved.prevRightOrderIds) && saved.prevRightOrderIds.length === q.pairs.length + 1) {
+      prevLeftOrderIds = [...saved.prevLeftOrderIds];
+      prevRightOrderIds = [...saved.prevRightOrderIds];
+      renderMatchColumns(q, 'restore');
+    }
+  } else if (q.type === 'fib') {
+    const fibInput = document.getElementById('fibInput');
+    if (fibInput && typeof saved.fibInputValue === 'string') {
+      fibInput.value = saved.fibInputValue;
+    }
+  } else {
+    selectedOption = typeof saved.selectedOption === 'number' ? saved.selectedOption : null;
+    if (selectedOption !== null) {
+      const btns = document.querySelectorAll('.option-btn');
+      if (btns[selectedOption]) btns[selectedOption].classList.add('selected');
+    }
+  }
+
+  if (!noSpell && Array.isArray(saved.currentSlots) && saved.currentSlots.length === currentTargetWord.length) {
+    currentSlots = saved.currentSlots;
+    currentBank = Array.isArray(saved.currentBank) ? saved.currentBank : [];
+    isSpellingSolved = Boolean(saved.isSpellingSolved);
+    spellingAttemptsLeft = typeof saved.spellingAttemptsLeft === 'number' ? saved.spellingAttemptsLeft : 3;
+    isSpellingLocked = Boolean(saved.isSpellingLocked);
+
+    const statusEl = document.getElementById('spellingStatus');
+    const attemptsCountEl = document.getElementById('spellingAttemptsCount');
+    const submitBtn = document.getElementById('spellingSubmitBtn');
+    if (attemptsCountEl) {
+      attemptsCountEl.textContent = spellingAttemptsLeft;
+      attemptsCountEl.style.color = spellingAttemptsLeft <= 1 ? "#ef4444" : "#fbbf24";
+    }
+    if (isSpellingSolved) {
+      if (statusEl) {
+        statusEl.textContent = "✓ Solved (+1.0 pt earned!)";
+        statusEl.style.color = "#10b981";
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "✓ Verified (1.0 pt)";
+      }
+    } else if (isSpellingLocked) {
+      if (statusEl) {
+        statusEl.innerHTML = `🔒 0/3 Attempts — Right Spelling: <strong style="color:#fde047; letter-spacing:1px;">${currentTargetWord}</strong>`;
+        statusEl.style.color = "#ef4444";
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = `🔒 Right Spelling: ${currentTargetWord}`;
+      }
+    } else if (spellingAttemptsLeft < 3 && statusEl) {
+      statusEl.textContent = `✗ Incorrect sequence! (${spellingAttemptsLeft} attempt${spellingAttemptsLeft === 1 ? '' : 's'} remaining)`;
+      statusEl.style.color = "#ef4444";
+    }
+    renderSpellingBench();
+  }
+}
+
 function restoreQuizFromSavedState(saved) {
   if (!saved || !Array.isArray(saved.activeQuestions) || saved.activeQuestions.length === 0) return false;
   isRestoringQuizProgress = true;
@@ -3939,121 +4076,12 @@ function restoreQuizFromSavedState(saved) {
     renderQuestion();
 
     const q = activeQuestions[currentQIndex];
-    const noSpell = isQuestionNoSpelling(q);
-
-    // Restore Hint & Reread if used on current question
-    if (saved.hintUsedOnCurrent) {
-      hintUsedOnCurrent = true;
-      const box = document.getElementById('hintBox');
-      const cleanHint = currentInstance === 'R' ? sanitizeHintNoPageRef(q.hint) : q.hint;
-      if (box) {
-        box.textContent = `Hint: ${cleanHint}`;
-        box.style.display = 'block';
-      }
-      const hBtn = document.getElementById('hintBtn');
-      if (hBtn) {
-        hBtn.disabled = true;
-        hBtn.textContent = "💡 Hint Active (-1.0 pt)";
-      }
-    }
-
-    if (saved.rereadUsedOnCurrent) {
-      rereadUsedOnCurrent = true;
-      const excerptBox = document.getElementById('excerptBox');
-      const pageTitleEl = document.getElementById('excerptPageTitle');
-      const pageTextEl = document.getElementById('excerptTextContent');
-      const cleanExcerpt = currentInstance === 'R' ? sanitizeExcerptNoPageRef(q.pageExcerpt) : (q.pageExcerpt || '');
-      if (pageTitleEl) pageTitleEl.textContent = currentInstance === 'R' ? '📄 Story Excerpt' : `📄 ${q.pageTitle || 'Study Excerpt'}`;
-      if (pageTextEl) pageTextEl.textContent = cleanExcerpt;
-      if (excerptBox) excerptBox.style.display = 'block';
-      const rBtn = document.getElementById('rereadBtn');
-      if (rBtn) {
-        rBtn.disabled = true;
-        rBtn.textContent = "📖 Reread Active (-1.0 pt)";
-      }
-    }
-
-    updatePointsDisplay();
-
-    // Restore Question Task State (Match / FIB / MC-TF)
-    if (q.type === 'match') {
-      solvedPairs = Array.isArray(saved.solvedPairs) ? [...saved.solvedPairs] : [];
-      selectedLeftPair = saved.selectedLeftPair !== undefined ? saved.selectedLeftPair : null;
-      selectedRightPair = saved.selectedRightPair !== undefined ? saved.selectedRightPair : null;
-      matchWrongTriesByPair = Array.isArray(saved.matchWrongTriesByPair) && saved.matchWrongTriesByPair.length === q.pairs.length
-        ? [...saved.matchWrongTriesByPair]
-        : q.pairs.map(() => 0);
-      matchPenaltyPts = typeof saved.matchPenaltyPts === 'number' ? saved.matchPenaltyPts : 0;
-      lastMismatchBannerText = typeof saved.lastMismatchBannerText === 'string' ? saved.lastMismatchBannerText : '';
-      updatePointsDisplay();
-      if (Array.isArray(saved.matchVariantIndices) && saved.matchVariantIndices.length === q.pairs.length) {
-        matchVariantIndices = [...saved.matchVariantIndices];
-      }
-      if (typeof saved.matchDistractorVariantIdx === 'number') {
-        matchDistractorVariantIdx = saved.matchDistractorVariantIdx;
-      }
-      if (Array.isArray(saved.prevLeftOrderIds) && saved.prevLeftOrderIds.length === q.pairs.length &&
-          Array.isArray(saved.prevRightOrderIds) && saved.prevRightOrderIds.length === q.pairs.length + 1) {
-        prevLeftOrderIds = [...saved.prevLeftOrderIds];
-        prevRightOrderIds = [...saved.prevRightOrderIds];
-        renderMatchColumns(q, 'restore');
-      }
-    } else if (q.type === 'fib') {
-      const fibInput = document.getElementById('fibInput');
-      if (fibInput && typeof saved.fibInputValue === 'string') {
-        fibInput.value = saved.fibInputValue;
-      }
-    } else {
-      selectedOption = typeof saved.selectedOption === 'number' ? saved.selectedOption : null;
-      if (selectedOption !== null) {
-        const btns = document.querySelectorAll('.option-btn');
-        if (btns[selectedOption]) btns[selectedOption].classList.add('selected');
-      }
-    }
-
-    // Restore Spelling State
-    if (!noSpell && Array.isArray(saved.currentSlots) && saved.currentSlots.length === currentTargetWord.length) {
-      currentSlots = saved.currentSlots;
-      currentBank = Array.isArray(saved.currentBank) ? saved.currentBank : [];
-      isSpellingSolved = Boolean(saved.isSpellingSolved);
-      spellingAttemptsLeft = typeof saved.spellingAttemptsLeft === 'number' ? saved.spellingAttemptsLeft : 3;
-      isSpellingLocked = Boolean(saved.isSpellingLocked);
-
-      const statusEl = document.getElementById('spellingStatus');
-      const attemptsCountEl = document.getElementById('spellingAttemptsCount');
-      const submitBtn = document.getElementById('spellingSubmitBtn');
-      if (attemptsCountEl) {
-        attemptsCountEl.textContent = spellingAttemptsLeft;
-        attemptsCountEl.style.color = spellingAttemptsLeft <= 1 ? "#ef4444" : "#fbbf24";
-      }
-      if (isSpellingSolved) {
-        if (statusEl) {
-          statusEl.textContent = "✓ Solved (+1.0 pt earned!)";
-          statusEl.style.color = "#10b981";
-        }
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = "✓ Verified (1.0 pt)";
-        }
-      } else if (isSpellingLocked) {
-        if (statusEl) {
-          statusEl.innerHTML = `🔒 0/3 Attempts — Right Spelling: <strong style="color:#fde047; letter-spacing:1px;">${currentTargetWord}</strong>`;
-          statusEl.style.color = "#ef4444";
-        }
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = `🔒 Right Spelling: ${currentTargetWord}`;
-        }
-      } else if (spellingAttemptsLeft < 3 && statusEl) {
-        statusEl.textContent = `✗ Incorrect sequence! (${spellingAttemptsLeft} attempt${spellingAttemptsLeft === 1 ? '' : 's'} remaining)`;
-        statusEl.style.color = "#ef4444";
-      }
-      renderSpellingBench();
-    }
+    applySavedOrDeferredPartialState(q, saved);
 
     // Restore already-submitted question state if Submit Answer had already been pressed
     if (saved.isQuizAnswered) {
       isQuizAnswered = true;
+      updateSkipToEndButtonState();
       document.getElementById('acceptBtn').disabled = true;
       document.getElementById('hintBtn').disabled = true;
       document.getElementById('rereadBtn').disabled = true;
@@ -4103,6 +4131,7 @@ function restoreQuizFromSavedState(saved) {
     } else {
       updateSubmitButtonState();
     }
+    updateSkipToEndButtonState();
 
     const maxPts = getMaxPossibleQuizPoints();
     document.getElementById('scoreDisplay').textContent = `Score: ${formatPts(userScore)}/${maxPts}`;
@@ -4117,14 +4146,15 @@ function restoreQuizFromSavedState(saved) {
 
 function initQuiz(questionsList) {
   const prepared = questionsList.map(qObj => {
-    if (qObj.type === 'match' || qObj.type === 'fib') {
-      return { ...qObj };
+    const { _deferredState, ...cleanQ } = qObj;
+    if (cleanQ.type === 'match' || cleanQ.type === 'fib') {
+      return { ...cleanQ };
     }
-    const correctText = qObj.options[qObj.correct];
-    const shuffledOpts = qObj.type === 'tf' ? [...qObj.options] : shuffleArray(qObj.options);
+    const correctText = cleanQ.options[cleanQ.correct];
+    const shuffledOpts = cleanQ.type === 'tf' ? [...cleanQ.options] : shuffleArray(cleanQ.options);
     const newCorrect = shuffledOpts.indexOf(correctText);
     return {
-      ...qObj,
+      ...cleanQ,
       options: shuffledOpts,
       correct: newCorrect
     };
@@ -4240,6 +4270,7 @@ function renderQuestion() {
       nextBtnEl.textContent = 'Next Question ➔';
     }
   }
+  updateSkipToEndButtonState();
 
   const optionsList = document.getElementById('optionsList');
   const matchContainer = document.getElementById('matchContainer');
@@ -4314,6 +4345,12 @@ function renderQuestion() {
     currentSlots = new Array(currentTargetWord.length).fill(null);
     currentBank = shuffleWordLetters(currentTargetWord);
     renderSpellingBench();
+  }
+
+  if (!isRestoringQuizProgress && q._deferredState) {
+    applySavedOrDeferredPartialState(q, q._deferredState);
+    delete q._deferredState;
+    updateSubmitButtonState();
   }
 
   document.getElementById('questionScrollArea').scrollTop = 0;
@@ -4905,6 +4942,7 @@ function confirmAnswer() {
     nextBtnEl.disabled = false;
     nextBtnEl.style.display = 'inline-block';
   }
+  updateSkipToEndButtonState();
   saveCurrentQuizProgress();
 
   if (typeof isCurrentQuizMultipleChoiceInD === 'function' && isCurrentQuizMultipleChoiceInD() && currentQIndex === activeQuestions.length - 1) {
@@ -4944,6 +4982,41 @@ function nextQuestion() {
   } else {
     showResults();
   }
+}
+
+function skipQuestionToEnd() {
+  if (isQuizAnswered || !Array.isArray(activeQuestions) || currentQIndex >= activeQuestions.length - 1) return;
+  if (isMatchBusy) return;
+  const q = activeQuestions[currentQIndex];
+  if (!q) return;
+
+  const fibInput = document.getElementById('fibInput');
+  q._deferredState = {
+    hintUsedOnCurrent,
+    rereadUsedOnCurrent,
+    selectedOption,
+    fibInputValue: fibInput ? fibInput.value : '',
+    solvedPairs: Array.isArray(solvedPairs) ? [...solvedPairs] : [],
+    selectedLeftPair,
+    selectedRightPair,
+    matchVariantIndices: Array.isArray(matchVariantIndices) ? [...matchVariantIndices] : [],
+    matchDistractorVariantIdx,
+    prevLeftOrderIds: Array.isArray(prevLeftOrderIds) ? [...prevLeftOrderIds] : [],
+    prevRightOrderIds: Array.isArray(prevRightOrderIds) ? [...prevRightOrderIds] : [],
+    matchWrongTriesByPair: Array.isArray(matchWrongTriesByPair) ? [...matchWrongTriesByPair] : [],
+    matchPenaltyPts,
+    lastMismatchBannerText,
+    currentSlots: Array.isArray(currentSlots) ? [...currentSlots] : [],
+    currentBank: Array.isArray(currentBank) ? [...currentBank] : [],
+    isSpellingSolved,
+    spellingAttemptsLeft,
+    isSpellingLocked
+  };
+
+  const [deferredQ] = activeQuestions.splice(currentQIndex, 1);
+  activeQuestions.push(deferredQ);
+  playSnapSound();
+  renderQuestion();
 }
 
 let heroSpecialMoveCounter = 0;
