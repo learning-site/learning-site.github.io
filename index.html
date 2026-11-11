@@ -1645,7 +1645,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:08 PM - 11/09/2026</div>
+<div class="build-timestamp">Actualizado: 5:52 PM - 11/11/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1689,7 +1689,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:08 PM - 11/09/2026
+      Actualizado: 5:52 PM - 11/11/2026
     </div>
   </div>
 </div>
@@ -2316,7 +2316,7 @@
   </div>
 </main>
 
-<script src="audio-data.js?v=11091751"></script>
+<script src="audio-data.js?v=11111751"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -2508,7 +2508,7 @@ function switchAppInstance(newInst) {
   updateInstanceUI();
   const quizzes = getAllQuizzes();
   const savedKey = currentInstance === 'D' ? 'rs_apps_active_quiz_id_D' : 'rs_apps_active_quiz_id_v3';
-  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch13_14');
+  const preferredId = localStorage.getItem(savedKey) || (currentInstance === 'D' ? 'd_history_trivia_mc' : 'trapped_videogame_ch15_16');
   const found = quizzes.find(q => q.id === preferredId) || quizzes[0];
   if (found) {
     activateQuizById(found.id, false);
@@ -5891,7 +5891,7 @@ let unlockedAdminPassword = null;
 let studioAttachments = []; // { id, kind: 'image'|'pdf'|'text', name, mimeType, base64Data, textContent, previewUrl, sizeStr }
 let defaultChapter1ReaderHtml = '';
 let customQuizzes = [];
-let activeQuizId = 'trapped_videogame_ch13_14';
+let activeQuizId = 'trapped_videogame_ch15_16';
 let currentActiveQuiz = null;
 
 function checkUrlHashSetup() {
@@ -5966,6 +5966,531 @@ function updateCloudSyncBadge() {
     badge.style.color = '#fbbf24';
   }
 }
+
+const BUILT_IN_CH15_16_QUIZ = {
+  "id": "trapped_videogame_ch15_16",
+  "instance": "R",
+  "title": "Trapped in a Video Game: Chapters 15 & 16",
+  "createdAt": "Nov 11, 2026",
+  "questions": [
+    {
+      "type": "mc",
+      "q": "After getting blasted in the Western ambush, where does Jesse rejoin Eric and Mark, and what happens to their weapons and utility belts?",
+      "options": [
+        "Inside a bank vault surrounded by alien guards; their blasters no longer work against the protected aliens, a praying mantis rips off their utility belts, and the Hindenburg hisses their names.",
+        "Inside a secret submarine under the ocean; Mark upgrades their blasters while the Hindenburg searches the desert.",
+        "On top of the saloon roof; a friendly robot hands them brand-new utility belts filled with freeze grenades.",
+        "Inside the Hover Tank garage; Eric repairs their double-barreled bazookas before any aliens arrive."
+      ],
+      "correct": 0,
+      "hint": "Remember why Mark says 'It's no good' when Jesse shoots at the guards, what the sniffing praying mantis rips off, and who hisses through the gas mask.",
+      "pageTitle": "Chapter 15 — Page 103 (Inside the Bank Vault)",
+      "pageExcerpt": "\"After getting blasted, I joined Eric and Mark inside a bank vault at the beginning of the level, surrounded by alien guards. I tried shooting them. BLAST! BLAST! BLASTBLASTBLAST! 'It’s no good,' Mark said. 'They’re all protected against our blasters now.' A praying mantis came over and poked us. It leaned its weird alien head real close and sniffed before letting out a loud squawk and ripping off our utility belts. Then it left, and the Hindenburg came in... 'Yyyyyyesssssseeeeeee,' he hissed through the gas mask, looking at me... 'Kaaaaaapaaaan Eeeeeerreeeeeek. Maaaaaahhhhhhk.'\"",
+      "word": "VAULT",
+      "clue": "Locked bank safe room where Jesse, Eric, and Mark wake up surrounded by alien guards"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When the boys hear loud drilling outside the safe, Mark guesses the Hindenburg is having the aliens seal up the safe so they can toss it into the Black Box with the boys trapped inside.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "hint": "Think about what Mark guesses right after the Hindenburg walks out of the safe and the loud drilling starts.",
+      "pageTitle": "Chapter 15 — Pages 103–104 (Sealing the Safe)",
+      "pageExcerpt": "\"He turned around and walked out of the safe. A moment later, we heard the sound of loud drilling. 'What’s that?' I asked. 'If I had to guess,' Mark said, 'he’s having them seal up the safe, and they’re going to toss it into the Black Box with us inside.'\"",
+      "word": "DRILLING",
+      "clue": "Loud power-tool sound outside the bank safe as the aliens seal it shut"
+    },
+    {
+      "type": "mc",
+      "q": "When Mark says all the weapons in the game are useless now, what weird question does Jesse ask Eric for his '10 percent of an idea,' and how does Mark encourage Jesse?",
+      "options": [
+        "Jesse asks, 'Eric, do you have any boogers?'—and Mark thanks Jesse for giving them a chance to see their families again, telling him, 'You've got good ideas, Jesse. Never be afraid to share them.'",
+        "Jesse asks Eric if he has any chewing gum in his shoe, and Mark laughs and tells him to let Eric do all the planning.",
+        "Jesse asks Eric if he remembers a cheat code for super strength, and Mark warns him never to take risks.",
+        "Jesse asks Eric to sing an opera song to shatter the metal door, and Mark covers his ears."
+      ],
+      "correct": 0,
+      "hint": "Eric feels both confusion at the weird question and pride that he can produce giant ones on demand, while Mark puts a hand on Jesse's shoulder.",
+      "pageTitle": "Chapter 15 — Pages 104–105 (Ten Percent of an Idea)",
+      "pageExcerpt": "\"'Almost all the weapons. There may still be a way to escape yet. Eric, do you have any boogers?' The look on Eric’s face was a mixture of confusion that I would ask such a weird question and pride that he could produce giant boogers on demand. 'Of course.' ... 'But it’s our only chance.' He put his hand on my shoulder. 'Thanks for giving us a chance to see our families again.' I grinned. 'You’ve got good ideas, Jesse,' Mark said. 'Never be afraid to share them.'\"",
+      "word": "BOOGERS",
+      "clue": "Gross nose treasures Eric proudly produces on demand for Jesse's escape plan"
+    },
+    {
+      "type": "match",
+      "q": "Match each part of Eric's dramatic performance in the bank safe with what happens:",
+      "pairs": [
+        {
+          "left": "\"WHOA, LOOK AT THIS!\"",
+          "right": "Eric's first loud Hollywood shout after digging in his nose, making the drilling noises outside stop",
+          "rightVariants": [
+            "Eric's first loud Hollywood shout after digging in his nose, making the drilling noises outside stop",
+            "Opening exclamation shouted with all Eric's acting skills that gets the aliens outside to stop drilling",
+            "What Eric yells right as Jesse and Mark hide behind the safe door, halting the loud drilling",
+            "First dramatic line ('I'VE NEVER SEEN ANYTHING LIKE IT!') that catches the guards' attention"
+          ]
+        },
+        {
+          "left": "\"TO PICK OR NOT TO PICK...\"",
+          "right": "Shakespeare-style line Eric recites right after the door cracks open and the first praying mantis peeks in",
+          "rightVariants": [
+            "Shakespeare-style line Eric recites right after the door cracks open and the first praying mantis peeks in",
+            "Famous play parody Eric shouts in full acting mode, causing the mantis to open the door wider and walk in",
+            "Dramatic question Eric asks his booger as Mark and Jesse squeeze farther behind the door",
+            "Line that lures the peeking praying mantis inside where two of its friends soon join it"
+          ]
+        },
+        {
+          "left": "\"WHEREFORE ART THOU, BOOGER!\"",
+          "right": "Final Romeo-and-Juliet parody line when all three curious aliens have their backs turned to Mark and Jesse",
+          "rightVariants": [
+            "Final Romeo-and-Juliet parody line when all three curious aliens have their backs turned to Mark and Jesse",
+            "Last dramatic line right before Jesse yells 'NOW!' with all three mantises facing away from the door",
+            "Climax of Eric's Shakespeare speech as the three fascinated aliens step closer with their backs to Mark and Jesse",
+            "Final acting line delivered an instant before the boys ambush the three praying mantises"
+          ]
+        },
+        {
+          "left": "Booger in the Eye",
+          "right": "How Eric blinds the closest praying mantis before snagging its antennae and spinning onto its back",
+          "rightVariants": [
+            "How Eric blinds the closest praying mantis before snagging its antennae and spinning onto its back",
+            "Move Eric pulls off when he sees Mark and Jesse jump onto the other two mantises",
+            "Gross attack Eric smashes into a mantis's eye so he can grab its antennae and ride it",
+            "What Eric does with his 'impressive booger' right before mounting the third praying mantis"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Eric flicks the booger onto the Hindenburg's gas mask so it slips on the marble floor",
+        "Eric pretends to faint so a praying mantis carries him out to the Hover Tank",
+        "Eric juggles three rocks from the vault floor to hypnotize the robot guards",
+        "Eric uses the booger like glue to jam the Hindenburg's blaster barrel shut"
+      ],
+      "hint": "Follow Eric's Shakespearean acting routine from the moment the drilling stops until all three boys mount the praying mantises.",
+      "pageTitle": "Chapter 15 — Pages 105–107 (Shakespeare & Mantis Riding)",
+      "pageExcerpt": "\"'WHOA, LOOK AT THIS!' Eric shouted with all the Hollywood skills he could muster... The drilling noises outside stopped... The vault door cracked open, and a praying mantis peeked in... 'TO PICK OR NOT TO PICK, THAT IS THE QUESTION!' The praying mantis opened the door wider and walked in. It was soon joined by two of its friends... All three aliens now had their backs to Mark and me... 'O BOOGER, BOOGER! WHEREFORE ART THOU, BOOGER!' 'NOW!' ... When he saw us jump into action, Eric smashed the booger into the eye of the praying mantis closest to him, snagged the antennae, and spun around onto its back.\"",
+      "word": "SHAKESPEARE",
+      "clue": "Famous playwright Eric imitates while talking dramatically to his booger"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: According to Mark, the secret key to riding the praying mantises like horses is grabbing tightly onto their antennae.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "hint": "Check what Mark and Jesse grab onto as soon as they jump onto the backs of the squawking mantises.",
+      "pageTitle": "Chapter 15 — Page 107 (Grabbing the Antennae)",
+      "pageExcerpt": "\"Mark and I jumped out of hiding and onto the backs of the two mantises closest to us. They squawked and tried to spin, but we grabbed onto their antennae. That was the key to riding them like horses, Mark had explained earlier—grabbing the antennae.\"",
+      "word": "ANTENNAE",
+      "clue": "Pair of feelers on a praying mantis's head that the boys grab like reins to ride them"
+    },
+    {
+      "type": "mc",
+      "q": "As the boys gallop out of the bank lobby and tear through the Hollywood sets, how do they defeat the three fire-breathing aliens near the medieval stable?",
+      "options": [
+        "Without letting their praying mantises break stride, Mark, Eric, and Jesse grab lances from a stand in the medieval movie courtyard and knock all three fire-breathing aliens to the ground—CLANG! CLANG! CLANG!",
+        "They trick the three fire-breathing aliens into sneezing fire onto each other's tails.",
+        "They lead the fire-breathing aliens into a fake movie swimming pool filled with water.",
+        "Mark throws heat-seeking grenades from his saddle while Eric fires a bazooka."
+      ],
+      "correct": 0,
+      "hint": "Think about what medieval knight weapons Mark snags from a stand as they ride between two stone buildings into the courtyard.",
+      "pageTitle": "Chapter 15 — Page 108 (The Medieval Courtyard)",
+      "pageExcerpt": "\"The alley squeezed between two stone buildings and led us into the courtyard of a medieval movie. Without letting his praying mantis break stride, Mark grabbed a lance from a stand as he passed by. Eric and I followed his example. When we rounded the corner of a medieval stable, we almost ran into three fire-breathing aliens lumbering around the other side to meet us. CLANG! CLANG! CLANG! We sent them all to the ground with our lances.\"",
+      "word": "MEDIEVAL",
+      "clue": "Relating to the Middle Ages of knights and castles—the movie courtyard the boys ride into"
+    },
+    {
+      "type": "match",
+      "q": "Match each location during the Hollywood mantis chase with what happens there:",
+      "pairs": [
+        {
+          "left": "Bank Lobby",
+          "right": "The boys gallop out past a horde of surprised aliens and almost hit the Hindenburg on their way out the door",
+          "rightVariants": [
+            "The boys gallop out past a horde of surprised aliens and almost hit the Hindenburg on their way out the door",
+            "First room outside the safe where the mounted boys nearly run over the Hindenburg",
+            "Entrance hall filled with shocked aliens that the boys race through as they flee the bank",
+            "Lobby where they burst out on mantis-back and narrowly miss colliding with the Hindenburg"
+          ]
+        },
+        {
+          "left": "Heist Movie Set",
+          "right": "Streets outside the bank where swarms of aliens flood behind them like a movie car chase",
+          "rightVariants": [
+            "Streets outside the bank where swarms of aliens flood behind them like a movie car chase",
+            "City street movie set where Mark turns left while aliens pour out of the bank in pursuit",
+            "Set that feels like a high-speed car chase as swarms of aliens flood the streets behind their mantises",
+            "Street outside the bank that the boys tear through before turning down a stone alley"
+          ]
+        },
+        {
+          "left": "Castle Moat Wall",
+          "right": "Spot where the boys jump off their mantises in midair and disappear through a hidden shortcut in the wall",
+          "rightVariants": [
+            "Spot where the boys jump off their mantises in midair and disappear through a hidden shortcut in the wall",
+            "Deep trench edge where Mark tucks into a cannonball and leaps through an unseen wall shortcut",
+            "Moat wall containing Mark's secret shortcut into the dark passageways underneath the world",
+            "Place where each boy leaps off his falling mantis ('OOF!') into a hidden opening in the wall"
+          ]
+        },
+        {
+          "left": "Western Set Trapdoor",
+          "right": "Exit from the dark underground passage that opens across the street from the glowing portals—and a massive alien army",
+          "rightVariants": [
+            "Exit from the dark underground passage that opens across the street from the glowing portals—and a massive alien army",
+            "Trapdoor Jesse cracks open after ten seconds of optimism, revealing hundreds of aliens guarding the portals",
+            "Hidden floor door across from the glowing portals where hundreds of aliens are waiting for them",
+            "Underground exit leading back to the Western street blocked by a huge alien army"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "A pirate ship movie set where the boys swing on ropes across a pool of mechanical sharks",
+        "A dinosaur jungle set where Mark hides the mantises inside a hollow plastic volcano",
+        "A space-station cafeteria set where the boys disguise themselves in alien waiter uniforms",
+        "A submarine dock where they trade their praying mantises for three jet skis"
+      ],
+      "hint": "Trace their escape route from the bank door to the street chase, the castle moat wall, and finally the underground trapdoor.",
+      "pageTitle": "Chapter 15 — Pages 108–110 (Escape Across the Movie Sets)",
+      "pageExcerpt": "\"We galloped out of the vault and past a horde of surprised aliens in the bank lobby. We almost hit the Hindenburg on our way out the door... We were on the set of a heist movie, and this was our car chase... Mark jumped off its back. He tucked into a ball and aimed for a spot in the moat wall. Sure enough, he’d found another shortcut... We were back on the Western set across the street from the glowing portals. But between us and the portals stood a massive alien army.\"",
+      "word": "LANCES",
+      "clue": "Long medieval jousting spears the boys grab from a stand to knock down three fire-breathing aliens"
+    },
+    {
+      "type": "mc",
+      "q": "When Mark gallops full speed toward the castle's deep moat with no chance of stopping, how do the three boys escape falling into the moat?",
+      "options": [
+        "As each praying mantis goes over the edge, Mark tucks into a cannonball and jumps off its back into a hidden shortcut spot in the moat wall, and Jesse and Eric leap in right behind him ('OOF!').",
+        "Their praying mantises unfold hidden wings and fly over the top of the castle towers.",
+        "Mark lowers the castle drawbridge at the last second by throwing his lance at a lever.",
+        "The boys dive underwater to the bottom of the moat and swim through a drainpipe."
+      ],
+      "correct": 0,
+      "hint": "Jesse yells 'MARK!' as Mark's mantis goes over the edge, then watches Mark pull off a crazy cannonball maneuver toward the moat wall.",
+      "pageTitle": "Chapter 15 — Page 109 (The Cannonball Shortcut)",
+      "pageExcerpt": "\"'MARK!' I shouted as his praying mantis went over the edge, and Mark jumped off its back. He tucked into a ball and aimed for a spot in the moat wall. Sure enough, he’d found another shortcut. His body disappeared behind the wall. Before I could reconsider following Mark’s crazy cannonball maneuver, my praying mantis also jumped over the edge of the moat. I leaped off its back toward the spot where Mark disappeared, praying I had aimed correctly. 'OOF!' ... One second later—'OOF!'—Eric joined us.\"",
+      "word": "MOAT",
+      "clue": "Deep trench around a medieval castle where the boys leap off their mantises into a wall shortcut"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When Eric asks if there is another way around the hundreds of aliens guarding the glowing portals, Mark reveals a secret tunnel that skips the portals completely.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what Mark shakes his head and says when Eric asks if there is any other way besides the portals.",
+      "pageTitle": "Chapter 15 — Page 110 (No Other Way)",
+      "pageExcerpt": "\"Eric sank to the ground. 'Is there any other way to get to where we need to go besides the portals?' Mark shook his head. 'That’s it.' 'So we’re trapped underneath the level instead of a Black Box,' Eric said with his head in his hands. 'No,' Mark said. 'No, you’re not.' He walked to the trapdoor and cracked it open.\"",
+      "word": "CANNONBALL",
+      "clue": "Tucked-into-a-ball jump Mark uses to launch himself off his mantis into the moat wall shortcut"
+    },
+    {
+      "type": "mc",
+      "q": "What instructions and emotional request does Mark give Jesse and Eric right before throwing open the trapdoor and jumping out?",
+      "options": [
+        "He tells them to wait three seconds after he jumps out and then run like crazy to the portals, admits he won't be meeting them, and asks them not to tell his parents so they won't think he is suffering.",
+        "He tells them to wait ten minutes underground until he returns with three Hover Tanks, and asks them to bring him a slice of pizza.",
+        "He tells them to follow him onto the saloon roof, promising they will all jump through the portal holding hands.",
+        "He asks them to tell his school principal to make 'Mark Day' a full day off instead of a half day."
+      ],
+      "correct": 0,
+      "hint": "Jesse asks Mark, 'Where will you meet us?' and Mark gets emotional talking about his parents before saying, 'This is the only way.'",
+      "pageTitle": "Chapter 15 — Pages 110–111 (This Is the Only Way)",
+      "pageExcerpt": "\"'After I jump out, I want you two to wait exactly three seconds before running like crazy to the portals,' Mark said. 'Where will you meet us?' Mark shook his head. 'I’m not meeting you.' He was starting to get emotional, but it was clear that he had already made up his mind. 'Just please don’t tell my parents. I don’t want them to think I’m suffering.' ... 'This is the only way,' Mark said. With that, he threw open the trapdoor and jumped out.\"",
+      "word": "TRAPDOOR",
+      "clue": "Hinged door in the ground that Mark throws open to draw the alien army away from his friends"
+    },
+    {
+      "type": "mc",
+      "q": "How does Mark draw the massive alien army away so Jesse and Eric have an opening to run for the portals?",
+      "options": [
+        "He sprints away from the portals right through a crowd of aliens to a jet pack, straps it on, and when an alien grabs his foot, pushes the jet pack harder—flopping in the air and blowing exhaust in the aliens' faces.",
+        "He climbs onto the roof of the general store and sets off fireworks to make the aliens look up.",
+        "He hijacks a praying mantis and rides it in circles around the saloon shouting insults.",
+        "He projects ten holograms of himself running in the opposite direction down the dirt road."
+      ],
+      "correct": 0,
+      "hint": "Jesse grabs Mark's leg too late and tells Eric, 'Mark is doing this for us. Let's not ruin it,' as Mark reaches a flying device.",
+      "pageTitle": "Chapter 16 — Pages 113–114 (Mark's Distraction)",
+      "pageExcerpt": "\"Mark didn’t slow down. He ran through a crowd of aliens directly to a jet pack. 'Come on,' I said to Eric. 'But Mark...' 'Mark is doing this for us. Let’s not ruin it.' By now, Mark had reached the jet pack, strapped it on, and started to fly away. Before he could get too far, an alien grabbed him by the foot and tried dragging him back into the scrum. Mark pushed the jet pack harder, flopping in the air and blowing exhaust in the aliens’ faces.\"",
+      "word": "PORTALS",
+      "clue": "Glowing gateways across the Western street that Jesse and Eric race toward during Mark's distraction"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When aliens block Jesse halfway across the street with no weapons left, he jumps on their heads like Mario—BOING! SQUAWK!—which confuses them without killing them.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "hint": "Remember 'the only other video game move' Jesse knows and what happens right after he lands on the first alien's head.",
+      "pageTitle": "Chapter 16 — Pages 114–115 (Jumping Like Mario)",
+      "pageExcerpt": "\"With no weapons to defeat the alien and no way around him, I tried the only other video game move I knew. I jumped on his head like Mario. BOING! SQUAWK! I didn’t kill him, but I sure confused him. There was no time to celebrate because, before I had even landed, another alien showed up behind him. BOING! SQUAWK! And another. BOING! SQUAWK!\"",
+      "word": "EXHAUST",
+      "clue": "Hot blast from Mark's jet pack that blows into the aliens' faces as he flops through the air"
+    },
+    {
+      "type": "match",
+      "q": "Match each step of Jesse's surprise detour into the Tutorial with what happens:",
+      "pairs": [
+        {
+          "left": "Mario Head-Bounce",
+          "right": "Jesse jumps off three aliens' heads (BOING! SQUAWK!), confusing them so he can cross the street",
+          "rightVariants": [
+            "Jesse jumps off three aliens' heads (BOING! SQUAWK!), confusing them so he can cross the street",
+            "Only video game move Jesse has left without weapons, bouncing across three surprised aliens",
+            "Head-stomping move borrowed from Mario that confuses three blocking aliens in a row",
+            "Three quick BOING! SQUAWK! bounces over the aliens standing between Jesse and the portals"
+          ]
+        },
+        {
+          "left": "Ducking Under the Hindenburg",
+          "right": "Jesse sprints screaming at the Hindenburg, then ducks and rolls right before its arms can grab him",
+          "rightVariants": [
+            "Jesse sprints screaming at the Hindenburg, then ducks and rolls right before its arms can grab him",
+            "Move Jesse uses when the Hindenburg rolls in front of him hissing to block the path forward",
+            "Screaming charge followed by a last-second duck-and-roll beneath the Hindenburg's outstretched arms",
+            "How Jesse slips past the Hindenburg's grasp instead of heading to the next stage"
+          ]
+        },
+        {
+          "left": "Portal to the Left",
+          "right": "Gateway leading back to all previous stages (8 down to 1), which Jesse rolls into to surprise the Hindenburg",
+          "rightVariants": [
+            "Gateway leading back to all previous stages (8 down to 1), which Jesse rolls into to surprise the Hindenburg",
+            "Left-hand portal (WHOOSH!) where doors 8, 7, 6, 5, 4, 3, 2, 1 rush by as Jesse falls",
+            "Unexpected portal Jesse chooses so he can fall past all the earlier numbered doors",
+            "Backward-leading portal that takes Jesse past every earlier stage until he reaches TUTORIAL"
+          ]
+        },
+        {
+          "left": "TUTORIAL Door",
+          "right": "Door Jesse grabs and swings through into barracks, sand, and sunshine to find the drill sergeant",
+          "rightVariants": [
+            "Door Jesse grabs and swings through into barracks, sand, and sunshine to find the drill sergeant",
+            "Destination past door 1 where the robot sergeant yells, 'You back for more, maggot?!'",
+            "Training-base door Jesse enters in search of the one basic weapon the Hindenburg never learned about",
+            "Doorway leading back to the sunny barracks and firing range where the sergeant stands"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "A secret elevator inside the saloon that drops Jesse straight into Level 20",
+        "A glowing green REPLAY portal that resets the entire game back to Jesse's living room",
+        "A hidden door labeled CREDITS where the game developers left spare bazookas",
+        "A teleporter inside the Hover Tank that sends Jesse to the top of the Hawaiian volcano"
+      ],
+      "hint": "Follow Jesse from bouncing on alien heads to rolling past the Hindenburg into the left-hand portal.",
+      "pageTitle": "Chapter 16 — Pages 114–116 (Into the Tutorial)",
+      "pageExcerpt": "\"I jumped on his head like Mario. BOING! SQUAWK! ... The Hindenburg rolled in front of me, blocking the path to the next level. I sprinted at him screaming. 'AHHHHH!' He reached out to grab me. Just before he could close his arms, however, I ducked and rolled... I rolled through the portal to the left—the one that led to all the previous levels. This time while I was falling, doors for previous levels rushed by: 8, 7, 6, 5, 4, 3, 2, 1... Finally, I saw it. TUTORIAL.\"",
+      "word": "CONFUSED",
+      "clue": "Baffled and bewildered—how the first alien feels when Jesse bounces on its head like Mario"
+    },
+    {
+      "type": "mc",
+      "q": "Why did Jesse go all the way back to the Tutorial to find the drill sergeant's 'peashooter' gun?",
+      "options": [
+        "After their failed ambush, the Hindenburg had learned about and armored against every weapon in the game—except the sergeant's peashooter, which is so basic the game won't even let players use it.",
+        "Because the sergeant's gun shoots giant sticky nets made of unbreakable volcano metal.",
+        "Because Mark told Jesse he hid a secret 'CTRL-ALT-DELETE' button inside the sergeant's holster.",
+        "Because the Tutorial is a safe zone where neither aliens nor the Hindenburg are allowed to enter."
+      ],
+      "correct": 0,
+      "hint": "Think about what the Hindenburg does whenever a weapon is used against it, and which weapon was too basic for anyone to have used.",
+      "pageTitle": "Chapter 16 — Page 116 (The Sergeant's Peashooter)",
+      "pageExcerpt": "\"'I don’t have time to explain! I just need your gun!' After our failed ambush, the Hindenburg had learned about every weapon in the game. Every weapon, that is, except the one so basic that the game won’t even let you use it—the sergeant’s peashooter.\"",
+      "word": "TUTORIAL",
+      "clue": "Introductory training area with barracks, sand, and sunshine where Jesse goes to find the sergeant"
+    },
+    {
+      "type": "tf",
+      "q": "True or False: When Jesse runs up to the drill sergeant and says, 'I just need your gun!', the sergeant understands the emergency and hands him the peashooter.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "hint": "Remember what Eric said earlier about the sergeant being like a robot programmed to say one thing, and what happens when Jesse tries to wrestle the gun away.",
+      "pageTitle": "Chapter 16 — Pages 116–117 (Glued to His Hands)",
+      "pageExcerpt": "\"'You can practice your skills any time at the firing range.' 'I don’t have time to explain! I just need your gun!' ... 'You can practice your skills any time at the firing range.' Time had run out. An alien showed up in the portal. I tried grabbing the gun from the sergeant. He had a vice grip, almost as if the gun were glued to his hands. Eric had been right. The sergeant was just a robot programmed to do one thing.\"",
+      "word": "PEASHOOTER",
+      "clue": "Nickname for the sergeant's tiny, super-basic gun—the one weapon the Hindenburg isn't protected against"
+    },
+    {
+      "type": "mc",
+      "q": "How does Jesse accidentally discover a way to make the robot sergeant fire his peashooter at the oncoming aliens?",
+      "options": [
+        "When a jumping lizard-looking alien leaps at them in midair, Jesse grabs the sergeant and falls to the ground using him as a shield; as soon as the peashooter points at the alien, the sergeant shoots ('PING!') and vaporizes it instantly.",
+        "Jesse salutes the sergeant and shouts 'Present arms!', activating a secret combat mode.",
+        "Jesse unscrews the sergeant's robotic arm and clips it onto his own blaster sleeve.",
+        "Jesse tapes a cardboard target onto the alien's chest so the sergeant thinks they are at the firing range."
+      ],
+      "correct": 0,
+      "hint": "A lizard-looking alien with windmill legs leaps at Jesse from just a few feet away, forcing Jesse to grab the sergeant and drop to the ground.",
+      "pageTitle": "Chapter 16 — Page 117 (PING! SQUAWK!)",
+      "pageExcerpt": "\"When I turned around again, the alien was already in midair, just a few feet away. In one motion, I grabbed the sergeant and fell to the ground, using him as a shield. As soon as the sergeant’s peashooter was pointed at the alien, he shot. PING! And his weapon, which to this point had done nothing more than poke holes in cardboard, vaporized the alien in an instant. SQUAWK!\"",
+      "word": "CARDBOARD",
+      "clue": "Stiff paper material used for firing-range targets—the only thing the sergeant's gun had poked holes in before"
+    },
+    {
+      "type": "match",
+      "q": "Match each moment of Jesse's battle in the Tutorial with what happens:",
+      "pairs": [
+        {
+          "left": "\"You back for more, maggot?!\"",
+          "right": "First thing the drill sergeant shouts across the sunny base when Jesse swings through the Tutorial door",
+          "rightVariants": [
+            "First thing the drill sergeant shouts across the sunny base when Jesse swings through the Tutorial door",
+            "Greeting yelled by the sergeant across the barracks sand before repeating his firing-range line",
+            "Drill-instructor shout that helps Jesse spot where the sergeant is standing across the base",
+            "Loud bark from the Tutorial sergeant as soon as Jesse arrives looking for his gun"
+          ]
+        },
+        {
+          "left": "Spinning Him by the Legs",
+          "right": "How Jesse aims the sergeant at the alien army—setting off a rapid 'PING! PING! PING! SQUAWK! SQUAWK! SQUAWK!'",
+          "rightVariants": [
+            "How Jesse aims the sergeant at the alien army—setting off a rapid 'PING! PING! PING! SQUAWK! SQUAWK! SQUAWK!'",
+            "Picking the robot sergeant up by his legs and whirling him around like a human turret",
+            "Jesse's improvised way to shoot waves of aliens since the gun won't leave the sergeant's vice grip",
+            "Holding the sergeant's legs and spinning him to vaporize aliens pouring out of the portal"
+          ]
+        },
+        {
+          "left": "Four More Take Its Place",
+          "right": "Why Jesse has to keep retreating behind a big rock—aliens pour in faster than the sergeant can vaporize them",
+          "rightVariants": [
+            "Why Jesse has to keep retreating behind a big rock—aliens pour in faster than the sergeant can vaporize them",
+            "Overwhelming rate at which new aliens replace every single alien the sergeant zaps",
+            "Reason 'It was working! Kind of!' fails—four new aliens arrive for every one vaporized",
+            "Nonstop flood of chirping aliens that forces Jesse and the sergeant backward behind a boulder"
+          ]
+        },
+        {
+          "left": "Sudden Silence",
+          "right": "The chirping stops and the alien army parts ways as the Hindenburg approaches behind the rock, hissing Jesse's name",
+          "rightVariants": [
+            "The chirping stops and the alien army parts ways as the Hindenburg approaches behind the rock, hissing Jesse's name",
+            "Eerie quiet when the aliens step aside so the Hindenburg can walk toward Jesse's hiding rock",
+            "Moment the loud alien chirping goes silent and the Hindenburg closes to within five steps",
+            "Pause in the attack when the aliens part for the Hindenburg ('Yessssssseeeeeeeeeee')"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "The sergeant runs out of ammunition and starts throwing sandbags at the Hindenburg",
+        "Jesse hides inside a barracks locker until the Hindenburg gets bored and leaves",
+        "A training tank rolls out of the firing range and flattens the big rock",
+        "The sergeant challenges the Hindenburg to a push-up contest in the sand"
+      ],
+      "hint": "Review everything that happens from the moment Jesse spots the sergeant across the base until he is cornered behind the big rock.",
+      "pageTitle": "Chapter 16 — Pages 116–118 (Spinning the Sergeant)",
+      "pageExcerpt": "\"'You back for more, maggot?!' ... Whatever. I picked him up by the legs and spun him around to face the oncoming alien army. PING! PING! PING! SQUAWK! SQUAWK! SQUAWK! It was working! Kind of! The aliens were pouring in so fast that for every one that the sergeant vaporized, four more would take its place. I kept retreating with the sergeant until we found ourselves behind a big rock... Then, silence. I peeked around the corner of the rock. The aliens had parted ways, and the Hindenburg was approaching.\"",
+      "word": "SHIELD",
+      "clue": "Something held in front of you for protection—how Jesse first uses the sergeant when the lizard alien leaps"
+    },
+    {
+      "type": "mc",
+      "q": "Trapped behind the big rock with the Hindenburg hissing 'Yessssssseeeeeeeeeee' just five steps away, what bad options does Jesse weigh before hearing a faint 'WHOOSH!'?",
+      "options": [
+        "Stay put and be toast in 10 seconds, try taking a shot with the sergeant and be toast in 5, make a break for the portal and get caught in two steps, or come out with his hands up and take his chances with the Black Box.",
+        "Dig a tunnel through the sand, climb onto the barracks roof, swim across a river, or pretend to be a robot.",
+        "Call Mark on the miniature ear radio, throw his blaster as a boomerang, or challenge the Hindenburg to a race.",
+        "Hide underneath a cardboard target, steal a praying mantis, or jump on the Hindenburg's head like Mario."
+      ],
+      "correct": 0,
+      "hint": "Jesse counts down how fast he'd be 'toast' if he stayed put (10 seconds), tried a shot (5), ran for the portal (two steps), or surrendered.",
+      "pageTitle": "Chapter 16 — Pages 118–119 (Weighing His Options)",
+      "pageExcerpt": "\"I weighed my options. They were not great. 'Yessssssseeeeeeeeeee.' If I stayed put, I’d be toast in 10 seconds. 'Yessssssseeeeeeeeeee.' If I tried to take a shot with the sergeant, I’d be toast in five. 'Yessssssseeeeeeeeeee.' If I made a break for the portal, the army would close in before I’d be able to take two steps. 'Yessssssseeeeeeeeeee.' Maybe I could come out with my hands up and take my chances with the Black Box?\"",
+      "word": "RETREATING",
+      "clue": "Pulling back away from an enemy force—what Jesse keeps doing until he reaches the big rock"
+    },
+    {
+      "type": "match",
+      "q": "Match each detail of the Tutorial cliffhanger with its meaning in the story:",
+      "pairs": [
+        {
+          "left": "Faint \"WHOOSH!\"",
+          "right": "Sound of Eric finally coming through the portal just as Jesse is about to step out of hiding",
+          "rightVariants": [
+            "Sound of Eric finally coming through the portal just as Jesse is about to step out of hiding",
+            "Quiet portal noise Jesse hears when the Hindenburg is only five steps from the rock",
+            "Arrival sound signaling that Eric made it into the Tutorial right in the nick of time",
+            "Portal sound that stops Jesse from surrendering to the Hindenburg and the Black Box"
+          ]
+        },
+        {
+          "left": "Waving Arms Like a Maniac",
+          "right": "How Eric silently signals a brilliant plan to Jesse from across the Tutorial area",
+          "rightVariants": [
+            "How Eric silently signals a brilliant plan to Jesse from across the Tutorial area",
+            "Frantic arm gestures Eric makes as soon as he appears so Jesse can figure out what to do",
+            "Wild silent communication that makes Jesse think, 'Eric, you big-boogered genius'",
+            "How Eric gets Jesse's attention and shares his idea without alerting the Hindenburg"
+          ]
+        },
+        {
+          "left": "\"Big-Boogered Genius\"",
+          "right": "Nickname Jesse mentally gives Eric once he understands what Eric is trying to communicate",
+          "rightVariants": [
+            "Nickname Jesse mentally gives Eric once he understands what Eric is trying to communicate",
+            "Funny compliment Jesse thinks to himself when Eric's arm-waving plan clicks ('wow')",
+            "What Jesse calls his best friend after realizing Eric found a third way out",
+            "Praise Jesse gives Eric right before ducking back behind the rock to carry out the idea"
+          ]
+        },
+        {
+          "left": "\"BLAST! I shot the sergeant.\"",
+          "right": "Shocking cliffhanger move Jesse makes behind the rock as his 'only one option left'",
+          "rightVariants": [
+            "Shocking cliffhanger move Jesse makes behind the rock as his 'only one option left'",
+            "What Jesse does with his own blaster instead of surrendering or charging the Hindenburg",
+            "Surprising final action after understanding Eric's signal—firing his blaster straight at the drill sergeant",
+            "Cliffhanger ending right before the 'Saving Progress...' icon appears"
+          ]
+        }
+      ],
+      "distractorVariants": [
+        "Eric drives the Hover Tank through the portal and flattens the big rock",
+        "Mark parachutes into the Tutorial wearing two jet packs at the same time",
+        "Jesse throws the sergeant's peashooter over the alien army to Eric",
+        "The drill sergeant suddenly wakes up from his programming and arrests the Hindenburg"
+      ],
+      "hint": "Connect the faint sound Jesse hears five steps from doom, Eric's frantic gestures, Jesse's funny nickname for Eric, and Jesse's shocking final shot.",
+      "pageTitle": "Chapter 16 — Pages 119–120 (One Option Left)",
+      "pageExcerpt": "\"Then, just as I was going to take my first step out of hiding, I heard a faint sound. WHOOSH! Eric had finally made it through the portal. As soon as he appeared at the beginning of the level, he started waving his arms like a maniac. It took me a second to understand what he was trying to communicate, but when I figured it out—wow. Eric, you big-boogered genius. I ducked back behind the rock... I had only one option left. BLAST! I shot the sergeant.\"",
+      "word": "MANIAC",
+      "clue": "Wild, frantic person—what Eric looks like waving his arms to signal his plan to Jesse"
+    },
+    {
+      "type": "mc",
+      "q": "Right as Jesse is about to surrender with the Hindenburg five steps away, who arrives through the portal ('WHOOSH!'), and what shocking action does Jesse take after understanding his friend's frantic arm-waving?",
+      "options": [
+        "Eric arrives waving his arms like a maniac; once Jesse understands the plan ('Eric, you big-boogered genius'), he ducks back behind the rock and shoots the drill sergeant with his blaster ('BLAST!').",
+        "Mark arrives carrying two bazookas; Jesse jumps out from behind the rock and shoots the Hindenburg's gas mask.",
+        "Eric arrives riding a praying mantis; Jesse tosses the sergeant over the aliens' heads so they can ride away.",
+        "The game developer arrives through the portal; Jesse shoots the sky to pause the game."
+      ],
+      "correct": 0,
+      "hint": "Jesse realizes he doesn't have to go down in a blaze of glory or run away like a coward—he has 'only one option left' right behind the rock.",
+      "pageTitle": "Chapter 16 — Pages 119–120 (I Shot the Sergeant)",
+      "pageExcerpt": "\"Eric had finally made it through the portal. As soon as he appeared at the beginning of the level, he started waving his arms like a maniac. It took me a second to understand what he was trying to communicate, but when I figured it out—wow. Eric, you big-boogered genius. I ducked back behind the rock. I wasn’t going to escape by going down in a blaze of glory or running away like a coward. 'Yessssssseeeeeeeeeee.' I had only one option left. BLAST! I shot the sergeant.\"",
+      "word": "SERGEANT",
+      "clue": "Robot-like military trainer in the Tutorial whom Jesse shoots at the cliffhanger ending"
+    }
+  ],
+  "readerHtml": "<h2>CHAPTER 15: The Only Way</h2>\n<h3>Page 103</h3>\n<p>Not great. Not great at all.</p>\n<p>After getting blasted, I joined Eric and Mark inside a bank vault at the beginning of the level, surrounded by alien guards. I tried shooting them.</p>\n<p><em>BLAST! BLAST! BLASTBLASTBLAST!</em></p>\n<p>“It’s no good,” Mark said. “They’re all protected against our blasters now.”</p>\n<p>A praying mantis came over and poked us. It leaned its weird alien head real close and sniffed before letting out a loud squawk and ripping off our utility belts. Then it left, and the Hindenburg came in. He slowly walked around the vault, looking us up and down.</p>\n<p>“Yyyyyyesssssseeeeeee,” he hissed through the gas mask, looking at me. A shiver ran down my spine. “Kaaaaaapaaaan Eeeeeerreeeeeek. Maaaaaahhhhhhk.” He turned around and walked out of the safe. A moment later, we heard the sound of loud drilling.</p>\n\n<h3>Page 104</h3>\n<p>“What’s that?” I asked.</p>\n<p>“If I had to guess,” Mark said, “he’s having them seal up the safe, and they’re going to toss it into the Black Box with us inside.”</p>\n<p>Eric started to panic. “We’ve got to do something!”</p>\n<p>Mark shrugged. “What can we do? All the weapons in the game are useless now.”</p>\n<p>That’s when an idea hit me. Well, not really an idea, but maybe like 10 percent of an idea. “Not all the weapons.”</p>\n<p>“Yeah,” Mark said. “All the weapons.”</p>\n<p>“<em>Almost</em> all the weapons. There may still be a way to escape yet. Eric, do you have any boogers?”</p>\n<p>The look on Eric’s face was a mixture of confusion that I would ask such a weird question and pride that he could produce giant boogers on demand. “Of course.”</p>\n<p>“Great,” I said. “I have 10 percent of an idea.”</p>\n<p>Eric and Mark gathered around me while I whispered my plan. It felt weird to be the one coming up with the idea for once. Weird but cool. After I had finished my plan, Mark stared at me with his mouth hanging open.</p>\n\n<h3>Page 105</h3>\n<p>“I mean, we don’t have to do it if you guys think it’s a bad idea,” I said.</p>\n<p>“I think it’s a crazy idea,” Mark said.</p>\n<p>“I know.”</p>\n<p>“I think it almost for sure won’t work,” he continued.</p>\n<p>“I know.”</p>\n<p>“But it’s our only chance.” He put his hand on my shoulder. “Thanks for giving us a chance to see our families again.”</p>\n<p>I grinned.</p>\n<p>“You’ve got good ideas, Jesse,” Mark said. “Never be afraid to share them.”</p>\n<p>Eric was already digging in his nose for gold. “Got one!”</p>\n<p>“Great!” I said as I moved behind the vault door with Mark. “OK, let’s see what you’ve got!”</p>\n<p>“WHOA, LOOK AT THIS!” Eric shouted with all the Hollywood skills he could muster. “I’VE NEVER SEEN ANYTHING LIKE IT!”</p>\n\n<h3>Page 106</h3>\n<p>The drilling noises outside stopped. I motioned to Eric to keep going.</p>\n<p>“WHAT DO YOU THINK IT MEANS?” By now, he was holding the booger far away from his face and talking to it like he was in a Shakespeare play or something. “UH, WOW, IT’S SO BEAUTIFUL. IT’S SOOOOOO BEAUTIFUL.”</p>\n<p>The vault door cracked open, and a praying mantis peeked in. Eric didn’t notice it because he was now in full acting mode. Mark and I squeezed farther behind the door.</p>\n<p>“TO PICK OR NOT TO PICK, THAT IS THE QUESTION!”</p>\n<p>The praying mantis opened the door wider and walked in. It was soon joined by two of its friends.</p>\n<p>“A BOOGER BY ANY OTHER NAME WOULD SMELL AS SWEET!”</p>\n<p>They got closer. And who could blame them? It was an impressive booger. All three aliens now had their backs to Mark and me. Just a few more steps...</p>\n<p>“O BOOGER, BOOGER! WHEREFORE ART THOU, BOOGER!”</p>\n\n<h3>Page 107</h3>\n<p>“NOW!”</p>\n<p>Mark and I jumped out of hiding and onto the backs of the two mantises closest to us. They squawked and tried to spin, but we grabbed onto their antennae. That was the key to riding them like horses, Mark had explained earlier—grabbing the antennae. When he saw us jump into action, Eric smashed the booger into the eye of the praying mantis closest to him, snagged the antennae, and spun around onto its back.</p>\n<p>“Follow me!” Mark shouted.</p>\n\n<h3>Page 108</h3>\n<p>We galloped out of the vault and past a horde of surprised aliens in the bank lobby. We almost hit the Hindenburg on our way out the door.</p>\n<p>“This way!” Mark yelled as he turned left down the street. Aliens poured out of the bank behind us. We were on the set of a heist movie, and this was our car chase. We tore through the movie set while swarms of aliens flooded the streets behind us.</p>\n<p>“Through here!” Mark shouted as he turned down an alley. The alley squeezed between two stone buildings and led us into the courtyard of a medieval movie. Without letting his praying mantis break stride, Mark grabbed a lance from a stand as he passed by. Eric and I followed his example. When we rounded the corner of a medieval stable, we almost ran into three fire-breathing aliens lumbering around the other side to meet us.</p>\n<p><em>CLANG! CLANG! CLANG!</em></p>\n<p>We sent them all to the ground with our lances.</p>\n<p>Mark continued galloping toward the castle. He turned around and gave us a head nod to signal that we should follow his example. Unfortunately, his example was “gallop full speed at the deep moat.” Mark pushed his praying mantis faster and faster as he neared the</p>\n\n<h3>Page 109</h3>\n<p>castle until there was no chance he could stop before falling into the moat.</p>\n<p>“MARK!” I shouted as his praying mantis went over the edge, and Mark jumped off its back. He tucked into a ball and aimed for a spot in the moat wall. Sure enough, he’d found another shortcut. His body disappeared behind the wall.</p>\n<p>Before I could reconsider following Mark’s crazy cannonball maneuver, my praying mantis also jumped over the edge of the moat. I leaped off its back toward the spot where Mark disappeared, praying I had aimed correctly.</p>\n<p>“OOF!”</p>\n<p>It wasn’t graceful, but I did it. One second later—“OOF!”—Eric joined us.</p>\n<p>We ran in the darkness underneath the level until we came to a trapdoor.</p>\n<p>“This is it,” Mark said. “We’re almost to the end of the level.”</p>\n<p>I couldn’t believe that my plan was actually working! Just a couple more feet! My optimism lasted for all of 10 seconds, until I cracked open the trapdoor.</p>\n\n<h3>Page 110</h3>\n<p>We were back on the Western set across the street from the glowing portals. But between us and the portals stood a massive alien army.</p>\n<p>I closed the trapdoor. “They figured out that we were coming here.”</p>\n<p>“How many are there?” Mark asked.</p>\n<p>“I don’t know, hundreds maybe?”</p>\n<p>Eric sank to the ground. “Is there any other way to get to where we need to go besides the portals?”</p>\n<p>Mark shook his head. “That’s it.”</p>\n<p>“So we’re trapped underneath the level instead of a Black Box,” Eric said with his head in his hands.</p>\n<p>“No,” Mark said. “No, you’re not.” He walked to the trapdoor and cracked it open.</p>\n<p>“What are you doing?” I asked.</p>\n<p>“Getting you out of here.”</p>\n<p>“How are you...”</p>\n<p>“After I jump out, I want you two to wait exactly three seconds before running like crazy to the portals,” Mark said.</p>\n\n<h3>Page 111</h3>\n<p>“Where will you meet us?”</p>\n<p>Mark shook his head. “I’m not meeting you.” He was starting to get emotional, but it was clear that he had already made up his mind. “Just please don’t tell my parents. I don’t want them to think I’m suffering.”</p>\n<p>“Mark, what are you talking about?” Eric stood up. “We’re all leaving together.”</p>\n<p>“This is the only way,” Mark said.</p>\n<p>With that, he threw open the trapdoor and jumped out.</p>\n\n<hr style=\"border-color:#1e293b; margin:1.4rem 0;\" />\n\n<h2>CHAPTER 16: Back for More</h2>\n<h3>Page 113</h3>\n<p>I grabbed Mark’s leg, but he was too fast and strong. Before I could say anything, he had already jumped out of the trapdoor and started to run away from the portals.</p>\n<p>The aliens noticed him immediately.</p>\n<p>“MARK!” Eric yelled.</p>\n<p>Mark didn’t slow down. He ran through a crowd of aliens directly to a jet pack.</p>\n<p>“Come on,” I said to Eric.</p>\n<p>“But Mark...”</p>\n<p>“Mark is doing this for us. Let’s not ruin it.”</p>\n<p>By now, Mark had reached the jet pack, strapped it on, and started to fly away. Before he could get too far, an alien grabbed him by the foot and tried dragging him back into the scrum. Mark pushed the jet pack harder,</p>\n\n<h3>Page 114</h3>\n<p>flopping in the air and blowing exhaust in the aliens’ faces.</p>\n<p>While Mark was single-handedly giving the alien army all they could handle, Eric and I made a break for the portals. Mark’s distraction provided only a slight opening, but that was all we needed. We were halfway across the street before the first alien stepped up. With no weapons to defeat the alien and no way around him, I tried the only other video game move I knew. I jumped on his head like Mario.</p>\n<p><em>BOING! SQUAWK!</em></p>\n\n<h3>Page 115</h3>\n<p>I didn’t kill him, but I sure confused him. There was no time to celebrate because, before I had even landed, another alien showed up behind him.</p>\n<p><em>BOING! SQUAWK!</em></p>\n<p>And another.</p>\n<p><em>BOING! SQUAWK!</em></p>\n<p>Almost there! The last bit of road was completely clear until—</p>\n<p>“HISSSSSSSSSS!”</p>\n<p>The Hindenburg rolled in front of me, blocking the path to the next level. I sprinted at him screaming.</p>\n<p>“AHHHHH!”</p>\n<p>He reached out to grab me. Just before he could close his arms, however, I ducked and rolled. Much to his surprise, I wasn’t going to the next level.</p>\n<p><em>WHOOSH!</em></p>\n<p>I rolled through the portal to the left—the one that led to all the previous levels. This time while I was falling, doors for previous levels rushed by: 8, 7, 6, 5, 4, 3, 2, 1. I wasn’t interested in any of them. Finally, I saw it.</p>\n\n<h3>Page 116</h3>\n<p>TUTORIAL.</p>\n<p>I grabbed the door and swung in.</p>\n<p>Barracks. Sand. Sunshine. Everything was exactly as I had remembered it. Everything except the sergeant. Where was he?</p>\n<p>“You back for more, maggot?!”</p>\n<p>There. Across the base. I ran to meet him.</p>\n<p>“I need your gun.”</p>\n<p>“You can practice your skills any time at the firing range.”</p>\n<p>“I don’t have time to explain! I just need your gun!”</p>\n<p>After our failed ambush, the Hindenburg had learned about every weapon in the game. Every weapon, that is, except the one so basic that the game won’t even let you use it—the sergeant’s peashooter.</p>\n<p>“You can practice your skills any time at the firing range.”</p>\n<p>Time had run out. An alien showed up in the portal.</p>\n<p>I tried grabbing the gun from the sergeant. He had a vice grip, almost as if the gun were glued to his hands.</p>\n\n<h3>Page 117</h3>\n<p>Another alien appeared and then another and another and then the Hindenburg himself.</p>\n<p>“You can practice your skills...”</p>\n<p>Eric had been right. The sergeant was just a robot programmed to do one thing. The first alien through the door—a jumping lizard-looking thing—noticed us and started sprinting in our direction with windmill legs. I turned back to the sergeant and tried again to wrestle away the gun. When I turned around again, the alien was already in midair, just a few feet away. In one motion, I grabbed the sergeant and fell to the ground, using him as a shield.</p>\n<p>As soon as the sergeant’s peashooter was pointed at the alien, he shot.</p>\n<p><em>PING!</em></p>\n<p>And his weapon, which to this point had done nothing more than poke holes in cardboard, vaporized the alien in an instant.</p>\n<p><em>SQUAWK!</em></p>\n<p>I turned the sergeant around. “That was great! How did you know to do that?”</p>\n\n<h3>Page 118</h3>\n<p>“You can practice your skills...”</p>\n<p>Whatever. I picked him up by the legs and spun him around to face the oncoming alien army.</p>\n<p><em>PING! PING! PING!</em></p>\n<p><em>SQUAWK! SQUAWK! SQUAWK!</em></p>\n<p>It was working! Kind of! The aliens were pouring in so fast that for every one that the sergeant vaporized, four more would take its place. I kept retreating with the sergeant until we found ourselves behind a big rock. The aliens closed in, chirping louder and louder with every step they took.</p>\n<p>Then, silence.</p>\n<p>I peeked around the corner of the rock. The aliens had parted ways, and the Hindenburg was approaching.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n<p>I weighed my options. They were not great.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n<p>If I stayed put, I’d be toast in 10 seconds.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n\n<h3>Page 119</h3>\n<p>If I tried to take a shot with the sergeant, I’d be toast in five.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n<p>If I made a break for the portal, the army would close in before I’d be able to take two steps.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n<p>Maybe I could come out with my hands up and take my chances with the Black Box? I peeked out again to see the Hindenburg only five steps away. Then, just as I was going to take my first step out of hiding, I heard a faint sound.</p>\n<p><em>WHOOSH!</em></p>\n<p>Eric had finally made it through the portal. As soon as he appeared at the beginning of the level, he started waving his arms like a maniac. It took me a second to understand what he was trying to communicate, but when I figured it out—wow. Eric, you big-boogered genius. I ducked back behind the rock. I wasn’t going to escape by going down in a blaze of glory or running away like a coward.</p>\n<p>“Yessssssseeeeeeeeeee.”</p>\n\n<h3>Page 120</h3>\n<p>I had only one option left.</p>\n<p><em>BLAST!</em></p>\n<p>I shot the sergeant.</p>\n<p><em>[Saving Progress... Do not close book while save icon is on the page]</em></p>"
+};
 
 const BUILT_IN_CH13_14_QUIZ = {
   "id": "trapped_videogame_ch13_14",
@@ -8811,11 +9336,11 @@ function getAllQuizzes() {
     questions: chapterOneQuestions,
     readerHtml: defaultChapter1ReaderHtml
   };
-  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch13_14' && q.id !== 'trapped_videogame_ch10_11_12' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
-  return [BUILT_IN_CH13_14_QUIZ, BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
+  const extraR = customQuizzes.filter(q => q && (q.instance || 'R') === 'R' && q.id !== 'trapped_videogame_ch15_16' && q.id !== 'trapped_videogame_ch13_14' && q.id !== 'trapped_videogame_ch10_11_12' && q.id !== 'trapped_videogame_ch7_8_9' && q.id !== 'trapped_videogame_ch5_6' && q.id !== 'trapped_videogame_ch3_4' && q.id !== 'default_ch1');
+  return [BUILT_IN_CH15_16_QUIZ, BUILT_IN_CH13_14_QUIZ, BUILT_IN_CH10_11_12_QUIZ, BUILT_IN_CH7_8_9_QUIZ, BUILT_IN_CH5_6_QUIZ, BUILT_IN_CH3_4_QUIZ, defaultQuiz, ...extraR];
 }
 
-const CURRENT_DEFAULT_R_QUIZ_ID = 'trapped_videogame_ch13_14';
+const CURRENT_DEFAULT_R_QUIZ_ID = 'trapped_videogame_ch15_16';
 
 function loadLocalQuizzes() {
   try {
@@ -8915,7 +9440,7 @@ async function fetchCloudQuizzesLibrary() {
       const lastSeenCloudUpdate = localStorage.getItem('rs_apps_cloud_updated_at') || '';
       const cloudActiveForInst = currentInstance === 'D'
         ? (data.activeQuizIdD || 'd_history_trivia_mc')
-        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch13_14');
+        : (data.activeQuizIdR || data.activeQuizId || 'trapped_videogame_ch15_16');
       if (data.updatedAt && data.updatedAt !== lastSeenCloudUpdate) {
         localStorage.setItem('rs_apps_cloud_updated_at', data.updatedAt);
         if (cloudActiveForInst) {
