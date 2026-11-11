@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Learning Site" />
+<meta name="application-name" content="Learning Site" />
+<meta name="theme-color" content="#050b14" />
 <title>Learning Site</title>
 <!-- PDF.js library for client-side PDF parsing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -1659,7 +1665,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:17 PM - 11/11/2026</div>
+<div class="build-timestamp">Actualizado: 06:30 PM - 11/11/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1703,7 +1709,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:17 PM - 11/11/2026
+      Actualizado: 06:30 PM - 11/11/2026
     </div>
   </div>
 </div>
@@ -2547,12 +2553,29 @@ function handleAuthKeyDown(e) {
   }
 }
 
-// Web Audio Synthesizer
+// Web Audio Synthesizer & Fixed 80% App Master Volume (Browser + Home Screen PWA)
+const FIXED_APP_VOLUME = 0.80;
+const IS_MEDIA_VOLUME_READONLY = (() => {
+  try {
+    const probe = document.createElement('audio');
+    probe.volume = 0.5;
+    return Math.abs(probe.volume - 0.5) > 0.01;
+  } catch (e) {
+    return true;
+  }
+})();
+
 let audioCtx = null;
-function getAudioContext() {
+let appMasterGainNode = null;
+
+function ensurePlaybackAudioSession() {
   if (typeof navigator !== 'undefined' && navigator.audioSession) {
     try { navigator.audioSession.type = 'playback'; } catch (e) {}
   }
+}
+
+function getAudioContext() {
+  ensurePlaybackAudioSession();
   if (!audioCtx) {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (AudioContextClass) audioCtx = new AudioContextClass();
@@ -2561,6 +2584,186 @@ function getAudioContext() {
     try { audioCtx.resume().catch(() => {}); } catch (e) {}
   }
   return audioCtx;
+}
+
+function getMasterGainNode(ctx) {
+  const targetCtx = ctx || getAudioContext();
+  if (!targetCtx) return null;
+  if (!appMasterGainNode || appMasterGainNode.context !== targetCtx) {
+    appMasterGainNode = targetCtx.createGain();
+    appMasterGainNode.gain.setValueAtTime(FIXED_APP_VOLUME, targetCtx.currentTime);
+    appMasterGainNode.connect(targetCtx.destination);
+  } else if (Math.abs(appMasterGainNode.gain.value - FIXED_APP_VOLUME) > 0.005) {
+    appMasterGainNode.gain.setValueAtTime(FIXED_APP_VOLUME, targetCtx.currentTime);
+  }
+  return appMasterGainNode;
+}
+
+function lockMediaElementVolume(audioEl, targetVol = FIXED_APP_VOLUME) {
+  if (!audioEl) return;
+  audioEl._volumeLockTarget = targetVol;
+  try {
+    if (audioEl.muted) audioEl.muted = false;
+    if (!IS_MEDIA_VOLUME_READONLY && Math.abs(audioEl.volume - targetVol) > 0.005) {
+      audioEl.volume = targetVol;
+    }
+  } catch (e) {}
+  if (!audioEl._hasVolumeLockListener) {
+    audioEl._hasVolumeLockListener = true;
+    audioEl.addEventListener('volumechange', () => {
+      const desired = typeof audioEl._volumeLockTarget === 'number' ? audioEl._volumeLockTarget : FIXED_APP_VOLUME;
+      try {
+        if (audioEl.muted) audioEl.muted = false;
+        if (!IS_MEDIA_VOLUME_READONLY && Math.abs(audioEl.volume - desired) > 0.005) {
+          audioEl.volume = desired;
+        }
+      } catch (e) {}
+    });
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    ensurePlaybackAudioSession();
+    if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) {
+      try { audioCtx.resume().catch(() => {}); } catch (e) {}
+    }
+  }
+});
+window.addEventListener('pageshow', () => {
+  ensurePlaybackAudioSession();
+  if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) {
+    try { audioCtx.resume().catch(() => {}); } catch (e) {}
+  }
+});
+
+// iOS/iPadOS WebKit (Safari & Home Screen PWA) ignores HTMLAudioElement.volume (always read-only 1.0).
+// Pre-decode embedded base64 MP3 clips via OfflineAudioContext into 80%-scaled 16-bit mono WAV Blob URLs so <audio> plays at exact 80% synchronously.
+let sharedOfflineDecodeCtx = null;
+const scaledFeedbackWavCache = new Map();
+const scaledSpellingWavCache = new Map();
+const inflightScaledWavPromises = new Map();
+const MAX_SPELLING_WAV_CACHE = 40;
+
+function getOfflineDecodeContext() {
+  if (!sharedOfflineDecodeCtx) {
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (OfflineCtx) {
+      try { sharedOfflineDecodeCtx = new OfflineCtx(1, 1, 24000); } catch (e) {}
+    }
+  }
+  return sharedOfflineDecodeCtx;
+}
+
+function dataUriToArrayBuffer(dataUri) {
+  const commaIdx = dataUri.indexOf(',');
+  const b64 = commaIdx >= 0 ? dataUri.slice(commaIdx + 1) : dataUri;
+  const bin = atob(b64);
+  const len = bin.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes.buffer;
+}
+
+function decodeMp3DataUriToAudioBuffer(dataUri) {
+  return new Promise((resolve, reject) => {
+    try {
+      const decCtx = getOfflineDecodeContext() || getAudioContext();
+      if (!decCtx) return reject(new Error('No AudioContext available'));
+      const rawBuf = dataUriToArrayBuffer(dataUri);
+      let settled = false;
+      const done = (buf) => { if (!settled) { settled = true; resolve(buf); } };
+      const fail = (err) => { if (!settled) { settled = true; reject(err || new Error('decodeAudioData failed')); } };
+      const p = decCtx.decodeAudioData(rawBuf.slice(0), done, fail);
+      if (p && typeof p.then === 'function') p.then(done, fail);
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+function encodeAudioBufferToScaledWavBlobUrl(audioBuffer, scale = FIXED_APP_VOLUME) {
+  const sr = audioBuffer.sampleRate || 24000;
+  const numCh = audioBuffer.numberOfChannels || 1;
+  const totalSamples = audioBuffer.length;
+  const ch0 = audioBuffer.getChannelData(0);
+  const ch1 = numCh > 1 ? audioBuffer.getChannelData(1) : null;
+
+  const wavBytes = new ArrayBuffer(44 + totalSamples * 2);
+  const view = new DataView(wavBytes);
+  const writeStr = (off, s) => { for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i)); };
+  writeStr(0, 'RIFF');
+  view.setUint32(4, 36 + totalSamples * 2, true);
+  writeStr(8, 'WAVE');
+  writeStr(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sr, true);
+  view.setUint32(28, sr * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, 'data');
+  view.setUint32(40, totalSamples * 2, true);
+
+  let offset = 44;
+  for (let i = 0; i < totalSamples; i++) {
+    const mono = ch1 ? (ch0[i] + ch1[i]) * 0.5 : ch0[i];
+    const s = Math.max(-1, Math.min(1, mono * scale));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    offset += 2;
+  }
+  return URL.createObjectURL(new Blob([wavBytes], { type: 'audio/wav' }));
+}
+
+function getOrDecodeScaledMp3Url(dataUri, isPermanent = false) {
+  if (!dataUri || !IS_MEDIA_VOLUME_READONLY) return Promise.resolve(dataUri);
+  const targetCache = isPermanent ? scaledFeedbackWavCache : scaledSpellingWavCache;
+  if (targetCache.has(dataUri)) return Promise.resolve(targetCache.get(dataUri));
+  if (inflightScaledWavPromises.has(dataUri)) return inflightScaledWavPromises.get(dataUri);
+
+  const prom = decodeMp3DataUriToAudioBuffer(dataUri)
+    .then(audioBuf => {
+      const url = encodeAudioBufferToScaledWavBlobUrl(audioBuf, FIXED_APP_VOLUME);
+      if (!isPermanent && targetCache.size >= MAX_SPELLING_WAV_CACHE) {
+        const oldestKey = targetCache.keys().next().value;
+        const oldestUrl = targetCache.get(oldestKey);
+        targetCache.delete(oldestKey);
+        if (oldestUrl && oldestUrl.startsWith('blob:')) {
+          try { URL.revokeObjectURL(oldestUrl); } catch (e) {}
+        }
+      }
+      targetCache.set(dataUri, url);
+      inflightScaledWavPromises.delete(dataUri);
+      return url;
+    })
+    .catch(() => {
+      inflightScaledWavPromises.delete(dataUri);
+      return dataUri;
+    });
+
+  inflightScaledWavPromises.set(dataUri, prom);
+  return prom;
+}
+
+function warmUpCurrentSpellingWordAudio(wordStr) {
+  if (!IS_MEDIA_VOLUME_READONLY || !wordStr) return;
+  const rawUpper = String(wordStr).trim().toUpperCase();
+  const embeddedMap = window.SPELLING_WORDS_AUDIO || {};
+  if (embeddedMap[rawUpper]) {
+    getOrDecodeScaledMp3Url(embeddedMap[rawUpper], false);
+  }
+}
+
+function prewarmScaledFeedbackAudioCache() {
+  if (!IS_MEDIA_VOLUME_READONLY) return;
+  const pools = [
+    ...(TTS_FEEDBACK_AUDIO && Array.isArray(TTS_FEEDBACK_AUDIO.correct) ? TTS_FEEDBACK_AUDIO.correct : []),
+    ...(TTS_FEEDBACK_AUDIO && Array.isArray(TTS_FEEDBACK_AUDIO.wrong) ? TTS_FEEDBACK_AUDIO.wrong : [])
+  ];
+  pools.forEach((uri, idx) => {
+    setTimeout(() => { getOrDecodeScaledMp3Url(uri, true); }, idx * 35);
+  });
 }
 
 const SPELLING_WORD_PRONUNCIATION = {
@@ -2574,12 +2777,14 @@ const SPELLING_WORD_PRONUNCIATION = {
 
 let activeSpellingUtterance = null;
 let spellingWordAudio = null;
+let activeSpellingBufferSource = null;
 
 function getSpellingWordAudio() {
   if (!spellingWordAudio) {
     spellingWordAudio = new Audio();
     spellingWordAudio.playsInline = true;
     spellingWordAudio.preload = 'auto';
+    lockMediaElementVolume(spellingWordAudio, IS_MEDIA_VOLUME_READONLY ? 1.0 : FIXED_APP_VOLUME);
   }
   return spellingWordAudio;
 }
@@ -2595,15 +2800,56 @@ function speakCurrentSpellingWord() {
 
   const rawUpper = String(currentTargetWord).trim().toUpperCase();
   const embeddedMap = window.SPELLING_WORDS_AUDIO || {};
+  const rawSrc = embeddedMap[rawUpper];
 
-  // 1. Primary: play embedded high-clarity MP3 audio via dedicated HTML5 <audio>
-  if (embeddedMap[rawUpper]) {
+  // 1. Primary: play embedded high-clarity MP3 audio fixed at 80% volume
+  if (rawSrc) {
     try {
+      if (activeSpellingBufferSource) {
+        try { activeSpellingBufferSource.stop(); } catch (e) {}
+        activeSpellingBufferSource = null;
+      }
       const audioEl = getSpellingWordAudio();
       audioEl.pause();
-      audioEl.src = embeddedMap[rawUpper];
+
+      if (IS_MEDIA_VOLUME_READONLY) {
+        if (scaledSpellingWavCache.has(rawSrc)) {
+          audioEl.src = scaledSpellingWavCache.get(rawSrc);
+          lockMediaElementVolume(audioEl, 1.0);
+          audioEl.currentTime = 0;
+          audioEl.onended = clearBtnState;
+          audioEl.onerror = clearBtnState;
+          setTimeout(clearBtnState, 1600);
+          const p = audioEl.play();
+          if (p && typeof p.catch === 'function') {
+            p.catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
+          }
+          return;
+        }
+        // First-millisecond fallback on iOS before warm-up completes: decode & play through Master GainNode (0.80) while caching WAV blob
+        const ctx = getAudioContext();
+        if (ctx) {
+          decodeMp3DataUriToAudioBuffer(rawSrc)
+            .then(audioBuf => {
+              if (!scaledSpellingWavCache.has(rawSrc)) {
+                scaledSpellingWavCache.set(rawSrc, encodeAudioBufferToScaledWavBlobUrl(audioBuf, FIXED_APP_VOLUME));
+              }
+              const srcNode = ctx.createBufferSource();
+              srcNode.buffer = audioBuf;
+              srcNode.connect(getMasterGainNode(ctx));
+              activeSpellingBufferSource = srcNode;
+              srcNode.onended = clearBtnState;
+              setTimeout(clearBtnState, 1600);
+              srcNode.start(0);
+            })
+            .catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
+          return;
+        }
+      }
+
+      audioEl.src = rawSrc;
       audioEl.currentTime = 0;
-      audioEl.volume = 1.0;
+      lockMediaElementVolume(audioEl, FIXED_APP_VOLUME);
       audioEl.onended = clearBtnState;
       audioEl.onerror = clearBtnState;
       setTimeout(clearBtnState, 1600);
@@ -2635,7 +2881,7 @@ function speakWithWebSpeechFallback(rawUpper, clearBtnState) {
       utter.lang = 'en-US';
       utter.rate = 0.85;
       utter.pitch = 1.0;
-      utter.volume = 1.0;
+      utter.volume = FIXED_APP_VOLUME;
 
       const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
       if (voices && voices.length > 0) {
@@ -2734,7 +2980,7 @@ function buildSfxWavUrl(kind) {
 
   let offset = 44;
   for (let i = 0; i < totalSamples; i++) {
-    const s = Math.max(-1, Math.min(1, samples[i]));
+    const s = Math.max(-1, Math.min(1, samples[i] * FIXED_APP_VOLUME));
     view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
     offset += 2;
   }
@@ -2753,6 +2999,7 @@ function getSfxAudioElement(kind) {
     a.playsInline = true;
     a.preload = 'auto';
     a.src = buildSfxWavUrl(kind);
+    lockMediaElementVolume(a, 1.0);
     sfxAudioElements[kind] = a;
   }
   return sfxAudioElements[kind];
@@ -2769,9 +3016,7 @@ function isVoiceFeedbackPlaying() {
 function playSfxViaMediaAudio(kind, fallbackFn) {
   try {
     if (typeof songIsPlaying !== 'undefined' && songIsPlaying) return;
-    if (typeof navigator !== 'undefined' && navigator.audioSession) {
-      try { navigator.audioSession.type = 'playback'; } catch (e) {}
-    }
+    ensurePlaybackAudioSession();
     // If TTS voice feedback is currently speaking, use Web Audio oscillator so iOS/iPadOS never pauses the voice <audio> element!
     if (isVoiceFeedbackPlaying()) {
       if (typeof fallbackFn === 'function') fallbackFn();
@@ -2779,7 +3024,7 @@ function playSfxViaMediaAudio(kind, fallbackFn) {
     }
     const audioEl = getSfxAudioElement(kind);
     audioEl.currentTime = 0;
-    audioEl.volume = 0.9;
+    lockMediaElementVolume(audioEl, 1.0);
     const p = audioEl.play();
     if (p && typeof p.catch === 'function') {
       p.catch(() => {
@@ -2804,7 +3049,7 @@ function playTone(freq, type, duration, endFreq) {
     gain.gain.setValueAtTime(0.15, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
     osc.connect(gain);
-    gain.connect(ctx.destination);
+    gain.connect(getMasterGainNode(ctx) || ctx.destination);
     osc.start(now);
     osc.stop(now + duration);
   } catch(e) {}
@@ -2861,12 +3106,14 @@ let currentVoiceAudio = null;
 let feedbackVoiceAudio = null;
 let isVoiceFeedbackActive = false;
 let voiceFeedbackTimer = null;
+let feedbackVoiceReqSeq = 0;
 
 function getSharedMediaAudio() {
   if (!currentVoiceAudio) {
     currentVoiceAudio = new Audio();
     currentVoiceAudio.playsInline = true;
     currentVoiceAudio.preload = 'auto';
+    lockMediaElementVolume(currentVoiceAudio, 1.0);
   }
   return currentVoiceAudio;
 }
@@ -2876,6 +3123,7 @@ function getFeedbackVoiceAudio() {
     feedbackVoiceAudio = new Audio();
     feedbackVoiceAudio.playsInline = true;
     feedbackVoiceAudio.preload = 'auto';
+    lockMediaElementVolume(feedbackVoiceAudio, IS_MEDIA_VOLUME_READONLY ? 1.0 : FIXED_APP_VOLUME);
   }
   return feedbackVoiceAudio;
 }
@@ -2985,9 +3233,6 @@ function startFeedbackVoiceClip(isCorrect, idx, startOffsetSec = 0) {
       if (!isPageUnloading && !audioEl.paused) finishVoice();
     };
 
-    audioEl.src = rawPool[safeIdx];
-    audioEl.volume = 1.0;
-
     const seekAndPlay = () => {
       const targetOffset = (audioEl._voiceMeta && audioEl._voiceMeta.offset) || clampedOffset;
       if (targetOffset > 0.05) {
@@ -3028,10 +3273,29 @@ function startFeedbackVoiceClip(isCorrect, idx, startOffsetSec = 0) {
       }
     };
 
-    if (clampedOffset > 0.05 && audioEl.readyState < 1) {
-      audioEl.addEventListener('loadedmetadata', seekAndPlay, { once: true });
+    const rawSrc = rawPool[safeIdx];
+    const reqId = ++feedbackVoiceReqSeq;
+    const armAndPlayWithSrc = (resolvedSrc, isPreScaledWav) => {
+      if (reqId !== feedbackVoiceReqSeq || !isVoiceFeedbackActive) return;
+      audioEl.src = resolvedSrc;
+      lockMediaElementVolume(audioEl, isPreScaledWav ? 1.0 : FIXED_APP_VOLUME);
+      if (clampedOffset > 0.05 && audioEl.readyState < 1) {
+        audioEl.addEventListener('loadedmetadata', seekAndPlay, { once: true });
+      } else {
+        seekAndPlay();
+      }
+    };
+
+    if (IS_MEDIA_VOLUME_READONLY) {
+      if (scaledFeedbackWavCache.has(rawSrc)) {
+        armAndPlayWithSrc(scaledFeedbackWavCache.get(rawSrc), true);
+      } else {
+        getOrDecodeScaledMp3Url(rawSrc, true).then(scaledUrl => {
+          armAndPlayWithSrc(scaledUrl, scaledUrl !== rawSrc);
+        });
+      }
     } else {
-      seekAndPlay();
+      armAndPlayWithSrc(rawSrc, false);
     }
   } catch (e) {
     isVoiceFeedbackActive = false;
@@ -4328,6 +4592,7 @@ function renderQuestion() {
   } else {
     if (spellingBox) spellingBox.style.display = 'flex';
     currentTargetWord = (q.word || 'STUDY').toUpperCase();
+    warmUpCurrentSpellingWordAudio(currentTargetWord);
     document.getElementById('spellingClueText').textContent = `Clue: ${q.clue}`;
     document.getElementById('spellingStatus').textContent = "Unsolved (0/1 pt)";
     document.getElementById('spellingStatus').style.color = "#38bdf8";
@@ -5630,7 +5895,7 @@ function buildGradeSongWavUrl(grade) {
 
   let offset = 44;
   for (let i = 0; i < totalSamples; i++) {
-    let s = Math.max(-1, Math.min(1, mix[i]));
+    let s = Math.max(-1, Math.min(1, mix[i] * FIXED_APP_VOLUME));
     view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
     offset += 2;
   }
@@ -5667,8 +5932,8 @@ function startGradeSong(grade, withVoiceAnnouncement) {
     const ctx = getAudioContext();
     if (!ctx) return;
     songMasterGain = ctx.createGain();
-    songMasterGain.gain.setValueAtTime(0.80, ctx.currentTime);
-    songMasterGain.connect(ctx.destination);
+    songMasterGain.gain.setValueAtTime(1.0, ctx.currentTime);
+    songMasterGain.connect(getMasterGainNode(ctx) || ctx.destination);
     songNextNoteTime = ctx.currentTime + 0.05;
     runSongScheduler();
   };
@@ -5679,7 +5944,7 @@ function startGradeSong(grade, withVoiceAnnouncement) {
     audioEl.pause();
     audioEl.src = wavUrl;
     audioEl.currentTime = 0;
-    audioEl.volume = 0.95;
+    lockMediaElementVolume(audioEl, 1.0);
     const playPromise = audioEl.play();
     if (playPromise && typeof playPromise.catch === 'function') {
       playPromise.catch(() => {
@@ -5731,10 +5996,10 @@ function toggleGradeSong() {
     } else {
       const ctx = getAudioContext();
       if (!ctx) return;
-      if (!songMasterGain) {
+      if (!songMasterGain || songMasterGain.context !== ctx) {
         songMasterGain = ctx.createGain();
-        songMasterGain.gain.setValueAtTime(0.75, ctx.currentTime);
-        songMasterGain.connect(ctx.destination);
+        songMasterGain.gain.setValueAtTime(1.0, ctx.currentTime);
+        songMasterGain.connect(getMasterGainNode(ctx) || ctx.destination);
       }
       songIsPlaying = true;
       songNextNoteTime = ctx.currentTime + 0.05;
@@ -10726,6 +10991,7 @@ function disableAllKeyboardSuggestions() {
 window.onload = function() {
   applyResponsiveViewportScale();
   disableAllKeyboardSuggestions();
+  prewarmScaledFeedbackAudioCache();
   const readerArea = document.getElementById('readerScrollArea');
   if (readerArea) defaultChapter1ReaderHtml = readerArea.innerHTML;
   checkUrlHashSetup();
