@@ -16,8 +16,8 @@
 
 2. **Reglas de Matching Columns (`match`):**
    - La columna izquierda tiene **4 opciones** y la columna derecha tiene **5 opciones** (las 4 respuestas verdaderas + **1 opción extra distractora** `distractorVariants` que no coincide con ninguna opción de la columna izquierda).
-   - Cada línea de la columna izquierda da **1 sola oportunidad libre** para equivocarse; a partir del **segundo intento fallido (`2nd wrong try`) en adelante** en esa línea, se descuentan **`0.25` puntos** (`-0.25 pt`) por cada error adicional.
-   - Cuando el usuario comete un error al emparejar las columnas, las parejas ya respondidas correctamente **NO se reinician, NO se reorganizan de posición y NO cambian su redacción** (`solvedPairs` se mantiene intacto); únicamente se reorganizan y cambian de redacción (`rightVariants` / `distractorVariants`) las opciones que aún no han sido respondidas correctamente.
+   - Cada opción de la columna izquierda permite un **máximo de 3 intentos**: el **1.er intento fallido** es libre (`0 pt`), el **2.º intento fallido** descuenta **`-0.25 pt`**, y al **3.er intento fallido** esa opción de la columna izquierda queda **marcada como incorrecta (`✗ Wrong` / `failedPairs`)** perdiendo su punto completo (`-1.0 pt` de los `4.0 pts`, absorbiendo su `-0.25 pt` previo) y haciendo que la pregunta pase a `Review Missed` al enviarse.
+   - Cuando el usuario comete un error al emparejar las columnas, las parejas ya respondidas correctamente (`solvedPairs`) y las marcadas incorrectas en la columna izquierda (`failedPairs`) **NO se reinician, NO se reorganizan de posición y NO cambian su redacción**; únicamente se reorganizan y cambian de redacción (`rightVariants` / `distractorVariants`) las opciones que aún siguen activas.
 
 3. **Reglas de Deletreo (`Spelling`) y `Submit Answer`:**
    - En el área de `Spelling` para el usuario `R`, existe un botón únicamente con el icono de bocina (`🔊`) que pronuncia la palabra en voz alta al hacer clic o tocarlo.
@@ -27,7 +27,7 @@
 
 4. **Reglas de `Review Missed`, `Hint`, `Reread chapter` y Sin Referencias de Ubicación:**
    - `Review Missed` está bloqueado hasta que el usuario termine el quiz completo (`isQuizCompleted === true`).
-   - Los botones `Hint` y `Reread chapter` permanecen disponibles mientras se responde la pregunta, pero **se deshabilitan inmediatamente después de enviar la respuesta (`Submit Answer` / `isQuizAnswered === true`)** o al completar todas las parejas de una pregunta `Matching Columns`.
+   - Los botones `Hint` y `Reread chapter` permanecen disponibles mientras se responde la pregunta, pero **se deshabilitan inmediatamente después de enviar la respuesta (`Submit Answer` / `isQuizAnswered === true`)** o al resolver todas las opciones izquierdas de una pregunta `Matching Columns` (`solvedPairs + failedPairs === 4`).
    - **Prohibido dar referencias de ubicación**: Ni las preguntas (`q`), ni los `Hints` (`hint`), ni las pistas de deletreo (`clue`) deben mencionar en qué parte o capítulo del libro está la respuesta (ej. **nunca** decir `"At the start of Chapter 7"`, `"in Chapter 8"`, `"at the end of the chapter"`, `"read page #"`, `"check page #"` ni `"look on page #"`). Deben enfocarse únicamente en los eventos y personajes de la historia.
    - Debajo de `Submit Answer` (con espacio de separación) siempre existen los botones `Hint (-1.0 pt)` y `📖 Reread chapter to find answer (-1.0 pt)`.
 

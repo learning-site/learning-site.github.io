@@ -573,12 +573,53 @@
     font-weight: 700;
   }
 
-  .match-card-btn.paired {
+  .match-card-btn.paired,
+  .match-card-btn.paired:disabled {
     border-color: #10b981 !important;
     background-color: #064e3b !important;
     color: #6ee7b7 !important;
     cursor: default;
-    opacity: 0.9;
+    opacity: 0.9 !important;
+  }
+
+  .match-card-btn.failed-pair,
+  .match-card-btn.failed-pair:disabled {
+    border-color: #ef4444 !important;
+    background-color: #450a0a !important;
+    color: #fca5a5 !important;
+    cursor: not-allowed;
+    opacity: 0.9 !important;
+  }
+
+  .match-tries-pill {
+    margin-left: auto;
+    padding: 0.1rem 0.42rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .match-tries-pill.pill-warning {
+    background: rgba(245, 158, 11, 0.22);
+    color: #fde047;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+  }
+  .match-tries-pill.pill-danger {
+    background: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.6);
+  }
+  .match-tries-pill.pill-failed {
+    background: #7f1d1d;
+    color: #fecaca;
+    border: 1px solid #ef4444;
+  }
+  .match-tries-pill.pill-paired {
+    background: rgba(16, 185, 129, 0.25);
+    color: #6ee7b7;
+    border: 1px solid #10b981;
   }
 
   .match-card-btn.wrong-highlight {
@@ -1665,7 +1706,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:30 PM - 11/11/2026</div>
+<div class="build-timestamp">Actualizado: 06:45 PM - 11/11/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1709,7 +1750,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:30 PM - 11/11/2026
+      Actualizado: 06:45 PM - 11/11/2026
     </div>
   </div>
 </div>
@@ -2151,7 +2192,7 @@
       <!-- Match Columns Container -->
       <div id="matchContainer" style="display: none;">
         <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
-          <span style="font-size: 0.84rem; color: #94a3b8;">Tap left, then tap its match on the right <strong style="color:#cbd5e1;">(1 free chance per line; 2nd wrong try &amp; on = -0.25 pt)</strong>:</span>
+          <span style="font-size: 0.84rem; color: #94a3b8;">Tap left, then tap its match on the right <strong style="color:#cbd5e1;">(3 tries per option: 1st free, 2nd = -0.25 pt, 3rd = marked wrong)</strong>:</span>
           <span id="matchStatusBanner" style="font-size: 0.84rem; font-weight: 700; color: #f87171; display: none;">🔄 Mismatch! Columns reshuffled & reworded!</span>
         </div>
         <div class="match-columns-grid">
@@ -3914,6 +3955,7 @@ let mistakesPool = [];
 
 // Matching State
 let solvedPairs = [];
+let failedPairs = [];
 let selectedLeftPair = null;
 let selectedRightPair = null;
 let matchVariantIndices = [];
@@ -3923,6 +3965,34 @@ let isMatchBusy = false;
 let matchWrongTriesByPair = [];
 let matchPenaltyPts = 0;
 let lastMismatchBannerText = '';
+
+function isAllMatchPairsResolved(q) {
+  return Boolean(
+    q && q.type === 'match' && Array.isArray(q.pairs) &&
+    (solvedPairs.length + failedPairs.length) >= q.pairs.length
+  );
+}
+
+function computeMatchPenaltyPts(q) {
+  if (!q || q.type !== 'match' || !Array.isArray(q.pairs) || q.pairs.length === 0) return 0;
+  const baseTask = isQuestionNoSpelling(q) ? (q.basePts || 20.0) : 4.0;
+  const perPairPts = baseTask / q.pairs.length;
+  let penalty = 0;
+  for (let i = 0; i < q.pairs.length; i++) {
+    if (failedPairs.includes(i)) {
+      // Failed after 3 tries: loses its full 1.0 pt share (absorbs its earlier try-2 -0.25 pt penalty)
+      penalty += perPairPts;
+    } else {
+      const wt = (Array.isArray(matchWrongTriesByPair) && typeof matchWrongTriesByPair[i] === 'number')
+        ? matchWrongTriesByPair[i]
+        : 0;
+      if (wt >= 2) {
+        penalty += (wt - 1) * 0.25;
+      }
+    }
+  }
+  return Math.round(penalty * 100) / 100;
+}
 
 function shuffleDifferentOrder(items, prevIds) {
   if (!prevIds || prevIds.length !== items.length || items.length <= 1) {
@@ -3997,11 +4067,15 @@ function formatPts(val) {
 function getCurrentTaskPts() {
   const q = activeQuestions[currentQIndex];
   const noSpell = isQuestionNoSpelling(q);
-  let pts = noSpell ? (q?.basePts || 20.0) : 4.0;
+  const maxTask = noSpell ? (q?.basePts || 20.0) : 4.0;
+  let pts = maxTask;
   if (hintUsedOnCurrent) pts -= 1.0;
   if (rereadUsedOnCurrent) pts -= 1.0;
-  if (q && q.type === 'match' && typeof matchPenaltyPts === 'number' && matchPenaltyPts > 0) {
+  if (q && q.type === 'match' && Array.isArray(q.pairs)) {
+    matchPenaltyPts = computeMatchPenaltyPts(q);
     pts -= matchPenaltyPts;
+    if (failedPairs.length >= q.pairs.length) return 0;
+    return Math.max(0, Math.round(pts * 100) / 100);
   }
   return Math.max(0.25, Math.round(pts * 100) / 100);
 }
@@ -4023,8 +4097,9 @@ function updatePointsDisplay() {
       acceptBtn.textContent = `✅ Submit Answer (+${btnPtsStr} pts)`;
     }
     if (rubricTask && q && q.type === 'match') {
-      rubricTask.textContent = matchPenaltyPts > 0
-        ? `Match Columns = ${formatPts(taskPts)} pts (-${formatPts(matchPenaltyPts)} pt)`
+      const totalDeduct = Math.round((4.0 - taskPts) * 100) / 100;
+      rubricTask.textContent = totalDeduct > 0
+        ? `Match Columns = ${formatPts(taskPts)} pts (-${formatPts(totalDeduct)} pt)`
         : "Match Columns = 4.0 pts";
     }
   }
@@ -4081,7 +4156,7 @@ function updateSubmitButtonState() {
   if (!q) return;
   let isTaskReady = false;
   if (q.type === 'match') {
-    isTaskReady = (solvedPairs.length === q.pairs.length);
+    isTaskReady = !isMatchBusy && isAllMatchPairsResolved(q);
   } else if (q.type === 'fib') {
     const fibVal = (document.getElementById('fibInput')?.value || '').trim();
     isTaskReady = fibVal.length > 0;
@@ -4149,6 +4224,7 @@ function saveCurrentQuizProgress() {
       progressSegments,
       fibInputValue: fibEl ? fibEl.value : '',
       solvedPairs: Array.isArray(solvedPairs) ? [...solvedPairs] : [],
+      failedPairs: Array.isArray(failedPairs) ? [...failedPairs] : [],
       selectedLeftPair,
       selectedRightPair,
       matchVariantIndices: Array.isArray(matchVariantIndices) ? [...matchVariantIndices] : [],
@@ -4224,12 +4300,19 @@ function applySavedOrDeferredPartialState(q, saved) {
 
   if (q.type === 'match') {
     solvedPairs = Array.isArray(saved.solvedPairs) ? [...saved.solvedPairs] : [];
+    failedPairs = Array.isArray(saved.failedPairs) ? [...saved.failedPairs] : [];
     selectedLeftPair = saved.selectedLeftPair !== undefined ? saved.selectedLeftPair : null;
     selectedRightPair = saved.selectedRightPair !== undefined ? saved.selectedRightPair : null;
     matchWrongTriesByPair = Array.isArray(saved.matchWrongTriesByPair) && saved.matchWrongTriesByPair.length === q.pairs.length
       ? [...saved.matchWrongTriesByPair]
       : q.pairs.map(() => 0);
-    matchPenaltyPts = typeof saved.matchPenaltyPts === 'number' ? saved.matchPenaltyPts : 0;
+    // Defensive migration if any unsolved pair already had >= 3 wrong tries in older saved state
+    matchWrongTriesByPair.forEach((wt, idx) => {
+      if (wt >= 3 && !solvedPairs.includes(idx) && !failedPairs.includes(idx)) {
+        failedPairs.push(idx);
+      }
+    });
+    matchPenaltyPts = computeMatchPenaltyPts(q);
     lastMismatchBannerText = typeof saved.lastMismatchBannerText === 'string' ? saved.lastMismatchBannerText : '';
     updatePointsDisplay();
     if (Array.isArray(saved.matchVariantIndices) && saved.matchVariantIndices.length === q.pairs.length) {
@@ -4243,6 +4326,13 @@ function applySavedOrDeferredPartialState(q, saved) {
       prevLeftOrderIds = [...saved.prevLeftOrderIds];
       prevRightOrderIds = [...saved.prevRightOrderIds];
       renderMatchColumns(q, 'restore');
+      if (!saved.isQuizAnswered && lastMismatchBannerText) {
+        const banner = document.getElementById('matchStatusBanner');
+        if (banner) {
+          banner.textContent = lastMismatchBannerText;
+          banner.style.display = 'inline';
+        }
+      }
     }
   } else if (q.type === 'fib') {
     const fibInput = document.getElementById('fibInput');
@@ -4470,6 +4560,7 @@ function renderQuestion() {
   selectedOption = null;
   isSpellingSolved = noSpell;
   solvedPairs = [];
+  failedPairs = [];
   selectedLeftPair = null;
   selectedRightPair = null;
   matchWrongTriesByPair = (q && q.type === 'match' && Array.isArray(q.pairs)) ? q.pairs.map(() => 0) : [];
@@ -4647,6 +4738,7 @@ function renderMatchColumns(q, isReshuffle = false) {
 
   const banner = document.getElementById('matchStatusBanner');
   const dVariants = getMatchDistractorVariants(q);
+  const allResolved = isAllMatchPairsResolved(q);
 
   if (isReshuffle === 'restore' && prevLeftOrderIds.length === q.pairs.length && prevRightOrderIds.length === q.pairs.length + 1) {
     isMatchBusy = false;
@@ -4659,6 +4751,13 @@ function renderMatchColumns(q, isReshuffle = false) {
     prevRightOrderIds = shuffleDifferentOrder(initialRightIds.map(id => ({ id })), []).map(x => x.id);
     isMatchBusy = false;
     if (banner) banner.style.display = 'none';
+  } else if (allResolved) {
+    // 3rd wrong try resolved the final remaining left row: keep positions stable instead of reshuffling a completed board
+    isMatchBusy = false;
+    if (banner) {
+      banner.textContent = lastMismatchBannerText || "✗ 3/3 tries used! All options resolved — ready to submit.";
+      banner.style.display = 'inline';
+    }
   } else {
     // Advance ONLY unsolved right-column items to the next wording variant (already-solved pairs keep their exact wording)
     matchVariantIndices = q.pairs.map((p, i) => {
@@ -4670,11 +4769,11 @@ function renderMatchColumns(q, isReshuffle = false) {
     });
     matchDistractorVariantIdx = (matchDistractorVariantIdx + 1) % dVariants.length;
 
-    // Reorganize ONLY unsolved positions in Left column (already-solved options stay in place)
+    // Reorganize ONLY active positions in Left column (solved AND failed options stay locked in place)
     const unsolvedLeftPos = [];
     const unsolvedLeftObjs = [];
     prevLeftOrderIds.forEach((id, pos) => {
-      if (!solvedPairs.includes(id)) {
+      if (!solvedPairs.includes(id) && !failedPairs.includes(id)) {
         unsolvedLeftPos.push(pos);
         unsolvedLeftObjs.push({ id });
       }
@@ -4686,7 +4785,7 @@ function renderMatchColumns(q, isReshuffle = false) {
       });
     }
 
-    // Reorganize ONLY unsolved positions in Right column (already-solved options stay in place)
+    // Reorganize ONLY unsolved positions in Right column (already-solved options stay in place; failed counterparts keep rotating like distractors)
     const unsolvedRightPos = [];
     const unsolvedRightObjs = [];
     prevRightOrderIds.forEach((id, pos) => {
@@ -4708,8 +4807,7 @@ function renderMatchColumns(q, isReshuffle = false) {
     }
   }
 
-  const allSolved = (solvedPairs.length === q.pairs.length);
-  if (allSolved) {
+  if (allResolved) {
     const hBtn = document.getElementById('hintBtn');
     const rBtn = document.getElementById('rereadBtn');
     if (hBtn) hBtn.disabled = true;
@@ -4719,11 +4817,45 @@ function renderMatchColumns(q, isReshuffle = false) {
   prevLeftOrderIds.forEach(id => {
     const p = q.pairs[id];
     const isPaired = solvedPairs.includes(id);
-    const isSel = !isPaired && selectedLeftPair === id;
+    const isFailed = failedPairs.includes(id);
+    const isSel = !isPaired && !isFailed && selectedLeftPair === id;
     const btn = document.createElement('button');
-    btn.className = 'match-card-btn' + (isPaired ? ' paired' : (isSel ? ' selected-side' : ''));
+    btn.className = 'match-card-btn' + (isPaired ? ' paired' : (isFailed ? ' failed-pair' : (isSel ? ' selected-side' : '')));
     btn.id = `match-left-${id}`;
-    btn.textContent = p.left;
+
+    const textSpan = document.createElement('span');
+    textSpan.style.cssText = 'flex: 1 1 auto; margin-right: 0.4rem;';
+    textSpan.textContent = p.left;
+    btn.appendChild(textSpan);
+
+    const triesUsed = (Array.isArray(matchWrongTriesByPair) && typeof matchWrongTriesByPair[id] === 'number')
+      ? matchWrongTriesByPair[id]
+      : 0;
+    let pillClass = '';
+    let pillText = '';
+    if (isFailed) {
+      pillClass = 'pill-failed';
+      pillText = '✗ Wrong';
+      btn.disabled = true;
+    } else if (isPaired) {
+      pillClass = 'pill-paired';
+      pillText = '✓';
+      btn.disabled = true;
+    } else if (triesUsed === 1) {
+      pillClass = 'pill-warning';
+      pillText = '2 left';
+    } else if (triesUsed === 2) {
+      pillClass = 'pill-danger';
+      pillText = '1 left!';
+    }
+    if (pillText) {
+      const pillSpan = document.createElement('span');
+      pillSpan.className = `match-tries-pill ${pillClass}`;
+      pillSpan.textContent = pillText;
+      btn.appendChild(pillSpan);
+    }
+    if (isQuizAnswered) btn.disabled = true;
+
     btn.onclick = () => handleMatchClick('left', id);
     leftCol.appendChild(btn);
   });
@@ -4739,12 +4871,14 @@ function renderMatchColumns(q, isReshuffle = false) {
       text = variants[vIdx % variants.length];
     }
     const isPaired = id >= 0 && solvedPairs.includes(id);
-    const isSel = !isPaired && selectedRightPair === id;
+    const isSel = !isPaired && !allResolved && selectedRightPair === id;
     const btn = document.createElement('button');
     btn.className = 'match-card-btn' + (isPaired ? ' paired' : (isSel ? ' selected-side' : ''));
     btn.id = `match-right-${id}`;
     btn.textContent = text;
-    if (id === -1 && allSolved) {
+    if (isPaired) {
+      btn.disabled = true;
+    } else if (allResolved || isQuizAnswered) {
       btn.disabled = true;
       btn.style.opacity = '0.42';
       btn.style.cursor = 'default';
@@ -4756,8 +4890,10 @@ function renderMatchColumns(q, isReshuffle = false) {
 
 function handleMatchClick(side, id) {
   const qCurr = activeQuestions[currentQIndex];
-  if (isQuizAnswered || isMatchBusy || (id >= 0 && solvedPairs.includes(id))) return;
-  if (qCurr && qCurr.type === 'match' && solvedPairs.length === qCurr.pairs.length) return;
+  if (isQuizAnswered || isMatchBusy) return;
+  if (qCurr && qCurr.type === 'match' && isAllMatchPairsResolved(qCurr)) return;
+  if (side === 'left' && (solvedPairs.includes(id) || failedPairs.includes(id))) return;
+  if (side === 'right' && id >= 0 && solvedPairs.includes(id)) return;
   playSnapSound();
 
   const banner = document.getElementById('matchStatusBanner');
@@ -4771,7 +4907,7 @@ function handleMatchClick(side, id) {
 
   document.querySelectorAll('#matchColLeft .match-card-btn').forEach(btn => {
     const bId = parseInt(btn.id.replace('match-left-', ''), 10);
-    if (!solvedPairs.includes(bId)) {
+    if (!solvedPairs.includes(bId) && !failedPairs.includes(bId)) {
       btn.classList.toggle('selected-side', selectedLeftPair === bId);
     }
   });
@@ -4792,29 +4928,39 @@ function handleMatchClick(side, id) {
       if (lBtn) {
         lBtn.classList.remove('selected-side');
         lBtn.classList.add('paired');
+        lBtn.disabled = true;
+        const existingPill = lBtn.querySelector('.match-tries-pill');
+        if (existingPill) existingPill.remove();
+        const donePill = document.createElement('span');
+        donePill.className = 'match-tries-pill pill-paired';
+        donePill.textContent = '✓';
+        lBtn.appendChild(donePill);
       }
       if (rBtn) {
         rBtn.classList.remove('selected-side');
         rBtn.classList.add('paired');
+        rBtn.disabled = true;
       }
-      if (qCurr && solvedPairs.length === qCurr.pairs.length) {
-        const extraBtn = document.getElementById('match-right--1');
-        if (extraBtn) {
-          extraBtn.disabled = true;
-          extraBtn.style.opacity = '0.42';
-          extraBtn.style.cursor = 'default';
-        }
+      if (qCurr && isAllMatchPairsResolved(qCurr)) {
+        document.querySelectorAll('#matchColRight .match-card-btn').forEach(btn => {
+          const bId = parseInt(btn.id.replace('match-right-', ''), 10);
+          if (bId === -1 || !solvedPairs.includes(bId)) {
+            btn.disabled = true;
+            btn.style.opacity = '0.42';
+            btn.style.cursor = 'default';
+          }
+        });
         const hBtn = document.getElementById('hintBtn');
-        const rBtn = document.getElementById('rereadBtn');
+        const rBtnHelp = document.getElementById('rereadBtn');
         if (hBtn) hBtn.disabled = true;
-        if (rBtn) rBtn.disabled = true;
+        if (rBtnHelp) rBtnHelp.disabled = true;
       }
       selectedLeftPair = null;
       selectedRightPair = null;
       updateSubmitButtonState();
       saveCurrentQuizProgress();
     } else {
-      // Mismatch! Each line gets 1 free chance before taking out 0.25 pts at the 2nd wrong try and on
+      // Mismatch! Max 3 tries per left option: 1st free, 2nd = -0.25 pt, 3rd = marked wrong (-1.0 pt)
       isMatchBusy = true;
       playWrongSound();
       const leftIdx = selectedLeftPair;
@@ -4825,11 +4971,22 @@ function handleMatchClick(side, id) {
         matchWrongTriesByPair[leftIdx] = (matchWrongTriesByPair[leftIdx] || 0) + 1;
         const wrongTryNum = matchWrongTriesByPair[leftIdx];
         const lineLabel = qCurr?.pairs?.[leftIdx]?.left || `Line ${leftIdx + 1}`;
-        if (wrongTryNum >= 2) {
-          matchPenaltyPts = Math.round((matchPenaltyPts + 0.25) * 100) / 100;
-          lastMismatchBannerText = `⚠️ Wrong try #${wrongTryNum} on "${lineLabel}" (-0.25 pt deducted)! Unsolved options reshuffled!`;
+        if (wrongTryNum >= 3) {
+          if (!failedPairs.includes(leftIdx)) failedPairs.push(leftIdx);
+          matchPenaltyPts = computeMatchPenaltyPts(qCurr);
+          lastMismatchBannerText = `✗ 3/3 tries used on "${lineLabel}" — option marked WRONG (-1.0 pt)!`;
+          if (qCurr && isAllMatchPairsResolved(qCurr)) {
+            const hBtn = document.getElementById('hintBtn');
+            const rBtnHelp = document.getElementById('rereadBtn');
+            if (hBtn) hBtn.disabled = true;
+            if (rBtnHelp) rBtnHelp.disabled = true;
+          }
+        } else if (wrongTryNum === 2) {
+          matchPenaltyPts = computeMatchPenaltyPts(qCurr);
+          lastMismatchBannerText = `⚠️ Wrong try 2/3 on "${lineLabel}" (-0.25 pt deducted — 1 final try left!)`;
         } else {
-          lastMismatchBannerText = `🔄 Mismatch on "${lineLabel}" (1/1 free chance used — next wrong try takes -0.25 pt!)`;
+          matchPenaltyPts = computeMatchPenaltyPts(qCurr);
+          lastMismatchBannerText = `🔄 Mismatch on "${lineLabel}" (1/3 tries used: free chance — 2 tries left!)`;
         }
         updatePointsDisplay();
       }
@@ -4850,6 +5007,7 @@ function handleMatchClick(side, id) {
         isMatchBusy = false;
         if (q && q.type === 'match' && !isQuizAnswered) {
           renderMatchColumns(q, true);
+          updateSubmitButtonState();
           saveCurrentQuizProgress();
         }
       }, 420);
@@ -5062,7 +5220,7 @@ function sanitizeExcerptNoPageRef(rawExcerpt) {
 function revealHint() {
   if (hintUsedOnCurrent || isQuizAnswered) return;
   const q = activeQuestions[currentQIndex];
-  if (q && q.type === 'match' && Array.isArray(q.pairs) && solvedPairs.length === q.pairs.length) return;
+  if (isAllMatchPairsResolved(q)) return;
   hintUsedOnCurrent = true;
   playHintSound();
   const box = document.getElementById('hintBox');
@@ -5081,7 +5239,7 @@ function revealHint() {
 function revealPageExcerpt() {
   if (rereadUsedOnCurrent || isQuizAnswered) return;
   const q = activeQuestions[currentQIndex];
-  if (q && q.type === 'match' && Array.isArray(q.pairs) && solvedPairs.length === q.pairs.length) return;
+  if (isAllMatchPairsResolved(q)) return;
   rereadUsedOnCurrent = true;
   playHintSound();
   const excerptBox = document.getElementById('excerptBox');
@@ -5105,10 +5263,12 @@ function confirmAnswer() {
   if (isQuizAnswered) return;
   const q = activeQuestions[currentQIndex];
   const noSpell = isQuestionNoSpelling(q);
-  if (q.type === 'fib') {
+  if (q.type === 'match') {
+    if (isMatchBusy || !isAllMatchPairsResolved(q)) return;
+  } else if (q.type === 'fib') {
     const fibVal = (document.getElementById('fibInput')?.value || '').trim();
     if (!fibVal) return;
-  } else if (q.type !== 'match' && selectedOption === null) {
+  } else if (selectedOption === null) {
     return;
   }
   if (!noSpell && !isSpellingSolved && !isSpellingLocked) return;
@@ -5122,13 +5282,10 @@ function confirmAnswer() {
   let isTaskCorrect = false;
 
   if (q.type === 'match') {
-    isTaskCorrect = (solvedPairs.length === q.pairs.length);
-    if (isTaskCorrect) {
-      const hBtn = document.getElementById('hintBtn');
-      const rBtn = document.getElementById('rereadBtn');
-      if (hBtn) hBtn.disabled = true;
-      if (rBtn) rBtn.disabled = true;
-    }
+    isTaskCorrect = (solvedPairs.length === q.pairs.length && failedPairs.length === 0);
+    document.querySelectorAll('#matchColLeft .match-card-btn, #matchColRight .match-card-btn').forEach(btn => {
+      btn.disabled = true;
+    });
   } else if (q.type === 'fib') {
     const fibInput = document.getElementById('fibInput');
     const fbBox = document.getElementById('fibFeedbackBox');
@@ -5164,7 +5321,9 @@ function confirmAnswer() {
     }
   }
 
-  const taskEarned = isTaskCorrect ? baseTaskPts : 0;
+  const taskEarned = (q.type === 'match')
+    ? (solvedPairs.length > 0 ? baseTaskPts : 0)
+    : (isTaskCorrect ? baseTaskPts : 0);
   const isSpellCorrect = noSpell ? true : isSpellingSolved;
   const spellEarned = noSpell ? 0 : (isSpellCorrect ? 1.0 : 0);
 
@@ -5179,7 +5338,7 @@ function confirmAnswer() {
   const seg = document.getElementById(`prog-seg-${currentQIndex}`);
   if (seg) {
     if (isFullyCorrect) seg.classList.add('correct');
-    else if (!noSpell && (isTaskCorrect || isSpellCorrect)) seg.classList.add('partial');
+    else if (taskEarned > 0 || (!noSpell && isSpellCorrect)) seg.classList.add('partial');
     else seg.classList.add('wrong');
   }
 
@@ -5262,6 +5421,7 @@ function skipQuestionToEnd() {
     selectedOption,
     fibInputValue: fibInput ? fibInput.value : '',
     solvedPairs: Array.isArray(solvedPairs) ? [...solvedPairs] : [],
+    failedPairs: Array.isArray(failedPairs) ? [...failedPairs] : [],
     selectedLeftPair,
     selectedRightPair,
     matchVariantIndices: Array.isArray(matchVariantIndices) ? [...matchVariantIndices] : [],
