@@ -9,6 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Learning Site" />
 <meta name="application-name" content="Learning Site" />
 <meta name="theme-color" content="#050b14" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <title>Learning Site</title>
 <!-- PDF.js library for client-side PDF parsing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -1706,7 +1709,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:45 PM - 11/11/2026</div>
+<div class="build-timestamp">Actualizado: 07:01 PM - 11/11/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1750,7 +1753,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:45 PM - 11/11/2026
+      Actualizado: 07:01 PM - 11/11/2026
     </div>
   </div>
 </div>
@@ -11148,6 +11151,77 @@ function disableAllKeyboardSuggestions() {
   } catch (e) {}
 }
 
+let lastVersionCheckAtMs = 0;
+let isVersionCheckRunning = false;
+
+async function checkForLiveAppUpdate(forceImmediate = false) {
+  if (isVersionCheckRunning) return;
+  const now = Date.now();
+  if (!forceImmediate && (now - lastVersionCheckAtMs) < 15000) return;
+  if (typeof window !== 'undefined' && window.location && window.location.protocol === 'file:') return;
+
+  isVersionCheckRunning = true;
+  lastVersionCheckAtMs = now;
+  try {
+    const localStampEl = document.querySelector('.build-timestamp');
+    const localBuild = localStampEl ? localStampEl.textContent.trim() : '';
+    if (!localBuild) return;
+
+    const resp = await fetch(`./version.json?_v=${now}`, { cache: 'no-store' });
+    if (!resp.ok) return;
+    const data = await resp.json();
+    const remoteBuild = (data && typeof data.build === 'string') ? data.build.trim() : '';
+    if (!remoteBuild || remoteBuild === localBuild) return;
+
+    // Loop guard while CDN nodes converge (expires after 45s)
+    try {
+      const prevReload = JSON.parse(sessionStorage.getItem('rs_last_reload_target_build') || 'null');
+      if (prevReload && prevReload.target === remoteBuild && (now - (prevReload.at || 0)) < 45000) {
+        return;
+      }
+    } catch (e) {}
+
+    // Never interrupt AI Quiz Studio or active voice/song playback; retry shortly
+    const studioOverlay = document.getElementById('aiStudioOverlay');
+    const isStudioOpen = studioOverlay && studioOverlay.style.display === 'flex';
+    const isAudioBusy = Boolean(
+      (typeof isVoiceFeedbackPlaying === 'function' && isVoiceFeedbackPlaying()) ||
+      (typeof songIsPlaying !== 'undefined' && songIsPlaying)
+    );
+    if (isStudioOpen || isAudioBusy) {
+      setTimeout(() => checkForLiveAppUpdate(true), 6000);
+      return;
+    }
+
+    try { saveCurrentQuizProgress(); } catch (e) {}
+    try { if (typeof saveLocalQuizzes === 'function') saveLocalQuizzes(); } catch (e) {}
+    try {
+      sessionStorage.setItem('rs_last_reload_target_build', JSON.stringify({ target: remoteBuild, at: now }));
+    } catch (e) {}
+    try {
+      await fetch(window.location.pathname, { cache: 'reload', credentials: 'same-origin' });
+    } catch (e) {}
+    window.location.reload();
+  } catch (e) {
+  } finally {
+    isVersionCheckRunning = false;
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    checkForLiveAppUpdate(false);
+    fetchCloudQuizzesLibrary();
+  }
+});
+
+window.addEventListener('pageshow', (e) => {
+  if (e && e.persisted) {
+    checkForLiveAppUpdate(true);
+    fetchCloudQuizzesLibrary();
+  }
+});
+
 window.onload = function() {
   applyResponsiveViewportScale();
   disableAllKeyboardSuggestions();
@@ -11160,6 +11234,7 @@ window.onload = function() {
   switchAppInstance(currentInstance);
   resumePendingFeedbackVoiceAfterRefresh();
   fetchCloudQuizzesLibrary();
+  setTimeout(() => checkForLiveAppUpdate(true), 1500);
 };
 </script>
 </body>
