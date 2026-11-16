@@ -1,6 +1,6 @@
 {
   "activeQuizId": "trapped_videogame_ch17_19",
-  "updatedAt": "2026-11-16T22:53:50.827Z",
+  "updatedAt": "2026-11-16T23:02:43.572Z",
   "quizzes": [
     {
       "id": "d_history_trivia_mc",
@@ -217,7 +217,8 @@
           "word": "CANNON",
           "clue": "A powerful mounted weapon that blasts energy from an arm",
           "pageTitle": "Final Battle Begins",
-          "pageExcerpt": "I'll try to describe everything slowly to make the battle seem longer than the 1.2 seconds it took. When I ducked behind the rock for the last time, the sergeant started talking again."
+          "pageExcerpt": "I'll try to describe everything slowly to make the battle seem longer than the 1.2 seconds it took. When I ducked behind the rock for the last time, the sergeant started talking again.",
+          "correct": 0
         },
         {
           "type": "tf",
@@ -231,7 +232,8 @@
           "word": "SERGEANT",
           "clue": "The tutorial guide with a robot heart who gave combat instructions",
           "pageTitle": "Interrupting the Robot",
-          "pageExcerpt": "The sergeant, bless his little robot heart, did not react one bit. \"...any time at the firing...\" BLAST! He vaporized and did exactly what Eric and I had been doing the whole game when we got shot—he reappeared at the beginning of the level."
+          "pageExcerpt": "The sergeant, bless his little robot heart, did not react one bit. \"...any time at the firing...\" BLAST! He vaporized and did exactly what Eric and I had been doing the whole game when we got shot—he reappeared at the beginning of the level.",
+          "correct": 1
         },
         {
           "type": "mc",
@@ -247,7 +249,8 @@
           "word": "VAPORIZED",
           "clue": "Turned instantly into gas or mist by a blaster shot",
           "pageTitle": "Respawn Trick",
-          "pageExcerpt": "He vaporized and did exactly what Eric and I had been doing the whole game when we got shot—he reappeared at the beginning of the level. In Eric's waiting arms."
+          "pageExcerpt": "He vaporized and did exactly what Eric and I had been doing the whole game when we got shot—he reappeared at the beginning of the level. In Eric's waiting arms.",
+          "correct": 0
         },
         {
           "type": "match",
@@ -320,7 +323,8 @@
           "word": "SHATTERED",
           "clue": "Broken into tiny pieces by sudden force or intense sound",
           "pageTitle": "A Deafening Scream",
-          "pageExcerpt": "The wail built and built until it caused everything in the level to vibrate. Until it caused my insides to vibrate... I covered my ears. The rock in front of me cracked."
+          "pageExcerpt": "The wail built and built until it caused everything in the level to vibrate. Until it caused my insides to vibrate... I covered my ears. The rock in front of me cracked.",
+          "correct": 0
         },
         {
           "type": "tf",
@@ -334,7 +338,8 @@
           "word": "HISSING",
           "clue": "Making a sharp sibilant sound like escaping steam",
           "pageTitle": "Melting Away",
-          "pageExcerpt": "The alien to my right popped—just exploded in a flash of light. Then another and another, and pretty soon I was blinded by a sea of flashbulbs. The only thing I could see was the Hindenburg in front of me. Melting. I closed my eyes."
+          "pageExcerpt": "The alien to my right popped—just exploded in a flash of light. Then another and another, and pretty soon I was blinded by a sea of flashbulbs. The only thing I could see was the Hindenburg in front of me. Melting. I closed my eyes.",
+          "correct": 0
         },
         {
           "type": "mc",
@@ -350,7 +355,8 @@
           "word": "REPLAY",
           "clue": "Playing a game, recording, or event over again",
           "pageTitle": "Waking Up in Reality",
-          "pageExcerpt": "The wailing reached its highest pitch, then faded away. I kept my eyes closed for a few seconds longer before daring to open them. Carpet. Controller. Ratty old couch. I was back in Eric's basement."
+          "pageExcerpt": "The wailing reached its highest pitch, then faded away. I kept my eyes closed for a few seconds longer before daring to open them. Carpet. Controller. Ratty old couch. I was back in Eric's basement.",
+          "correct": 0
         },
         {
           "type": "match",
@@ -423,7 +429,8 @@
           "word": "PROTOCOL",
           "clue": "An official code, system procedure, or set of rules",
           "pageTitle": "The TV Screen Notice",
-          "pageExcerpt": "We looked up at the TV. The screen was black except for a single message: HINDENBURG PROTOCOL ABORTED."
+          "pageExcerpt": "We looked up at the TV. The screen was black except for a single message: HINDENBURG PROTOCOL ABORTED.",
+          "correct": 0
         },
         {
           "type": "mc",
@@ -439,7 +446,8 @@
           "word": "ERROR",
           "clue": "A mistake, fault, or failure in a computer program",
           "pageTitle": "A Fried Console",
-          "pageExcerpt": "Eric pressed all the buttons on the controller, but the screen wouldn't go away. He restarted the game, but the message just came back. He even tried unplugging and replugging everything, but nothing worked. The game was fried."
+          "pageExcerpt": "Eric pressed all the buttons on the controller, but the screen wouldn't go away. He restarted the game, but the message just came back. He even tried unplugging and replugging everything, but nothing worked. The game was fried.",
+          "correct": 0
         },
         {
           "type": "match",
@@ -510,7 +518,8 @@
           "word": "CONFUSED",
           "clue": "Unable to think clearly or understand what is happening",
           "pageTitle": "Finding Charlie",
-          "pageExcerpt": "Charlie was sitting on the couch, slouching like usual, playing a game on his phone. He barely looked up when we walked into the living room."
+          "pageExcerpt": "Charlie was sitting on the couch, slouching like usual, playing a game on his phone. He barely looked up when we walked into the living room.",
+          "correct": 1
         },
         {
           "type": "mc",
@@ -526,7 +535,8 @@
           "word": "DECISION",
           "clue": "A choice made after considering facts and options",
           "pageTitle": "A Father's Reaction",
-          "pageExcerpt": "Mr. Gregory's face went completely white. He didn't smile. He didn't look confused. He looked terrified. \"I'll look into it,\" he said in a quiet voice. \"Go home, boys. I'll take care of this.\""
+          "pageExcerpt": "Mr. Gregory's face went completely white. He didn't smile. He didn't look confused. He looked terrified. \"I'll look into it,\" he said in a quiet voice. \"Go home, boys. I'll take care of this.\"",
+          "correct": 0
         },
         {
           "type": "mc",
@@ -542,7 +552,8 @@
           "word": "INVISIBLE",
           "clue": "Impossible to see with the naked eye",
           "pageTitle": "The Vanishing Creator",
-          "pageExcerpt": "No one has seen Mr. Gregory since. Not Charlie. Not Mrs. Gregory. Not the police. He vanished without a trace that very night."
+          "pageExcerpt": "No one has seen Mr. Gregory since. Not Charlie. Not Mrs. Gregory. Not the police. He vanished without a trace that very night.",
+          "correct": 0
         },
         {
           "type": "tf",
@@ -556,7 +567,8 @@
           "word": "HOMEWORK",
           "clue": "School assignments to be completed outside of class",
           "pageTitle": "Swearing Off Gaming",
-          "pageExcerpt": "Eric swore off video games completely. He shoved his console into the back of his closet and vowed never to touch another controller as long as he lived."
+          "pageExcerpt": "Eric swore off video games completely. He shoved his console into the back of his closet and vowed never to touch another controller as long as he lived.",
+          "correct": 1
         },
         {
           "type": "mc",
@@ -572,7 +584,8 @@
           "word": "TALONS",
           "clue": "Sharp curved claws belonging to a bird or creature",
           "pageTitle": "Restless Nightmares",
-          "pageExcerpt": "It was my fourth nightmare this week. Every time I closed my eyes, I saw the Hindenburg. I felt his hot breath on my face. I saw his tentacles wrapping around my arms and legs, pulling me back into the darkness."
+          "pageExcerpt": "It was my fourth nightmare this week. Every time I closed my eyes, I saw the Hindenburg. I felt his hot breath on my face. I saw his tentacles wrapping around my arms and legs, pulling me back into the darkness.",
+          "correct": 0
         },
         {
           "type": "match",
@@ -700,7 +713,8 @@
           "word": "TUTORIAL",
           "clue": "A guide or lesson that teaches how to play or do something",
           "pageTitle": "A Whispered Yes",
-          "pageExcerpt": "My head started spinning. \"Do you want to go back?\" \"Yes,\" I whispered. \"Are you sure?\""
+          "pageExcerpt": "My head started spinning. \"Do you want to go back?\" \"Yes,\" I whispered. \"Are you sure?\"",
+          "correct": 1
         },
         {
           "type": "mc",
@@ -716,7 +730,8 @@
           "word": "DISGUISE",
           "clue": "Something that hides a person's real appearance or identity",
           "pageTitle": "The Final Question",
-          "pageExcerpt": "\"Do you want to go back?\" \"Yes,\" I whispered. \"Are you sure?\""
+          "pageExcerpt": "\"Do you want to go back?\" \"Yes,\" I whispered. \"Are you sure?\"",
+          "correct": 0
         }
       ]
     },
