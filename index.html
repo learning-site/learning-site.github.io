@@ -1709,7 +1709,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Actualizado: 06:02 PM - 11/16/2026</div>
+<div class="build-timestamp">Actualizado: 06:12 PM - 11/16/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1753,7 +1753,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Actualizado: 06:02 PM - 11/16/2026
+      Actualizado: 06:12 PM - 11/16/2026
     </div>
   </div>
 </div>
@@ -2195,7 +2195,7 @@
       <!-- Match Columns Container -->
       <div id="matchContainer" style="display: none;">
         <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
-          <span style="font-size: 0.84rem; color: #94a3b8;">Tap left, then tap its match on the right <strong style="color:#cbd5e1;">(3 tries per option: 1st free, 2nd = -0.25 pt, 3rd = marked wrong)</strong>:</span>
+          <span style="font-size: 0.84rem; color: #94a3b8;">Tap left, then tap its match on the right <strong style="color:#cbd5e1;">(2 tries per option: 1st wrong = -0.625 pt, 2nd wrong = -0.625 pt &amp; marked wrong)</strong>:</span>
           <span id="matchStatusBanner" style="font-size: 0.84rem; font-weight: 700; color: #f87171; display: none;">🔄 Mismatch! Columns reshuffled & reworded!</span>
         </div>
         <div class="match-columns-grid">
@@ -3978,23 +3978,23 @@ function isAllMatchPairsResolved(q) {
 
 function computeMatchPenaltyPts(q) {
   if (!q || q.type !== 'match' || !Array.isArray(q.pairs) || q.pairs.length === 0) return 0;
-  const baseTask = isQuestionNoSpelling(q) ? (q.basePts || 20.0) : 4.0;
-  const perPairPts = baseTask / q.pairs.length;
+  const perPairPts = isQuestionNoSpelling(q) ? ((q.basePts || 20.0) / q.pairs.length) : 1.25;
+  const halfPairPts = perPairPts / 2;
   let penalty = 0;
   for (let i = 0; i < q.pairs.length; i++) {
     if (failedPairs.includes(i)) {
-      // Failed after 3 tries: loses its full 1.0 pt share (absorbs its earlier try-2 -0.25 pt penalty)
+      // Failed after 2 tries: loses its full 1.25 pt share (both halves)
       penalty += perPairPts;
     } else {
       const wt = (Array.isArray(matchWrongTriesByPair) && typeof matchWrongTriesByPair[i] === 'number')
         ? matchWrongTriesByPair[i]
         : 0;
-      if (wt >= 2) {
-        penalty += (wt - 1) * 0.25;
+      if (wt >= 1) {
+        penalty += halfPairPts;
       }
     }
   }
-  return Math.round(penalty * 100) / 100;
+  return Math.round(penalty * 1000) / 1000;
 }
 
 function shuffleDifferentOrder(items, prevIds) {
@@ -4309,9 +4309,9 @@ function applySavedOrDeferredPartialState(q, saved) {
     matchWrongTriesByPair = Array.isArray(saved.matchWrongTriesByPair) && saved.matchWrongTriesByPair.length === q.pairs.length
       ? [...saved.matchWrongTriesByPair]
       : q.pairs.map(() => 0);
-    // Defensive migration if any unsolved pair already had >= 3 wrong tries in older saved state
+    // Defensive migration if any unsolved pair already had >= 2 wrong tries in older saved state
     matchWrongTriesByPair.forEach((wt, idx) => {
-      if (wt >= 3 && !solvedPairs.includes(idx) && !failedPairs.includes(idx)) {
+      if (wt >= 2 && !solvedPairs.includes(idx) && !failedPairs.includes(idx)) {
         failedPairs.push(idx);
       }
     });
@@ -4845,9 +4845,6 @@ function renderMatchColumns(q, isReshuffle = false) {
       pillText = '✓';
       btn.disabled = true;
     } else if (triesUsed === 1) {
-      pillClass = 'pill-warning';
-      pillText = '2 left';
-    } else if (triesUsed === 2) {
       pillClass = 'pill-danger';
       pillText = '1 left!';
     }
@@ -4974,22 +4971,19 @@ function handleMatchClick(side, id) {
         matchWrongTriesByPair[leftIdx] = (matchWrongTriesByPair[leftIdx] || 0) + 1;
         const wrongTryNum = matchWrongTriesByPair[leftIdx];
         const lineLabel = qCurr?.pairs?.[leftIdx]?.left || `Line ${leftIdx + 1}`;
-        if (wrongTryNum >= 3) {
+        if (wrongTryNum >= 2) {
           if (!failedPairs.includes(leftIdx)) failedPairs.push(leftIdx);
           matchPenaltyPts = computeMatchPenaltyPts(qCurr);
-          lastMismatchBannerText = `✗ 3/3 tries used on "${lineLabel}" — option marked WRONG (-1.0 pt)!`;
+          lastMismatchBannerText = `✗ 2/2 tries used on "${lineLabel}" — option marked WRONG (-1.25 pts total)!`;
           if (qCurr && isAllMatchPairsResolved(qCurr)) {
             const hBtn = document.getElementById('hintBtn');
             const rBtnHelp = document.getElementById('rereadBtn');
             if (hBtn) hBtn.disabled = true;
             if (rBtnHelp) rBtnHelp.disabled = true;
           }
-        } else if (wrongTryNum === 2) {
-          matchPenaltyPts = computeMatchPenaltyPts(qCurr);
-          lastMismatchBannerText = `⚠️ Wrong try 2/3 on "${lineLabel}" (-0.25 pt deducted — 1 final try left!)`;
         } else {
           matchPenaltyPts = computeMatchPenaltyPts(qCurr);
-          lastMismatchBannerText = `🔄 Mismatch on "${lineLabel}" (1/3 tries used: free chance — 2 tries left!)`;
+          lastMismatchBannerText = `⚠️ Wrong try 1/2 on "${lineLabel}" (-0.625 pt deducted — 1 final try left!)`;
         }
         updatePointsDisplay();
       }
