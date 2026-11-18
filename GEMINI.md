@@ -32,7 +32,8 @@
    - **Prohibido dar referencias de ubicación**: Ni las preguntas (`q`), ni los `Hints` (`hint`), ni las pistas de deletreo (`clue`) deben mencionar en qué parte o capítulo del libro está la respuesta (ej. **nunca** decir `"At the start of Chapter 7"`, `"in Chapter 8"`, `"at the end of the chapter"`, `"read page #"`, `"check page #"` ni `"look on page #"`). Deben enfocarse únicamente en los eventos y personajes de la historia.
    - Debajo de `Submit Answer` (con espacio de separación) siempre existen los botones `Hint (-1.0 pt)` y `📖 Reread chapter to find answer (-1.0 pt)`.
 
-5. **Audio Feedback y Canciones Finales:**
+5. **Audio Feedback, Animación por Libro y Canciones Finales:**
+   - Cada libro en el selector (`#headerBookSelect`) cuenta con su propia animación temática en la esquina superior izquierda (`BOOK_ANIMATION_THEMES` + `applyBookAnimationTheme`), con personajes, escenario, medidor de duelo y ataques especiales acordes a la historia de ese libro.
    - Al presionar `Submit Answer`, suena uno de los 3 audios TTS para respuesta correcta o 3 para incorrecta.
    - Al terminar el quiz, suena automáticamente la canción de 30 segundos correspondiente al grado obtenido (**A**, **B**, **C** o **D y menor**) sin barra de progreso ni botones de Play/Replay.
 

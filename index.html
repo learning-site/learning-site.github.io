@@ -1747,7 +1747,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 06:33 PM - 11/18/2026</div>
+<div class="build-timestamp">Updated: 06:38 PM - 11/18/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1791,7 +1791,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 06:33 PM - 11/18/2026
+      Updated: 06:38 PM - 11/18/2026
     </div>
   </div>
 </div>
@@ -2491,8 +2491,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795044811965"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795044811965"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795045106318"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795045106318"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -6165,6 +6165,390 @@ function skipQuestionToEnd() {
 let heroSpecialMoveCounter = 0;
 let alienSpecialMoveCounter = 0;
 let duelSpecialMoveTimer = null;
+let activeBookAnimationKey = 'key_hunters';
+
+const BOOK_ANIMATION_THEMES = {
+  key_hunters: {
+    barLeftX: 36,
+    barWidth: 144,
+    heroMoves: [
+      { cls: 'duel-move-hero-spin', label: '🔑 GOLDEN KEY UNLOCK!', color: '#fde047' },
+      { cls: 'duel-move-hero-slam', label: '💎 MOONSTONE CLUE!', color: '#38bdf8' },
+      { cls: 'duel-move-hero-flurry', label: '🔍 MASTER SLEUTH!', color: '#c084fc' }
+    ],
+    alienMoves: [
+      { cls: 'duel-move-alien-smash', label: '🎩 THIEF ESCAPE!', color: '#f87171' },
+      { cls: 'duel-move-alien-spin', label: '🌑 BLOOD MOON CURSE!', color: '#c084fc' }
+    ],
+    statusText: (m) => {
+      if (m >= 3) return [`🔑 Sleuths closing in on the Moonstone! (+${m} lead) 💎`, 'Every right answer unlocks another clue and corners the thief!'];
+      if (m > 0) return [`🔍 Great deduction! (+${m}) 🔑`, 'Keep solving clues to recover the Musgrave Moonstone!'];
+      if (m === 0) return ['💎 Mystery Duel — Sleuths vs. Thief!', 'Right answers push the thief back; wrong answers let him slip away!'];
+      return [`🎩 The Moonstone Thief is gaining ground! (${m}) 🌑`, 'Answer the next question right to strike back with the brass key!'];
+    },
+    svg: `<svg width="100%" height="100%" viewBox="0 0 220 116" preserveAspectRatio="xMidYMid meet" id="bartSvg">
+      <defs>
+        <radialGradient id="bloodMoonGrad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#fdba74" />
+          <stop offset="45%" stop-color="#ea580c" />
+          <stop offset="100%" stop-color="#7f1d1d" />
+        </radialGradient>
+        <linearGradient id="cloakGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#334155" />
+          <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+        <linearGradient id="brassKeyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fef08a" />
+          <stop offset="55%" stop-color="#eab308" />
+          <stop offset="100%" stop-color="#a16207" />
+        </linearGradient>
+        <linearGradient id="alienArmorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#312e81" />
+          <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+        <linearGradient id="moonstoneGemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff" />
+          <stop offset="45%" stop-color="#bae6fd" />
+          <stop offset="100%" stop-color="#818cf8" />
+        </linearGradient>
+        <linearGradient id="heroBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ca8a04" />
+          <stop offset="55%" stop-color="#facc15" />
+          <stop offset="100%" stop-color="#38bdf8" />
+        </linearGradient>
+        <linearGradient id="alienBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#a855f7" />
+          <stop offset="100%" stop-color="#991b1b" />
+        </linearGradient>
+        <filter id="laserGlowBlue" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2.4" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <filter id="laserGlowRed" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2.4" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+      <circle cx="110" cy="40" r="24" fill="url(#bloodMoonGrad)" opacity="0.42" filter="url(#laserGlowRed)" />
+      <circle cx="110" cy="40" r="19" fill="url(#bloodMoonGrad)" opacity="0.62" />
+      <path d="M 8 109 L 8 76 L 22 66 L 34 76 L 34 109 Z M 184 109 L 184 72 L 194 52 L 204 72 L 204 109 Z M 191 52 L 194 40 L 197 52 Z" fill="#0f172a" opacity="0.65" />
+      <circle cx="194" cy="70" r="4.2" fill="#fde68a" opacity="0.55" />
+      <circle cx="21" cy="83" r="2" fill="#fbbf24" opacity="0.5" />
+      <circle cx="26" cy="83" r="2" fill="#fbbf24" opacity="0.5" />
+      <ellipse id="spaceportAura" cx="110" cy="64" rx="102" ry="48" fill="#a855f7" opacity="0.16" />
+      <ellipse cx="110" cy="111" rx="98" ry="4.5" fill="#000000" opacity="0.62" />
+      <text x="2" y="11" fill="#fde047" font-size="7.4" font-weight="900" font-family="sans-serif">SLEUTH</text>
+      <text x="184" y="11" fill="#f87171" font-size="7.4" font-weight="900" font-family="sans-serif">THIEF</text>
+      <rect x="36" y="4.5" width="144" height="7" rx="3.5" fill="#0f172a" stroke="#475569" stroke-width="1" />
+      <rect id="heroPowerFill" x="36" y="4.5" width="72" height="7" rx="3.5" fill="url(#heroBarGrad)" />
+      <rect id="alienPowerFill" x="108" y="4.5" width="72" height="7" rx="3.5" fill="url(#alienBarGrad)" />
+      <circle id="clashMeterSpark" cx="108" cy="8" r="4.8" fill="url(#moonstoneGemGrad)" stroke="#0f172a" stroke-width="1.2" />
+      <g id="duelStageGroup" transform="translate(0, 0)">
+        <g transform="translate(110, 68) scale(1.12) translate(-110, -68)">
+          <g id="boyPostureGroup" transform="translate(0, 0)">
+            <g transform="translate(20, 86)">
+              <ellipse cx="11" cy="14" rx="8.5" ry="6" fill="#d97706" stroke="#78350f" stroke-width="0.9" />
+              <circle cx="17" cy="10" r="5.5" fill="#f59e0b" stroke="#78350f" stroke-width="0.9" />
+              <ellipse cx="19" cy="12" rx="3.2" ry="2.2" fill="#fef3c7" />
+              <circle cx="19.8" cy="11.2" r="1.1" fill="#0f172a" />
+              <circle cx="16.5" cy="9" r="1.1" fill="#0f172a" />
+              <path d="M 12 7 L 15 4 L 16 8 Z" fill="#92400e" />
+              <rect x="5" y="18" width="3" height="4" rx="1" fill="#b45309" />
+              <rect x="13" y="18" width="3" height="4" rx="1" fill="#b45309" />
+            </g>
+            <g class="leg-l"><path d="M 52 75 L 59 75 L 55 101 L 47 101 Z" fill="#475569" /><path d="M 45 101 L 57 101 L 59 108 L 44 108 Z" fill="#1e293b" /></g>
+            <g class="leg-r"><path d="M 63 75 L 70 75 L 75 101 L 67 101 Z" fill="#64748b" /><path d="M 66 101 L 78 101 L 81 108 L 65 108 Z" fill="#0f172a" /></g>
+            <g class="bart-body">
+              <path d="M 48 50 L 38 78 L 47 75 Z" fill="#9333ea" opacity="0.9" />
+              <path d="M 47 48 L 74 48 L 77 77 L 45 77 Z" fill="url(#cloakGrad)" stroke="#94a3b8" stroke-width="0.9" />
+              <circle cx="61" cy="55" r="1.6" fill="#fde047" /><circle cx="61" cy="62" r="1.6" fill="#fde047" /><circle cx="61" cy="69" r="1.6" fill="#fde047" />
+              <polygon points="56,48 61,53 66,48" fill="#f8fafc" />
+              <rect x="57" y="41" width="8" height="7" fill="#c68642" />
+              <circle cx="61" cy="32" r="14.5" fill="#c68642" />
+              <ellipse cx="61" cy="21" rx="18.5" ry="3.8" fill="#1e293b" stroke="#64748b" stroke-width="0.9" />
+              <path d="M 48 21 Q 48 7 61 7 Q 74 7 74 21 Z" fill="#1e293b" stroke="#475569" stroke-width="0.9" />
+              <rect x="48.5" y="18" width="25" height="2.8" rx="1" fill="#a855f7" />
+              <g id="darkGlassesGroup"><circle cx="57" cy="30" r="2.2" fill="#0f172a" /><circle cx="67" cy="30" r="2.2" fill="#0f172a" /><circle cx="57.7" cy="29.3" r="0.7" fill="#ffffff" /><circle cx="67.7" cy="29.3" r="0.7" fill="#ffffff" /></g>
+              <path id="bartMouth" d="M 57 38 Q 62 42 67 38" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" />
+              <g class="boy-sword-arm">
+                <path d="M 69 54 L 83 62 L 80 69 L 66 61 Z" fill="#334155" />
+                <circle cx="83" cy="65" r="4" fill="#c68642" />
+                <circle cx="84" cy="65" r="5.2" fill="none" stroke="url(#brassKeyGrad)" stroke-width="2.4" />
+                <line id="boyLaserGlow" x1="88" y1="61" x2="122" y2="30" stroke="#facc15" stroke-width="7.5" stroke-linecap="round" opacity="0.68" filter="url(#laserGlowBlue)" />
+                <line id="boyLaserCore" x1="88" y1="61" x2="122" y2="30" stroke="#fef9c3" stroke-width="2.8" stroke-linecap="round" />
+                <line x1="101" y1="49" x2="105" y2="54" stroke="#fde047" stroke-width="2.2" stroke-linecap="round" />
+                <line x1="105" y1="45" x2="108" y2="49" stroke="#fde047" stroke-width="2" stroke-linecap="round" />
+              </g>
+            </g>
+          </g>
+          <g id="alienPostureGroup" transform="translate(0, 0)">
+            <g class="alien-leg-l"><path d="M 147 75 L 154 75 L 149 101 L 141 101 Z" fill="#1e1b4b" /><path d="M 138 101 L 151 101 L 152 108 L 136 108 Z" fill="#020617" stroke="#64748b" stroke-width="0.7" /></g>
+            <g class="alien-leg-r"><path d="M 159 75 L 166 75 L 171 101 L 163 101 Z" fill="#1e1b4b" /><path d="M 162 101 L 175 101 L 177 108 L 161 108 Z" fill="#020617" stroke="#64748b" stroke-width="0.7" /></g>
+            <g class="alien-body">
+              <path d="M 171 50 L 185 88 L 171 84 Z" fill="#581c87" opacity="0.88" />
+              <path d="M 143 48 L 172 48 L 175 77 L 141 77 Z" fill="url(#alienArmorGrad)" stroke="#c084fc" stroke-width="0.9" />
+              <polygon points="158,49 162,59 158,64 154,59" fill="#ef4444" />
+              <rect x="154" y="41" width="8" height="7" fill="#e2e8f0" />
+              <ellipse cx="158" cy="32" rx="13.5" ry="13.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9" />
+              <ellipse cx="158" cy="21" rx="18" ry="3.4" fill="#0f172a" stroke="#94a3b8" stroke-width="0.8" />
+              <rect x="147" y="4" width="22" height="17" rx="2" fill="#0f172a" stroke="#64748b" stroke-width="0.8" />
+              <rect x="147" y="16.5" width="22" height="3.2" fill="#dc2626" />
+              <circle id="alienEyeL" cx="152" cy="30" r="3.4" fill="#0f172a" stroke="#fde047" stroke-width="1.1" />
+              <circle cx="152" cy="30" r="1.4" fill="#ef4444" />
+              <polygon id="alienEyeR" points="168,28 160,30 167,32.5" fill="#ef4444" />
+              <path id="alienMouth" d="M 151 39 Q 157 36 164 39" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" />
+              <g class="alien-sword-arm">
+                <path d="M 149 54 L 135 62 L 138 69 L 152 61 Z" fill="#1e1b4b" />
+                <circle cx="135" cy="65" r="4" fill="#f8fafc" />
+                <rect x="132" y="58" width="5.5" height="13" rx="2" transform="rotate(-42 135 65)" fill="#0f172a" stroke="#fde047" stroke-width="0.9" />
+                <line id="alienLaserGlow" x1="131" y1="60" x2="98" y2="30" stroke="#ef4444" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowRed)" />
+                <line id="alienLaserCore" x1="131" y1="60" x2="98" y2="30" stroke="#fecaca" stroke-width="2.8" stroke-linecap="round" />
+              </g>
+              <g id="alienDefeatedStars" style="display: none;">
+                <text x="140" y="6" fill="#fde047" font-size="9" font-weight="900">★</text>
+                <text x="155" y="2" fill="#38bdf8" font-size="8.5" font-weight="900">🔑</text>
+                <text x="169" y="7" fill="#fde047" font-size="9" font-weight="900">★</text>
+              </g>
+            </g>
+          </g>
+          <path id="heroSlashArc" d="M 88 22 Q 132 42 96 76" fill="none" stroke="#facc15" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowBlue)" />
+          <path id="alienSlashArc" d="M 132 22 Q 88 42 124 76" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowRed)" />
+          <circle id="combatShockwaveRing" cx="110" cy="45" r="6" fill="none" stroke="#bae6fd" stroke-width="3" opacity="0" />
+          <g id="laserClashSparks" transform="translate(110, 44)">
+            <circle cx="0" cy="0" r="10.5" fill="#bae6fd" opacity="0.35" />
+            <polygon points="0,-11 9,-3 6,9 -6,9 -9,-3" fill="url(#moonstoneGemGrad)" stroke="#ffffff" stroke-width="1.2" />
+            <polyline points="-9,-3 9,-3" stroke="#38bdf8" stroke-width="0.9" fill="none" />
+            <polyline points="-5,-3 0,-11 5,-3 0,9 -5,-3" stroke="#ffffff" stroke-width="0.8" fill="none" opacity="0.85" />
+          </g>
+        </g>
+      </g>
+      <text id="duelMoveCallout" x="110" y="23" text-anchor="middle" fill="#fde047" font-size="9.2" font-weight="900" font-family="sans-serif" opacity="0" style="letter-spacing:0.4px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.95));">🔑 GOLDEN KEY!</text>
+    </svg>`
+  },
+
+  trapped_videogame: {
+    barLeftX: 38,
+    barWidth: 142,
+    heroMoves: [
+      { cls: 'duel-move-hero-spin', label: '🕹️ FULL BLAST CRIT!', color: '#38bdf8' },
+      { cls: 'duel-move-hero-slam', label: '🚀 JETPACK SLAM!', color: '#34d399' },
+      { cls: 'duel-move-hero-flurry', label: '⚡ PIXEL COMBO!', color: '#fde047' }
+    ],
+    alienMoves: [
+      { cls: 'duel-move-alien-smash', label: '👾 BOSS SMASH!', color: '#f87171' },
+      { cls: 'duel-move-alien-spin', label: '🔥 GLITCH STRIKE!', color: '#c084fc' }
+    ],
+    statusText: (m) => {
+      if (m >= 3) return [`🕹️ Jesse dominating Full Blast! (+${m} lead) 🚀`, 'Each right answer blasts the alien boss further back!'];
+      if (m > 0) return [`⚡ Player 1 winning the boss battle! (+${m}) 🎮`, 'Nice hit! Keep answering right to beat the level!'];
+      if (m === 0) return ['🎮 Full Blast Boss Battle — Evenly Matched!', 'Every right answer powers your arm cannon; wrong answers let the boss push!'];
+      return [`👾 Alien Boss pushing forward! (${m}) 🔥`, 'Answer the next question right to fire back!'];
+    },
+    svg: `<svg width="100%" height="100%" viewBox="0 0 220 116" preserveAspectRatio="xMidYMid meet" id="bartSvg">
+      <defs>
+        <linearGradient id="cloakGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0284c7" /><stop offset="100%" stop-color="#1e3a8a" /></linearGradient>
+        <linearGradient id="alienArmorGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#581c87" /><stop offset="100%" stop-color="#1e1b4b" /></linearGradient>
+        <linearGradient id="heroBarGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0284c7" /><stop offset="100%" stop-color="#22d3ee" /></linearGradient>
+        <linearGradient id="alienBarGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ef4444" /><stop offset="100%" stop-color="#991b1b" /></linearGradient>
+        <filter id="laserGlowBlue" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+        <filter id="laserGlowRed" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      <!-- Neon Video Game Grid & Glowing Level Portal -->
+      <path d="M 10 98 L 210 98 M 20 105 L 200 105 M 60 88 L 40 112 M 110 88 L 110 112 M 160 88 L 180 112" stroke="#22d3ee" stroke-width="0.7" opacity="0.28" />
+      <ellipse cx="110" cy="54" rx="22" ry="30" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="5 3" opacity="0.35" />
+      <ellipse id="spaceportAura" cx="110" cy="64" rx="102" ry="48" fill="#38bdf8" opacity="0.16" />
+      <ellipse cx="110" cy="111" rx="98" ry="4.5" fill="#000000" opacity="0.58" />
+      <text x="2" y="11" fill="#22d3ee" font-size="7.4" font-weight="900" font-family="sans-serif">PLAYER</text>
+      <text x="186" y="11" fill="#f87171" font-size="7.4" font-weight="900" font-family="sans-serif">BOSS</text>
+      <rect x="38" y="4.5" width="142" height="7" rx="3.5" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <rect id="heroPowerFill" x="38" y="4.5" width="71" height="7" rx="3.5" fill="url(#heroBarGrad)" />
+      <rect id="alienPowerFill" x="109" y="4.5" width="71" height="7" rx="3.5" fill="url(#alienBarGrad)" />
+      <circle id="clashMeterSpark" cx="109" cy="8" r="4.6" fill="#fde047" stroke="#0f172a" stroke-width="1.2" />
+      <g id="duelStageGroup" transform="translate(0, 0)">
+        <g transform="translate(110, 68) scale(1.12) translate(-110, -68)">
+          <g id="boyPostureGroup" transform="translate(0, 0)">
+            <g class="leg-l"><path d="M 52 75 L 59 75 L 55 101 L 47 101 Z" fill="#334155" /><path d="M 45 101 L 57 101 L 59 108 L 44 108 Z" fill="#0284c7" /></g>
+            <g class="leg-r"><path d="M 63 75 L 70 75 L 75 101 L 67 101 Z" fill="#475569" /><path d="M 66 101 L 78 101 L 81 108 L 65 108 Z" fill="#0369a1" /></g>
+            <g class="bart-body">
+              <!-- Jetpack with Orange-Yellow Flame -->
+              <rect x="37" y="51" width="10" height="21" rx="3" fill="#94a3b8" stroke="#334155" stroke-width="1" />
+              <polygon points="39,72 45,72 42,84" fill="#f97316" /><polygon points="40.5,72 43.5,72 42,79" fill="#fef08a" />
+              <path d="M 47 48 L 74 48 L 77 77 L 45 77 Z" fill="url(#cloakGrad)" stroke="#38bdf8" stroke-width="0.9" />
+              <text x="61" y="65" text-anchor="middle" fill="#fde047" font-size="8.5" font-weight="900" font-family="monospace">FB</text>
+              <rect x="57" y="41" width="8" height="8" fill="#ffdbac" />
+              <circle cx="61" cy="31" r="15" fill="#ffdbac" />
+              <path d="M 45 30 Q 48 12 63 13 Q 74 13 78 25 L 72 21 L 66 18 L 57 19 L 49 23 Z" fill="#b91c1c" />
+              <g id="darkGlassesGroup"><rect x="52" y="25" width="10" height="6.5" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1" /><rect x="64" y="25" width="10" height="6.5" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1" /><line x1="62" y1="28" x2="64" y2="28" stroke="#38bdf8" stroke-width="1" /></g>
+              <path id="bartMouth" d="M 57 38 Q 63 42 68 38" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" />
+              <g class="boy-sword-arm">
+                <path d="M 69 54 L 84 62 L 81 69 L 66 61 Z" fill="#0284c7" />
+                <rect x="79" y="57" width="11" height="10" rx="3" transform="rotate(-38 84 62)" fill="#cbd5e1" stroke="#0284c7" stroke-width="1.2" />
+                <line id="boyLaserGlow" x1="88" y1="60" x2="124" y2="26" stroke="#38bdf8" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowBlue)" />
+                <line id="boyLaserCore" x1="88" y1="60" x2="124" y2="26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+              </g>
+            </g>
+          </g>
+          <g id="alienPostureGroup" transform="translate(0, 0)">
+            <g class="alien-leg-l"><path d="M 147 75 L 154 75 L 149 101 L 141 101 Z" fill="#3b0764" /><path d="M 138 101 L 151 101 L 152 108 L 136 108 Z" fill="#16a34a" /></g>
+            <g class="alien-leg-r"><path d="M 159 75 L 166 75 L 171 101 L 163 101 Z" fill="#4c1d95" /><path d="M 162 101 L 175 101 L 177 108 L 161 108 Z" fill="#15803d" /></g>
+            <g class="alien-body">
+              <path d="M 143 48 L 172 48 L 175 77 L 141 77 Z" fill="url(#alienArmorGrad)" stroke="#a855f7" stroke-width="0.9" />
+              <circle cx="158" cy="62" r="5" fill="#ef4444" opacity="0.85" />
+              <rect x="154" y="41" width="8" height="8" fill="#22c55e" />
+              <ellipse cx="158" cy="31" rx="15" ry="14.5" fill="#22c55e" stroke="#15803d" stroke-width="1" />
+              <line x1="151" y1="18" x2="145" y2="9" stroke="#22c55e" stroke-width="2.3" stroke-linecap="round" /><circle cx="145" cy="9" r="3" fill="#fde047" />
+              <line x1="165" y1="18" x2="171" y2="9" stroke="#22c55e" stroke-width="2.3" stroke-linecap="round" /><circle cx="171" cy="9" r="3" fill="#fde047" />
+              <polygon id="alienEyeL" points="146,26 155,29 147,32" fill="#ef4444" />
+              <polygon id="alienEyeR" points="169,26 159,29 168,32" fill="#ef4444" />
+              <path id="alienMouth" d="M 151 39 Q 157 35 164 39" fill="none" stroke="#052e16" stroke-width="2" stroke-linecap="round" />
+              <g class="alien-sword-arm">
+                <path d="M 149 54 L 135 62 L 138 69 L 152 61 Z" fill="#22c55e" />
+                <circle cx="135" cy="65" r="4.2" fill="#16a34a" />
+                <rect x="132" y="58" width="6" height="14" rx="2" transform="rotate(-42 135 65)" fill="#475569" stroke="#ef4444" stroke-width="1" />
+                <line id="alienLaserGlow" x1="131" y1="60" x2="95" y2="26" stroke="#ef4444" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowRed)" />
+                <line id="alienLaserCore" x1="131" y1="60" x2="95" y2="26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+              </g>
+              <g id="alienDefeatedStars" style="display: none;"><text x="142" y="12" fill="#fde047" font-size="9" font-weight="900">★</text><text x="156" y="7" fill="#38bdf8" font-size="8" font-weight="900">✦</text><text x="169" y="13" fill="#fde047" font-size="9" font-weight="900">★</text></g>
+            </g>
+          </g>
+          <path id="heroSlashArc" d="M 88 22 Q 132 42 96 76" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowBlue)" />
+          <path id="alienSlashArc" d="M 132 22 Q 88 42 124 76" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowRed)" />
+          <circle id="combatShockwaveRing" cx="110" cy="48" r="6" fill="none" stroke="#fde047" stroke-width="3" opacity="0" />
+          <g id="laserClashSparks" transform="translate(110, 44)">
+            <circle cx="0" cy="0" r="8" fill="#fde047" opacity="0.45" />
+            <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#ffffff" />
+            <line x1="-9" y1="-9" x2="9" y2="9" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+            <line x1="9" y1="-9" x2="-9" y2="9" stroke="#ef4444" stroke-width="2" stroke-linecap="round" />
+          </g>
+        </g>
+      </g>
+      <text id="duelMoveCallout" x="110" y="23" text-anchor="middle" fill="#fde047" font-size="9.2" font-weight="900" font-family="sans-serif" opacity="0" style="letter-spacing:0.4px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.95));">🕹️ FULL BLAST!</text>
+    </svg>`
+  },
+
+  colors_of_space: {
+    barLeftX: 34,
+    barWidth: 146,
+    heroMoves: [
+      { cls: 'duel-move-hero-spin', label: '🚀 WARP DRIVE SLASH!', color: '#38bdf8' },
+      { cls: 'duel-move-hero-slam', label: '⭐ MENTORIAN FLASH!', color: '#fde047' },
+      { cls: 'duel-move-hero-flurry', label: '🌌 STARPORT STRIKE!', color: '#60a5fa' }
+    ],
+    alienMoves: [
+      { cls: 'duel-move-alien-smash', label: '🛸 LHARI AMBUSH!', color: '#f87171' },
+      { cls: 'duel-move-alien-spin', label: '💫 WARP COUNTER!', color: '#c084fc' }
+    ],
+    statusText: (m) => {
+      if (m >= 3) return [`🚀 Bart dominating the Spaceport! (+${m} lead) ⭐`, 'Every right answer powers the Mentorian star-blade!'];
+      if (m > 0) return [`⭐ Bart pushing back the Lhari! (+${m}) 🌌`, 'Great work! Keep going to reach the Doorway to the Stars!'];
+      if (m === 0) return ['🌌 Spaceport Duel — Bart vs. Lhari!', 'Right answers push the Lhari back; wrong answers let them advance!'];
+      return [`🛸 Lhari closing in! (${m}) 💫`, 'Answer the next question right to break free!'];
+    },
+    svg: `<svg width="100%" height="100%" viewBox="0 0 220 116" preserveAspectRatio="xMidYMid meet" id="bartSvg">
+      <defs>
+        <linearGradient id="cloakGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0284c7" /><stop offset="100%" stop-color="#1e3a8a" /></linearGradient>
+        <linearGradient id="alienArmorGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#cbd5e1" /><stop offset="100%" stop-color="#475569" /></linearGradient>
+        <linearGradient id="heroBarGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0284c7" /><stop offset="100%" stop-color="#38bdf8" /></linearGradient>
+        <linearGradient id="alienBarGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#a855f7" /><stop offset="100%" stop-color="#ef4444" /></linearGradient>
+        <filter id="laserGlowBlue" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+        <filter id="laserGlowRed" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      <!-- Starfield, Ringed Planet Deneb & Crystal Spaceport Spire -->
+      <circle cx="24" cy="30" r="1.4" fill="#ffffff" opacity="0.8" /><circle cx="48" cy="22" r="1.1" fill="#bae6fd" opacity="0.7" />
+      <circle cx="176" cy="26" r="1.5" fill="#fde047" opacity="0.8" /><circle cx="198" cy="40" r="1.1" fill="#ffffff" opacity="0.7" />
+      <circle cx="110" cy="38" r="13" fill="#1d4ed8" opacity="0.45" />
+      <ellipse cx="110" cy="38" rx="26" ry="5.5" fill="none" stroke="#38bdf8" stroke-width="1.3" transform="rotate(-14 110 38)" opacity="0.6" />
+      <polygon points="103,108 110,48 117,108" fill="#38bdf8" opacity="0.16" />
+      <ellipse id="spaceportAura" cx="110" cy="64" rx="102" ry="48" fill="#38bdf8" opacity="0.16" />
+      <ellipse cx="110" cy="111" rx="98" ry="4.5" fill="#000000" opacity="0.58" />
+      <text x="4" y="11" fill="#38bdf8" font-size="7.6" font-weight="900" font-family="sans-serif">BART</text>
+      <text x="184" y="11" fill="#e2e8f0" font-size="7.6" font-weight="900" font-family="sans-serif">LHARI</text>
+      <rect x="34" y="4.5" width="146" height="7" rx="3.5" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <rect id="heroPowerFill" x="34" y="4.5" width="73" height="7" rx="3.5" fill="url(#heroBarGrad)" />
+      <rect id="alienPowerFill" x="107" y="4.5" width="73" height="7" rx="3.5" fill="url(#alienBarGrad)" />
+      <circle id="clashMeterSpark" cx="107" cy="8" r="4.6" fill="#fde047" stroke="#0f172a" stroke-width="1.2" />
+      <g id="duelStageGroup" transform="translate(0, 0)">
+        <g transform="translate(110, 68) scale(1.12) translate(-110, -68)">
+          <g id="boyPostureGroup" transform="translate(0, 0)">
+            <g class="leg-l"><path d="M 52 75 L 59 75 L 55 101 L 47 101 Z" fill="#334155" /><path d="M 45 101 L 57 101 L 59 108 L 44 108 Z" fill="#0284c7" /></g>
+            <g class="leg-r"><path d="M 63 75 L 70 75 L 75 101 L 67 101 Z" fill="#475569" /><path d="M 66 101 L 78 101 L 81 108 L 65 108 Z" fill="#0369a1" /></g>
+            <g class="bart-body">
+              <path d="M 48 50 L 36 86 L 48 82 Z" fill="#0369a1" opacity="0.88" />
+              <path d="M 47 48 L 74 48 L 77 77 L 45 77 Z" fill="url(#cloakGrad)" stroke="#38bdf8" stroke-width="0.9" />
+              <polygon points="61,54 66,61 61,68 56,61" fill="#fde047" opacity="0.9" />
+              <rect x="57" y="41" width="8" height="8" fill="#ffdbac" />
+              <circle cx="61" cy="31" r="15" fill="#ffdbac" />
+              <path d="M 46 28 Q 50 13 63 14 Q 74 14 77 26 L 70 21 L 55 21 Z" fill="#78350f" />
+              <!-- Bart's Dark Spaceport Glasses -->
+              <g id="darkGlassesGroup"><rect x="51" y="25" width="11" height="6.8" rx="2.2" fill="#020617" stroke="#38bdf8" stroke-width="1.2" /><rect x="64" y="25" width="11" height="6.8" rx="2.2" fill="#020617" stroke="#38bdf8" stroke-width="1.2" /><line x1="62" y1="28" x2="64" y2="28" stroke="#38bdf8" stroke-width="1.2" /></g>
+              <path id="bartMouth" d="M 57 38 Q 63 42 68 38" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" />
+              <g class="boy-sword-arm">
+                <path d="M 69 54 L 84 62 L 81 69 L 66 61 Z" fill="#0284c7" />
+                <circle cx="84" cy="65" r="4.2" fill="#ffdbac" />
+                <rect x="81" y="58" width="6" height="14" rx="2" transform="rotate(42 84 65)" fill="#cbd5e1" stroke="#0f172a" stroke-width="1" />
+                <line id="boyLaserGlow" x1="88" y1="60" x2="124" y2="26" stroke="#38bdf8" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowBlue)" />
+                <line id="boyLaserCore" x1="88" y1="60" x2="124" y2="26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+              </g>
+            </g>
+          </g>
+          <!-- Tall Silver-Cloaked Lhari -->
+          <g id="alienPostureGroup" transform="translate(0, 0)">
+            <g class="alien-leg-l"><path d="M 147 75 L 154 75 L 149 101 L 141 101 Z" fill="#475569" /><path d="M 138 101 L 151 101 L 152 108 L 136 108 Z" fill="#94a3b8" /></g>
+            <g class="alien-leg-r"><path d="M 159 75 L 166 75 L 171 101 L 163 101 Z" fill="#64748b" /><path d="M 162 101 L 175 101 L 177 108 L 161 108 Z" fill="#94a3b8" /></g>
+            <g class="alien-body">
+              <path d="M 171 45 L 188 92 L 170 86 Z" fill="#cbd5e1" opacity="0.78" />
+              <path d="M 143 44 L 173 44 L 177 80 L 140 80 Z" fill="url(#alienArmorGrad)" stroke="#e2e8f0" stroke-width="1" />
+              <rect x="154" y="38" width="8" height="8" fill="#cbd5e1" />
+              <ellipse cx="158" cy="27" rx="12.5" ry="15.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1" />
+              <polygon id="alienEyeL" points="148,24 156,27 149,30" fill="#a855f7" />
+              <polygon id="alienEyeR" points="168,24 160,27 167,30" fill="#a855f7" />
+              <path id="alienMouth" d="M 152 36 Q 158 34 164 36" fill="none" stroke="#334155" stroke-width="1.8" stroke-linecap="round" />
+              <g class="alien-sword-arm">
+                <path d="M 149 54 L 135 62 L 138 69 L 152 61 Z" fill="#94a3b8" />
+                <circle cx="135" cy="65" r="4" fill="#e2e8f0" />
+                <rect x="132" y="58" width="6" height="14" rx="2" transform="rotate(-42 135 65)" fill="#475569" stroke="#a855f7" stroke-width="1" />
+                <line id="alienLaserGlow" x1="131" y1="60" x2="95" y2="26" stroke="#c084fc" stroke-width="7.5" stroke-linecap="round" opacity="0.65" filter="url(#laserGlowRed)" />
+                <line id="alienLaserCore" x1="131" y1="60" x2="95" y2="26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+              </g>
+              <g id="alienDefeatedStars" style="display: none;"><text x="142" y="10" fill="#fde047" font-size="9" font-weight="900">★</text><text x="156" y="5" fill="#38bdf8" font-size="8" font-weight="900">✦</text><text x="169" y="11" fill="#fde047" font-size="9" font-weight="900">★</text></g>
+            </g>
+          </g>
+          <path id="heroSlashArc" d="M 88 22 Q 132 42 96 76" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowBlue)" />
+          <path id="alienSlashArc" d="M 132 22 Q 88 42 124 76" fill="none" stroke="#c084fc" stroke-width="4.5" stroke-linecap="round" opacity="0" filter="url(#laserGlowRed)" />
+          <circle id="combatShockwaveRing" cx="110" cy="48" r="6" fill="none" stroke="#fde047" stroke-width="3" opacity="0" />
+          <g id="laserClashSparks" transform="translate(110, 44)">
+            <circle cx="0" cy="0" r="8" fill="#fde047" opacity="0.45" />
+            <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#ffffff" />
+            <line x1="-9" y1="-9" x2="9" y2="9" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+            <line x1="9" y1="-9" x2="-9" y2="9" stroke="#c084fc" stroke-width="2" stroke-linecap="round" />
+          </g>
+        </g>
+      </g>
+      <text id="duelMoveCallout" x="110" y="23" text-anchor="middle" fill="#fde047" font-size="9.2" font-weight="900" font-family="sans-serif" opacity="0" style="letter-spacing:0.4px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.95));">🚀 WARP SLASH!</text>
+    </svg>`
+  }
+};
+
+function getBookAnimationKeyForQuiz(quizObj) {
+  const raw = `${quizObj?.id || ''} ${quizObj?.book || ''} ${quizObj?.title || ''}`.toLowerCase();
+  if (/key[\s_]*hunter|moonstone/.test(raw)) return 'key_hunters';
+  if (/trapped|video[\s_]*game/.test(raw)) return 'trapped_videogame';
+  if (/colors[\s_]*of[\s_]*space|default_ch1|spaceport/.test(raw)) return 'colors_of_space';
+  return 'key_hunters';
+}
+
+function applyBookAnimationTheme(quizObj) {
+  const key = getBookAnimationKeyForQuiz(quizObj);
+  const theme = BOOK_ANIMATION_THEMES[key] || BOOK_ANIMATION_THEMES.key_hunters;
+  const container = document.getElementById('bartAvatarContainer');
+  if (container && activeBookAnimationKey !== key) {
+    activeBookAnimationKey = key;
+    container.innerHTML = theme.svg;
+    renderDuelVisualState(duelMomentum, null);
+  } else {
+    activeBookAnimationKey = key;
+  }
+}
 
 function renderDuelVisualState(momentum, justAnsweredCorrect) {
   const container = document.getElementById('bartAvatarContainer');
@@ -6210,18 +6594,23 @@ function renderDuelVisualState(momentum, justAnsweredCorrect) {
     alienGroup.setAttribute('transform', `rotate(${alienTilt.toFixed(1)} 158 104)`);
   }
 
-  // Power bar (total width 144 from x=36 to x=180)
-  const heroWidth = Math.max(12, Math.min(132, 72 + m * 6.0));
-  const alienWidth = 144 - heroWidth;
+  // Power bar adapts to the active book theme
+  const activeTheme = BOOK_ANIMATION_THEMES[activeBookAnimationKey] || BOOK_ANIMATION_THEMES.key_hunters;
+  const barLeftX = activeTheme.barLeftX || 36;
+  const barWidth = activeTheme.barWidth || 144;
+  const halfBar = barWidth / 2;
+  const heroWidth = Math.max(12, Math.min(barWidth - 12, halfBar + m * 6.0));
+  const alienWidth = barWidth - heroWidth;
   if (heroBar) {
+    heroBar.setAttribute('x', barLeftX.toFixed(1));
     heroBar.setAttribute('width', heroWidth.toFixed(1));
   }
   if (alienBar) {
-    alienBar.setAttribute('x', (36 + heroWidth).toFixed(1));
+    alienBar.setAttribute('x', (barLeftX + heroWidth).toFixed(1));
     alienBar.setAttribute('width', alienWidth.toFixed(1));
   }
   if (spark) {
-    spark.setAttribute('cx', (36 + heroWidth).toFixed(1));
+    spark.setAttribute('cx', (barLeftX + heroWidth).toFixed(1));
   }
 
   // Laser blade intensity & facial expressions
@@ -6258,11 +6647,7 @@ function renderDuelVisualState(momentum, justAnsweredCorrect) {
     void container.offsetWidth;
 
     if (justAnsweredCorrect) {
-      const heroMoves = [
-        { cls: 'duel-move-hero-spin', label: '🔑 GOLDEN KEY UNLOCK!', color: '#fde047' },
-        { cls: 'duel-move-hero-slam', label: '💎 MOONSTONE CLUE!', color: '#38bdf8' },
-        { cls: 'duel-move-hero-flurry', label: '🔍 MASTER SLEUTH!', color: '#c084fc' }
-      ];
+      const heroMoves = activeTheme.heroMoves;
       const chosen = heroMoves[heroSpecialMoveCounter % heroMoves.length];
       heroSpecialMoveCounter++;
       container.classList.add('cheer-anim', chosen.cls);
@@ -6278,10 +6663,7 @@ function renderDuelVisualState(momentum, justAnsweredCorrect) {
         shockRing.style.animation = 'shockwaveBurst 0.75s ease-out';
       }
     } else {
-      const alienMoves = [
-        { cls: 'duel-move-alien-smash', label: '🎩 THIEF ESCAPE!', color: '#f87171' },
-        { cls: 'duel-move-alien-spin', label: '🌑 BLOOD MOON CURSE!', color: '#c084fc' }
-      ];
+      const alienMoves = activeTheme.alienMoves;
       const chosen = alienMoves[alienSpecialMoveCounter % alienMoves.length];
       alienSpecialMoveCounter++;
       container.classList.add('shake-anim', chosen.cls);
@@ -6319,19 +6701,10 @@ function updateBartAvatar(score, justAnsweredCorrect) {
     return;
   }
 
-  if (duelMomentum >= 3) {
-    title.textContent = `🔑 Sleuths closing in on the Moonstone! (+${duelMomentum} lead) 💎`;
-    desc.textContent = "Every right answer unlocks another clue and corners the thief!";
-  } else if (duelMomentum > 0) {
-    title.textContent = `🔍 Great deduction! (+${duelMomentum}) 🔑`;
-    desc.textContent = "Keep solving clues to recover the Musgrave Moonstone!";
-  } else if (duelMomentum === 0) {
-    title.textContent = "💎 Mystery Duel — Sleuths vs. Thief!";
-    desc.textContent = "Right answers push the thief back; wrong answers let him slip away!";
-  } else {
-    title.textContent = `🎩 The Moonstone Thief is gaining ground! (${duelMomentum}) 🌑`;
-    desc.textContent = "Answer the next question right to strike back with the brass key!";
-  }
+  const activeTheme = BOOK_ANIMATION_THEMES[activeBookAnimationKey] || BOOK_ANIMATION_THEMES.key_hunters;
+  const [stTitle, stDesc] = activeTheme.statusText(duelMomentum);
+  if (title) title.textContent = stTitle;
+  if (desc) desc.textContent = stDesc;
 }
 
 function updateMistakeBadge() {
@@ -12566,6 +12939,9 @@ function activateQuizById(quizId, userInitiated = false) {
   const target = all.find(q => q.id === quizId) || all[0];
   activeQuizId = target.id;
   currentActiveQuiz = target;
+  if (typeof applyBookAnimationTheme === 'function') {
+    applyBookAnimationTheme(target);
+  }
   currentRTypeFilter = 'all';
   if (userInitiated) {
     closeReaderIfOpen();
