@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -21,7 +21,7 @@
   }
 </script>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; touch-action: manipulation; }
 
   html, body { 
     height: 100%;
@@ -33,6 +33,9 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    touch-action: pan-x pan-y;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
   }
 
   /* Indicador de Actualización en Esquina (Visible en Acceso Privado y Pantalla Principal) */
@@ -638,19 +641,54 @@
     background: #0b1329;
     border: 1.5px solid #38bdf8;
     border-radius: 0.75rem;
-    padding: 0.52rem 0.7rem;
+    padding: 0.48rem 0.65rem;
     display: flex;
     flex-direction: column;
-    gap: 0.34rem;
+    gap: 0.3rem;
     box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
     margin-bottom: 0.2rem;
+  }
+
+  .spelling-bilingual-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: stretch;
+  }
+
+  .spelling-lang-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .spelling-lang-pane.es-pane {
+    border-left: 1px dashed rgba(148, 163, 184, 0.35);
+    padding-left: 0.65rem;
+  }
+
+  .spelling-bilingual-grid .letter-slot,
+  .spelling-bilingual-grid .letter-tile {
+    width: 1.95rem;
+    height: 2.3rem;
+    font-size: 1.04rem;
+  }
+
+  .spelling-bilingual-grid .slots-container,
+  .spelling-bilingual-grid .letter-bank {
+    gap: 0.24rem;
+    min-height: 2.45rem;
+    padding: 0.24rem;
   }
 
   .spelling-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.88rem;
+    gap: 0.35rem;
+    font-size: 0.84rem;
     font-weight: 700;
     color: #38bdf8;
   }
@@ -1709,7 +1747,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 06:24 PM - 11/18/2026</div>
+<div class="build-timestamp">Updated: 06:28 PM - 11/18/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1753,7 +1791,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 06:24 PM - 11/18/2026
+      Updated: 06:28 PM - 11/18/2026
     </div>
   </div>
 </div>
@@ -2205,51 +2243,51 @@
         </div>
       </div>
 
-      <!-- Keyword Spelling Decryption Bench (0.5 pt EN + 0.5 pt ES = 1.0 pt out of 5) -->
+      <!-- Keyword Spelling Decryption Bench (0.5 pt EN + 0.5 pt ES = 1.0 pt out of 5, side by side) -->
       <div class="spelling-box" id="spellingBox">
-        <div class="spelling-header">
-          <span>⚡ Spelling Cipher — 🇺🇸 English (0.5 pt)</span>
-          <span id="spellingStatus" style="color:#38bdf8;">Unsolved (0/0.5 pt)</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
-          <div class="spelling-subtext" id="spellingClueText" style="flex:1;">Clue: Chapter 1 Term</div>
-          <button type="button" id="speakSpellingWordBtn" class="speak-word-btn" onclick="speakCurrentSpellingWord()" title="Tap to hear the English spelling word" aria-label="Hear English spelling word">🔊</button>
-        </div>
-        
-        <div class="slots-container" id="slotsContainer"></div>
-        <div class="letter-bank" id="letterBank"></div>
-
-        <!-- English Spelling Submit & Attempts Controls -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; gap:0.5rem;">
-          <div style="font-size:0.86rem; font-weight:700; color:#94a3b8;" id="spellingAttemptsDisplay">
-            Attempts Left: <span id="spellingAttemptsCount" style="color:#fbbf24;">3</span>/3
-          </div>
-          <button id="spellingSubmitBtn" class="amber" style="padding:0.45rem 0.85rem; font-size:0.88rem; font-weight:800; border-radius:0.5rem;" onclick="submitSpellingAttempt()">
-            ⚡ Verify English (0.5 pt)
-          </button>
-        </div>
-
-        <!-- Spanish Version Spelling Bench (0.5 pt) -->
-        <div style="border-top: 1px dashed rgba(148, 163, 184, 0.32); margin: 0.5rem 0 0.25rem 0; padding-top: 0.55rem; display: flex; flex-direction: column; gap: 0.45rem;">
-          <div class="spelling-header">
-            <span>🇪🇸 Español — Deletreo (0.5 pt)</span>
-            <span id="spellingEsStatus" style="color:#38bdf8;">Unsolved (0/0.5 pt)</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
-            <div class="spelling-subtext" id="spellingEsClueText" style="flex:1;">Listen and spell the Spanish version of this word</div>
-            <button type="button" id="speakSpellingEsBtn" class="speak-word-btn" onclick="speakCurrentSpanishSpellingWord()" title="Toca para escuchar la palabra en español" aria-label="Escuchar palabra en español">🔊</button>
-          </div>
-
-          <div class="slots-container" id="slotsContainerEs"></div>
-          <div class="letter-bank" id="letterBankEs"></div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem; gap:0.5rem;">
-            <div style="font-size:0.86rem; font-weight:700; color:#94a3b8;" id="spellingEsAttemptsDisplay">
-              Attempts Left: <span id="spellingEsAttemptsCount" style="color:#fbbf24;">3</span>/3
+        <div class="spelling-bilingual-grid">
+          <!-- English Version Spelling Bench (0.5 pt) -->
+          <div class="spelling-lang-pane en-pane">
+            <div class="spelling-header">
+              <span>🇺🇸 English (0.5 pt)</span>
+              <span id="spellingStatus" style="color:#38bdf8;">Unsolved (0/0.5 pt)</span>
             </div>
-            <button id="spellingEsSubmitBtn" class="amber" style="padding:0.45rem 0.85rem; font-size:0.88rem; font-weight:800; border-radius:0.5rem;" onclick="submitSpanishSpellingAttempt()">
-              ⚡ Verify Spanish (0.5 pt)
-            </button>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem;">
+              <div class="spelling-subtext" id="spellingClueText" style="flex:1;">Clue: Chapter 1 Term</div>
+              <button type="button" id="speakSpellingWordBtn" class="speak-word-btn" onclick="speakCurrentSpellingWord()" title="Tap to hear the English spelling word" aria-label="Hear English spelling word">🔊</button>
+            </div>
+            <div class="slots-container" id="slotsContainer"></div>
+            <div class="letter-bank" id="letterBank"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.2rem; gap:0.35rem; flex-wrap:wrap;">
+              <div style="font-size:0.82rem; font-weight:700; color:#94a3b8;" id="spellingAttemptsDisplay">
+                Attempts: <span id="spellingAttemptsCount" style="color:#fbbf24;">3</span>/3
+              </div>
+              <button id="spellingSubmitBtn" class="amber" style="padding:0.4rem 0.72rem; font-size:0.83rem; font-weight:800; border-radius:0.5rem;" onclick="submitSpellingAttempt()">
+                ⚡ Verify English (0.5 pt)
+              </button>
+            </div>
+          </div>
+
+          <!-- Spanish Version Spelling Bench (0.5 pt) -->
+          <div class="spelling-lang-pane es-pane">
+            <div class="spelling-header">
+              <span>🇪🇸 Español (0.5 pt)</span>
+              <span id="spellingEsStatus" style="color:#38bdf8;">Unsolved (0/0.5 pt)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem;">
+              <div class="spelling-subtext" id="spellingEsClueText" style="flex:1;">Listen and spell in Spanish</div>
+              <button type="button" id="speakSpellingEsBtn" class="speak-word-btn" onclick="speakCurrentSpanishSpellingWord()" title="Toca para escuchar la palabra en español" aria-label="Escuchar palabra en español">🔊</button>
+            </div>
+            <div class="slots-container" id="slotsContainerEs"></div>
+            <div class="letter-bank" id="letterBankEs"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.2rem; gap:0.35rem; flex-wrap:wrap;">
+              <div style="font-size:0.82rem; font-weight:700; color:#94a3b8;" id="spellingEsAttemptsDisplay">
+                Attempts: <span id="spellingEsAttemptsCount" style="color:#fbbf24;">3</span>/3
+              </div>
+              <button id="spellingEsSubmitBtn" class="amber" style="padding:0.4rem 0.72rem; font-size:0.83rem; font-weight:800; border-radius:0.5rem;" onclick="submitSpanishSpellingAttempt()">
+                ⚡ Verify Spanish (0.5 pt)
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -2408,8 +2446,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795044242907"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795044242907"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795044502786"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795044502786"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -13510,6 +13548,26 @@ window.addEventListener('pageshow', (e) => {
 });
 
 window.onload = function() {
+  // Prevent pinch-zoom, trackpad Ctrl+wheel zoom, and keyboard zoom across iOS/iPadOS/Android/Desktop
+  const preventZoom = (e) => { e.preventDefault(); };
+  document.addEventListener('gesturestart', preventZoom, { passive: false });
+  document.addEventListener('gesturechange', preventZoom, { passive: false });
+  document.addEventListener('gestureend', preventZoom, { passive: false });
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('wheel', (e) => {
+    if (e.ctrlKey || e.metaKey) e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '_', '0'].includes(e.key)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
   applyResponsiveViewportScale();
   disableAllKeyboardSuggestions();
   prewarmScaledFeedbackAudioCache();
