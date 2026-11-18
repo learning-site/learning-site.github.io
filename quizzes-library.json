@@ -1,7 +1,533 @@
 {
-  "activeQuizId": "trapped_videogame_ch17_19",
-  "updatedAt": "2026-11-16T23:02:43.572Z",
+  "activeQuizId": "key_hunters1_ch1_2",
+  "updatedAt": "2026-11-18T18:00:00.000Z",
   "quizzes": [
+    {
+      "id": "key_hunters1_ch1_2",
+      "book": "Key Hunters: The Mysterious Moonstone",
+      "instance": "R",
+      "title": "Key Hunters #1 (The Mysterious Moonstone): Chapters 1 & 2",
+      "description": "Chapters 1 and 2 (Pages 1-11). Cleo and Evan follow the new librarian Ms. Crowley, crack the 'Literature no longer used' clue with the Dewey decimal poster, and discover a secret door behind book 804.",
+      "createdAt": "Nov 18, 2026",
+      "questions": [
+        {
+          "type": "mc",
+          "q": "What is Ms. Crowley doing every day that makes Cleo suspicious?",
+          "options": [
+            "She disappears into the back of the library.",
+            "She locks the library doors during recess.",
+            "She hides library books inside her desk drawer.",
+            "She whispers secrets to the principal in the hallway."
+          ],
+          "correct": 0,
+          "hint": "Think about what Cleo whispers to Evan as she watches the new librarian walk away.",
+          "pageTitle": "Chapter 1 — Page 1 (There She Goes Again)",
+          "pageExcerpt": "\"“Ms. Crowley,” Cleo said. “Every day, she disappears into the back of the library.”\"",
+          "word": "LIBRARIAN",
+          "clue": "A person who takes care of the books in a library"
+        },
+        {
+          "type": "mc",
+          "q": "How are Ms. Hilliard's eyes different from Ms. Crowley's eyes?",
+          "options": [
+            "Ms. Hilliard's were warm and welcoming, while Ms. Crowley's were dark and piercing.",
+            "Ms. Hilliard's were blue, while Ms. Crowley's were green.",
+            "Ms. Hilliard wore glasses, while Ms. Crowley never did.",
+            "Ms. Hilliard's were sleepy, while Ms. Crowley's were always smiling."
+          ],
+          "correct": 0,
+          "hint": "Both librarians had the same color eyes, but they made the kids feel very different.",
+          "pageTitle": "Chapter 1 — Page 2 (Two Librarians)",
+          "pageExcerpt": "\"Although they both had the same brown eyes, Ms. Hilliard’s were warm and welcoming while Ms. Crowley’s were dark and piercing.\"",
+          "word": "PIERCING",
+          "clue": "Sharp and intense, like the way Ms. Crowley's eyes look at the kids"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: An old-looking brass key hung around Ms. Crowley's neck.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Think about what the kids noticed when Ms. Crowley spun around to face them.",
+          "pageTitle": "Chapter 1 — Page 6 (The Key)",
+          "pageExcerpt": "\"Ms. Crowley spun to face them. An old-looking brass key hung around her neck.\"",
+          "word": "BRASS",
+          "clue": "A shiny yellow metal that the old key is made of"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or detail with its accurate description:",
+          "pairs": [
+            {
+              "left": "Cleo",
+              "right": "Girl who tightens her ponytail and wants to find out what the librarian is up to",
+              "rightVariants": [
+                "Girl who tightens her ponytail and wants to find out what the librarian is up to",
+                "Friend who says every second spent thinking is a second missed doing",
+                "Kid who wears a pink tie-dye soccer sock",
+                "Curious student who loves being called Nancy Drew"
+              ]
+            },
+            {
+              "left": "Evan",
+              "right": "Boy who reads a joke book and tells an elephant joke",
+              "rightVariants": [
+                "Boy who reads a joke book and tells an elephant joke",
+                "Student who feels like library books are his friends",
+                "Kid who remembers the Dewey poster and figures out the clue",
+                "Friend who warns Cleo she'll get a lifetime without recess"
+              ]
+            },
+            {
+              "left": "Ms. Crowley",
+              "right": "New librarian with dark, piercing eyes",
+              "rightVariants": [
+                "New librarian with dark, piercing eyes",
+                "Librarian who only makes kids sit and stay quiet",
+                "Woman in pointy black high heels who towers over the kids",
+                "Librarian searching the shelves for a mysterious clue"
+              ]
+            },
+            {
+              "left": "Ms. Hilliard",
+              "right": "Former librarian who left mysteriously at the end of last year",
+              "rightVariants": [
+                "Former librarian who left mysteriously at the end of last year",
+                "Kind librarian with warm and welcoming brown eyes",
+                "Librarian who taught Evan how to find any fact in a moment",
+                "Librarian with a sparkly purple book cart"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "School principal who catches the kids in the library",
+            "Bulldog who guards the secret door",
+            "Lunch lady who hands out sharp pencils",
+            "Ellie Fishbein's older sister who works at the library"
+          ],
+          "hint": "Remember the two kids and the two librarians—the old one and the new one.",
+          "pageTitle": "Chapter 1 — Pages 1–3 (The Characters)",
+          "pageExcerpt": "\"Not one kid in school liked the new librarian. After Ms. Hilliard left mysteriously at the end of last year, Ms. Crowley swooped in to take the job.\"",
+          "word": "MYSTERIOUSLY",
+          "clue": "In a strange way that nobody can explain"
+        },
+        {
+          "type": "mc",
+          "q": "What did Ms. Hilliard have that made her library special?",
+          "options": [
+            "A sparkly purple book cart",
+            "A pet bulldog that slept by the desk",
+            "A giant golden key on the wall",
+            "A secret candy jar for good readers"
+          ],
+          "correct": 0,
+          "hint": "It was shiny, colorful, and used for moving books around.",
+          "pageTitle": "Chapter 1 — Page 2 (Ms. Hilliard)",
+          "pageExcerpt": "\"Ms. Hilliard also had a sparkly purple book cart. She taught Evan how to find any fact in a moment and helped Cleo find books she liked.\"",
+          "word": "PURPLE",
+          "clue": "The sparkly color of Ms. Hilliard's book cart"
+        },
+        {
+          "type": "mc",
+          "q": "What is the punch line of Evan's elephant joke?",
+          "options": [
+            "So he always nose where he stopped reading.",
+            "Because he never forgets a page.",
+            "Because his ears are too big to fold.",
+            "So he can reach the top shelf."
+          ],
+          "correct": 0,
+          "hint": "The joke is a pun on a word that sounds like 'knows' and is part of an elephant's trunk.",
+          "pageTitle": "Chapter 1 — Page 2 (Evan's Joke)",
+          "pageExcerpt": "\"“So he always nose where he stopped reading,” Evan said. “Get it? An elephant trunk? Nose?”\"",
+          "word": "BOOKMARK",
+          "clue": "Something you place in a book to remember where you stopped reading"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or detail with its accurate description:",
+          "pairs": [
+            {
+              "left": "Pencil Cup",
+              "right": "Place where Cleo gets a sharper pencil",
+              "rightVariants": [
+                "Place where Cleo gets a sharper pencil",
+                "Holder with pencils that fit better in Cleo's hand",
+                "Cup with pencils that have softer erasers",
+                "Cleo's excuse for leaving her seat"
+              ]
+            },
+            {
+              "left": "Joke Book",
+              "right": "Book Evan closes when Cleo starts whispering",
+              "rightVariants": [
+                "Book Evan closes when Cleo starts whispering",
+                "Book Evan tucks into his backpack",
+                "Where Evan probably finds his elephant joke",
+                "Funny book Evan reads in the library"
+              ]
+            },
+            {
+              "left": "Recess",
+              "right": "Thing Cleo loses every day",
+              "rightVariants": [
+                "Thing Cleo loses every day",
+                "Break time Evan says Cleo will lose for a lifetime",
+                "Playtime Cleo misses for not staying in her seat",
+                "School break Cleo keeps getting punished out of"
+              ]
+            },
+            {
+              "left": "Paper Cut",
+              "right": "Evan's answer about trouble in a school library",
+              "rightVariants": [
+                "Evan's answer about trouble in a school library",
+                "Tiny injury Evan jokes about to Ms. Crowley",
+                "Evan's funny reply when asked what trouble one might find",
+                "Small hurt from the edge of a page"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Golden trophy Cleo won at a soccer game",
+            "Secret map hidden inside a library book",
+            "Lunchbox Evan forgot on the bus",
+            "Moonstone necklace Ms. Hilliard wore"
+          ],
+          "hint": "Think about Cleo's excuse, Evan's book, what Cleo keeps losing, and Evan's joke to Ms. Crowley.",
+          "pageTitle": "Chapter 1 — Pages 1–6 (School Details)",
+          "pageExcerpt": "\"“A paper cut?” Evan said.\"",
+          "word": "ERASERS",
+          "clue": "The rubber ends of pencils used to rub out mistakes"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: Ms. Crowley called Cleo and Evan her junior Sherlock Holmes and Watson.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "She named two famous young detectives from mystery books—one is Nancy Drew.",
+          "pageTitle": "Chapter 1 — Page 6 (Super-Sleuths)",
+          "pageExcerpt": "\"“Not another word from my junior Frank Hardy and Nancy Drew.”\"",
+          "word": "SLEUTHS",
+          "clue": "Detectives who solve mysteries"
+        },
+        {
+          "type": "mc",
+          "q": "Why does Cleo say she loses recess every day?",
+          "options": [
+            "Because she doesn't stay in her seat",
+            "Because she talks during reading time",
+            "Because she forgets her homework",
+            "Because she argues with Ellie Fishbein"
+          ],
+          "correct": 0,
+          "hint": "Cleo admits the reason herself when Evan asks.",
+          "pageTitle": "Chapter 1 — Page 3 (Losing Recess)",
+          "pageExcerpt": "\"“Why do you lose recess every day?” “Because I don’t stay in my seat,” Cleo said.\"",
+          "word": "RECESS",
+          "clue": "Break time at school when kids go out to play"
+        },
+        {
+          "type": "mc",
+          "q": "Who took Cleo's pencil?",
+          "options": [
+            "Ellie Fishbein",
+            "Evan",
+            "Ms. Crowley",
+            "Ms. Hilliard"
+          ],
+          "correct": 0,
+          "hint": "It was a classmate whose last name has the word 'fish' in it.",
+          "pageTitle": "Chapter 1 — Page 3 (The Pencil Cup)",
+          "pageExcerpt": "\"“Ellie Fishbein took my pencil. I had to get a new one from the pencil cup.”\"",
+          "word": "PENCIL",
+          "clue": "A writing tool with lead and an eraser"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: Cleo says the new Nancy Drew has a hybrid car and a cell phone.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Cleo compares the old Nancy Drew to the new one.",
+          "pageTitle": "Chapter 1 — Page 7 (Nancy Drew)",
+          "pageExcerpt": "\"“That’s the old Nancy Drew,” Cleo said. “The new Nancy Drew has a hybrid car and a cell phone. Plus, she solves mysteries!”\"",
+          "word": "HYBRID",
+          "clue": "A type of car that uses both gas and electricity"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or detail with its accurate description:",
+          "pairs": [
+            {
+              "left": "Dewey Decimal System",
+              "right": "The way libraries organize their books",
+              "rightVariants": [
+                "The way libraries organize their books",
+                "Numbering system librarians use to shelve books",
+                "System that gives every book a number",
+                "Method that helps you find any book's place"
+              ]
+            },
+            {
+              "left": "804",
+              "right": "Literature code that is no longer used",
+              "rightVariants": [
+                "Literature code that is no longer used",
+                "Number printed on the old book's spine",
+                "Answer to Ms. Crowley's clue on the poster",
+                "Number Evan finds in the Literature section"
+              ]
+            },
+            {
+              "left": "Antiquity",
+              "right": "A word that means the olden days",
+              "rightVariants": [
+                "A word that means the olden days",
+                "Word in the old book's title Cleo doesn't know",
+                "The ancient past",
+                "Very old times long ago"
+              ]
+            },
+            {
+              "left": "Secret Door",
+              "right": "Hidden opening where a wall of dusty shelves used to be",
+              "rightVariants": [
+                "Hidden opening where a wall of dusty shelves used to be",
+                "Door that slid open after the book was pulled",
+                "Surprise passage the kids find in the last aisle",
+                "Hidden way the librarian probably vanished through"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Spelling list Evan memorizes for a test",
+            "Recess schedule hanging by the door",
+            "Ms. Crowley's sign-out sheet for library books",
+            "Cartoon dog drawn on the back of a library card"
+          ],
+          "hint": "Remember the poster, the number on the spine, the hard word in the book's title, and what opened up.",
+          "pageTitle": "Chapter 2 — Pages 9–11 (The Clue)",
+          "pageExcerpt": "\"He knew the Dewey decimal system was the way libraries organized their books. Librarians were careful that every book got numbered and shelved properly.\"",
+          "word": "DECIMAL",
+          "clue": "A number with a point in it, like in the library's Dewey system"
+        },
+        {
+          "type": "mc",
+          "q": "Why does Evan follow Cleo through the shelves even though he thinks it will lead to trouble?",
+          "options": [
+            "He didn't want Cleo to think he was chicken.",
+            "He wanted to return his joke book.",
+            "Ms. Crowley called him to help her.",
+            "He wanted to find a new mystery book."
+          ],
+          "correct": 0,
+          "hint": "Evan was worried about what Cleo would think of him.",
+          "pageTitle": "Chapter 1 — Page 4 (Following Cleo)",
+          "pageExcerpt": "\"Evan knew following her would only lead to trouble, but he didn’t want Cleo to think he was chicken.\"",
+          "word": "CHICKEN",
+          "clue": "A word kids use to mean someone is too scared to do something"
+        },
+        {
+          "type": "mc",
+          "q": "What does Ms. Crowley mutter while tugging at books?",
+          "options": [
+            "“Literature no longer used.”",
+            "“The moonstone is near.”",
+            "“Where is my brass key?”",
+            "“These books are out of order.”"
+          ],
+          "correct": 0,
+          "hint": "She calls it a clue and complains that it makes no sense.",
+          "pageTitle": "Chapter 1 — Page 4 (Drat!)",
+          "pageExcerpt": "\"“Literature no longer used,” she muttered. “What sort of clue is that? All literature is used!”\"",
+          "word": "LITERATURE",
+          "clue": "Written works like stories, poems, and plays"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or detail with its accurate description:",
+          "pairs": [
+            {
+              "left": "Literature: Elements and Genre from Antiquity to Modern-Day",
+              "right": "Title of the old leather-bound book",
+              "rightVariants": [
+                "Title of the old leather-bound book",
+                "Book Cleo thinks looks so boring",
+                "Heavy book with 804 on its spine",
+                "Book that opens the secret door"
+              ]
+            },
+            {
+              "left": "Frank Hardy",
+              "right": "Detective name Ms. Crowley gives to Evan",
+              "rightVariants": [
+                "Detective name Ms. Crowley gives to Evan",
+                "Junior super-sleuth name for the boy",
+                "Famous boy detective Ms. Crowley mentions",
+                "Name Ms. Crowley uses for Evan"
+              ]
+            },
+            {
+              "left": "Nancy Drew",
+              "right": "Detective name Ms. Crowley gives to Cleo",
+              "rightVariants": [
+                "Detective name Ms. Crowley gives to Cleo",
+                "Mystery solver Cleo is excited to be called",
+                "Detective who once sipped tea and ate fancy cakes",
+                "Name that makes Cleo whisper 'Awesome'"
+              ]
+            },
+            {
+              "left": "Top Shelf",
+              "right": "Highest place where the old book sat",
+              "rightVariants": [
+                "Highest place where the old book sat",
+                "Spot Evan can barely reach with his fingers",
+                "Place Cleo has to boost Evan up to",
+                "High shelf in the last aisle"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Name of the school's soccer team",
+            "Bottom drawer of Ms. Crowley's desk",
+            "Title of Evan's joke book",
+            "Ellie Fishbein's favorite cartoon"
+          ],
+          "hint": "Think about the boring book, the two detective names, and where the book was sitting.",
+          "pageTitle": "Chapter 1–2 — Pages 6–10 (Detectives & the Old Book)",
+          "pageExcerpt": "\"On the top shelf sat an old, leather-bound book. The number 804 was printed on the book’s spine.\"",
+          "word": "LEATHER",
+          "clue": "Material made from animal skin, used to cover the old book"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: The poster behind the library desk was called “Your Friend Dewey.”",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "The poster had a cartoon kid with big glasses and a list of numbers.",
+          "pageTitle": "Chapter 2 — Page 9 (The Poster)",
+          "pageExcerpt": "\"A poster hung on the wall behind the desk. The heading read: “Your Friend Dewey.”\"",
+          "word": "POSTER",
+          "clue": "A large printed picture or sign hung on a wall"
+        },
+        {
+          "type": "mc",
+          "q": "What do Cleo and Evan hear right before Ms. Crowley vanishes?",
+          "options": [
+            "Ms. Crowley cried out and they heard a sliding sound.",
+            "A loud school bell rang three times.",
+            "A stack of books crashed to the floor.",
+            "A dog barked from behind the shelves."
+          ],
+          "correct": 0,
+          "hint": "It was a cry followed by a noise like something moving.",
+          "pageTitle": "Chapter 1 — Page 7 (Gone)",
+          "pageExcerpt": "\"Suddenly, Ms. Crowley cried out and the kids heard a sliding sound. Cleo and Evan ran back to look, but Ms. Crowley was gone.\"",
+          "word": "SLIDING",
+          "clue": "Moving smoothly across a surface, like a door that glides open"
+        },
+        {
+          "type": "mc",
+          "q": "How do Cleo and Evan reach the old book on the top shelf?",
+          "options": [
+            "Cleo laced her fingers and boosted Evan up.",
+            "Evan climbed a rolling library ladder.",
+            "They stood on Ms. Hilliard's purple cart.",
+            "Cleo knocked it down with her soccer ball."
+          ],
+          "correct": 0,
+          "hint": "The two friends work together using teamwork and their hands.",
+          "pageTitle": "Chapter 2 — Page 10 (The Top Shelf)",
+          "pageExcerpt": "\"Cleo laced her fingers and boosted Evan up. Evan grabbed the highest shelf he could. His fingers barely reached the top edge of the book.\"",
+          "word": "BOOSTED",
+          "clue": "Lifted or pushed someone up higher"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: When the heavy book tipped forward, it landed on Evan's head.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Think about what Evan did when he thought the book was going to crush them.",
+          "pageTitle": "Chapter 2 — Page 10 (The Heavy Book)",
+          "pageExcerpt": "\"The heavy book tipped forward. Evan thought it was going to crush them. He leaped out of the way and they tumbled to the ground.\"",
+          "word": "TUMBLED",
+          "clue": "Fell down in a rolling, clumsy way"
+        },
+        {
+          "type": "match",
+          "q": "Match each person, place, or detail with its accurate description:",
+          "pairs": [
+            {
+              "left": "Ms. Crowley's Shoes",
+              "right": "Black shoes with the pointiest toes and highest heels",
+              "rightVariants": [
+                "Black shoes with the pointiest toes and highest heels",
+                "Shoes Evan had never seen anything like",
+                "Pointy high heels on the towering librarian",
+                "Tall black heels"
+              ]
+            },
+            {
+              "left": "Cleo's Sock",
+              "right": "Pink tie-dye soccer sock",
+              "rightVariants": [
+                "Pink tie-dye soccer sock",
+                "Sock she rubs her shin through",
+                "Colorful soccer sock Cleo wears",
+                "Tie-dye sock on Cleo's sore leg"
+              ]
+            },
+            {
+              "left": "Cleo's Ponytail",
+              "right": "Hair Cleo tightens before investigating",
+              "rightVariants": [
+                "Hair Cleo tightens before investigating",
+                "What Cleo fixes when she ignores Evan's joke",
+                "Hairstyle Cleo pulls tighter when she is determined",
+                "Tied-back hair Cleo adjusts before following Ms. Crowley"
+              ]
+            },
+            {
+              "left": "Evan's Backpack",
+              "right": "Where Evan tucks his joke book",
+              "rightVariants": [
+                "Where Evan tucks his joke book",
+                "Bag Evan packs before warning Cleo",
+                "Place his joke book goes when he says 'Bad idea'",
+                "Evan's school bag"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Ms. Hilliard's purple cart wheels",
+            "A bulldog's red collar",
+            "Ms. Crowley's reading glasses",
+            "Ellie Fishbein's lunch tray"
+          ],
+          "hint": "Think about what each character was wearing or carrying.",
+          "pageTitle": "Chapter 1–2 — Pages 2–11 (Clothes & Things)",
+          "pageExcerpt": "\"“What did you do that for?” Cleo said, rubbing her shin through her pink tie-dye soccer sock.\"",
+          "word": "PONYTAIL",
+          "clue": "Hair tied together at the back of the head"
+        }
+      ],
+      "readerHtml": "<div class=\"reader-chapter-title\">CHAPTER 1</div>\n<p>&ldquo;There she goes again,&rdquo; Cleo whispered.</p>\n<p>Evan closed his joke book. &ldquo;There who goes again?&rdquo; he asked.</p>\n<p>&ldquo;Ms. Crowley,&rdquo; Cleo said. &ldquo;Every day, she disappears into the back of the library.&rdquo;</p>\n<p>Not one kid in school liked the new librarian. After Ms. Hilliard left mysteriously at the end of last year, Ms. Crowley swooped in to take the job. Although they both had the same brown eyes, Ms. Hilliard&rsquo;s were warm and welcoming while Ms. Crowley&rsquo;s were dark and piercing.</p>\n<p>Ms. Hilliard also had a sparkly purple book cart. She taught Evan how to find any fact in a moment and helped Cleo find books she liked. Ms. Crowley only made them sit in their seats and stay quiet.</p>\n<p>&ldquo;She&rsquo;s probably shelving books,&rdquo; Evan said. &ldquo;Librarians love shelving books. Hey, do you know why an elephant uses his trunk as a bookmark?&rdquo;</p>\n<p>&ldquo;I don&rsquo;t care,&rdquo; Cleo said, peering down the aisle where Ms. Crowley had vanished.</p>\n<p>&ldquo;So he always <em>nose</em> where he stopped reading,&rdquo; Evan said. &ldquo;Get it? An elephant trunk? <em>Nose?</em>&rdquo;</p>\n<p>Cleo ignored him and tightened her ponytail. &ldquo;I&rsquo;m going to find out what she&rsquo;s up to.&rdquo;</p>\n<p>&ldquo;Bad idea,&rdquo; Evan said, tucking his joke book into his backpack. &ldquo;Why do you lose recess every day?&rdquo;</p>\n<p>&ldquo;Because I don&rsquo;t stay in my seat,&rdquo; Cleo said. &ldquo;But I had a good reason today.&rdquo;</p>\n<p>&ldquo;I&rsquo;m sure,&rdquo; Evan said.</p>\n<p>&ldquo;Ellie Fishbein took my pencil. I had to get a new one from the pencil cup.&rdquo;</p>\n<p>&ldquo;You didn&rsquo;t have one in your desk?&rdquo; Evan asked.</p>\n<p>&ldquo;The pencils in the pencil cup are sharper.&rdquo;</p>\n<p>&ldquo;Uh-huh.&rdquo;</p>\n<p>&ldquo;And they fit better in my hand.&rdquo;</p>\n<p>&ldquo;Uh-huh.&rdquo;</p>\n<p>&ldquo;And they have softer erasers.&rdquo; Cleo looked over her shoulder. &ldquo;I&rsquo;m going,&rdquo; she said.</p>\n<p>&ldquo;You&rsquo;re <em>going</em> to get punished,&rdquo; Evan said. &ldquo;A <em>lifetime</em> without recess.&rdquo;</p>\n<p>&ldquo;Ms. Crowley will be the one who gets punished,&rdquo; Cleo said. &ldquo;A teacher should never leave two kids alone. We could get hurt.&rdquo;</p>\n<p>With that, Cleo darted between the shelves. Evan knew following her would only lead to trouble, but he didn&rsquo;t want Cleo to think he was chicken. They twisted through the maze of shelves. Every book he&rsquo;d ever read smiled out at him like a friend. Here, in the library, he had tons of friends.</p>\n<p>&ldquo;Drat!&rdquo; a voice said. &ldquo;Which book is it?&rdquo;</p>\n<p>It came from the next aisle. Ms. Crowley was tugging at books and shoving them back into place. &ldquo;Literature no longer used,&rdquo; she muttered. &ldquo;What sort of clue is that? All literature is used!&rdquo;</p>\n<p>&ldquo;Ms. Crowley,&rdquo; Cleo said. &ldquo;Is everything okay?&rdquo;</p>\n<p>Ms. Crowley spun to face them. An old-looking brass key hung around her neck. &ldquo;What do you want?&rdquo;</p>\n<p>&ldquo;We heard a noise back here,&rdquo; Evan said.</p>\n<p>&ldquo;And I suppose you&rsquo;ve come to investigate like two little super-sleuths,&rdquo; Ms. Crowley said.</p>\n<p>&ldquo;We thought you might be in trouble,&rdquo; Cleo said.</p>\n<p>&ldquo;Trouble?&rdquo; Ms. Crowley stood her full height and towered over the kids. Her black shoes had the pointiest toes and the highest heels Evan had ever seen. &ldquo;What sort of trouble might one find in a school library?&rdquo;</p>\n<p>&ldquo;A paper cut?&rdquo; Evan said.</p>\n<p>&ldquo;Go back to your seats,&rdquo; Ms. Crowley said.</p>\n<p>&ldquo;But we were just&mdash;&rdquo; Cleo began.</p>\n<p>&ldquo;You were <em>just</em> going back to your seats,&rdquo; Ms. Crowley said. &ldquo;Not another word from my junior Frank Hardy and Nancy Drew.&rdquo;</p>\n<p>Cleo and Evan headed back to their table.</p>\n<p>&ldquo;Awesome,&rdquo; Cleo whispered. &ldquo;She called me Nancy Drew.&rdquo;</p>\n<p>&ldquo;So what?&rdquo; Evan said. &ldquo;I read one of those books once. Nancy Drew sipped tea and ate something called fancy cakes.&rdquo;</p>\n<p>&ldquo;That&rsquo;s the <em>old</em> Nancy Drew,&rdquo; Cleo said. &ldquo;The new Nancy Drew has a hybrid car and a cell phone. Plus, she solves mysteries!&rdquo;</p>\n<p>Suddenly, Ms. Crowley cried out and the kids heard a sliding sound. Cleo and Evan ran back to look, but Ms. Crowley was gone.</p>\n\n<div class=\"reader-chapter-title\" style=\"margin-top:2.5rem;\">CHAPTER 2</div>\n<p>&ldquo;I told you there&rsquo;s something weird going on,&rdquo; Cleo said. She began tugging at the books. &ldquo;Help me look.&rdquo;</p>\n<p>&ldquo;Ms. Crowley said, &lsquo;Literature no longer used,&rsquo;&rdquo; Evan said.</p>\n<p>&ldquo;Every second you waste <em>thinking about</em> something is a second you miss <em>doing</em> something,&rdquo; Cleo said.</p>\n<p>Then Evan remembered.</p>\n<p>He charged to the front of the library. A poster hung on the wall behind the desk. The heading read: &ldquo;Your Friend Dewey.&rdquo; On the left side stood a cartoon kid with big glasses. Down the right side was a list of different Dewey decimal numbers.</p>\n<p>He knew the Dewey decimal system was the way libraries organized their books. Librarians were careful that every book got numbered and shelved properly.</p>\n<p>Evan had seen the poster plenty of times before. Near the bottom was a section called <em>Literature</em>. Evan read that section closely until he found it:</p>\n<div style=\"text-align:center; font-weight:900; letter-spacing:1px; margin:1.25rem 0; padding:0.75rem; background:#1e293b; border-radius:8px; color:#38bdf8;\">804&mdash;LITERATURE: CODE NO LONGER USED<br><em style=\"font-weight:600;\">Literature no longer used.</em></div>\n<p>&ldquo;Follow me!&rdquo; Evan said.</p>\n<p>He led Cleo to the last aisle of the library. On the top shelf sat an old, leather-bound book. The number <em>804</em> was printed on the book&rsquo;s spine. The title read <em>Literature: Elements and Genre from Antiquity to Modern-Day</em>.</p>\n<p>&ldquo;That book looks so boring,&rdquo; Cleo said. &ldquo;What does &lsquo;antiquity&rsquo; even mean?&rdquo;</p>\n<p>&ldquo;It means the olden days,&rdquo; he said.</p>\n<p>&ldquo;Modern-day to the guy who wrote that book is probably antiquity to us,&rdquo; Cleo said.</p>\n<p>&ldquo;Just help me,&rdquo; he said.</p>\n<p>Cleo laced her fingers and boosted Evan up. Evan grabbed the highest shelf he could. His fingers barely reached the top edge of the book. He curled his fingers around it and pulled.</p>\n<p>The heavy book tipped forward. Evan thought it was going to crush them. He leaped out of the way and they tumbled to the ground.</p>\n<p>&ldquo;What did you do that for?&rdquo; Cleo said, rubbing her shin through her pink tie-dye soccer sock.</p>\n<p>Evan didn&rsquo;t answer. He was too busy staring. Where a wall of dusty shelves used to be, a secret door slid open.</p>"
+    },
     {
       "id": "d_history_trivia_mc",
       "instance": "D",
@@ -3880,6 +4406,6 @@
       "instance": "R"
     }
   ],
-  "activeQuizIdR": "trapped_videogame_ch17_19",
+  "activeQuizIdR": "key_hunters1_ch1_2",
   "activeQuizIdD": "d_history_trivia_mc"
 }
