@@ -1709,7 +1709,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:22 PM - 11/17/2026</div>
+<div class="build-timestamp">Updated: 07:50 PM - 11/17/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1753,7 +1753,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:22 PM - 11/17/2026
+      Updated: 07:50 PM - 11/17/2026
     </div>
   </div>
 </div>
@@ -2384,7 +2384,7 @@
   </div>
 </main>
 
-<script src="audio-data.js?v=1794870163588"></script>
+<script id="audioDataScript" src="audio-data.js?v=1794963039687"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -2791,13 +2791,59 @@ function getOrDecodeScaledMp3Url(dataUri, isPermanent = false) {
   return prom;
 }
 
+let inflightAudioDataReload = null;
+let hasAttemptedFreshAudioReload = false;
+
+function ensureFreshSpellingAudioLoaded(wordUpper) {
+  if (typeof window === 'undefined' || (window.location && window.location.protocol === 'file:')) {
+    return Promise.resolve(false);
+  }
+  const existing = (window.SPELLING_WORDS_AUDIO || {})[wordUpper];
+  if (existing) return Promise.resolve(true);
+  if (inflightAudioDataReload) return inflightAudioDataReload;
+  if (hasAttemptedFreshAudioReload) return Promise.resolve(false);
+
+  hasAttemptedFreshAudioReload = true;
+  inflightAudioDataReload = new Promise((resolve) => {
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      inflightAudioDataReload = null;
+      resolve(Boolean((window.SPELLING_WORDS_AUDIO || {})[wordUpper]));
+    };
+    const timer = setTimeout(finish, 4000);
+    try {
+      const s = document.createElement('script');
+      s.src = `audio-data.js?_fresh=${Date.now()}`;
+      s.async = true;
+      s.onload = () => { clearTimeout(timer); finish(); };
+      s.onerror = () => { clearTimeout(timer); finish(); };
+      (document.head || document.documentElement).appendChild(s);
+    } catch (e) {
+      clearTimeout(timer);
+      finish();
+    }
+  });
+  return inflightAudioDataReload;
+}
+
 function warmUpCurrentSpellingWordAudio(wordStr) {
-  if (!IS_MEDIA_VOLUME_READONLY || !wordStr) return;
+  if (!wordStr) return;
   const rawUpper = String(wordStr).trim().toUpperCase();
   const embeddedMap = window.SPELLING_WORDS_AUDIO || {};
   if (embeddedMap[rawUpper]) {
-    getOrDecodeScaledMp3Url(embeddedMap[rawUpper], false);
+    if (IS_MEDIA_VOLUME_READONLY) {
+      getOrDecodeScaledMp3Url(embeddedMap[rawUpper], false);
+    }
+    return;
   }
+  ensureFreshSpellingAudioLoaded(rawUpper).then((found) => {
+    if (found && IS_MEDIA_VOLUME_READONLY) {
+      const freshSrc = (window.SPELLING_WORDS_AUDIO || {})[rawUpper];
+      if (freshSrc) getOrDecodeScaledMp3Url(freshSrc, false);
+    }
+  });
 }
 
 function prewarmScaledFeedbackAudioCache() {
@@ -2834,6 +2880,83 @@ function getSpellingWordAudio() {
   return spellingWordAudio;
 }
 
+function playEmbeddedSpellingMp3(rawSrc, rawUpper, clearBtnState, unlockedCtx = null) {
+  try {
+    if (activeSpellingBufferSource) {
+      try { activeSpellingBufferSource.stop(); } catch (e) {}
+      activeSpellingBufferSource = null;
+    }
+    const audioEl = getSpellingWordAudio();
+    audioEl.pause();
+
+    if (IS_MEDIA_VOLUME_READONLY) {
+      if (scaledSpellingWavCache.has(rawSrc) && !unlockedCtx) {
+        audioEl.src = scaledSpellingWavCache.get(rawSrc);
+        lockMediaElementVolume(audioEl, 1.0);
+        audioEl.currentTime = 0;
+        audioEl.onended = clearBtnState;
+        audioEl.onerror = clearBtnState;
+        setTimeout(clearBtnState, 2200);
+        const p = audioEl.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
+        }
+        return true;
+      }
+      // Decode & play through Master GainNode (0.80) while caching WAV blob
+      const ctx = unlockedCtx || getAudioContext();
+      if (ctx) {
+        decodeMp3DataUriToAudioBuffer(rawSrc)
+          .then(audioBuf => {
+            if (!scaledSpellingWavCache.has(rawSrc)) {
+              scaledSpellingWavCache.set(rawSrc, encodeAudioBufferToScaledWavBlobUrl(audioBuf, FIXED_APP_VOLUME));
+            }
+            const srcNode = ctx.createBufferSource();
+            srcNode.buffer = audioBuf;
+            srcNode.connect(getMasterGainNode(ctx));
+            activeSpellingBufferSource = srcNode;
+            srcNode.onended = clearBtnState;
+            setTimeout(clearBtnState, 2200);
+            srcNode.start(0);
+          })
+          .catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
+        return true;
+      }
+    }
+
+    audioEl.src = rawSrc;
+    audioEl.currentTime = 0;
+    lockMediaElementVolume(audioEl, FIXED_APP_VOLUME);
+    audioEl.onended = clearBtnState;
+    audioEl.onerror = clearBtnState;
+    setTimeout(clearBtnState, 2200);
+    const p = audioEl.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {
+        const ctx = unlockedCtx || getAudioContext();
+        if (ctx) {
+          decodeMp3DataUriToAudioBuffer(rawSrc)
+            .then(audioBuf => {
+              const srcNode = ctx.createBufferSource();
+              srcNode.buffer = audioBuf;
+              srcNode.connect(getMasterGainNode(ctx));
+              activeSpellingBufferSource = srcNode;
+              srcNode.onended = clearBtnState;
+              setTimeout(clearBtnState, 2200);
+              srcNode.start(0);
+            })
+            .catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
+          return;
+        }
+        speakWithWebSpeechFallback(rawUpper, clearBtnState);
+      });
+    }
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function speakCurrentSpellingWord() {
   if (!currentTargetWord) return;
   const btn = document.getElementById('speakSpellingWordBtn');
@@ -2848,64 +2971,21 @@ function speakCurrentSpellingWord() {
   const rawSrc = embeddedMap[rawUpper];
 
   // 1. Primary: play embedded high-clarity MP3 audio fixed at 80% volume
-  if (rawSrc) {
-    try {
-      if (activeSpellingBufferSource) {
-        try { activeSpellingBufferSource.stop(); } catch (e) {}
-        activeSpellingBufferSource = null;
-      }
-      const audioEl = getSpellingWordAudio();
-      audioEl.pause();
+  if (rawSrc && playEmbeddedSpellingMp3(rawSrc, rawUpper, clearBtnState)) {
+    return;
+  }
 
-      if (IS_MEDIA_VOLUME_READONLY) {
-        if (scaledSpellingWavCache.has(rawSrc)) {
-          audioEl.src = scaledSpellingWavCache.get(rawSrc);
-          lockMediaElementVolume(audioEl, 1.0);
-          audioEl.currentTime = 0;
-          audioEl.onended = clearBtnState;
-          audioEl.onerror = clearBtnState;
-          setTimeout(clearBtnState, 1600);
-          const p = audioEl.play();
-          if (p && typeof p.catch === 'function') {
-            p.catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
-          }
-          return;
-        }
-        // First-millisecond fallback on iOS before warm-up completes: decode & play through Master GainNode (0.80) while caching WAV blob
-        const ctx = getAudioContext();
-        if (ctx) {
-          decodeMp3DataUriToAudioBuffer(rawSrc)
-            .then(audioBuf => {
-              if (!scaledSpellingWavCache.has(rawSrc)) {
-                scaledSpellingWavCache.set(rawSrc, encodeAudioBufferToScaledWavBlobUrl(audioBuf, FIXED_APP_VOLUME));
-              }
-              const srcNode = ctx.createBufferSource();
-              srcNode.buffer = audioBuf;
-              srcNode.connect(getMasterGainNode(ctx));
-              activeSpellingBufferSource = srcNode;
-              srcNode.onended = clearBtnState;
-              setTimeout(clearBtnState, 1600);
-              srcNode.start(0);
-            })
-            .catch(() => speakWithWebSpeechFallback(rawUpper, clearBtnState));
-          return;
-        }
+  // 2. Self-healing reload if audio-data.js was cached from an older build
+  if (!rawSrc && !hasAttemptedFreshAudioReload) {
+    const gestureCtx = getAudioContext();
+    ensureFreshSpellingAudioLoaded(rawUpper).then((found) => {
+      const freshSrc = found ? (window.SPELLING_WORDS_AUDIO || {})[rawUpper] : null;
+      if (freshSrc && playEmbeddedSpellingMp3(freshSrc, rawUpper, clearBtnState, gestureCtx)) {
+        return;
       }
-
-      audioEl.src = rawSrc;
-      audioEl.currentTime = 0;
-      lockMediaElementVolume(audioEl, FIXED_APP_VOLUME);
-      audioEl.onended = clearBtnState;
-      audioEl.onerror = clearBtnState;
-      setTimeout(clearBtnState, 1600);
-      const p = audioEl.play();
-      if (p && typeof p.catch === 'function') {
-        p.catch(() => {
-          speakWithWebSpeechFallback(rawUpper, clearBtnState);
-        });
-      }
-      return;
-    } catch (e) {}
+      speakWithWebSpeechFallback(rawUpper, clearBtnState);
+    });
+    return;
   }
 
   speakWithWebSpeechFallback(rawUpper, clearBtnState);
@@ -12304,7 +12384,15 @@ async function checkForLiveAppUpdate(forceImmediate = false) {
       sessionStorage.setItem('rs_last_reload_target_build', JSON.stringify({ target: remoteBuild, at: now }));
     } catch (e) {}
     try {
-      await fetch(window.location.pathname, { cache: 'reload', credentials: 'same-origin' });
+      const audioScriptEl = document.getElementById('audioDataScript');
+      const audioFetches = [fetch('./audio-data.js', { cache: 'reload', credentials: 'same-origin' })];
+      if (audioScriptEl && audioScriptEl.src) {
+        audioFetches.push(fetch(audioScriptEl.src, { cache: 'reload', credentials: 'same-origin' }));
+      }
+      await Promise.allSettled([
+        fetch(window.location.pathname, { cache: 'reload', credentials: 'same-origin' }),
+        ...audioFetches
+      ]);
     } catch (e) {}
     window.location.reload();
   } catch (e) {
