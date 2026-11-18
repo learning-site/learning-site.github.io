@@ -16,11 +16,12 @@
 
 2. **Reglas de Matching Columns (`match`):**
    - La columna izquierda tiene **4 opciones** y la columna derecha tiene **5 opciones** (las 4 respuestas verdaderas + **1 opción extra distractora** `distractorVariants` que no coincide con ninguna opción de la columna izquierda).
-   - Cada opción de la columna izquierda permite un **máximo de 3 intentos**: el **1.er intento fallido** es libre (`0 pt`), el **2.º intento fallido** descuenta **`-0.25 pt`**, y al **3.er intento fallido** esa opción de la columna izquierda queda **marcada como incorrecta (`✗ Wrong` / `failedPairs`)** perdiendo su punto completo (`-1.0 pt` de los `4.0 pts`, absorbiendo su `-0.25 pt` previo) y haciendo que la pregunta pase a `Review Missed` al enviarse.
+   - Cada opción de la columna izquierda tiene un valor de **`1.25 pts`** y permite un **máximo de 2 intentos**: el **1.er intento fallido** descuenta la mitad (**`-0.625 pt`**) y el **2.º intento fallido** descuenta la otra mitad (**`-0.625 pt`**, total `-1.25 pts`) y deshabilita esa opción marcándola como incorrecta (**`✗ Wrong` / `failedPairs`**), haciendo que la pregunta pase a `Review Missed` al enviarse.
    - Cuando el usuario comete un error al emparejar las columnas, las parejas ya respondidas correctamente (`solvedPairs`) y las marcadas incorrectas en la columna izquierda (`failedPairs`) **NO se reinician, NO se reorganizan de posición y NO cambian su redacción**; únicamente se reorganizan y cambian de redacción (`rightVariants` / `distractorVariants`) las opciones que aún siguen activas.
 
 3. **Reglas de Deletreo (`Spelling`) y `Submit Answer`:**
    - En el área de `Spelling` para el usuario `R`, existe un botón únicamente con el icono de bocina (`🔊`) que pronuncia la palabra en voz alta al hacer clic o tocarlo.
+   - **Prohibido poner la palabra de `Spelling` en la pregunta o respuestas**: La palabra de deletreo (`word`, ni su raíz directa) **NUNCA** debe aparecer escrita en el enunciado (`q`), opciones/respuestas (`options` / `answer`), columnas (`pairs` / `rightVariants` / `distractorVariants`), pista (`hint`) ni pista de deletreo (`clue`) de esa misma pregunta.
    - El botón `Submit Answer` permanece deshabilitado hasta que se haya respondido la pregunta principal **y** se haya resuelto correctamente el `Spelling` o agotado sus 3 intentos.
    - Si el usuario agota sus 3 oportunidades en `Spelling` y aún no acierta, se muestra automáticamente la **ortografía correcta (`Right Spelling`)** tanto en las casillas de letras como en el mensaje de estado.
    - Tanto la parte de comprensión como el `Spelling` cuentan para marcar la pregunta como correcta; si falla cualquiera de las dos, la pregunta pasa a `Review Missed`.
