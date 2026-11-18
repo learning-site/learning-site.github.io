@@ -19,10 +19,10 @@
    - Cada opción de la columna izquierda tiene un valor de **`1.25 pts`** y permite un **máximo de 2 intentos**: el **1.er intento fallido** descuenta la mitad (**`-0.625 pt`**) y el **2.º intento fallido** descuenta la otra mitad (**`-0.625 pt`**, total `-1.25 pts`) y deshabilita esa opción marcándola como incorrecta (**`✗ Wrong` / `failedPairs`**), haciendo que la pregunta pase a `Review Missed` al enviarse.
    - Cuando el usuario comete un error al emparejar las columnas, las parejas ya respondidas correctamente (`solvedPairs`) y las marcadas incorrectas en la columna izquierda (`failedPairs`) **NO se reinician, NO se reorganizan de posición y NO cambian su redacción**; únicamente se reorganizan y cambian de redacción (`rightVariants` / `distractorVariants`) las opciones que aún siguen activas.
 
-3. **Reglas de Deletreo (`Spelling`) y `Submit Answer`:**
-   - En el área de `Spelling` para el usuario `R`, existe un botón únicamente con el icono de bocina (`🔊`) que pronuncia la palabra en voz alta al hacer clic o tocarlo.
+3. **Reglas de Deletreo (`Spelling` Bilingüe EN + ES) y `Submit Answer`:**
+   - En el área de `Spelling` para el usuario `R`, cada palabra incluye **ambas versiones**: **Inglés (`0.5 pt`)** y **Español (`0.5 pt`)**, dividiendo el punto de deletreo entre las dos (`0.5 + 0.5 = 1.0 pt`), cada una con su propio botón de bocina (`🔊`) para escucharla en su idioma y 3 intentos independientes.
    - **Prohibido poner la palabra de `Spelling` en la pregunta o respuestas**: La palabra de deletreo (`word`, ni su raíz directa) **NUNCA** debe aparecer escrita en el enunciado (`q`), opciones/respuestas (`options` / `answer`), columnas (`pairs` / `rightVariants` / `distractorVariants`), pista (`hint`) ni pista de deletreo (`clue`) de esa misma pregunta.
-   - El botón `Submit Answer` permanece deshabilitado hasta que se haya respondido la pregunta principal **y** se haya resuelto correctamente el `Spelling` o agotado sus 3 intentos.
+   - El botón `Submit Answer` permanece deshabilitado hasta que se haya respondido la pregunta principal **y** ambas versiones de `Spelling` (inglés y español) se hayan resuelto o agotado sus 3 intentos.
    - Si el usuario agota sus 3 oportunidades en `Spelling` y aún no acierta, se muestra automáticamente la **ortografía correcta (`Right Spelling`)** tanto en las casillas de letras como en el mensaje de estado.
    - Tanto la parte de comprensión como el `Spelling` cuentan para marcar la pregunta como correcta; si falla cualquiera de las dos, la pregunta pasa a `Review Missed`.
 
