@@ -23,7 +23,7 @@
    - En el área de `Spelling` para el usuario `R`, cada palabra incluye **ambas versiones**: **Inglés (`0.5 pt`)** y **Español (`0.5 pt`)**, dividiendo el punto de deletreo entre las dos (`0.5 + 0.5 = 1.0 pt`), cada una con su propio botón de bocina (`🔊`) para escucharla en su idioma y 3 intentos independientes.
    - **Prohibido poner la palabra de `Spelling` en la pregunta o respuestas**: La palabra de deletreo (`word`, ni su raíz directa) **NUNCA** debe aparecer escrita en el enunciado (`q`), opciones/respuestas (`options` / `answer`), columnas (`pairs` / `rightVariants` / `distractorVariants`), pista (`hint`) ni pista de deletreo (`clue`) de esa misma pregunta.
    - El botón `Submit Answer` permanece deshabilitado hasta que se haya respondido la pregunta principal **y** ambas versiones de `Spelling` (inglés y español) se hayan resuelto o agotado sus 3 intentos.
-   - Si el usuario agota sus 3 oportunidades en `Spelling` y aún no acierta, se muestra automáticamente la **ortografía correcta (`Right Spelling`)** tanto en las casillas de letras como en el mensaje de estado.
+   - Si el usuario agota sus 3 oportunidades en `Spelling` y aún no acierta, las casillas **conservan el último intento incorrecto** (en rojo, `wrong-word`) y **debajo** se muestra la **ortografía correcta (`Right Spelling`)** en verde (`buildRightSpellingReveal`), además del mensaje de estado. Aplica a inglés y español.
    - Tanto la parte de comprensión como el `Spelling` cuentan para marcar la pregunta como correcta; si falla cualquiera de las dos, la pregunta pasa a `Review Missed`.
 
 4. **Reglas de `Review Missed`, `Hint`, `Reread chapter` y Sin Referencias de Ubicación:**

@@ -773,6 +773,15 @@
     color: #6ee7b7;
   }
 
+  .letter-slot.wrong-word {
+    border-color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.16) !important;
+    color: #fca5a5 !important;
+    cursor: default;
+  }
+  .right-spelling-reveal { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 0.1rem 0; }
+  .right-spelling-label { font-size: 0.82rem; font-weight: 800; color: #34d399; }
+  .right-spelling-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem; }
   .letter-slot.revealed-word {
     border-style: solid;
     border-color: #f59e0b;
@@ -1815,7 +1824,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:28 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:39 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1859,7 +1868,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:28 PM - 11/23/2026
+      Updated: 07:39 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2558,8 +2567,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795480101368"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795480101368"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795480799740"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795480799740"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -5618,6 +5627,26 @@ function handleMatchClick(side, id) {
   }
 }
 
+// After all 3 chances are used: the wrong attempt stays in the slots and this row shows the right spelling below it
+function buildRightSpellingReveal(word, label) {
+  const wrap = document.createElement('div');
+  wrap.className = 'right-spelling-reveal';
+  const cap = document.createElement('div');
+  cap.className = 'right-spelling-label';
+  cap.textContent = `✅ ${label}:`;
+  wrap.appendChild(cap);
+  const row = document.createElement('div');
+  row.className = 'right-spelling-row';
+  String(word || '').split('').forEach(ch => {
+    const t = document.createElement('div');
+    t.className = 'letter-slot filled solved';
+    t.textContent = ch.toUpperCase();
+    row.appendChild(t);
+  });
+  wrap.appendChild(row);
+  return wrap;
+}
+
 function renderSpellingBench() {
   const slotsContainer = document.getElementById('slotsContainer');
   const letterBank = document.getElementById('letterBank');
@@ -5632,7 +5661,7 @@ function renderSpellingBench() {
     if (isSpellingSolved) {
       stateClasses = 'filled solved';
     } else if (isRevealedAfterFail) {
-      stateClasses = 'revealed-word';
+      stateClasses = 'filled wrong-word';
     } else if (letterObj) {
       stateClasses = 'filled';
     }
@@ -5664,10 +5693,7 @@ function renderSpellingBench() {
   });
 
   if (isRevealedAfterFail) {
-    const revealBanner = document.createElement('div');
-    revealBanner.style.cssText = 'font-size: 0.96rem; font-weight: 800; color: #fde047; display: flex; align-items: center; justify-content: center; width: 100%; padding: 0.15rem 0.4rem;';
-    revealBanner.innerHTML = `✅ Right Spelling: <span style="margin-left: 0.45rem; color: #38bdf8; letter-spacing: 1.5px; font-size: 1.08rem; font-weight: 900;">${currentTargetWord}</span>`;
-    letterBank.appendChild(revealBanner);
+    letterBank.appendChild(buildRightSpellingReveal(currentTargetWord, 'Right Spelling'));
     return;
   }
 
@@ -5774,11 +5800,7 @@ function submitSpellingAttempt() {
     } else {
       isSpellingLocked = true;
       attemptsCountEl.style.color = "#ef4444";
-      // Populate slots with the exact right spelling so the user sees it immediately after using all 3 chances
-      currentSlots = currentTargetWord.split('').map((ch, idx) => ({
-        id: `revealed-${idx}-${ch}`,
-        char: ch.toUpperCase()
-      }));
+      // Keep the student's last wrong spelling in the slots; the right spelling is shown underneath
       currentBank = [];
       statusEl.innerHTML = `🔒 0/3 Attempts — Right Spelling: <strong style="color:#fde047; letter-spacing:1px;">${currentTargetWord}</strong>`;
       statusEl.style.color = "#ef4444";
@@ -5806,7 +5828,7 @@ function renderSpanishSpellingBench() {
     if (isSpellingEsSolved) {
       stateClasses = 'filled solved';
     } else if (isRevealedAfterFail) {
-      stateClasses = 'revealed-word';
+      stateClasses = 'filled wrong-word';
     } else if (letterObj) {
       stateClasses = 'filled';
     }
@@ -5838,10 +5860,7 @@ function renderSpanishSpellingBench() {
   });
 
   if (isRevealedAfterFail) {
-    const revealBanner = document.createElement('div');
-    revealBanner.style.cssText = 'font-size: 0.96rem; font-weight: 800; color: #fde047; display: flex; align-items: center; justify-content: center; width: 100%; padding: 0.15rem 0.4rem;';
-    revealBanner.innerHTML = `✅ Right Spelling (ES): <span style="margin-left: 0.45rem; color: #38bdf8; letter-spacing: 1.5px; font-size: 1.08rem; font-weight: 900;">${currentTargetWordEs}</span>`;
-    letterBank.appendChild(revealBanner);
+    letterBank.appendChild(buildRightSpellingReveal(currentTargetWordEs, 'Right Spelling (ES)'));
     return;
   }
 
@@ -5948,10 +5967,7 @@ function submitSpanishSpellingAttempt() {
     } else {
       isSpellingEsLocked = true;
       attemptsCountEl.style.color = "#ef4444";
-      currentSlotsEs = currentTargetWordEs.split('').map((ch, idx) => ({
-        id: `revealed-es-${idx}-${ch}`,
-        char: ch.toUpperCase()
-      }));
+      // Keep the student's last wrong spelling in the slots; the right spelling is shown underneath
       currentBankEs = [];
       statusEl.innerHTML = `🔒 0/3 Attempts — Right Spelling: <strong style="color:#fde047; letter-spacing:1px;">${currentTargetWordEs}</strong>`;
       statusEl.style.color = "#ef4444";
