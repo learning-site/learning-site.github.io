@@ -1201,7 +1201,11 @@
 
 
   /* ===== Full-screen Final Battle (after a perfect quiz) ===== */
-  #finalBattleCountdown { margin-top: 0.6rem; font-weight: 900; font-size: 1.05rem; color: #fde047; text-align: center; }
+  #finalBattleEntry { margin-top: 0.7rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; }
+  #finalBattleCountdown { font-weight: 900; font-size: 1.05rem; color: #fde047; }
+  #finalBattleCountdown:empty { display: none; }
+  .fb-play-btn { background: #f59e0b; color: #1c1917; border: none; border-radius: 0.7rem; padding: 0.6rem 1.3rem; font-size: 1.05rem; font-weight: 900; cursor: pointer; box-shadow: 0 0 16px rgba(245, 158, 11, 0.45); }
+  .fb-locked-note { font-weight: 700; font-size: 0.92rem; color: #94a3b8; max-width: 34rem; }
   #finalBattleOverlay {
     position: fixed; inset: 0; z-index: 99990; display: flex; flex-direction: column;
     background: radial-gradient(ellipse at 50% 60%, #1e293b 0%, #020617 78%);
@@ -1871,7 +1875,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:52 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:57 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1915,7 +1919,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:52 PM - 11/23/2026
+      Updated: 07:57 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2614,8 +2618,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795481551415"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795481551415"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795481874805"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795481874805"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -7720,9 +7724,10 @@ function showResults(skipSongOnRestore = false) {
   saveCurrentQuizProgress();
   if (!skipSongOnRestore) {
     startGradeSong(grade, true);
-    scheduleFinalBattleAfterPerfectQuiz();
+    scheduleFinalBattleAfterPerfectQuiz(true);
   } else {
-    cancelFinalBattleCountdown();
+    // Restored after a reload: no auto-start, but the play button (or the locked note) is still shown
+    scheduleFinalBattleAfterPerfectQuiz(false);
   }
 }
 
@@ -7733,25 +7738,37 @@ let finalBattleState = null;
 function cancelFinalBattleCountdown() {
   if (finalBattleCountdownTimer) { clearInterval(finalBattleCountdownTimer); finalBattleCountdownTimer = null; }
   const el = document.getElementById('finalBattleCountdown');
-  if (el) el.remove();
+  if (el) el.textContent = '';
 }
 
-function scheduleFinalBattleAfterPerfectQuiz() {
+// Results screen entry for the Final Battle. Perfect quiz: a play button (always, also after a reload) plus the
+// 5-second auto-start when the quiz has just been finished. Not perfect: a note saying how to unlock it.
+function scheduleFinalBattleAfterPerfectQuiz(autoStart = true) {
   cancelFinalBattleCountdown();
-  const isPerfect = currentInstance === 'R' && Array.isArray(mistakesPool) && mistakesPool.length === 0;
-  if (!isPerfect) return;
+  const old = document.getElementById('finalBattleEntry');
+  if (old) old.remove();
   const results = document.getElementById('resultsContainer');
-  if (!results) return;
+  if (!results || currentInstance !== 'R') return;
+  const missed = Array.isArray(mistakesPool) ? mistakesPool.length : 0;
+  const entry = document.createElement('div');
+  entry.id = 'finalBattleEntry';
+  results.appendChild(entry);
+  if (missed > 0) {
+    entry.innerHTML = `<div class="fb-locked-note"></div>`;
+    entry.firstChild.textContent = `🔒 Final Battle locked: ${missed} question${missed === 1 ? '' : 's'} missed (a spelling with no attempts left counts as missed). Get every question right to unlock it!`;
+    return;
+  }
+  entry.innerHTML = `<div id="finalBattleCountdown"></div><button type="button" class="fb-play-btn">⚔️ Play Final Battle</button>`;
+  entry.querySelector('button').onclick = () => { cancelFinalBattleCountdown(); startFinalBattle(); };
+  if (!autoStart) return;
+  const note = entry.querySelector('#finalBattleCountdown');
   const quizIdAtFinish = activeQuizId;
-  const note = document.createElement('div');
-  note.id = 'finalBattleCountdown';
-  results.appendChild(note);
   let secondsLeft = 5;
   const paint = () => { note.textContent = `⚔️ Perfect quiz! Final Battle starts in ${secondsLeft}…`; };
   paint();
   finalBattleCountdownTimer = setInterval(() => {
     const stillOnResults = isQuizCompleted && activeQuizId === quizIdAtFinish && currentInstance === 'R' &&
-      results.style.display !== 'none' && document.getElementById('finalBattleCountdown');
+      results.style.display !== 'none' && document.getElementById('finalBattleEntry') === entry;
     if (!stillOnResults) { cancelFinalBattleCountdown(); return; }
     secondsLeft--;
     if (secondsLeft > 0) { paint(); return; }
@@ -15062,7 +15079,9 @@ async function checkForLiveAppUpdate(forceImmediate = false) {
       (typeof isVoiceFeedbackPlaying === 'function' && isVoiceFeedbackPlaying()) ||
       (typeof songIsPlaying !== 'undefined' && songIsPlaying)
     );
-    if (isStudioOpen || isAudioBusy) {
+    const isFinalBattleBusy = Boolean(document.getElementById('finalBattleOverlay') ||
+      (typeof finalBattleCountdownTimer !== 'undefined' && finalBattleCountdownTimer));
+    if (isStudioOpen || isAudioBusy || isFinalBattleBusy) {
       setTimeout(() => checkForLiveAppUpdate(true), 6000);
       return;
     }
