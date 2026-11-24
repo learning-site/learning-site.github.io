@@ -1,7 +1,533 @@
 {
-  "activeQuizId": "key_hunters1_ch3_6",
-  "updatedAt": "2026-11-18T23:06:17.689Z",
+  "activeQuizId": "trapped_invisible_invasion_ch1_2",
+  "updatedAt": "2026-11-24T00:13:13.000Z",
   "quizzes": [
+    {
+      "id": "trapped_invisible_invasion_ch1_2",
+      "book": "Trapped in a Video Game: The Invisible Invasion",
+      "title": "Trapped in a Video Game #2 (The Invisible Invasion): Chapters 1 & 2",
+      "description": "Chapters 1 and 2 (Pages 1–16). The toy sergeant’s late-night message, waking up invisible on Monday morning, a bright-blue Bigfoot in the bathtub, and Mr. Gregory explaining the augmented reality game Go Wild.",
+      "instance": "R",
+      "createdAt": "Nov 24, 2026",
+      "questions": [
+        {
+          "type": "mc",
+          "q": "What was so unusual about the “army guy” Jesse talked to last night?",
+          "options": [
+            "He was only six inches tall and made of plastic.",
+            "He was a real soldier trying to get Jesse to join the army.",
+            "He was a cartoon character talking from the TV screen.",
+            "He was Eric Conrad dressed up in a camouflage costume."
+          ],
+          "correct": 0,
+          "hint": "Jesse says he doesn’t make a habit of talking to toys—but this one talked to him first.",
+          "word": "AZALEA",
+          "clue": "A flowering bush covered in bright pink or white blossoms",
+          "pageTitle": "The Army Guy",
+          "pageExcerpt": "Want to know what I did? I talked to an army guy. Not like someone from the real army trying to recruit me (I’m 12. It would have been a short conversation). The army guy I talked to happened to be six inches tall and made of plastic."
+        },
+        {
+          "type": "mc",
+          "q": "Why did Mark Whitman stay behind inside Full Blast?",
+          "options": [
+            "So Jesse and Eric could escape.",
+            "Because he wanted to beat the last level by himself.",
+            "Because an alien locked him inside a cage.",
+            "Because he was afraid to ride the Statue of Liberty."
+          ],
+          "correct": 0,
+          "hint": "Mark made a brave choice that helped his two classmates.",
+          "word": "CEREAL",
+          "clue": "A crunchy breakfast food you pour into a bowl with milk",
+          "pageTitle": "Mark Stayed Behind",
+          "pageExcerpt": "Anyways, in Full Blast, we met Mark Whitman—another kid from our class who had gotten sucked into the same game. Mark stayed behind so Eric and I could escape."
+        },
+        {
+          "type": "tf",
+          "q": "True or False: After Jesse says yes, the sergeant clicks his heels and opens a portal in Jesse’s closet.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Think about how the toy acted after Jesse agreed to go back—and why Jesse started feeling stupid.",
+          "word": "BATHTUB",
+          "clue": "Where you sit in warm water to get clean",
+          "pageTitle": "Waiting for a Portal",
+          "pageExcerpt": "I stared at the army guy, waiting for him to—I don’t know, click his heels or open a portal in my closet or something. Instead, he stared at me motionless, kind of like a toy would. That’s when I started feeling stupid."
+        },
+        {
+          "type": "match",
+          "q": "Match each character with the correct description:",
+          "pairs": [
+            {
+              "left": "Jesse Rigsby",
+              "right": "12-year-old who wakes up on Monday morning unable to be seen",
+              "rightVariants": [
+                "12-year-old who wakes up on Monday morning unable to be seen",
+                "Sixth-grader who is pretty new to the whole ghost thing",
+                "Kid who insists the talking sergeant was not a dream",
+                "Boy whose mom yells his full name up the stairs"
+              ]
+            },
+            {
+              "left": "Eric Conrad",
+              "right": "Friend who flew around with jet packs inside Full Blast",
+              "rightVariants": [
+                "Friend who flew around with jet packs inside Full Blast",
+                "Pal who rode the Statue of Liberty like a rocket ship with Jesse",
+                "Friend across the street who probably plays Go Wild",
+                "Buddy who can call Jesse’s parents after checking the game"
+              ]
+            },
+            {
+              "left": "Mark Whitman",
+              "right": "Classmate still trapped inside a video game",
+              "rightVariants": [
+                "Classmate still trapped inside a video game",
+                "Kid the sergeant says Jesse can save",
+                "Boy Mr. Gregory plans to go rescue",
+                "Classmate Jesse forgot about in all the ghost excitement"
+              ]
+            },
+            {
+              "left": "Mr. Gregory",
+              "right": "Charlie’s dad who vanished two weeks ago after promising to help",
+              "rightVariants": [
+                "Charlie’s dad who vanished two weeks ago after promising to help",
+                "Grown-up who explains Go Wild while pointing his phone",
+                "Man who doesn’t want to scare Jesse’s parents by knocking on their door",
+                "Player whose purple Wild Thing is really good against snakes"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "School principal who gives Jesse a detention for being late",
+            "Bus driver who honks when Jesse misses the school bus",
+            "Older brother who eats all of the chocolate cereal",
+            "Crossing guard who blows a whistle at the Wild Things"
+          ],
+          "hint": "Think about who went into Full Blast with Jesse, who stayed behind, and which grown-up shows up outside Jesse’s house.",
+          "word": "GIGANTIC",
+          "clue": "Extremely big; enormous",
+          "pageTitle": "The Characters",
+          "pageExcerpt": "Two weeks ago, I got sucked into Full Blast with my friend Eric Conrad... Anyways, in Full Blast, we met Mark Whitman—another kid from our class who had gotten sucked into the same game... Mr. Gregory is the dad of Charlie Gregory, one of the kids in my class, and he works at Bionosoft, the video game company that made Full Blast."
+        },
+        {
+          "type": "mc",
+          "q": "When the sergeant stopped talking, where did Jesse look for a hidden portal to the video game?",
+          "options": [
+            "The TV, the toilet, and the wardrobe",
+            "Under the bed, in the attic, and in the garage",
+            "Inside the fridge, the oven, and the dishwasher",
+            "Behind the couch, in the basement, and in the mailbox"
+          ],
+          "correct": 0,
+          "hint": "He checked a screen, a spot in the bathroom, and a place where clothes are kept.",
+          "word": "SHOELACES",
+          "clue": "Strings that tie your sneakers",
+          "pageTitle": "Searching for a Portal",
+          "pageExcerpt": "I spent the next several minutes talking to and poking at the army guy. Then I got up and checked all the places where he might have hidden some sort of portal to the video game (TV, toilet, wardrobe, etc.). Nothing."
+        },
+        {
+          "type": "match",
+          "q": "Match each Monday-morning detail with its description:",
+          "pairs": [
+            {
+              "left": "Blueberry crunch",
+              "right": "Mom’s pick while she packs her lunch",
+              "rightVariants": [
+                "Mom’s pick while she packs her lunch",
+                "The gross organic box Jesse ends up reaching for",
+                "The only box Dad grabs from the top shelf",
+                "What Mom answers when Dad asks, “What kind do you want, hon?”"
+              ]
+            },
+            {
+              "left": "The new chocolate one",
+              "right": "What Jesse asks to try, but never gets",
+              "rightVariants": [
+                "What Jesse asks to try, but never gets",
+                "Breakfast Jesse asks for a little louder the second time",
+                "A promise that was too good to be true",
+                "The box Dad never takes down for Jesse"
+              ]
+            },
+            {
+              "left": "Jesse Daniel Rigsby",
+              "right": "Full name Mom yells up the stairs",
+              "rightVariants": [
+                "Full name Mom yells up the stairs",
+                "Name Mom shouts so Jesse won’t be late for school",
+                "Jesse’s whole name when Mom means business",
+                "What Mom calls out when she thinks Jesse is still upstairs"
+              ]
+            },
+            {
+              "left": "Plop-plop-plop",
+              "right": "Sound of Jesse stumbling down the stairs",
+              "rightVariants": [
+                "Sound of Jesse stumbling down the stairs",
+                "Noise Jesse makes heading down to breakfast",
+                "How Jesse’s sleepy steps sound on the way down",
+                "Footsteps Jesse makes after Mom calls, “Breakfast!”"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Pancakes Dad flips every Monday morning",
+            "Orange juice that spills across the kitchen table",
+            "Toast that pops up burnt in the toaster",
+            "Waffles Mom packs for her lunch"
+          ],
+          "hint": "Think about what Mom wanted, what Jesse wanted, what Mom yelled, and how Jesse came down the stairs.",
+          "word": "IMPRISON",
+          "clue": "To lock someone up so they can’t get away",
+          "pageTitle": "Monday Morning",
+          "pageExcerpt": "“Mmmf,” I replied. I stumbled out of bed and plop-plop-plopped down the stairs. I took my seat at the table and waited for my dad to grab the cereal from the top shelf. “What kind do you want, hon?” he asked. “Blueberry crunch,” my mom replied as she finished packing her lunch. “I’ll try that new chocolate one,” I said."
+        },
+        {
+          "type": "mc",
+          "q": "Jesse’s dad says freezing the bowl first will change your life. What does Jesse say it really does?",
+          "options": [
+            "It only turns the milk so cold that it hurts your teeth.",
+            "It keeps the cereal crunchy all morning long.",
+            "It makes the bowl crack right down the middle.",
+            "It makes the blueberries taste like chocolate."
+          ],
+          "correct": 0,
+          "hint": "Jesse speaks from personal experience about what super-cold milk does.",
+          "word": "SWALLOWED",
+          "clue": "Gulped down in one big bite",
+          "pageTitle": "The Frozen Bowl",
+          "pageExcerpt": "(“Freeze the bowl first. It will change your life,” he tells everyone who will listen. Not true. From personal experience, I can tell you that the only thing freezing the cereal bowl will do is turn the milk so cold that it hurts your teeth.)"
+        },
+        {
+          "type": "mc",
+          "q": "What happened when Jesse tried to pull the milk toward him?",
+          "options": [
+            "His hands went right through the jug.",
+            "The milk spilled all over the kitchen table.",
+            "His dad told him to stop goofing around.",
+            "The milk instantly froze solid."
+          ],
+          "correct": 0,
+          "hint": "Jesse could touch and feel things, but something strange happened when he tried to move them.",
+          "word": "AUGMENTED",
+          "clue": "Made bigger or added to",
+          "pageTitle": "Right Through the Jug",
+          "pageExcerpt": "That didn’t stop him, so I pulled the milk toward me. Or at least I tried to pull it toward me. When I did, my hands went right through the jug."
+        },
+        {
+          "type": "tf",
+          "q": "True or False: When Jesse looked in the bathroom mirror, he saw his own terrified face.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Jesse waved his hands in front of the glass to check what would show up.",
+          "word": "RECRUIT",
+          "clue": "To get someone to join a group, like the army",
+          "pageTitle": "No Reflection",
+          "pageExcerpt": "“AHHHHHH!” I ran to the bathroom and looked in the mirror, desperate to see my terrified face. Instead, all I got was the empty bathtub behind me. I looked down at my hands. Real as could be. But when I waved them in front of the mirror—nothing."
+        },
+        {
+          "type": "mc",
+          "q": "What did Jesse find sitting patiently in the tub behind him?",
+          "options": [
+            "An eight-foot-tall, bright-blue Bigfoot",
+            "A purple gecko with a really long neck",
+            "A fluffy, polka-dotted bird",
+            "A skinny snake with goofy eyes"
+          ],
+          "correct": 0,
+          "hint": "Jesse heard it snort before he turned around—it was huge, furry, and a very surprising color.",
+          "word": "WARDROBE",
+          "clue": "A tall cabinet for hanging clothes",
+          "pageTitle": "Something in the Tub",
+          "pageExcerpt": "I slowly turned around. Behind me, sitting patiently in the tub as real as could be, was an eight-foot-tall, bright-blue Bigfoot."
+        },
+        {
+          "type": "tf",
+          "q": "True or False: When Jesse screamed that there was a monster in the bathroom, his parents rushed to look.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 1,
+          "hint": "Think about what Mom and Dad kept doing while Jesse yelled his warning.",
+          "word": "GECKO",
+          "clue": "A small lizard that can climb up walls",
+          "pageTitle": "Monster Warning",
+          "pageExcerpt": "As I passed through the kitchen, I screamed a warning to my parents. “MONSTER! MONSTER IN THE BATHROOM! DON’T GO IN!” My mom continued packing her lunch, and my dad continued eating his freezing-cold cereal as if there weren’t a GIANT BLUE MONSTER IN THEIR BATHTUB!"
+        },
+        {
+          "type": "mc",
+          "q": "How did Jesse finally get outside through the front door?",
+          "options": [
+            "He lowered his shoulder, pushed, and popped right through the solid oak.",
+            "He twisted the knob and the door swung wide open.",
+            "He climbed out the kitchen window instead.",
+            "His mom opened it for him on her way to work."
+          ],
+          "correct": 0,
+          "hint": "His invisible hand couldn’t turn the knob, so he took a deep breath and tried something else.",
+          "word": "SKEPTICAL",
+          "clue": "Doubtful; not quite believing something",
+          "pageTitle": "Through the Door",
+          "pageExcerpt": "I took a deep breath, lowered my shoulder, and pushed into the door. There was a moment of resistance before—pop!—I stumbled right through solid oak."
+        },
+        {
+          "type": "match",
+          "q": "Match each Go Wild creature with its description:",
+          "pairs": [
+            {
+              "left": "Purple Ninja Turtle things",
+              "right": "Giant creatures strolling past Jesse’s house in a herd",
+              "rightVariants": [
+                "Giant creatures strolling past Jesse’s house in a herd",
+                "A whole herd of huge purple creatures walking by",
+                "Big purple shelled creatures passing the house",
+                "Huge purple creatures wandering down the street together"
+              ]
+            },
+            {
+              "left": "Polka-dotted bird",
+              "right": "Fluffy creature that pokes its head out of the front-lawn tree and squawks",
+              "rightVariants": [
+                "Fluffy creature that pokes its head out of the front-lawn tree and squawks",
+                "Spotted, fluffy creature hiding in the tree",
+                "Squawking creature in the tree on Jesse’s front lawn",
+                "Fluffy flyer covered in dots"
+              ]
+            },
+            {
+              "left": "Ball of fur",
+              "right": "Soccer-ball-sized creature that battles Jesse’s shoelaces",
+              "rightVariants": [
+                "Soccer-ball-sized creature that battles Jesse’s shoelaces",
+                "Furry fighter with really sharp teeth and a lot of angry friends",
+                "Tiny furry thing that trips over itself running away",
+                "Little furry pest Jesse keeps kicking away"
+              ]
+            },
+            {
+              "left": "Cobrameano",
+              "right": "Skinny snake with a gigantic head and goofy eyes",
+              "rightVariants": [
+                "Skinny snake with a gigantic head and goofy eyes",
+                "Snake that slides out of the neighbor’s rosebushes",
+                "Snake whose glowing red eyes shoot two fireballs",
+                "Wild snake that checks out the cartoon pear"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Golden dragon that guards the Bionosoft building",
+            "Robot dog that delivers the morning newspaper",
+            "Talking cat that lives under Jesse’s porch",
+            "Giant spider that spins webs across the street"
+          ],
+          "hint": "Think about the herd walking by, the creature in the tree, the furry thing at Jesse’s feet, and the creature in the rosebushes.",
+          "word": "TERRIFIED",
+          "clue": "Extremely scared",
+          "pageTitle": "Wild Things Everywhere",
+          "pageExcerpt": "Outside looked like a scene from Monsters, Inc. A herd of giant purple Ninja Turtle things strolled past my house. A fluffy, polka-dotted bird poked its head out of the tree on our front lawn and squawked. I looked down to see a pile of fur the size of a soccer ball checking out my shoelaces."
+        },
+        {
+          "type": "mc",
+          "q": "How did Jesse recognize the person hiding in the bushes next to the porch?",
+          "options": [
+            "He noticed the crazy hair.",
+            "He heard a laugh that sounded just like Charlie’s.",
+            "He spotted a Bionosoft badge on the man’s shirt.",
+            "He recognized the man’s red baseball cap."
+          ],
+          "correct": 0,
+          "hint": "As Jesse walked closer, one wild detail about the man’s head gave him away.",
+          "word": "MOTIONLESS",
+          "clue": "Completely still; not moving at all",
+          "pageTitle": "Who’s in the Bushes?",
+          "pageExcerpt": "I looked at the bushes next to the porch and noticed a cell phone pointed at me. I squinted and lowered my head. There was a guy in there... As I walked closer, I noticed the crazy hair. “Mr. Gregory?”"
+        },
+        {
+          "type": "tf",
+          "q": "True or False: Mr. Gregory tells Jesse that he is not a ghost because he is not dead.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Think about why Jesse answers, “Well, that’s a relief.”",
+          "word": "SHOULDER",
+          "clue": "The joint where your arm connects to your body",
+          "pageTitle": "Not a Ghost",
+          "pageExcerpt": "“First of all, you’re not a ghost because you’re not dead,” Mr. Gregory said. “Well, that’s a relief.” “You’re just in a video game. This one is like Pokémon Go.”"
+        },
+        {
+          "type": "match",
+          "q": "Match each Go Wild game word with what it means:",
+          "pairs": [
+            {
+              "left": "Augmented reality",
+              "right": "A game world you can only see by looking through your phone",
+              "rightVariants": [
+                "A game world you can only see by looking through your phone",
+                "A game that goes on all the time in the real world",
+                "A hidden game layer on top of the real world",
+                "What Jesse calls “aug-whatever reality”"
+              ]
+            },
+            {
+              "left": "Wild Things",
+              "right": "Monsters players capture by battling them",
+              "rightVariants": [
+                "Monsters players capture by battling them",
+                "Creatures you battle using ones you already caught",
+                "Game monsters Mr. Gregory keeps inside his phone",
+                "The creatures the whole game is about catching"
+              ]
+            },
+            {
+              "left": "Cartoon pear",
+              "right": "Game snack Mr. Gregory flicks toward the rosebushes",
+              "rightVariants": [
+                "Game snack Mr. Gregory flicks toward the rosebushes",
+                "Fake fruit nobody can see without a phone",
+                "Treat that lands right next to the bushes in real life",
+                "Game fruit that lures the snake out"
+              ]
+            },
+            {
+              "left": "Salamaladder",
+              "right": "Mr. Gregory’s purple creature that’s really good against snakes",
+              "rightVariants": [
+                "Mr. Gregory’s purple creature that’s really good against snakes",
+                "Long-necked creature that pops out of Mr. Gregory’s phone",
+                "Wild Thing whose neck grows to half the size of Jesse’s house",
+                "Mr. Gregory’s pick for battling the snake"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Gold coins you spend to buy a faster phone",
+            "A secret code that turns the whole game off",
+            "Power-up that makes players invisible to Wild Things",
+            "Magic map showing where every player lives"
+          ],
+          "hint": "Think about what Mr. Gregory shows Jesse on his phone and how the game works.",
+          "word": "FREEZER",
+          "clue": "Ice-cold kitchen appliance that keeps food frozen",
+          "pageTitle": "How Go Wild Works",
+          "pageExcerpt": "“It’s a game that’s going on all the time in the real world. You just can’t see it unless you’re looking at the world through your phone. See, look.” ... He tapped his phone a few times until a big cartoon pear appeared on the screen. Then he flicked his finger, which threw the pear toward the rosebushes."
+        },
+        {
+          "type": "mc",
+          "q": "How did Mr. Gregory’s purple gecko beat the snake?",
+          "options": [
+            "It turned red, soaked up the fireballs, grew twice as big, and gulped the snake down.",
+            "It wrapped its long neck around the snake and squeezed.",
+            "It shot two fireballs out of its own eyes first.",
+            "It ran in circles until the snake got too tired to fight."
+          ],
+          "correct": 0,
+          "hint": "Watch what happens to the gecko’s color when the snake attacks.",
+          "word": "MIRROR",
+          "clue": "Shiny glass that shows your reflection",
+          "pageTitle": "The Battle",
+          "pageExcerpt": "As the fireballs were in midair, the gecko turned from purple to red. It absorbed the blast into its red body and grew twice as big. It then grabbed the snake by the tail, threw it into its mouth, and swallowed it in one gulp."
+        },
+        {
+          "type": "tf",
+          "q": "True or False: Mr. Gregory warns that anybody with a phone can battle Jesse and imprison him forever.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct": 0,
+          "hint": "Remember why Mr. Gregory says Jesse must avoid people who are playing the game.",
+          "word": "ORGANIC",
+          "clue": "Grown naturally, without chemicals",
+          "pageTitle": "Danger for Jesse",
+          "pageExcerpt": "“And since I’m in the game . . .” “Anybody with a phone can battle and imprison you forever.” “Well, I would like very much for that not to happen to me.”"
+        },
+        {
+          "type": "match",
+          "q": "Match each name with what it is in the story:",
+          "pairs": [
+            {
+              "left": "Full Blast",
+              "right": "Video game Jesse and Eric got sucked into two weeks ago",
+              "rightVariants": [
+                "Video game Jesse and Eric got sucked into two weeks ago",
+                "Game where Jesse rode the Statue of Liberty like a rocket ship",
+                "Game where Mark stayed behind",
+                "Video game where Jesse first met the sergeant"
+              ]
+            },
+            {
+              "left": "Bionosoft",
+              "right": "Video game company where Mr. Gregory works",
+              "rightVariants": [
+                "Video game company where Mr. Gregory works",
+                "Company that made Full Blast",
+                "Charlie’s dad’s workplace",
+                "Company behind the game that trapped Mark"
+              ]
+            },
+            {
+              "left": "Pokémon Go",
+              "right": "Real game Mr. Gregory compares Go Wild to",
+              "rightVariants": [
+                "Real game Mr. Gregory compares Go Wild to",
+                "Game Jesse says he has only heard of",
+                "Phone game that’s a lot like Go Wild",
+                "Famous game Mr. Gregory asks Jesse if he knows"
+              ]
+            },
+            {
+              "left": "Monsters, Inc.",
+              "right": "Movie the street outside reminds Jesse of",
+              "rightVariants": [
+                "Movie the street outside reminds Jesse of",
+                "Film that matches the monster-filled scene outside",
+                "Movie Jesse thinks of when he sees the creatures",
+                "Monster movie Jesse compares his neighborhood to"
+              ]
+            }
+          ],
+          "distractorVariants": [
+            "Pizza place where Jesse and Eric eat after school",
+            "Toy store that sells plastic army men",
+            "Name of Jesse’s school soccer team",
+            "Cereal brand with a cartoon pear on the box"
+          ],
+          "hint": "Think about the first video game, the company that made it, the game Mr. Gregory compares Go Wild to, and the movie the street looks like.",
+          "word": "RESCUE",
+          "clue": "To save someone from danger",
+          "pageTitle": "Names to Know",
+          "pageExcerpt": "Mr. Gregory is the dad of Charlie Gregory, one of the kids in my class, and he works at Bionosoft, the video game company that made Full Blast... “You’re just in a video game. This one is like Pokémon Go. Do you know Pokémon Go?”"
+        },
+        {
+          "type": "mc",
+          "q": "What plan does Mr. Gregory give Jesse so his parents will know he is OK?",
+          "options": [
+            "Cross the street, get Eric’s attention when he checks the game, have him call Jesse’s parents, and meet back in 10 minutes.",
+            "Knock on the front door and explain everything to his parents.",
+            "Hide in the bushes until the game shuts off.",
+            "Leave a note on the kitchen table for Mom and Dad."
+          ],
+          "correct": 0,
+          "hint": "Mr. Gregory thinks a friend who plays Go Wild can help—and that a strange man knocking on the door would not.",
+          "word": "PLASTIC",
+          "clue": "A material many toys are made of",
+          "pageTitle": "The Plan",
+          "pageExcerpt": "“Part of the reason, yes. Eric plays Go Wild, right?” “I’m sure he does.” “Go across the street, get his attention when he checks the game, have him call your parents, and meet me back here in 10 minutes.”"
+        }
+      ],
+      "readerHtml": "<div class=\"reader-chapter-title\">CHAPTER 1<br><span style=\"font-size:1.15em; font-weight:800;\">The Ghost</span></div>\n<p>What did you do last night? Sleep? Hmm, you don’t say.</p>\n<p>Want to know what I did? I talked to an army guy. Not like someone from the real army trying to recruit me (I’m 12. It would have been a short conversation). The army guy I talked to happened to be six inches tall and made of plastic.</p>\n<p>I don’t make a habit of talking to toys—I’m not crazy—but I had a good excuse. This one talked to me first. See, I met this particular toy when he wasn’t a toy but a real sergeant in the game <em>Full Blast</em>. Two weeks ago, I got sucked into <em>Full Blast</em> with my friend Eric Conrad. We flew around with jet packs and rode the Statue of Liberty like a rocket ship and almost got trapped inside the game for good by an alien who said our names in the creepiest way possible. It’s a long story. You should read it sometime.</p>\n<p>Anyways, in <em>Full Blast</em>, we met Mark Whitman—another kid from our class who had gotten sucked into the same game. Mark stayed behind so Eric and I could escape. Now, this army guy was telling me that I could go back into the video game to save Mark, but I had to “go back now.”</p>\n<p>Of course I wanted to go back. I’d do anything for Mark. The sergeant asked me if I was sure. Yes, I was sure—let’s go! I stared at the army guy, waiting for him to—I don’t know, click his heels or open a portal in my closet or something. Instead, he stared at me motionless, kind of like a toy would. That’s when I started feeling stupid.</p>\n<p>“Hey, I said ‘yes.’” I poked the sergeant. He continued staring with his blank toy expression. “Do I need to press some sort of button?” I picked him up and turned him over in my hand. No button.</p>\n<p>At this point, you might be thinking that maybe the whole talking toy thing was a dream. And I would normally agree with you, except for one very important detail: The sergeant had actually woken me up from a dream. Now have you ever woken up from a dream only to find yourself in another dream? You have not. That has never once happened in real life—only in movies. The talking sergeant was not a dream because this is not a movie, and also I am not crazy.</p>\n<p>I spent the next several minutes talking to and poking at the army guy. Then I got up and checked all the places where he might have hidden some sort of portal to the video game (TV, toilet, wardrobe, etc.). Nothing. I crawled back into bed and spent much of the rest of the night convincing myself I wasn’t crazy, and then I think I fell asleep.</p>\n<p>“Jesse! Breakfast!”</p>\n<p>My eyes popped open. Sunlight streamed through the window. Monday morning.</p>\n<p>“Jesse!” my mom yelled up the stairs again.</p>\n<p>“Mmmf,” I replied. I stumbled out of bed and <em>plop-plop-plopped</em> down the stairs. I took my seat at the table and waited for my dad to grab the cereal from the top shelf. “What kind do you want, hon?” he asked.</p>\n<p>“Blueberry crunch,” my mom replied as she finished packing her lunch.</p>\n<p>“I’ll try that new chocolate one,” I said.</p>\n<p>My dad grabbed the blueberry only. “Can I try the chocolate one?” I repeated a little louder. My dad set my mom’s cereal box on the table and grabbed his bowl from the freezer. (“Freeze the bowl first. It will change your life,” he tells everyone who will listen. Not true. From personal experience, I can tell you that the only thing freezing the cereal bowl will do is turn the milk so cold that it hurts your teeth.)</p>\n<p>I sighed and reached for my mom’s gross organic blueberry cereal. I knew the promise of chocolate for breakfast was too good to be true.</p>\n<p>“Did you call Jesse?” my dad asked as he grabbed the cereal box before I could.</p>\n<p>I squinted at him and waved right in front of his face. “Yeah, Dad, I’m right here.”</p>\n<p>My mom sighed. “I’ll call him again.” She walked to the stairs. “Jesse! Jesse Daniel Rigsby! Get down here now! You’re going to be late for school!”</p>\n<p>I threw my hands into the air. “Dad. Dad! DAD!”</p>\n<p>My dad finished pouring his cereal and reached across the table for the milk like I wasn’t there. I jumped up and grabbed the milk before he could to get his attention. That didn’t stop him, so I pulled the milk toward me. Or at least I tried to pull it toward me. When I did, my hands went <em>right through</em> the jug.</p>\n<p>“WHAT IS GOING ON?!” I grabbed the cereal box. Same thing—I could touch and feel the box, but when I tried to move it, my hand went right through.</p>\n<p>“AHHHHHH!” I ran to the bathroom and looked in the mirror, desperate to see my terrified face. Instead, all I got was the empty bathtub behind me. I looked down at my hands. Real as could be. But when I waved them in front of the mirror—nothing.</p>\n<p>I was a ghost.</p>\n<p>And that wasn’t even the worst of it. As I tried to figure out what to do next (What do ghosts eat? Do they go to the bathroom? What about school? Is there a special ghost school?), I heard a snort behind me. I looked into the mirror. Nothing. Another snort.</p>\n<p>I slowly turned around. Behind me, sitting patiently in the tub as real as could be, was an eight-foot-tall, bright-blue Bigfoot.</p>\n\n<div class=\"reader-chapter-title\" style=\"margin-top:2.5rem;\">CHAPTER 2<br><span style=\"font-size:1.15em; font-weight:800;\">Aug-whatever Reality</span></div>\n<p>I ran out of the bathroom as fast as my little ghost legs would take me. As I passed through the kitchen, I screamed a warning to my parents. “MONSTER! MONSTER IN THE BATHROOM! DON’T GO IN!” My mom continued packing her lunch, and my dad continued eating his freezing-cold cereal as if there weren’t a GIANT BLUE MONSTER IN THEIR BATHTUB!</p>\n<p>If I didn’t get some fresh air soon, I was going to pass out. I ran for the front door, grabbed the knob, twisted, and, of course, nothing happened because I was twisting with my invisible ghost hand. I took a deep breath, lowered my shoulder, and pushed into the door. There was a moment of resistance before—<em>pop!</em>—I stumbled right through solid oak.</p>\n<p>Outside looked like a scene from <em>Monsters, Inc.</em> A herd of giant purple Ninja Turtle things strolled past my house. A fluffy, polka-dotted bird poked its head out of the tree on our front lawn and squawked. I looked down to see a pile of fur the size of a soccer ball checking out my shoelaces. When I moved my foot, it tripped over itself trying to run away.</p>\n<p>I started breathing faster. This is not OK. THIS IS NOT OK!</p>\n<p>“Psst.”</p>\n<p>I looked around. That “psst” sounded a lot more human than monster.</p>\n<p>“Psst,” the voice whispered again. “Jesse. Bushes.”</p>\n<p>I looked at the bushes next to the porch and noticed a cell phone pointed at me. I squinted and lowered my head. There was a guy in there. I kicked away the ball of fur that had regained the courage to battle my shoelaces again and approached the bush.</p>\n<p>As I walked closer, I noticed the crazy hair. “Mr. Gregory?”</p>\n<p>Mr. Gregory is the dad of Charlie Gregory, one of the kids in my class, and he works at Bionosoft, the video game company that made <em>Full Blast</em>. He promised to help me and Eric find Mark and then disappeared two weeks ago. At that moment, he was curled up in the azalea bush, which is something that would get him in pretty big trouble if my mom saw.</p>\n<p>“Hi,” he whispered, still pointing the phone at me. “You OK?”</p>\n<p>“I’m invisible,” I hissed. “So no, I am not OK!”</p>\n<p>“You don’t have to whisper,” he said. “No one can hear you.”</p>\n<p>“No kidding.” I kicked the ball of fur away again. “Wait, you can hear me though, right?”</p>\n<p>“Those things have really sharp teeth and a lot of angry friends,” Mr. Gregory said. “I wouldn’t make him mad.”</p>\n<p>I stopped kicking.</p>\n<p>“But right,” he continued. “Of course I can hear you. Anyone playing the game can hear you.”</p>\n<p>“What game?”</p>\n<p>Mr. Gregory looked at me like I was crazy. “<em>Go Wild</em>.”</p>\n<p>“Okayyyyy.”</p>\n<p>He continued with the weird look. “You knew you were in <em>Go Wild</em>, right? I thought the sergeant was pretty clear.”</p>\n<p>“Pretend I have no idea what <em>Go Wild</em> even is.”</p>\n<p>“You serious?”</p>\n<p>“I don’t play video games.”</p>\n<p>“I mean, most people who enjoy <em>Go Wild</em> don’t usually play video games. The core market includes . . .”</p>\n<p>“Can you just tell me what it is?”</p>\n<p>“Oh right, well, it’s augmented reality,” he said like “aug-whatever reality” is a thing people say all the time.</p>\n<p>“Listen,” I said. “I am having a real hard time right now understanding why I’m a ghost in a world of monsters, so it would be helpful if you could explain things to me in a way that a sixth-grader who is pretty new to the whole ghost thing can understand.”</p>\n<p>“First of all, you’re not a ghost because you’re not dead,” Mr. Gregory said.</p>\n<p>“Well, that’s a relief.”</p>\n<p>“You’re just in a video game. This one is like <em>Pokémon Go</em>. Do you know <em>Pokémon Go</em>?”</p>\n<p>“I’ve heard of it.”</p>\n<p>“It’s a game that’s going on all the time in the real world. You just can’t see it unless you’re looking at the world through your phone. See, look.”</p>\n<p>I bent down and looked at his phone, which was pointed at my neighbor’s rosebushes. On the screen, I could see the bushes as if the phone were in camera mode.</p>\n<p>“I don’t know what I’m supposed to be looking at,” I said.</p>\n<p>He tapped his phone a few times until a big cartoon pear appeared on the screen. Then he flicked his finger, which threw the pear toward the rosebushes. I looked up just in time to see the pear fly through the air and land right next to the bushes in real life.</p>\n<p>“Whoa, how did you do that?!”</p>\n<p>“That pear is part of the game. It’s not real. Nobody can see it unless they’re looking at it through their phone.”</p>\n<p>“Or unless they’re in the game,” I said.</p>\n<p>“Right.”</p>\n<p>Just then a skinny snake with a gigantic head and goofy eyes emerged from the rosebushes. It examined the pear.</p>\n<p>I jumped back. “Whoa!”</p>\n<p>“Again, that’s invisible to anyone who’s not looking at it through the game on their phone,” Mr. Gregory said. “Watch this.”</p>\n<p>He tapped and swiped a few more times on his screen. All of a sudden, a purple gecko thing with a long neck popped out of his phone. In a matter of two seconds, it grew a REALLY long neck to half the size of my house. It locked eyes with the snake and got angry.</p>\n<p>“You might want to take a step back,” Mr. Gregory said.</p>\n<p>I took five steps back.</p>\n<p>The gecko screeched. The snake hissed. The sun dimmed, and intense battle music started playing out of nowhere. The snake’s eyes began glowing red. After three seconds of brighter and brighter glowing, the eyes shot two fireballs toward the gecko. As the fireballs were in midair, the gecko turned from purple to red. It absorbed the blast into its red body and grew twice as big. It then grabbed the snake by the tail, threw it into its mouth, and swallowed it in one gulp. With that, the gecko disappeared back into Mr. Gregory’s phone, the lights came back on, and the music stopped.</p>\n<p>Mr. Gregory turned to me. “You can’t let that happen to you.”</p>\n<p>“I WOULD LIKE VERY MUCH FOR THAT NOT TO HAPPEN TO ME!” I yelped.</p>\n<p>“The goal of the game, since apparently you’ve never played it before,” Mr. Gregory gave me a skeptical look, “is to capture Wild Things. You do this by battling the Wild Things you find in the wild with Wild Things that you’ve already captured from the wild.”</p>\n<p>“You said ‘wild’ five times in two seconds.”</p>\n<p>“So when I saw that Cobrameano in the wild . . .”</p>\n<p>“Six. Also, I don’t know what that is.”</p>\n<p>“. . . When I saw that snake, I could capture it into my phone by defeating it with one of my own Wild Things—er, monsters. I picked Salamaladder—the gecko thing—because it’s really good against snakes. If the snake were to defeat my gecko, my gecko would get knocked out for 24 hours. But since my gecko defeated the snake, I get to keep the snake and use it in battles now.”</p>\n<p>“And since I’m in the game . . .”</p>\n<p>“Anybody with a phone can battle and imprison you forever.”</p>\n<p>“Well, I would like very much for that not to happen to me.”</p>\n<p>“Right, so you need to avoid people who are playing the game.”</p>\n<p>“How do I know if someone’s playing the game?”</p>\n<p>“Well, for example, if they’re walking while staring at their phone.”</p>\n<p>I squinted at him. “That’s, like, everyone.”</p>\n<p>“Look, I know. It’s not great, but we should mostly be able to avoid people where we’re going.”</p>\n<p>“Where’s that?”</p>\n<p>Mr. Gregory smiled and leaned in. “To rescue Mark, of course.”</p>\n<p>In all the excitement about turning into a ghost, I’d totally forgotten about Mark. “Oh, that’s so awesome! But how? Isn’t he in another game?”</p>\n<p>“I’ll explain everything,” Mr. Gregory said. “But first we’ve got to let your parents know you’re OK.”</p>\n<p>“Oh, yeah, that’s a good idea. Do you want to knock on the door and tell them? They’re both in the kitchen.”</p>\n<p>“So you think it will make them feel better if a strange man knocks on their door and tells them that their missing son is OK because he’s in a video game?”</p>\n<p>“Oh, probably not. Is that why you’re hiding in the bushes?”</p>\n<p>“Part of the reason, yes. Eric plays <em>Go Wild</em>, right?”</p>\n<p>“I’m sure he does.”</p>\n<p>“Go across the street, get his attention when he checks the game, have him call your parents, and meet me back here in 10 minutes.”</p>\n<p>“Got it.”</p>\n<p>“And Jesse?”</p>\n<p>“Yeah?”</p>\n<p>“Please don’t let anyone else see you.”</p>\n<div style=\"text-align:center; font-weight:900; letter-spacing:1px; margin:1.5rem 0 0.5rem; padding:0.75rem; background:#1e293b; border-radius:8px; color:#38bdf8;\">GO WILD<br>DOWNLOADING NEXT CHAPTER…<br><span style=\"font-size:0.75em; font-weight:600; letter-spacing:0; color:#94a3b8;\">Data Rates May Apply</span></div>"
+    },
     {
       "id": "key_hunters1_ch3_6",
       "book": "Key Hunters: The Mysterious Moonstone",
@@ -4931,6 +5457,6 @@
       "instance": "R"
     }
   ],
-  "activeQuizIdR": "key_hunters1_ch3_6",
+  "activeQuizIdR": "trapped_invisible_invasion_ch1_2",
   "activeQuizIdD": "d_history_trivia_mc"
 }
