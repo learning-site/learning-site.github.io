@@ -1219,7 +1219,6 @@
   .fb-close { background: #334155; color: #e2e8f0; border: 1px solid #64748b; border-radius: 0.5rem; padding: 0.35rem 0.7rem; font-weight: 800; cursor: pointer; }
   .fb-arena { flex: 1; min-height: 0; position: relative; overflow: hidden; }
   .fb-arena svg { width: 100%; height: 100%; display: block; }
-  .fb-arena #fb_boyPostureGroup { transition: transform 0.12s ease-out; }
   .fb-arena .fb-enemy-target { cursor: pointer; }
   .fb-arena .fb-enemy-hit { animation: fbEnemyHit 0.18s linear; }
   @keyframes fbEnemyHit { 0%, 100% { filter: none; } 40% { filter: brightness(2.4) saturate(0.4); } }
@@ -1237,6 +1236,14 @@
   .fb-win p { margin: 0; color: #e2e8f0; font-weight: 700; }
   .fb-win button { background: #10b981; color: #022c22; border: none; border-radius: 0.7rem; padding: 0.7rem 1.4rem; font-size: 1.05rem; font-weight: 900; cursor: pointer; }
   .fb-hero-win { animation: fbHeroJump 0.6s ease-in-out infinite; }
+  .fb-controls { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0.9rem 1rem; }
+  .fb-controls .fb-hint { flex: 1; padding: 0; }
+  .fb-move-btn {
+    width: clamp(4.6rem, 13vw, 6.5rem); height: clamp(4.6rem, 13vw, 6.5rem); flex-shrink: 0; border-radius: 1.1rem;
+    border: 3px solid #38bdf8; background: #0f172a; color: #38bdf8; font-size: clamp(2rem, 6vw, 3rem); font-weight: 900;
+    cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+  }
+  .fb-move-btn.pressed { background: #38bdf8; color: #0f172a; transform: scale(0.94); }
   @keyframes fbHeroJump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 
   .walking-bart .bart-body { transform-origin: 61px 75px; animation: boyBodyKata 4.2s infinite ease-in-out; }
@@ -1864,7 +1871,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:47 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:50 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1908,7 +1915,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:47 PM - 11/23/2026
+      Updated: 07:50 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2607,8 +2614,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795481204052"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795481204052"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795481454605"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795481454605"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -7760,6 +7767,7 @@ function closeFinalBattle() {
     if (st.raf) cancelAnimationFrame(st.raf);
     clearTimeout(st.comboTimer);
     clearTimeout(st.lungeTimer);
+    if (st.onKey) { document.removeEventListener('keydown', st.onKey); document.removeEventListener('keyup', st.onKey); }
   }
   const ov = document.getElementById('finalBattleOverlay');
   if (ov) ov.remove();
@@ -7784,7 +7792,11 @@ function startFinalBattle() {
       <button type="button" class="fb-close" id="fbCloseBtn">✕ Close</button>
     </div>
     <div class="fb-arena walking-bart" id="fbArena">${svgMarkup}</div>
-    <div class="fb-hint" id="fbHint">👆 Tap the enemy to attack! Wait when its shield is up.</div>`;
+    <div class="fb-controls">
+      <button type="button" class="fb-move-btn" id="fbMoveLeft" aria-label="Move left">◀</button>
+      <div class="fb-hint" id="fbHint">Use ◀ ▶ to get close, then tap the enemy!</div>
+      <button type="button" class="fb-move-btn" id="fbMoveRight" aria-label="Move right">▶</button>
+    </div>`;
   document.body.appendChild(ov);
 
   const arena = ov.querySelector('#fbArena');
@@ -7804,6 +7816,9 @@ function startFinalBattle() {
   const hero = $('boyPostureGroup');
   const enemy = $('alienPostureGroup');
   if (!hero || !enemy) { closeFinalBattle(); return; }
+  // Smaller fighters (scaled around their feet) leave room to walk left and right
+  const stage = $('duelStageGroup');
+  if (stage) stage.setAttribute('transform', 'translate(110 108) scale(0.58) translate(-110 -108)');
   enemy.classList.add('fb-enemy-target');
   const hitArea = document.createElementNS(NS, 'rect');
   hitArea.setAttribute('x', '126'); hitArea.setAttribute('y', '0'); hitArea.setAttribute('width', '66'); hitArea.setAttribute('height', '112');
@@ -7816,8 +7831,10 @@ function startFinalBattle() {
 
   const st = finalBattleState = {
     hp: 100, taps: 0, combo: 0, shieldUp: false, won: false, startedAt: performance.now(),
-    raf: 0, comboTimer: null, lungeTimer: null
+    raf: 0, comboTimer: null, lungeTimer: null,
+    heroX: 0, enemyX: 30, moveDir: 0, lungeUntil: 0, lastTick: 0
   };
+  const HERO_CENTER = 61, ENEMY_CENTER = 158, REACH = 112, MIN_GAP = 56, HERO_MIN_X = -95, HERO_SPEED = 95;
   const hpFill = ov.querySelector('#fbHpFill');
   const hpText = ov.querySelector('#fbHpText');
   const comboEl = ov.querySelector('#fbCombo');
@@ -7837,9 +7854,16 @@ function startFinalBattle() {
   const tick = (now) => {
     if (finalBattleState !== st || st.won) return;
     const t = (now - st.startedAt) / 1000;
-    const dx = Math.sin(t * 1.3) * 13 + Math.sin(t * 2.9) * 4;
+    const dt = Math.min(0.05, st.lastTick ? (now - st.lastTick) / 1000 : 0);
+    st.lastTick = now;
+    st.enemyX = 30 + Math.sin(t * 0.9) * 60 + Math.sin(t * 2.3) * 12;
     const dy = Math.sin(t * 2.1) * 3;
-    enemy.setAttribute('transform', `translate(${dx.toFixed(1)} ${dy.toFixed(1)})`);
+    enemy.setAttribute('transform', `translate(${st.enemyX.toFixed(1)} ${dy.toFixed(1)})`);
+    // The hero walks with the two buttons and can never pass through the enemy
+    const maxHeroX = (ENEMY_CENTER + st.enemyX) - MIN_GAP - HERO_CENTER;
+    st.heroX = Math.max(HERO_MIN_X, Math.min(maxHeroX, st.heroX + st.moveDir * HERO_SPEED * dt));
+    const lunge = now < st.lungeUntil ? 16 : 0;
+    hero.setAttribute('transform', `translate(${(st.heroX + lunge).toFixed(1)} 0)`);
     const phase = t % 3.4;
     const up = t > 1.5 && phase > 2.5;
     if (up !== st.shieldUp) { st.shieldUp = up; shield.style.display = up ? '' : 'none'; }
@@ -7851,12 +7875,14 @@ function startFinalBattle() {
     st.won = true;
     cancelAnimationFrame(st.raf);
     shield.style.display = 'none';
-    enemy.setAttribute('transform', 'translate(-12, 3) rotate(86 158 104)');
+    enemy.setAttribute('transform', `translate(${(st.enemyX - 12).toFixed(1)}, 3) rotate(86 158 104)`);
     const stars = $('alienDefeatedStars'); if (stars) stars.style.display = 'block';
     ['alienLaserGlow', 'alienLaserCore'].forEach(id => { const el = $(id); if (el) el.style.display = 'none'; });
     arena.classList.remove('walking-bart');
-    hero.setAttribute('transform', 'translate(16, 0)');
-    hero.classList.add('fb-hero-win');
+    hero.setAttribute('transform', `translate(${st.heroX.toFixed(1)} 0)`);
+    const heroBody = hero.querySelector('.bart-body');
+    if (heroBody) heroBody.classList.add('fb-hero-win');
+    st.moveDir = 0;
     try { playCorrectSound(true); } catch (e) {}
     const secs = ((performance.now() - st.startedAt) / 1000).toFixed(1);
     const panel = document.createElement('div');
@@ -7877,6 +7903,12 @@ function startFinalBattle() {
       floatText(x, y, '🛡️ BLOCKED!', 'block');
       return;
     }
+    const gap = (ENEMY_CENTER + st.enemyX) - (HERO_CENTER + st.heroX);
+    if (gap > REACH) {
+      st.combo = 0; comboEl.textContent = '';
+      floatText(x, y, '↔️ TOO FAR! Move closer', 'block');
+      return;
+    }
     st.taps++;
     st.combo++;
     const crit = Math.random() < 0.15;
@@ -7891,9 +7923,7 @@ function startFinalBattle() {
     floatText(x, y, crit ? `💥 -${dmg}!` : `-${dmg}`, crit ? 'crit' : '');
     try { playSnapSound(true); } catch (e) {}
     // Hero lunges at the enemy; enemy flashes; arena shakes
-    hero.setAttribute('transform', 'translate(20, 0)');
-    clearTimeout(st.lungeTimer);
-    st.lungeTimer = setTimeout(() => { if (!st.won) hero.setAttribute('transform', 'translate(0, 0)'); }, 130);
+    st.lungeUntil = performance.now() + 130;
     enemy.classList.remove('fb-enemy-hit'); arena.classList.remove('fb-shake');
     void arena.offsetWidth;
     enemy.classList.add('fb-enemy-hit'); arena.classList.add('fb-shake');
@@ -7903,6 +7933,27 @@ function startFinalBattle() {
   };
   enemy.addEventListener('pointerdown', attack);
   ov.querySelector('#fbCloseBtn').onclick = closeFinalBattle;
+
+  // Hold ◀ / ▶ (or the arrow keys) to walk
+  const bindMove = (btnId, dir) => {
+    const btn = ov.querySelector(btnId);
+    const start = (ev) => { ev.preventDefault(); if (st.won) return; st.moveDir = dir; btn.classList.add('pressed'); };
+    const stop = () => { if (st.moveDir === dir) st.moveDir = 0; btn.classList.remove('pressed'); };
+    btn.addEventListener('pointerdown', start);
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(evName => btn.addEventListener(evName, stop));
+    btn.addEventListener('contextmenu', ev => ev.preventDefault());
+  };
+  bindMove('#fbMoveLeft', -1);
+  bindMove('#fbMoveRight', 1);
+  st.onKey = (ev) => {
+    if (finalBattleState !== st || st.won) return;
+    const dir = ev.key === 'ArrowLeft' ? -1 : ev.key === 'ArrowRight' ? 1 : 0;
+    if (!dir) return;
+    ev.preventDefault();
+    if (ev.type === 'keydown') st.moveDir = dir; else if (st.moveDir === dir) st.moveDir = 0;
+  };
+  document.addEventListener('keydown', st.onKey);
+  document.addEventListener('keyup', st.onKey);
 }
 
 function restartQuiz() {
