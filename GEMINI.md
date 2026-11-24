@@ -33,7 +33,7 @@
    - Debajo de `Submit Answer` (con espacio de separación) siempre existen los botones `Hint (-1.0 pt)` y `📖 Reread chapter to find answer (-1.0 pt)`.
 
 5. **Audio Feedback, Animación por Libro y Canciones Finales:**
-   - Cada libro en el selector (`#headerBookSelect`) cuenta con su propia animación temática en la esquina superior izquierda (`BOOK_ANIMATION_THEMES` + `applyBookAnimationTheme`), con personajes, escenario, medidor de duelo y ataques especiales acordes a la historia de ese libro. Todas comparten el acabado 3D de `enhanceDuelSvg3D` (relieve con luz `#duel3dBevel`, suelo en perspectiva, sombras, fondo con parallax, partículas, haces de luz, parpadeo y zoom en golpes especiales); no animar `#bartSvg` con transformaciones continuas porque vuelve borrosos a los personajes.
+   - Cada libro en el selector (`#headerBookSelect`) cuenta con su propia animación temática en la esquina superior izquierda (`BOOK_ANIMATION_THEMES` + `applyBookAnimationTheme`), con personajes, escenario, medidor de duelo y ataques especiales acordes a la historia de ese libro. Solo el libro `Trapped in a Video Game: The Invisible Invasion` usa el acabado 3D de `enhanceDuelSvg3D` (relieve con luz `#duel3dBevel`, suelo en perspectiva, sombras, fondo con parallax, partículas, haces de luz, parpadeo y zoom en golpes especiales); no animar `#bartSvg` con transformaciones continuas porque vuelve borrosos a los personajes.
    - Al presionar `Submit Answer`, suena uno de los 3 audios TTS para respuesta correcta o 3 para incorrecta.
    - Al terminar el quiz, suena automáticamente la canción de 30 segundos correspondiente al grado obtenido (**A**, **B**, **C** o **D y menor**) sin barra de progreso ni botones de Play/Replay.
 

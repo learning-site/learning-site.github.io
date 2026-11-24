@@ -1123,17 +1123,17 @@
   }
 
 
-  /* ===== 3D look + extra animations for the book duel animation (all themes) ===== */
-  .avatar-svg-container { perspective: 520px; --duel-accent: #38bdf8; }
-  .avatar-svg-container::before {
+  /* ===== 3D look + extra animations for the book duel animation (only The Invisible Invasion) ===== */
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] { perspective: 520px; --duel-accent: #38bdf8; }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"]::before {
     content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
     background: linear-gradient(160deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.03) 22%, rgba(255,255,255,0) 40%);
   }
-  .avatar-svg-container::after {
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"]::after {
     content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
     background: radial-gradient(ellipse at 50% 45%, rgba(2,6,23,0) 52%, rgba(2,6,23,0.6) 100%);
   }
-  .avatar-svg-container #bartSvg { transform-origin: 50% 62%; }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #bartSvg { transform-origin: 50% 62%; }
   /* Depth by parallax: far background, floor and characters move at different speeds */
   .duel3d-bg { animation: duel3dParallaxFar 9s infinite ease-in-out; }
   @keyframes duel3dParallaxFar { 0%, 100% { transform: translateX(-3.5px); } 50% { transform: translateX(3.5px); } }
@@ -1145,12 +1145,12 @@
     48% { transform: rotateY(6deg) rotateX(0deg) scale(1.1); }
     100% { transform: rotateY(0deg) rotateX(2deg) scale(1); }
   }
-  .avatar-svg-container[class*="duel-move-"] #bartSvg { animation: duel3dCameraPunch 0.95s ease-out; }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"][class*="duel-move-"] #bartSvg { animation: duel3dCameraPunch 0.95s ease-out; }
 
   /* Sculpted, lit character bodies */
-  .avatar-svg-container .bart-body, .avatar-svg-container .alien-body,
-  .avatar-svg-container .leg-l, .avatar-svg-container .leg-r,
-  .avatar-svg-container .alien-leg-l, .avatar-svg-container .alien-leg-r { filter: url(#duel3dBevel); }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .bart-body, .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .alien-body,
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .leg-l, .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .leg-r,
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .alien-leg-l, .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] .alien-leg-r { filter: url(#duel3dBevel); }
 
   /* Perspective floor */
   .duel3d-floor-line { stroke: var(--duel-accent); stroke-width: 0.6; opacity: 0.3; }
@@ -1178,13 +1178,12 @@
   }
   .duel3d-shine { fill: #ffffff; opacity: 0; animation: duel3dBarShine 3.6s infinite ease-in-out; }
   @keyframes duel3dBarShine { 0%, 55% { transform: translateX(0); opacity: 0; } 62% { opacity: 0.75; } 92% { opacity: 0.75; } 100% { transform: translateX(128px); opacity: 0; } }
-  .avatar-svg-container #clashMeterSpark { filter: drop-shadow(0 0 2.5px var(--duel-accent)); }
-  .avatar-svg-container #alienEyeL, .avatar-svg-container #alienEyeR,
-  .avatar-svg-container[data-book-theme="key_hunters"] #darkGlassesGroup,
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #clashMeterSpark { filter: drop-shadow(0 0 2.5px var(--duel-accent)); }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #alienEyeL, .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #alienEyeR,
   .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #darkGlassesGroup {
     transform-box: fill-box; transform-origin: center; animation: duel3dBlink 4.6s infinite;
   }
-  .avatar-svg-container #alienEyeL, .avatar-svg-container #alienEyeR { animation-delay: -2.1s; }
+  .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #alienEyeL, .avatar-svg-container[data-book-theme="trapped_invisible_invasion"] #alienEyeR { animation-delay: -2.1s; }
   @keyframes duel3dBlink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1816,7 +1815,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:27 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:28 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1860,7 +1859,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:27 PM - 11/23/2026
+      Updated: 07:28 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2559,8 +2558,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795480035022"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795480035022"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795480101368"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795480101368"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -6745,6 +6744,8 @@ function enhanceDuelSvg3D(themeKey) {
   const svg = document.getElementById('bartSvg');
   if (!container || !svg) return;
   container.dataset.bookTheme = themeKey;
+  // The 3D finish is only used for the newest book (The Invisible Invasion); other books keep their flat look
+  if (themeKey !== 'trapped_invisible_invasion') return;
   container.style.setProperty('--duel-accent', DUEL_3D_ACCENTS[themeKey] || '#38bdf8');
   if (svg.querySelector('#duel3dFloor')) return;
   const NS = 'http://www.w3.org/2000/svg';
