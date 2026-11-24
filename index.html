@@ -1871,7 +1871,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:50 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:52 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1915,7 +1915,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:50 PM - 11/23/2026
+      Updated: 07:52 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2614,8 +2614,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795481454605"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795481454605"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795481551415"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795481551415"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -7832,9 +7832,10 @@ function startFinalBattle() {
   const st = finalBattleState = {
     hp: 100, taps: 0, combo: 0, shieldUp: false, won: false, startedAt: performance.now(),
     raf: 0, comboTimer: null, lungeTimer: null,
-    heroX: 0, enemyX: 30, moveDir: 0, lungeUntil: 0, lastTick: 0
+    heroX: 0, enemyX: 30, moveDir: 0, lungeUntil: 0, lastTick: 0,
+    enemyTargetX: 30, enemySpeed: 60, enemyRetargetAt: 0, hitsSinceFlee: 0
   };
-  const HERO_CENTER = 61, ENEMY_CENTER = 158, REACH = 112, MIN_GAP = 56, HERO_MIN_X = -95, HERO_SPEED = 95;
+  const HERO_CENTER = 61, ENEMY_CENTER = 158, REACH = 112, MIN_GAP = 56, HERO_MIN_X = -95, HERO_SPEED = 95, ENEMY_MIN_X = -45, ENEMY_MAX_X = 105;
   const hpFill = ov.querySelector('#fbHpFill');
   const hpText = ov.querySelector('#fbHpText');
   const comboEl = ov.querySelector('#fbCombo');
@@ -7856,7 +7857,17 @@ function startFinalBattle() {
     const t = (now - st.startedAt) / 1000;
     const dt = Math.min(0.05, st.lastTick ? (now - st.lastTick) / 1000 : 0);
     st.lastTick = now;
-    st.enemyX = 30 + Math.sin(t * 0.9) * 60 + Math.sin(t * 2.3) * 12;
+    // The enemy walks sideways on its own: it keeps picking a new spot, and runs away after taking a few hits
+    if (now >= st.enemyRetargetAt) {
+      st.enemyTargetX = ENEMY_MIN_X + Math.random() * (ENEMY_MAX_X - ENEMY_MIN_X);
+      st.enemySpeed = 55 + Math.random() * 30;
+      st.enemyRetargetAt = now + 900 + Math.random() * 1500;
+    }
+    const enemyStep = st.enemySpeed * dt;
+    const toTarget = st.enemyTargetX - st.enemyX;
+    st.enemyX += Math.abs(toTarget) <= enemyStep ? toTarget : Math.sign(toTarget) * enemyStep;
+    const minEnemyX = (HERO_CENTER + st.heroX) + MIN_GAP - ENEMY_CENTER;
+    st.enemyX = Math.max(minEnemyX, Math.min(ENEMY_MAX_X, st.enemyX));
     const dy = Math.sin(t * 2.1) * 3;
     enemy.setAttribute('transform', `translate(${st.enemyX.toFixed(1)} ${dy.toFixed(1)})`);
     // The hero walks with the two buttons and can never pass through the enemy
@@ -7929,6 +7940,21 @@ function startFinalBattle() {
     enemy.classList.add('fb-enemy-hit'); arena.classList.add('fb-shake');
     const ring = $('combatShockwaveRing');
     if (ring) { ring.style.animation = 'none'; void ring.getBoundingClientRect(); ring.style.animation = 'shockwaveBurst 0.5s ease-out'; }
+    // After 3 hits in a row the enemy dashes to the far side, so the hero has to chase it
+    st.hitsSinceFlee++;
+    if (st.hitsSinceFlee >= 3) {
+      st.hitsSinceFlee = 0;
+      if (st.enemyX < 60) {
+        st.enemyTargetX = ENEMY_MAX_X - Math.random() * 20;
+        st.enemySpeed = 150;
+        st.enemyRetargetAt = performance.now() + 1100;
+      } else {
+        // Cornered at the edge: it shoves the hero back instead
+        st.heroX = Math.max(HERO_MIN_X, st.heroX - 70);
+        floatText(x, y - 60, '💨 PUSHED BACK!', 'block');
+        st.enemyRetargetAt = 0;
+      }
+    }
     if (st.hp <= 0) win();
   };
   enemy.addEventListener('pointerdown', attack);
