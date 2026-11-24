@@ -1199,6 +1199,46 @@
     .duel3d-bg, #duel3dFloor, .duel3d-hline, .duel3d-ray, .duel3d-mote, .duel3d-shine, .duel3d-shadow { animation: none; }
   }
 
+
+  /* ===== Full-screen Final Battle (after a perfect quiz) ===== */
+  #finalBattleCountdown { margin-top: 0.6rem; font-weight: 900; font-size: 1.05rem; color: #fde047; text-align: center; }
+  #finalBattleOverlay {
+    position: fixed; inset: 0; z-index: 99990; display: flex; flex-direction: column;
+    background: radial-gradient(ellipse at 50% 60%, #1e293b 0%, #020617 78%);
+    touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+    animation: fbFadeIn 0.45s ease-out;
+  }
+  @keyframes fbFadeIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+  .fb-hud { display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0.9rem; flex-wrap: wrap; }
+  .fb-title { font-weight: 900; font-size: 1.05rem; color: #fde047; letter-spacing: 0.5px; }
+  .fb-hp-wrap { flex: 1; min-width: 9rem; }
+  .fb-hp-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 800; color: #fca5a5; margin-bottom: 0.2rem; }
+  .fb-hp-track { height: 1rem; border-radius: 0.5rem; background: #0f172a; border: 2px solid #475569; overflow: hidden; }
+  .fb-hp-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #ef4444, #f97316); transition: width 0.18s ease-out; }
+  .fb-combo { font-weight: 900; font-size: 0.95rem; color: #38bdf8; min-width: 5.5rem; text-align: center; }
+  .fb-close { background: #334155; color: #e2e8f0; border: 1px solid #64748b; border-radius: 0.5rem; padding: 0.35rem 0.7rem; font-weight: 800; cursor: pointer; }
+  .fb-arena { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+  .fb-arena svg { width: 100%; height: 100%; display: block; }
+  .fb-arena #fb_boyPostureGroup { transition: transform 0.12s ease-out; }
+  .fb-arena .fb-enemy-target { cursor: pointer; }
+  .fb-arena .fb-enemy-hit { animation: fbEnemyHit 0.18s linear; }
+  @keyframes fbEnemyHit { 0%, 100% { filter: none; } 40% { filter: brightness(2.4) saturate(0.4); } }
+  .fb-arena.fb-shake { animation: fbShake 0.18s linear; }
+  @keyframes fbShake { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(-5px, 2px); } 75% { transform: translate(5px, -2px); } }
+  .fb-shield { fill: rgba(56, 189, 248, 0.14); stroke: #38bdf8; stroke-width: 1.6; stroke-dasharray: 5 3; animation: fbShieldSpin 0.9s linear infinite; }
+  @keyframes fbShieldSpin { to { stroke-dashoffset: -32; } }
+  .fb-float { position: absolute; pointer-events: none; font-weight: 900; font-size: 1.5rem; color: #fde047; text-shadow: 0 2px 4px #000; animation: fbFloatUp 0.75s ease-out forwards; transform: translate(-50%, -50%); white-space: nowrap; }
+  .fb-float.crit { color: #f97316; font-size: 2.1rem; }
+  .fb-float.block { color: #38bdf8; font-size: 1.2rem; }
+  @keyframes fbFloatUp { to { transform: translate(-50%, -260%); opacity: 0; } }
+  .fb-hint { text-align: center; padding: 0.5rem 0.8rem 0.9rem; font-weight: 800; color: #94a3b8; font-size: 0.95rem; }
+  .fb-win { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem; background: rgba(2, 6, 23, 0.6); animation: fbFadeIn 0.4s ease-out; text-align: center; padding: 1rem; }
+  .fb-win h2 { margin: 0; font-size: 2.2rem; color: #fde047; text-shadow: 0 0 18px rgba(253, 224, 71, 0.6); }
+  .fb-win p { margin: 0; color: #e2e8f0; font-weight: 700; }
+  .fb-win button { background: #10b981; color: #022c22; border: none; border-radius: 0.7rem; padding: 0.7rem 1.4rem; font-size: 1.05rem; font-weight: 900; cursor: pointer; }
+  .fb-hero-win { animation: fbHeroJump 0.6s ease-in-out infinite; }
+  @keyframes fbHeroJump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
   .walking-bart .bart-body { transform-origin: 61px 75px; animation: boyBodyKata 4.2s infinite ease-in-out; }
   .walking-bart .leg-l { transform-origin: 58px 78px; animation: walkLegLeft 0.75s infinite ease-in-out; }
   .walking-bart .leg-r { transform-origin: 70px 78px; animation: walkLegRight 0.75s infinite ease-in-out; }
@@ -1824,7 +1864,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:39 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 07:46 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1868,7 +1908,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:39 PM - 11/23/2026
+      Updated: 07:46 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2567,8 +2607,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795480799740"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795480799740"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795481171491"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795481171491"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -7673,7 +7713,196 @@ function showResults(skipSongOnRestore = false) {
   saveCurrentQuizProgress();
   if (!skipSongOnRestore) {
     startGradeSong(grade, true);
+    scheduleFinalBattleAfterPerfectQuiz();
+  } else {
+    cancelFinalBattleCountdown();
   }
+}
+
+// ===== Full-screen Final Battle: reward after finishing a quiz with every question right (user R) =====
+let finalBattleCountdownTimer = null;
+let finalBattleState = null;
+
+function cancelFinalBattleCountdown() {
+  if (finalBattleCountdownTimer) { clearInterval(finalBattleCountdownTimer); finalBattleCountdownTimer = null; }
+  const el = document.getElementById('finalBattleCountdown');
+  if (el) el.remove();
+}
+
+function scheduleFinalBattleAfterPerfectQuiz() {
+  cancelFinalBattleCountdown();
+  const isPerfect = currentInstance === 'R' && Array.isArray(mistakesPool) && mistakesPool.length === 0;
+  if (!isPerfect) return;
+  const results = document.getElementById('resultsContainer');
+  if (!results) return;
+  const quizIdAtFinish = activeQuizId;
+  const note = document.createElement('div');
+  note.id = 'finalBattleCountdown';
+  results.appendChild(note);
+  let secondsLeft = 5;
+  const paint = () => { note.textContent = `⚔️ Perfect quiz! Final Battle starts in ${secondsLeft}…`; };
+  paint();
+  finalBattleCountdownTimer = setInterval(() => {
+    const stillOnResults = isQuizCompleted && activeQuizId === quizIdAtFinish && currentInstance === 'R' &&
+      results.style.display !== 'none' && document.getElementById('finalBattleCountdown');
+    if (!stillOnResults) { cancelFinalBattleCountdown(); return; }
+    secondsLeft--;
+    if (secondsLeft > 0) { paint(); return; }
+    cancelFinalBattleCountdown();
+    startFinalBattle();
+  }, 1000);
+}
+
+function closeFinalBattle() {
+  const st = finalBattleState;
+  finalBattleState = null;
+  if (st) {
+    if (st.raf) cancelAnimationFrame(st.raf);
+    clearTimeout(st.comboTimer);
+    clearTimeout(st.lungeTimer);
+  }
+  const ov = document.getElementById('finalBattleOverlay');
+  if (ov) ov.remove();
+}
+
+function startFinalBattle() {
+  closeFinalBattle();
+  const theme = BOOK_ANIMATION_THEMES[activeBookAnimationKey] || BOOK_ANIMATION_THEMES.key_hunters;
+  // Reuse the current book's characters with prefixed ids so they never clash with the top-left animation
+  const svgMarkup = theme.svg.replace(/id="([^"]+)"/g, 'id="fb_$1"').replace(/url\(#([^)]+)\)/g, 'url(#fb_$1)');
+
+  const ov = document.createElement('div');
+  ov.id = 'finalBattleOverlay';
+  ov.innerHTML = `
+    <div class="fb-hud">
+      <div class="fb-title">⚔️ FINAL BATTLE</div>
+      <div class="fb-hp-wrap">
+        <div class="fb-hp-label"><span id="fbEnemyName">ENEMY</span><span id="fbHpText">100 / 100</span></div>
+        <div class="fb-hp-track"><div class="fb-hp-fill" id="fbHpFill"></div></div>
+      </div>
+      <div class="fb-combo" id="fbCombo"></div>
+      <button type="button" class="fb-close" id="fbCloseBtn">✕ Close</button>
+    </div>
+    <div class="fb-arena walking-bart" id="fbArena">${svgMarkup}</div>
+    <div class="fb-hint" id="fbHint">👆 Tap the enemy to attack! Wait when its shield is up.</div>`;
+  document.body.appendChild(ov);
+
+  const arena = ov.querySelector('#fbArena');
+  const svg = arena.querySelector('svg');
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = (id) => svg.querySelector('#fb_' + id);
+
+  // Read the two name labels, then drop the small-duel HUD pieces that do not belong in the big battle
+  const labels = Array.from(svg.children).filter(el => el.tagName.toLowerCase() === 'text' && el.id !== 'fb_duelMoveCallout');
+  const heroName = (labels[0] && labels[0].textContent.trim()) || 'HERO';
+  const enemyName = (labels[1] && labels[1].textContent.trim()) || 'ENEMY';
+  labels.forEach(el => el.remove());
+  Array.from(svg.children).forEach(el => { if (el.tagName.toLowerCase() === 'rect' && el.getAttribute('height') === '7') el.remove(); });
+  ['heroPowerFill', 'alienPowerFill', 'clashMeterSpark', 'laserClashSparks', 'heroSlashArc', 'alienSlashArc', 'duelMoveCallout'].forEach(id => { const el = $(id); if (el) el.remove(); });
+  ov.querySelector('#fbEnemyName').textContent = enemyName;
+
+  const hero = $('boyPostureGroup');
+  const enemy = $('alienPostureGroup');
+  if (!hero || !enemy) { closeFinalBattle(); return; }
+  enemy.classList.add('fb-enemy-target');
+  const hitArea = document.createElementNS(NS, 'rect');
+  hitArea.setAttribute('x', '126'); hitArea.setAttribute('y', '0'); hitArea.setAttribute('width', '66'); hitArea.setAttribute('height', '112');
+  hitArea.setAttribute('fill', 'transparent'); hitArea.style.pointerEvents = 'all';
+  enemy.appendChild(hitArea);
+  const shield = document.createElementNS(NS, 'ellipse');
+  shield.setAttribute('class', 'fb-shield'); shield.setAttribute('cx', '158'); shield.setAttribute('cy', '60'); shield.setAttribute('rx', '30'); shield.setAttribute('ry', '52');
+  shield.style.display = 'none'; shield.style.pointerEvents = 'none';
+  enemy.appendChild(shield);
+
+  const st = finalBattleState = {
+    hp: 100, taps: 0, combo: 0, shieldUp: false, won: false, startedAt: performance.now(),
+    raf: 0, comboTimer: null, lungeTimer: null
+  };
+  const hpFill = ov.querySelector('#fbHpFill');
+  const hpText = ov.querySelector('#fbHpText');
+  const comboEl = ov.querySelector('#fbCombo');
+
+  const floatText = (x, y, text, cls) => {
+    const r = arena.getBoundingClientRect();
+    const f = document.createElement('div');
+    f.className = 'fb-float' + (cls ? ' ' + cls : '');
+    f.textContent = text;
+    f.style.left = (x - r.left) + 'px';
+    f.style.top = (y - r.top) + 'px';
+    arena.appendChild(f);
+    setTimeout(() => f.remove(), 760);
+  };
+
+  // The enemy drifts around and raises a shield now and then, so taps need a little timing and aim
+  const tick = (now) => {
+    if (finalBattleState !== st || st.won) return;
+    const t = (now - st.startedAt) / 1000;
+    const dx = Math.sin(t * 1.3) * 13 + Math.sin(t * 2.9) * 4;
+    const dy = Math.sin(t * 2.1) * 3;
+    enemy.setAttribute('transform', `translate(${dx.toFixed(1)} ${dy.toFixed(1)})`);
+    const phase = t % 3.4;
+    const up = t > 1.5 && phase > 2.5;
+    if (up !== st.shieldUp) { st.shieldUp = up; shield.style.display = up ? '' : 'none'; }
+    st.raf = requestAnimationFrame(tick);
+  };
+  st.raf = requestAnimationFrame(tick);
+
+  const win = () => {
+    st.won = true;
+    cancelAnimationFrame(st.raf);
+    shield.style.display = 'none';
+    enemy.setAttribute('transform', 'translate(-12, 3) rotate(86 158 104)');
+    const stars = $('alienDefeatedStars'); if (stars) stars.style.display = 'block';
+    ['alienLaserGlow', 'alienLaserCore'].forEach(id => { const el = $(id); if (el) el.style.display = 'none'; });
+    arena.classList.remove('walking-bart');
+    hero.setAttribute('transform', 'translate(16, 0)');
+    hero.classList.add('fb-hero-win');
+    try { playCorrectSound(true); } catch (e) {}
+    const secs = ((performance.now() - st.startedAt) / 1000).toFixed(1);
+    const panel = document.createElement('div');
+    panel.className = 'fb-win';
+    panel.innerHTML = `<h2>🏆 YOU WIN!</h2><p></p><p>${st.taps} taps · ${secs} seconds</p><button type="button">Continue</button>`;
+    panel.querySelector('p').textContent = `${heroName} defeated ${enemyName}!`;
+    panel.querySelector('button').onclick = closeFinalBattle;
+    arena.appendChild(panel);
+    const hint = ov.querySelector('#fbHint'); if (hint) hint.textContent = '🌟 Perfect quiz and a perfect fight!';
+  };
+
+  const attack = (ev) => {
+    ev.preventDefault();
+    if (finalBattleState !== st || st.won) return;
+    const x = ev.clientX, y = ev.clientY;
+    if (st.shieldUp) {
+      st.combo = 0; comboEl.textContent = '';
+      floatText(x, y, '🛡️ BLOCKED!', 'block');
+      return;
+    }
+    st.taps++;
+    st.combo++;
+    const crit = Math.random() < 0.15;
+    let dmg = 3 + Math.min(3, Math.floor(st.combo / 4));
+    if (crit) dmg *= 2;
+    st.hp = Math.max(0, st.hp - dmg);
+    hpFill.style.width = st.hp + '%';
+    hpText.textContent = `${st.hp} / 100`;
+    comboEl.textContent = st.combo >= 2 ? `🔥 Combo x${st.combo}` : '';
+    clearTimeout(st.comboTimer);
+    st.comboTimer = setTimeout(() => { st.combo = 0; comboEl.textContent = ''; }, 1300);
+    floatText(x, y, crit ? `💥 -${dmg}!` : `-${dmg}`, crit ? 'crit' : '');
+    try { playSnapSound(true); } catch (e) {}
+    // Hero lunges at the enemy; enemy flashes; arena shakes
+    hero.setAttribute('transform', 'translate(20, 0)');
+    clearTimeout(st.lungeTimer);
+    st.lungeTimer = setTimeout(() => { if (!st.won) hero.setAttribute('transform', 'translate(0, 0)'); }, 130);
+    enemy.classList.remove('fb-enemy-hit'); arena.classList.remove('fb-shake');
+    void arena.offsetWidth;
+    enemy.classList.add('fb-enemy-hit'); arena.classList.add('fb-shake');
+    const ring = $('combatShockwaveRing');
+    if (ring) { ring.style.animation = 'none'; void ring.getBoundingClientRect(); ring.style.animation = 'shockwaveBurst 0.5s ease-out'; }
+    if (st.hp <= 0) win();
+  };
+  enemy.addEventListener('pointerdown', attack);
+  ov.querySelector('#fbCloseBtn').onclick = closeFinalBattle;
 }
 
 function restartQuiz() {
