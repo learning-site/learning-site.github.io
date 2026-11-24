@@ -1242,6 +1242,7 @@
   .fb-hero-win { animation: fbHeroJump 0.6s ease-in-out infinite; }
   .fb-controls { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0.9rem 1rem; }
   .fb-controls .fb-hint { flex: 1; padding: 0; }
+  .fb-move-pad { display: flex; gap: 0.6rem; flex-shrink: 0; }
   .fb-move-btn {
     width: clamp(4.6rem, 13vw, 6.5rem); height: clamp(4.6rem, 13vw, 6.5rem); flex-shrink: 0; border-radius: 1.1rem;
     border: 3px solid #38bdf8; background: #0f172a; color: #38bdf8; font-size: clamp(2rem, 6vw, 3rem); font-weight: 900;
@@ -1875,7 +1876,7 @@
 <body>
 
 <!-- Etiqueta Global de Verificación de Despliegue (visible en Acceso Privado y Pantalla Principal) -->
-<div class="build-timestamp">Updated: 07:57 PM - 11/23/2026</div>
+<div class="build-timestamp">Updated: 08:01 PM - 11/23/2026</div>
 
 <!-- Pantalla de Usuario y Contraseña (Acceso Privado: R / D) con soporte completo para tecla Enter -->
 <div id="authOverlay" class="auth-overlay" onclick="handleAuthOverlayClick(event)">
@@ -1919,7 +1920,7 @@
       </div>
     </form>
     <div style="font-size: 10px; color: #64748b; font-family: monospace; margin-top: 2px;">
-      Updated: 07:57 PM - 11/23/2026
+      Updated: 08:01 PM - 11/23/2026
     </div>
   </div>
 </div>
@@ -2618,8 +2619,8 @@
   </div>
 </main>
 
-<script id="audioDataScript" src="audio-data.js?v=1795481874805"></script>
-<script id="audioDataEsScript" src="audio-data-es.js?v=1795481874805"></script>
+<script id="audioDataScript" src="audio-data.js?v=1795482094571"></script>
+<script id="audioDataEsScript" src="audio-data-es.js?v=1795482094571"></script>
 <script>
 // Autenticación Acceso Privado: R (Baerga), student (study) y admin (Santana) con soporte para Enter
 let currentInstance = 'R'; // 'R' or 'D' (where 'D' represents the 'student' instance)
@@ -7810,9 +7811,11 @@ function startFinalBattle() {
     </div>
     <div class="fb-arena walking-bart" id="fbArena">${svgMarkup}</div>
     <div class="fb-controls">
-      <button type="button" class="fb-move-btn" id="fbMoveLeft" aria-label="Move left">◀</button>
+      <div class="fb-move-pad">
+        <button type="button" class="fb-move-btn" id="fbMoveLeft" aria-label="Move left">◀</button>
+        <button type="button" class="fb-move-btn" id="fbMoveRight" aria-label="Move right">▶</button>
+      </div>
       <div class="fb-hint" id="fbHint">Use ◀ ▶ to get close, then tap the enemy!</div>
-      <button type="button" class="fb-move-btn" id="fbMoveRight" aria-label="Move right">▶</button>
     </div>`;
   document.body.appendChild(ov);
 
